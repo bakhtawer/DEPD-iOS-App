@@ -7,6 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB43B3BF2C03C110009E990E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3BE2C03C110009E990E /* RegisterViewController.swift */; };
+		CB43B3C52C03D1C3009E990E /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CB43B3C42C03D1C3009E990E /* IQKeyboardManagerSwift */; };
+		CB43B3C82C03D30C009E990E /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3C72C03D30C009E990E /* HTTP.swift */; };
+		CB43B3CA2C03D32F009E990E /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3C92C03D32F009E990E /* Endpoint.swift */; };
+		CB43B3CC2C03D359009E990E /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3CB2C03D359009E990E /* APIService.swift */; };
+		CB43B3CE2C03D392009E990E /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3CD2C03D392009E990E /* NetworkConstants.swift */; };
+		CB43B3D12C03DA58009E990E /* UserHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3D02C03DA58009E990E /* UserHomeViewController.swift */; };
+		CB43B3D42C03E7FC009E990E /* UserHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3D32C03E7FC009E990E /* UserHomeViewModel.swift */; };
+		CB43B3D92C04C5F0009E990E /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3D82C04C5F0009E990E /* ForgotPasswordViewController.swift */; };
+		CB43B3DB2C04D428009E990E /* FPEmailSentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3DA2C04D428009E990E /* FPEmailSentViewController.swift */; };
+		CB43B3DD2C04D772009E990E /* String+extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3DC2C04D772009E990E /* String+extention.swift */; };
+		CB43B3DF2C04E261009E990E /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3DE2C04E261009E990E /* ThankYouViewController.swift */; };
+		CB43B3E12C04EE10009E990E /* RegisterAsSelectionOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3E02C04EE10009E990E /* RegisterAsSelectionOne.swift */; };
+		CB43B3E32C04EE41009E990E /* RegisterAsSelectionSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3E22C04EE41009E990E /* RegisterAsSelectionSchool.swift */; };
+		CB43B3E72C04F445009E990E /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3E62C04F445009E990E /* BottomView.swift */; };
+		CB43B3E92C04F44E009E990E /* BottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB43B3E82C04F44E009E990E /* BottomView.xib */; };
+		CB7808342C05021900F3E785 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808222C05021800F3E785 /* Roboto-Italic.ttf */; };
+		CB7808352C05021900F3E785 /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */; };
+		CB7808362C05021900F3E785 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */; };
+		CB7808372C05021900F3E785 /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808252C05021800F3E785 /* Roboto-Bold.ttf */; };
+		CB7808382C05021900F3E785 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808262C05021800F3E785 /* Roboto-MediumItalic.ttf */; };
+		CB7808392C05021900F3E785 /* RobotoCondensed-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808272C05021800F3E785 /* RobotoCondensed-Bold.ttf */; };
+		CB78083A2C05021900F3E785 /* RobotoCondensed-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808282C05021800F3E785 /* RobotoCondensed-Light.ttf */; };
+		CB78083B2C05021900F3E785 /* RobotoBlack.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808292C05021900F3E785 /* RobotoBlack.ttf */; };
+		CB78083C2C05021900F3E785 /* RobotoCondensed-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB78082A2C05021900F3E785 /* RobotoCondensed-Regular.ttf */; };
+		CB78083D2C05021900F3E785 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB78082B2C05021900F3E785 /* Roboto-Medium.ttf */; };
+		CB78083E2C05021900F3E785 /* RobotoCondensed-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB78082C2C05021900F3E785 /* RobotoCondensed-BoldItalic.ttf */; };
+		CB78083F2C05021900F3E785 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB78082D2C05021900F3E785 /* Roboto-Regular.ttf */; };
+		CB7808402C05021900F3E785 /* Roboto-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB78082E2C05021900F3E785 /* Roboto-ThinItalic.ttf */; };
+		CB7808412C05021900F3E785 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB78082F2C05021900F3E785 /* Roboto-BlackItalic.ttf */; };
+		CB7808422C05021900F3E785 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808302C05021900F3E785 /* Roboto-Light.ttf */; };
+		CB7808432C05021900F3E785 /* Roboto-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808312C05021900F3E785 /* Roboto-BoldItalic.ttf */; };
+		CB7808442C05021900F3E785 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808322C05021900F3E785 /* Roboto-LightItalic.ttf */; };
+		CB7808452C05021900F3E785 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808332C05021900F3E785 /* Roboto-Thin.ttf */; };
+		CB7808472C05039A00F3E785 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7808462C05039A00F3E785 /* UILabel+Extention.swift */; };
 		CB89DFB52BFE6A7200F7458B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFB42BFE6A7200F7458B /* AppDelegate.swift */; };
 		CB89DFB72BFE6A7200F7458B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFB62BFE6A7200F7458B /* SceneDelegate.swift */; };
 		CB89DFBC2BFE6A7200F7458B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CB89DFBB2BFE6A7200F7458B /* Base */; };
@@ -45,6 +80,8 @@
 		CBD17C4B2BFFF249001C3980 /* InstituteCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD17C4A2BFFF249001C3980 /* InstituteCollectionView.swift */; };
 		CBDB23A12BFFF52800AEA1E7 /* InstituteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB239F2BFFF52800AEA1E7 /* InstituteCell.swift */; };
 		CBDB23A22BFFF52800AEA1E7 /* InstituteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBDB23A02BFFF52800AEA1E7 /* InstituteCell.xib */; };
+		CBF98C3C2C02484D00061829 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = CBF98C3B2C02484D00061829 /* SwiftMessages */; };
+		CBF98C3E2C02485A00061829 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = CBF98C3D2C02485A00061829 /* NVActivityIndicatorView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +102,40 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB43B3BE2C03C110009E990E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		CB43B3C72C03D30C009E990E /* HTTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
+		CB43B3C92C03D32F009E990E /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		CB43B3CB2C03D359009E990E /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		CB43B3CD2C03D392009E990E /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
+		CB43B3D02C03DA58009E990E /* UserHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewController.swift; sourceTree = "<group>"; };
+		CB43B3D32C03E7FC009E990E /* UserHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeViewModel.swift; sourceTree = "<group>"; };
+		CB43B3D82C04C5F0009E990E /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		CB43B3DA2C04D428009E990E /* FPEmailSentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FPEmailSentViewController.swift; sourceTree = "<group>"; };
+		CB43B3DC2C04D772009E990E /* String+extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extention.swift"; sourceTree = "<group>"; };
+		CB43B3DE2C04E261009E990E /* ThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouViewController.swift; sourceTree = "<group>"; };
+		CB43B3E02C04EE10009E990E /* RegisterAsSelectionOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAsSelectionOne.swift; sourceTree = "<group>"; };
+		CB43B3E22C04EE41009E990E /* RegisterAsSelectionSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAsSelectionSchool.swift; sourceTree = "<group>"; };
+		CB43B3E62C04F445009E990E /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
+		CB43B3E82C04F44E009E990E /* BottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomView.xib; sourceTree = "<group>"; };
+		CB7808222C05021800F3E785 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
+		CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
+		CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
+		CB7808252C05021800F3E785 /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		CB7808262C05021800F3E785 /* Roboto-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-MediumItalic.ttf"; sourceTree = "<group>"; };
+		CB7808272C05021800F3E785 /* RobotoCondensed-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Bold.ttf"; sourceTree = "<group>"; };
+		CB7808282C05021800F3E785 /* RobotoCondensed-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Light.ttf"; sourceTree = "<group>"; };
+		CB7808292C05021900F3E785 /* RobotoBlack.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = RobotoBlack.ttf; sourceTree = "<group>"; };
+		CB78082A2C05021900F3E785 /* RobotoCondensed-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Regular.ttf"; sourceTree = "<group>"; };
+		CB78082B2C05021900F3E785 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		CB78082C2C05021900F3E785 /* RobotoCondensed-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-BoldItalic.ttf"; sourceTree = "<group>"; };
+		CB78082D2C05021900F3E785 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		CB78082E2C05021900F3E785 /* Roboto-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-ThinItalic.ttf"; sourceTree = "<group>"; };
+		CB78082F2C05021900F3E785 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
+		CB7808302C05021900F3E785 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		CB7808312C05021900F3E785 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		CB7808322C05021900F3E785 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
+		CB7808332C05021900F3E785 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		CB7808462C05039A00F3E785 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
 		CB89DFB12BFE6A7200F7458B /* DEPD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DEPD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB89DFB42BFE6A7200F7458B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB89DFB62BFE6A7200F7458B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +189,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBF98C3E2C02485A00061829 /* NVActivityIndicatorView in Frameworks */,
+				CBF98C3C2C02484D00061829 /* SwiftMessages in Frameworks */,
+				CB43B3C52C03D1C3009E990E /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +212,88 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB43B3C62C03D26F009E990E /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				CB43B3C72C03D30C009E990E /* HTTP.swift */,
+				CB43B3C92C03D32F009E990E /* Endpoint.swift */,
+				CB43B3CB2C03D359009E990E /* APIService.swift */,
+				CB43B3CD2C03D392009E990E /* NetworkConstants.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		CB43B3CF2C03D3CA009E990E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CB43B3D22C03E7DC009E990E /* UserHomeView */ = {
+			isa = PBXGroup;
+			children = (
+				CB43B3D02C03DA58009E990E /* UserHomeViewController.swift */,
+				CB43B3D32C03E7FC009E990E /* UserHomeViewModel.swift */,
+			);
+			path = UserHomeView;
+			sourceTree = "<group>";
+		};
+		CB43B3D72C04C5C4009E990E /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				CBC032122BFE820600B45EEC /* LoginViewController.swift */,
+				CB43B3E42C04F187009E990E /* Register */,
+				CB43B3D82C04C5F0009E990E /* ForgotPasswordViewController.swift */,
+				CB43B3DA2C04D428009E990E /* FPEmailSentViewController.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		CB43B3E42C04F187009E990E /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				CB43B3BE2C03C110009E990E /* RegisterViewController.swift */,
+				CB43B3E02C04EE10009E990E /* RegisterAsSelectionOne.swift */,
+				CB43B3E22C04EE41009E990E /* RegisterAsSelectionSchool.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		CB43B3E52C04F415009E990E /* BottomView */ = {
+			isa = PBXGroup;
+			children = (
+				CB43B3E62C04F445009E990E /* BottomView.swift */,
+				CB43B3E82C04F44E009E990E /* BottomView.xib */,
+			);
+			path = BottomView;
+			sourceTree = "<group>";
+		};
+		CB7807FD2C04FF7A00F3E785 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CB7808292C05021900F3E785 /* RobotoBlack.ttf */,
+				CB78082F2C05021900F3E785 /* Roboto-BlackItalic.ttf */,
+				CB7808252C05021800F3E785 /* Roboto-Bold.ttf */,
+				CB7808312C05021900F3E785 /* Roboto-BoldItalic.ttf */,
+				CB7808222C05021800F3E785 /* Roboto-Italic.ttf */,
+				CB7808302C05021900F3E785 /* Roboto-Light.ttf */,
+				CB7808322C05021900F3E785 /* Roboto-LightItalic.ttf */,
+				CB78082B2C05021900F3E785 /* Roboto-Medium.ttf */,
+				CB7808262C05021800F3E785 /* Roboto-MediumItalic.ttf */,
+				CB78082D2C05021900F3E785 /* Roboto-Regular.ttf */,
+				CB7808332C05021900F3E785 /* Roboto-Thin.ttf */,
+				CB78082E2C05021900F3E785 /* Roboto-ThinItalic.ttf */,
+				CB7808272C05021800F3E785 /* RobotoCondensed-Bold.ttf */,
+				CB78082C2C05021900F3E785 /* RobotoCondensed-BoldItalic.ttf */,
+				CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */,
+				CB7808282C05021800F3E785 /* RobotoCondensed-Light.ttf */,
+				CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */,
+				CB78082A2C05021900F3E785 /* RobotoCondensed-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		CB89DFA82BFE6A7200F7458B = {
 			isa = PBXGroup;
 			children = (
@@ -145,6 +301,7 @@
 				CB89DFCA2BFE6A7400F7458B /* DEPDTests */,
 				CB89DFD42BFE6A7400F7458B /* DEPDUITests */,
 				CB89DFB22BFE6A7200F7458B /* Products */,
+				CBF98C3A2C02484D00061829 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,6 +318,8 @@
 		CB89DFB32BFE6A7200F7458B /* DEPD */ = {
 			isa = PBXGroup;
 			children = (
+				CB43B3CF2C03D3CA009E990E /* Models */,
+				CB43B3C62C03D26F009E990E /* Network */,
 				CB89DFED2BFE6B3400F7458B /* Utilities */,
 				CB89DFF42BFE6D5E00F7458B /* Appdelegate */,
 				CB89DFF52BFE6D7400F7458B /* Storyboards */,
@@ -191,6 +350,7 @@
 		CB89DFED2BFE6B3400F7458B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CB43B3E52C04F415009E990E /* BottomView */,
 				CBD17C472BFFF1FD001C3980 /* InstituteCollectionView */,
 				CBD17C3E2BFFEB74001C3980 /* BannerView */,
 				CB89DFE42BFE6AA600F7458B /* Bootstrapper.swift */,
@@ -208,6 +368,8 @@
 				CBD17C352BFFE1B3001C3980 /* ScrollView+Extention.swift */,
 				CBD17C372BFFE233001C3980 /* UIViewController+Extention.swift */,
 				CBD17C452BFFF1B1001C3980 /* UIStackView+Extention.swift */,
+				CB43B3DC2C04D772009E990E /* String+extention.swift */,
+				CB7808462C05039A00F3E785 /* UILabel+Extention.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -233,11 +395,13 @@
 		CB89DFF62BFE6D8E00F7458B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CB43B3D72C04C5C4009E990E /* Authentication */,
 				CB89DFF22BFE6B9400F7458B /* SplashViewController.swift */,
 				CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */,
-				CBC032122BFE820600B45EEC /* LoginViewController.swift */,
 				CBD17C312BFFE106001C3980 /* HomeViewController.swift */,
 				CBD17C432BFFF030001C3980 /* ListTes.swift */,
+				CB43B3D22C03E7DC009E990E /* UserHomeView */,
+				CB43B3DE2C04E261009E990E /* ThankYouViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -245,6 +409,7 @@
 		CB89DFF72BFE6DBE00F7458B /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				CB7807FD2C04FF7A00F3E785 /* Fonts */,
 				CBC0320F2BFE815D00B45EEC /* Languages */,
 				CB89DFBD2BFE6A7400F7458B /* Assets.xcassets */,
 				CB89DFF82BFE6DE000F7458B /* Colors.xcassets */,
@@ -298,6 +463,13 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		CBF98C3A2C02484D00061829 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -312,8 +484,14 @@
 			buildRules = (
 			);
 			dependencies = (
+				CBF98C392C0247E900061829 /* PBXTargetDependency */,
 			);
 			name = DEPD;
+			packageProductDependencies = (
+				CBF98C3B2C02484D00061829 /* SwiftMessages */,
+				CBF98C3D2C02485A00061829 /* NVActivityIndicatorView */,
+				CB43B3C42C03D1C3009E990E /* IQKeyboardManagerSwift */,
+			);
 			productName = DEPD;
 			productReference = CB89DFB12BFE6A7200F7458B /* DEPD.app */;
 			productType = "com.apple.product-type.application";
@@ -389,6 +567,9 @@
 			);
 			mainGroup = CB89DFA82BFE6A7200F7458B;
 			packageReferences = (
+				CBA851842C02391600E4A6D0 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
+				CBA851872C023B0800E4A6D0 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
+				CB43B3C12C03D180009E990E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = CB89DFB22BFE6A7200F7458B /* Products */;
 			projectDirPath = "";
@@ -406,14 +587,33 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB7808452C05021900F3E785 /* Roboto-Thin.ttf in Resources */,
+				CB78083D2C05021900F3E785 /* Roboto-Medium.ttf in Resources */,
+				CB78083A2C05021900F3E785 /* RobotoCondensed-Light.ttf in Resources */,
+				CB7808372C05021900F3E785 /* Roboto-Bold.ttf in Resources */,
+				CB7808382C05021900F3E785 /* Roboto-MediumItalic.ttf in Resources */,
+				CB7808432C05021900F3E785 /* Roboto-BoldItalic.ttf in Resources */,
 				CBD17C422BFFEB74001C3980 /* BannerView.xib in Resources */,
 				CB89DFBE2BFE6A7400F7458B /* Assets.xcassets in Resources */,
+				CB78083B2C05021900F3E785 /* RobotoBlack.ttf in Resources */,
+				CB7808412C05021900F3E785 /* Roboto-BlackItalic.ttf in Resources */,
 				CBC032112BFE819200B45EEC /* Localizable.xcstrings in Resources */,
 				CB89DFF92BFE6DE000F7458B /* Colors.xcassets in Resources */,
+				CB7808362C05021900F3E785 /* RobotoCondensed-LightItalic.ttf in Resources */,
+				CB78083C2C05021900F3E785 /* RobotoCondensed-Regular.ttf in Resources */,
+				CB7808422C05021900F3E785 /* Roboto-Light.ttf in Resources */,
+				CB7808442C05021900F3E785 /* Roboto-LightItalic.ttf in Resources */,
 				CBDB23A22BFFF52800AEA1E7 /* InstituteCell.xib in Resources */,
+				CB78083F2C05021900F3E785 /* Roboto-Regular.ttf in Resources */,
+				CB7808352C05021900F3E785 /* RobotoCondensed-Italic.ttf in Resources */,
 				CBD17C492BFFF23F001C3980 /* InstituteCollectionView.xib in Resources */,
+				CB78083E2C05021900F3E785 /* RobotoCondensed-BoldItalic.ttf in Resources */,
+				CB7808392C05021900F3E785 /* RobotoCondensed-Bold.ttf in Resources */,
 				CB89DFC12BFE6A7400F7458B /* Base in Resources */,
+				CB43B3E92C04F44E009E990E /* BottomView.xib in Resources */,
 				CB89DFBC2BFE6A7200F7458B /* Base in Resources */,
+				CB7808342C05021900F3E785 /* Roboto-Italic.ttf in Resources */,
+				CB7808402C05021900F3E785 /* Roboto-ThinItalic.ttf in Resources */,
 				CBD17C402BFFEB74001C3980 /* BannerCCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,31 +639,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CB43B3D42C03E7FC009E990E /* UserHomeViewModel.swift in Sources */,
+				CB43B3BF2C03C110009E990E /* RegisterViewController.swift in Sources */,
+				CB43B3E32C04EE41009E990E /* RegisterAsSelectionSchool.swift in Sources */,
+				CB43B3CA2C03D32F009E990E /* Endpoint.swift in Sources */,
 				CBD17C4B2BFFF249001C3980 /* InstituteCollectionView.swift in Sources */,
+				CB43B3CE2C03D392009E990E /* NetworkConstants.swift in Sources */,
 				CB89DFF02BFE6B4700F7458B /* Storyboard+extention.swift in Sources */,
 				CBD17C3F2BFFEB74001C3980 /* BannerCCell.swift in Sources */,
 				CBC032152BFE892A00B45EEC /* String+extentions.swift in Sources */,
 				CB89DFB52BFE6A7200F7458B /* AppDelegate.swift in Sources */,
+				CB43B3DB2C04D428009E990E /* FPEmailSentViewController.swift in Sources */,
 				CBD17C322BFFE106001C3980 /* HomeViewController.swift in Sources */,
 				CBC032082BFE784100B45EEC /* CALayer+Extention.swift in Sources */,
 				CBD17C462BFFF1B1001C3980 /* UIStackView+Extention.swift in Sources */,
+				CB43B3DD2C04D772009E990E /* String+extention.swift in Sources */,
+				CB43B3C82C03D30C009E990E /* HTTP.swift in Sources */,
 				CBD17C342BFFE128001C3980 /* BaseViewController.swift in Sources */,
 				CBC032172BFE8F6200B45EEC /* UITextField+extention.swift in Sources */,
 				CBD17C412BFFEB74001C3980 /* BannerView.swift in Sources */,
+				CB43B3E72C04F445009E990E /* BottomView.swift in Sources */,
 				CBC0320A2BFE78E100B45EEC /* UserDefaults+Extentions.swift in Sources */,
 				CB89DFE52BFE6AA600F7458B /* Bootstrapper.swift in Sources */,
+				CB43B3E12C04EE10009E990E /* RegisterAsSelectionOne.swift in Sources */,
+				CB43B3CC2C03D359009E990E /* APIService.swift in Sources */,
 				CBC032062BFE77E100B45EEC /* UIView+extention.swift in Sources */,
 				CBC032192BFE8FC400B45EEC /* UiColor+Extention.swift in Sources */,
 				CB89DFB72BFE6A7200F7458B /* SceneDelegate.swift in Sources */,
+				CB43B3DF2C04E261009E990E /* ThankYouViewController.swift in Sources */,
 				CB89DFF32BFE6B9400F7458B /* SplashViewController.swift in Sources */,
 				CB89DFF12BFE6B4700F7458B /* ShortCuts.swift in Sources */,
+				CB7808472C05039A00F3E785 /* UILabel+Extention.swift in Sources */,
 				CBD17C2D2BFFB92B001C3980 /* UiButton+extention.swift in Sources */,
 				CB89DFFB2BFE6F1700F7458B /* LanguageSelectionViewController.swift in Sources */,
 				CBD17C442BFFF030001C3980 /* ListTes.swift in Sources */,
 				CBC032132BFE820600B45EEC /* LoginViewController.swift in Sources */,
+				CB43B3D92C04C5F0009E990E /* ForgotPasswordViewController.swift in Sources */,
 				CBD17C302BFFDBE2001C3980 /* InformativeAlertManager.swift in Sources */,
 				CBD17C382BFFE233001C3980 /* UIViewController+Extention.swift in Sources */,
 				CBD17C362BFFE1B3001C3980 /* ScrollView+Extention.swift in Sources */,
+				CB43B3D12C03DA58009E990E /* UserHomeViewController.swift in Sources */,
 				CBDB23A12BFFF52800AEA1E7 /* InstituteCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -497,6 +712,10 @@
 			isa = PBXTargetDependency;
 			target = CB89DFB02BFE6A7200F7458B /* DEPD */;
 			targetProxy = CB89DFD22BFE6A7400F7458B /* PBXContainerItemProxy */;
+		};
+		CBF98C392C0247E900061829 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = CBF98C382C0247E900061829 /* SwiftMessages */;
 		};
 /* End PBXTargetDependency section */
 
@@ -655,10 +874,13 @@
 				DEVELOPMENT_TEAM = AXXYKW7R5J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DEPD/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "DEPD would use your photo for the Pofile picture. ";
+				INFOPLIST_KEY_NSContactsUsageDescription = "DEPD would use your photo for the Pofile picture. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -683,10 +905,13 @@
 				DEVELOPMENT_TEAM = AXXYKW7R5J;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DEPD/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "DEPD would use your photo for the Pofile picture. ";
+				INFOPLIST_KEY_NSContactsUsageDescription = "DEPD would use your photo for the Pofile picture. ";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -813,6 +1038,56 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CB43B3C12C03D180009E990E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.3;
+			};
+		};
+		CBA851842C02391600E4A6D0 /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+		CBA851872C023B0800E4A6D0 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ninjaprox/NVActivityIndicatorView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CB43B3C42C03D1C3009E990E /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CB43B3C12C03D180009E990E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+		CBF98C382C0247E900061829 /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CBA851842C02391600E4A6D0 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
+		};
+		CBF98C3B2C02484D00061829 /* SwiftMessages */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CBA851842C02391600E4A6D0 /* XCRemoteSwiftPackageReference "SwiftMessages" */;
+			productName = SwiftMessages;
+		};
+		CBF98C3D2C02485A00061829 /* NVActivityIndicatorView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CBA851872C023B0800E4A6D0 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */;
+			productName = NVActivityIndicatorView;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CB89DFA92BFE6A7200F7458B /* Project object */;
 }

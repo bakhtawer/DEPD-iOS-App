@@ -6,7 +6,7 @@
 //
 
 import UIKit
-//import NVActivityIndicatorView
+import NVActivityIndicatorView
 
 enum ViewTags: Int {
     case bgViewTag = 1001
@@ -14,11 +14,10 @@ enum ViewTags: Int {
     case popupView = 1003
 }
 
-
 class BaseViewController: UIViewController {
     
     let viewBGLoder: UIView = UIView()
-//    var activityView: NVActivityIndicatorView!
+    var activityView: NVActivityIndicatorView!
     
     let bgViewTag = ViewTags.bgViewTag.rawValue
     let activityViewTag = ViewTags.activityViewTag.rawValue
@@ -32,46 +31,48 @@ class BaseViewController: UIViewController {
     
     private func addDimView() {
         self.viewBGLoder.frame = UIScreen.main.bounds
-        self.viewBGLoder.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        self.viewBGLoder.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         self.viewBGLoder.tag = bgViewTag
-//        UIApplication.shared.connectedScenes.first.addSubview(self.viewBGLoder)
-//        UIApplication.shared.windows.first?.addSubview(self.viewBGLoder)
+        UIApplication.shared.keyWindow?.addSubview(self.viewBGLoder)
     }
     
     func showLoadingIndicator(withDimView: Bool = false) {
-//        if activityView == nil {
-//            
-//            let originX = UIScreen.main.bounds.width/2
-//            let originY = UIScreen.main.bounds.height/2
-//            let frame = CGRect(x: originX - 50.0/2,
-//                               y: originY - 50.0/2,
-//                               width: 50.0,
-//                               height: 50.0)
-//           
-//            activityView = NVActivityIndicatorView(frame: frame,
-//                                                   type: .ballSpinFadeLoader,
-//                                                   color: .themePrimary,
-//                                                   padding: 0.0)
-//            activityView.tag = activityViewTag
-//            
-//            // add subview
-//            withDimView ? self.addDimView() : ()
-//            UIViewController.top().view.addSubview(self.activityView)
-//            activityView.startAnimating()
-//        }
+        if activityView == nil {
+            
+            let originX = UIScreen.main.bounds.width/2
+            let originY = UIScreen.main.bounds.height/2
+            let frame = CGRect(x: originX - 50.0/2,
+                               y: originY - 50.0/2,
+                               width: 50.0,
+                               height: 50.0)
+           
+            activityView = NVActivityIndicatorView(frame: frame,
+                                                   type: .ballSpinFadeLoader,
+                                                   color: .appGreen,
+                                                   padding: 0.0)
+            activityView.tag = activityViewTag
+            
+            // add subview
+            withDimView ? self.addDimView() : ()
+            UIViewController.top().view.addSubview(self.activityView)
+            DispatchQueue.main.async {[weak self] in
+                self?.activityView.startAnimating()
+            }
+        }
     }
     
     func hideLoadingIndicator() {
-//        DispatchQueue.main.async {[weak self] in
-//            if self?.activityView != nil {
-//                self?.viewBGLoder.removeFromSuperview()
-//                //UIApplication.shared.endIgnoringInteractionEvents()
-//                self?.activityView.stopAnimating()
-//                self?.activityView = nil
-//                UIApplication.shared.windows.first?.viewWithTag(ViewTags.bgViewTag.rawValue)?.removeFromSuperview()
-//                UIApplication.shared.windows.first?.viewWithTag(ViewTags.activityViewTag.rawValue)?.removeFromSuperview()
-//            }
-//        }
+        DispatchQueue.main.async {[weak self] in
+            if self?.activityView != nil {
+                self?.viewBGLoder.removeFromSuperview()
+                //UIApplication.shared.endIgnoringInteractionEvents()
+                self?.activityView.stopAnimating()
+                self?.activityView = nil
+                
+                UIApplication.shared.keyWindow?.viewWithTag(ViewTags.bgViewTag.rawValue)?.removeFromSuperview()
+                UIApplication.shared.keyWindow?.viewWithTag(ViewTags.activityViewTag.rawValue)?.removeFromSuperview()
+            }
+        }
     }
     
     
@@ -116,5 +117,37 @@ extension UIViewController {
 extension BaseViewController:UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+
+protocol MVVMViewControllerProtocol: AnyObject {
+    associatedtype T
+    
+    init(coder aDecoder: NSCoder, viewModel: T)
+    init(viewModel: T)
+}
+
+class MVVMViewController<U>: BaseViewController, MVVMViewControllerProtocol {
+    
+    typealias T = U
+    let viewModel: T
+    
+    convenience init() {
+        fatalError("init() has not been implemented")
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    required init(coder aDecoder: NSCoder, viewModel: T) {
+        self.viewModel = viewModel
+        super.init(coder: aDecoder)!
+    }
+    
+    required init(viewModel: T) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
     }
 }

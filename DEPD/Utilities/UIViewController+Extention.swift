@@ -10,14 +10,16 @@ import UIKit
 extension UIViewController {
     
     static func top() -> UIViewController {
-        guard let rootViewController = UIApplication.shared.delegate?.window??.rootViewController else {
-            fatalError("No view controller present in app?")
+        
+        let keyWindow = UIApplication.shared.keyWindow
+
+        if var topController = keyWindow?.rootViewController {
+            while let presentedViewController = topController.presentedViewController {
+                topController = presentedViewController
+            }
+            return topController
         }
-        var result = rootViewController
-        while let viewController = result.presentedViewController {
-            result = viewController
-        }
-        return result
+        fatalError("No view controller present in app?")
     }
     
     func hideKeyboardWhenTappedAround() {
@@ -52,17 +54,17 @@ extension UIViewController {
     func setTitle(_ title: String) {
         self.title = title
         
-        let titleFont = UIFont.boldSystemFont(ofSize: 16)
+        let titleFont = UIFont.boldSystemFont(ofSize: 18)
         
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.black,
+        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.appLight,
                           NSAttributedString.Key.font: titleFont]
         self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key: Any]
         
-        //        self.navigationController?.navigationBar.layer.masksToBounds = false
-        //        self.navigationController?.navigationBar.layer.shadowColor = UIColor.themeBorderColor.cgColor
-        //        self.navigationController?.navigationBar.layer.shadowOpacity = 0.8
-        //        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        //        self.navigationController?.navigationBar.layer.shadowRadius = 1
+//                self.navigationController?.navigationBar.layer.masksToBounds = false
+//                self.navigationController?.navigationBar.layer.shadowColor = UIColor.themeBorderColor.cgColor
+//                self.navigationController?.navigationBar.layer.shadowOpacity = 0.8
+//                self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+//                self.navigationController?.navigationBar.layer.shadowRadius = 1
     }
     
     func navBarPreset() {
@@ -94,7 +96,14 @@ extension UIViewController {
     
     func setBackButton(_ tint: UIColor = .clear) -> UIButton {
         let buttonMenu: UIButton = UIButton.init(type: .custom)
-        let image = UIImage(named: "icon_back")?.withRenderingMode(.alwaysTemplate)
+        var image = UIImage(named: "backBtn")?.withRenderingMode(.alwaysTemplate)
+        if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
+            image = image?.flipHorizontally()?.withRenderingMode(.alwaysTemplate)
+            buttonMenu.contentHorizontalAlignment = .right
+        }else {
+            buttonMenu.contentHorizontalAlignment = .left
+        }
+        
         buttonMenu.setImage(image,
                             for: UIControl.State.normal)
         buttonMenu.setImage(image,
@@ -102,14 +111,13 @@ extension UIViewController {
         buttonMenu.setImage(image,
                             for: UIControl.State.selected)
         buttonMenu.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
-        buttonMenu.contentHorizontalAlignment = .left
         buttonMenu.tintColor = tint
         let buttonBackBar = UIBarButtonItem(customView: buttonMenu)
         self.navigationItem.leftBarButtonItem = buttonBackBar
         return buttonMenu
     }
     
-    func setNavigationTransparent(_ title: String) {
+    func setNavigationTransparent(_ title: String = "") {
         self.setLogo()
         self.setNavBarColor(.white)
         
@@ -171,7 +179,7 @@ extension UIViewController {
         let button = UIButton(type: .custom)
         let backBtnImage = UIImage(named: "icon_main_menu")?.withRenderingMode(.alwaysOriginal).imageWithColor(color1: tint)
         button.frame = CGRect(x: 0.0, y: 0.0, width: 20, height: 20)
-//        button.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        //        button.imageEdgeInsets = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         button.setImage(backBtnImage, for: .normal)
         let barButton = UIBarButtonItem(customView: button)
         barButton.imageInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
@@ -238,5 +246,18 @@ extension UIApplication {
             keyWindow?.addSubview(statusBarView)
             return statusBarView
         }
+    }
+    
+    var keyWindow: UIWindow? {
+        // Get connected scenes
+        return self.connectedScenes
+        // Keep only active scenes, onscreen and visible to the user
+            .filter { $0.activationState == .foregroundActive }
+        // Keep only the first `UIWindowScene`
+            .first(where: { $0 is UIWindowScene })
+        // Get its associated windows
+            .flatMap({ $0 as? UIWindowScene })?.windows
+        // Finally, keep only the key window
+            .first(where: \.isKeyWindow)
     }
 }

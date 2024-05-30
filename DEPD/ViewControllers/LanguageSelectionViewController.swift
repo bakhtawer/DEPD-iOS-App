@@ -9,9 +9,13 @@ import UIKit
 
 class LanguageSelectionViewController: UIViewController {
     
+    @IBOutlet weak var labelSelectLangauge: UILabel!
+    
     @IBOutlet weak var buttonUrdu: UIButton!
     @IBOutlet weak var buttonEnglish: UIButton!
     @IBOutlet weak var buttonSindhi: UIButton!
+    
+    var isSelection: Bool = false
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -23,6 +27,8 @@ class LanguageSelectionViewController: UIViewController {
         buttonUrdu.makeItThemePrimary()
         buttonEnglish.makeItThemePrimary()
         buttonSindhi.makeItThemePrimary()
+        
+        labelSelectLangauge.makeItTheme()
     }
     
     override func viewDidLoad() {
@@ -32,14 +38,18 @@ class LanguageSelectionViewController: UIViewController {
         buttonEnglish.accessibilityLabel = "select en here".localized()
         buttonSindhi.accessibilityLabel = "select sd here".localized()
         
-        buttonUrdu.addTapGestureRecognizer {[weak self] in
+        labelSelectLangauge.text = "select_language".localized()
+        
+        buttonUrdu.addTapGestureRecognizer { [weak self] in
             UserDefaults.set(selectedLanguage: "ur")
             self?.selectLanguage()
         }
+        
         buttonEnglish.addTapGestureRecognizer {[weak self] in
             UserDefaults.set(selectedLanguage: "en")
             self?.selectLanguage()
         }
+        
         buttonSindhi.addTapGestureRecognizer {[weak self] in
             UserDefaults.set(selectedLanguage: "sd")
             self?.selectLanguage()
@@ -50,7 +60,8 @@ class LanguageSelectionViewController: UIViewController {
         UserDefaults.standard.set([UserDefaults.selectedLanguage], forKey: "AppleLanguages")
         UserDefaults.standard.synchronize()
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else {return}
             if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
                 UIView.appearance().semanticContentAttribute = .forceRightToLeft
                 UIButton.appearance().semanticContentAttribute = .forceRightToLeft
@@ -63,7 +74,9 @@ class LanguageSelectionViewController: UIViewController {
                 UITextField.appearance().semanticContentAttribute = .forceLeftToRight
             }
             
-            Bootstrapper.createLogin()
+            if self.isSelection {
+                self.navigationController?.dismiss(animated: true)
+            }else {  Bootstrapper.createLogin() }
         }
     }
 }

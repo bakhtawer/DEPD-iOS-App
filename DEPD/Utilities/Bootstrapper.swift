@@ -37,10 +37,10 @@ struct Bootstrapper {
     }
 
     
-//    static func createLoginSignup() {
-//        guard let instance = instance else { fatalError("Instance is not initialized") }
-//        instance.showSignupLogin()
-//    }
+    static func createLoginSignup() {
+        guard let instance = instance else { fatalError("Instance is not initialized") }
+        instance.showSignupLogin()
+    }
     
     static func createHome() {
         guard let instance = instance else { fatalError("Instance is not initialized") }
@@ -119,20 +119,27 @@ extension Bootstrapper {
     
     private func showHome() {
         let storyboard = getStoryBoard(.main)
-        let view = storyboard.instantiateViewController(ofType: ListTest.self)
-//        let view = storyboard.instantiateViewController(ofType: HomeViewController.self)
-        let nav = UINavigationController(rootViewController: view)
+        //        let view = storyboard.instantiateViewController(ofType: UserHomeViewController.self)
+        
+        let viewController = storyboard.instantiateViewController(identifier: "UserHomeViewController") {coder in
+            let viewModel = UserHomeViewModel()
+            let vc = UserHomeViewController(coder: coder, viewModel: viewModel)
+            return vc
+        }
+        
+        let nav = UINavigationController(rootViewController: viewController)
         self.window.rootViewController = nav
     }
-//    
-//    
-//    private func showSignupLogin() {
+    
+    private func showSignupLogin() {
 //        let storyboard = getStoryBoard(.main)
-//        let view = storyboard.instantiateViewController(ofType: SignupLoginViewController.self)
+//        let view = storyboard.instantiateViewController(ofType: RegisterViewController.self)
 //        let nav = UINavigationController(rootViewController: view)
-//        self.window.rootViewController = nav
-//    }
-//    
+////        self.window.rootViewController = nav
+//        view.modalPresentationStyle = .fullScreen
+//        self.window.rootViewController?.navigationController?.pushViewController(view, animated: true)
+    }
+    
     private func showLogin() {
         let storyboard = getStoryBoard(.main)
         let view = storyboard.instantiateViewController(ofType: LoginViewController.self)
