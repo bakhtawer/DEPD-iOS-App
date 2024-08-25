@@ -39,7 +39,7 @@ class LanguageSelectionViewController: UIViewController {
         buttonSindhi.accessibilityLabel = "select sd here".localized()
         
         labelSelectLangauge.text = "select_language".localized()
-        
+
         buttonUrdu.addTapGestureRecognizer { [weak self] in
             UserDefaults.set(selectedLanguage: "ur")
             self?.selectLanguage()
@@ -54,6 +54,7 @@ class LanguageSelectionViewController: UIViewController {
             UserDefaults.set(selectedLanguage: "sd")
             self?.selectLanguage()
         }
+
     }
     
     func selectLanguage() {
@@ -74,9 +75,10 @@ class LanguageSelectionViewController: UIViewController {
                 UITextField.appearance().semanticContentAttribute = .forceLeftToRight
             }
             
-            if self.isSelection {
-                self.navigationController?.dismiss(animated: true)
-            }else {  Bootstrapper.createLogin() }
+            Bootstrapper.createInclusiveScreen()
+//            if self.isSelection {
+//                self.navigationController?.dismiss(animated: true)
+//            }else {   }
         }
     }
 }

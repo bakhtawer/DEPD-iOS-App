@@ -6,10 +6,18 @@
 //
 
 import UIKit
+import Kingfisher
 
 class InstituteCell: UICollectionViewCell {
     
     static let reuseIdentifier: String = "InstituteCell"
+    
+    @IBOutlet weak var btnViewInfo: UIButton!
+    
+    @IBOutlet weak var labelDistrict: UILabel!
+    @IBOutlet weak var labelSeats: UILabel!
+    
+    @IBOutlet weak var imageSchool: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,7 +27,16 @@ class InstituteCell: UICollectionViewCell {
     }
     
     func configure(with model: InstituteModel) {
-        self.backgroundColor = .appBlue
+        
+        btnViewInfo.makeItThemePrimary(13)
+        btnViewInfo.setTitle("view_info".localized(), for: .normal)
+        
+        labelDistrict.text = model.Location
+        labelSeats.text = "\(model.NumberOfSeats ?? 0) seats available"
+        
+        
+        guard let image = URL(string: model.ImageURL ?? "") else { return }
+        imageSchool.kf.setImage(with: image)
     }
 
 }

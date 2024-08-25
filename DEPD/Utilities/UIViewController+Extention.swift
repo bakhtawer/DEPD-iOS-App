@@ -51,20 +51,15 @@ extension UIViewController {
         self.title = nil
     }
     
-    func setTitle(_ title: String) {
+    func setTitle(_ title: String, 
+                  _ color: UIColor = .textDark) {
         self.title = title
         
         let titleFont = UIFont.boldSystemFont(ofSize: 18)
         
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.appLight,
+        let attributes = [NSAttributedString.Key.foregroundColor: color,
                           NSAttributedString.Key.font: titleFont]
         self.navigationController?.navigationBar.titleTextAttributes = attributes as [NSAttributedString.Key: Any]
-        
-//                self.navigationController?.navigationBar.layer.masksToBounds = false
-//                self.navigationController?.navigationBar.layer.shadowColor = UIColor.themeBorderColor.cgColor
-//                self.navigationController?.navigationBar.layer.shadowOpacity = 0.8
-//                self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-//                self.navigationController?.navigationBar.layer.shadowRadius = 1
     }
     
     func navBarPreset() {
@@ -203,10 +198,10 @@ extension UIViewController {
         return button
     }
     func setLogo(_ tint: UIColor = .clear) {
-        let logoContainer = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 30))
+        let logoContainer = UIView(frame: CGRect(x: 0, y: 10, width: 135, height: 40))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 135, height: 40))
         imageView.contentMode = .scaleAspectFit
-        let image = UIImage(named: "icon_nav")?.withRenderingMode(.alwaysOriginal)
+        let image = UIImage(named: "icon_nav_dark")?.withRenderingMode(.alwaysOriginal)
         imageView.image = image
         logoContainer.addSubview(imageView)
         navigationItem.titleView = logoContainer

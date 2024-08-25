@@ -16,6 +16,13 @@ extension UIButton {
         self.applyShadow()
     }
     
+    func makeItThemeGreenPrimary(_ fontSize: CGFloat = 20.0) {
+        self.setRoundBorderColor(.clear, 0.0, 5.0)
+        self.backgroundColor = .appGreen
+        styleButton(fontSize, .appLight, .regular)
+        self.applyShadow()
+    }
+    
     func makeItThemeLargeWhite(_ fontSize: CGFloat = 24.0,
                                _ textColor: UIColor = .darkText) {
         self.setRoundBorderColor(.clear, 0.0, 11)
@@ -23,6 +30,24 @@ extension UIButton {
         self.titleLabel?.font = .systemFont(ofSize: fontSize, weight: .medium)  //UIFont(name: THEMEFONTS.DDINBold.rawValue, size: fontSize)
         self.setTitleColor(textColor, for: .normal)
         self.applyShadow()
+    }
+    
+    func makeItThemeLargeTransBlack(_ fontSize: CGFloat = 24.0,
+                               _ textColor: UIColor = .darkText) {
+        self.setRoundBorderColor(.appBorder, 0.0, 11)
+        self.backgroundColor = .appLight
+        self.titleLabel?.font = .systemFont(ofSize: fontSize, weight: .medium)  //UIFont(name: THEMEFONTS.DDINBold.rawValue, size: fontSize)
+        self.setTitleColor(textColor, for: .normal)
+        self.applyShadow()
+    }
+    
+    func makeItThemeRegular(_ fontSize: CGFloat = 24.0,
+                            _ textColor: UIColor = .darkText,
+                            _ bgColor: UIColor = .appBG) {
+        self.setRoundBorderColor(.clear, 0.0, 6)
+        self.backgroundColor = bgColor
+//        styleButton(fontSize, textColor, .regular)
+//        self.applyShadow()
     }
     
     func makeItThemePrimaryWhite(_ fontSize: CGFloat = 18.0) {
@@ -34,8 +59,13 @@ extension UIButton {
     
     
     func styleButton(_ fontSize: CGFloat = 20.0, _ color: UIColor = .textLight, _ fontType: APPFontType = .bold) {
+        var reSize = fontSize
+        if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
+            reSize = reSize - 1
+        }
+        
         // Set font family, size, and weight
-        let font = UIFont(name: fontType.rawValue, size: fontSize) ?? UIFont.systemFont(ofSize: fontSize, weight: .regular)
+        let font = UIFont(name: fontType.rawValue, size: reSize) ?? UIFont.systemFont(ofSize: reSize, weight: .regular)
         self.titleLabel?.font = font
         
         self.setTitleColor(color, for: .normal)

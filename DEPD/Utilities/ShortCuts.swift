@@ -26,6 +26,11 @@ func openModuleOverFullScreen(controller: UIViewController) {
     nav.modalPresentationStyle = .overFullScreen
     UIViewController.top().present(nav, animated: true, completion: nil)
 }
+func openModulePopOver(controller: UIViewController) {
+    let nav = UINavigationController(rootViewController: controller)
+    nav.modalPresentationStyle = .popover
+    UIViewController.top().present(nav, animated: true, completion: nil)
+}
 func openModuleOnNavigation(from: UIViewController?, controller: UIViewController?) {
     guard let cFrom = from, let cTo = controller else { return  }
     cFrom.navigationController?.pushViewController(cTo, animated: true)

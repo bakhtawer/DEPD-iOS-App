@@ -9,13 +9,18 @@ import UIKit
 
 class RegisterAsSelectionOne: BaseViewController {
     
+    @IBOutlet weak var labelTitle: UILabel!
+    
     @IBOutlet weak var buttonInclusiveEducation: UIButton!
     @IBOutlet weak var buttonInclusiveCareer: UIButton!
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        buttonInclusiveEducation.makeItThemeLargeWhite(24, .appBlue)
-        buttonInclusiveCareer.makeItThemeLargeWhite(24, .appBlue)
+        
+        labelTitle.makeItTheme(.regular)
+        
+        buttonInclusiveEducation.makeItThemeLargeTransBlack()
+        buttonInclusiveCareer.makeItThemeLargeTransBlack()
     }
     
     override func viewDidLoad() {
@@ -23,17 +28,22 @@ class RegisterAsSelectionOne: BaseViewController {
         setupNavigation()
         self.navigationController?.navigationBar.isHidden = false
         
+        labelTitle.text = "i_am_looking_for_a".localized()
+        
         buttonInclusiveEducation.setTitle("register_institute_school".localized(), for: .normal)
         buttonInclusiveCareer.setTitle("register_company_hiring".localized(), for: .normal)
         
-        
         buttonInclusiveEducation.addTapGestureRecognizer {
             let storyboard = getStoryBoard(.main)
-            let view = storyboard.instantiateViewController(ofType: RegisterAsSelectionSchool.self)
+            let view = storyboard.instantiateViewController(ofType: RegisterAsSelectionTwo.self)
+            view.screenType = .student
             openModuleOnNavigation(from: self, controller: view)
         }
         buttonInclusiveCareer.addTapGestureRecognizer {
-            SMM.shared.showStatusInfo(message: "Coming Soon")
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: RegisterAsSelectionTwo.self)
+            view.screenType = .job
+            openModuleOnNavigation(from: self, controller: view)
         }
     }
     
@@ -45,10 +55,6 @@ class RegisterAsSelectionOne: BaseViewController {
 extension RegisterAsSelectionOne {
     
     func setupNavigation() {
-        self.setTitle("Register")
-        self.setNavBarColor(.appBlue)
-        self.setBackButton(.appLight).addTapGestureRecognizer {[weak self] in
-            self?.navigationController?.popViewController(animated: true)
-        }
+        self.setLogo()
     }
 }

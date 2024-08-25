@@ -51,6 +51,8 @@ class BottomView: UIView {
         
         setLanguage()
         
+        contentView.backgroundColor = .appGreen
+        
         viewAccessibility.addTapGestureRecognizer {
             SMM.shared.showStatusInfo(message: "view Accessibility")
         }

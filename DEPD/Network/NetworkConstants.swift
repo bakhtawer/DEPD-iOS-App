@@ -10,11 +10,12 @@ import Foundation
 struct NetworkConstants {
     
     // MARK: - API
-    static let scheme = "https"
-    static let baseURL = "github.com/iamCodeBrah/Swift-Generic-API-Calls/blob/Finished/GenericAPITutorial/ViewController.swift"
-    static let port: Int? = nil
+    static let scheme = "http"
+    static let baseURL = "hub.depdportal.com"
+    static let port: Int? = nil // If there's no specific port, keep it nil
 }
 
+//"dped.pppsforepi.com/api"
 //let request = Endpoint.fetchPosts().request!
 //
 //service.makeRequest(with: request, respModel: [Post].self) { posts, error in

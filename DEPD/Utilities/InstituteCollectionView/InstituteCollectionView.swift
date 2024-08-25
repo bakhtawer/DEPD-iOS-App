@@ -7,20 +7,6 @@
 
 import UIKit
 
-struct InstituteModel: Codable, Hashable {
-    var idMain = UUID()
-    
-    init() {
-        idMain = UUID()
-    }
-    static func == (lhs: InstituteModel, rhs: InstituteModel) -> Bool {
-        return  lhs.idMain == rhs.idMain
-    }
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(idMain)
-    }
-}
-
 class InstituteCollectionView: UIView {
     
     @IBOutlet var contentView: UIView!
@@ -69,8 +55,8 @@ class InstituteCollectionView: UIView {
         
         collectionView.register(UINib(nibName: "InstituteCell", bundle: nil), forCellWithReuseIdentifier: InstituteCell.reuseIdentifier)
         
-        dataProds = [InstituteModel(), InstituteModel(), InstituteModel(),InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel(),InstituteModel(), InstituteModel(), InstituteModel(),InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel()]
-        
+//        dataProds = [InstituteModel(), InstituteModel(), InstituteModel(),InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel(),InstituteModel(), InstituteModel(), InstituteModel(),InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel(), InstituteModel()]
+//        
 //        AppTheme.shared.setLabelTheme(labelTitle, .blacktext)
         
         createDataSource()

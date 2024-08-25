@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CB08CEF22C39D2B7004E3DEC /* RegisterSimpleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB08CEF12C39D2B7004E3DEC /* RegisterSimpleViewController.swift */; };
+		CB08CEF42C39E8E6004E3DEC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB08CEF32C39E8E6004E3DEC /* User.swift */; };
+		CB08CEF62C39EB94004E3DEC /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB08CEF52C39EB94004E3DEC /* ApiResponse.swift */; };
+		CB08CEF82C3AC5D5004E3DEC /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB08CEF72C3AC5D5004E3DEC /* UserSession.swift */; };
+		CB08CEFA2C3AC752004E3DEC /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB08CEF92C3AC752004E3DEC /* Student.swift */; };
+		CB1AA5FB2C3AD6E300079270 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1AA5FA2C3AD6E300079270 /* SettingViewController.swift */; };
+		CB2B55E32C5596DB008A8B83 /* InclusiveScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2B55E22C5596DB008A8B83 /* InclusiveScreen.swift */; };
+		CB2B55E52C55A27F008A8B83 /* InstituteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2B55E42C55A27F008A8B83 /* InstituteDetailViewController.swift */; };
 		CB43B3BF2C03C110009E990E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3BE2C03C110009E990E /* RegisterViewController.swift */; };
 		CB43B3C52C03D1C3009E990E /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CB43B3C42C03D1C3009E990E /* IQKeyboardManagerSwift */; };
 		CB43B3C82C03D30C009E990E /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3C72C03D30C009E990E /* HTTP.swift */; };
@@ -20,7 +28,6 @@
 		CB43B3DD2C04D772009E990E /* String+extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3DC2C04D772009E990E /* String+extention.swift */; };
 		CB43B3DF2C04E261009E990E /* ThankYouViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3DE2C04E261009E990E /* ThankYouViewController.swift */; };
 		CB43B3E12C04EE10009E990E /* RegisterAsSelectionOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3E02C04EE10009E990E /* RegisterAsSelectionOne.swift */; };
-		CB43B3E32C04EE41009E990E /* RegisterAsSelectionSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3E22C04EE41009E990E /* RegisterAsSelectionSchool.swift */; };
 		CB43B3E72C04F445009E990E /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3E62C04F445009E990E /* BottomView.swift */; };
 		CB43B3E92C04F44E009E990E /* BottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB43B3E82C04F44E009E990E /* BottomView.xib */; };
 		CB7808342C05021900F3E785 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808222C05021800F3E785 /* Roboto-Italic.ttf */; };
@@ -42,6 +49,7 @@
 		CB7808442C05021900F3E785 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808322C05021900F3E785 /* Roboto-LightItalic.ttf */; };
 		CB7808452C05021900F3E785 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808332C05021900F3E785 /* Roboto-Thin.ttf */; };
 		CB7808472C05039A00F3E785 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7808462C05039A00F3E785 /* UILabel+Extention.swift */; };
+		CB7808492C15EE5600F3E785 /* RegisterAsSelectionTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7808482C15EE5600F3E785 /* RegisterAsSelectionTwo.swift */; };
 		CB89DFB52BFE6A7200F7458B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFB42BFE6A7200F7458B /* AppDelegate.swift */; };
 		CB89DFB72BFE6A7200F7458B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFB62BFE6A7200F7458B /* SceneDelegate.swift */; };
 		CB89DFBC2BFE6A7200F7458B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CB89DFBB2BFE6A7200F7458B /* Base */; };
@@ -56,6 +64,10 @@
 		CB89DFF32BFE6B9400F7458B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFF22BFE6B9400F7458B /* SplashViewController.swift */; };
 		CB89DFF92BFE6DE000F7458B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB89DFF82BFE6DE000F7458B /* Colors.xcassets */; };
 		CB89DFFB2BFE6F1700F7458B /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */; };
+		CBA118F62C7B81DE00F9D633 /* APPMetaDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */; };
+		CBA118F82C7B821E00F9D633 /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA118F72C7B821E00F9D633 /* District.swift */; };
+		CBA118FA2C7B924900F9D633 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA118F92C7B924900F9D633 /* School.swift */; };
+		CBA118FE2C7B9C0600F9D633 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CBA118FD2C7B9C0600F9D633 /* Kingfisher */; };
 		CBC032062BFE77E100B45EEC /* UIView+extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC032052BFE77E100B45EEC /* UIView+extention.swift */; };
 		CBC032082BFE784100B45EEC /* CALayer+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC032072BFE784100B45EEC /* CALayer+Extention.swift */; };
 		CBC0320A2BFE78E100B45EEC /* UserDefaults+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC032092BFE78E100B45EEC /* UserDefaults+Extentions.swift */; };
@@ -102,6 +114,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CB08CEF12C39D2B7004E3DEC /* RegisterSimpleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterSimpleViewController.swift; sourceTree = "<group>"; };
+		CB08CEF32C39E8E6004E3DEC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CB08CEF52C39EB94004E3DEC /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
+		CB08CEF72C3AC5D5004E3DEC /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
+		CB08CEF92C3AC752004E3DEC /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		CB1AA5FA2C3AD6E300079270 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		CB2B55E22C5596DB008A8B83 /* InclusiveScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InclusiveScreen.swift; sourceTree = "<group>"; };
+		CB2B55E42C55A27F008A8B83 /* InstituteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituteDetailViewController.swift; sourceTree = "<group>"; };
 		CB43B3BE2C03C110009E990E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CB43B3C72C03D30C009E990E /* HTTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		CB43B3C92C03D32F009E990E /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -114,7 +134,6 @@
 		CB43B3DC2C04D772009E990E /* String+extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+extention.swift"; sourceTree = "<group>"; };
 		CB43B3DE2C04E261009E990E /* ThankYouViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouViewController.swift; sourceTree = "<group>"; };
 		CB43B3E02C04EE10009E990E /* RegisterAsSelectionOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAsSelectionOne.swift; sourceTree = "<group>"; };
-		CB43B3E22C04EE41009E990E /* RegisterAsSelectionSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAsSelectionSchool.swift; sourceTree = "<group>"; };
 		CB43B3E62C04F445009E990E /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		CB43B3E82C04F44E009E990E /* BottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomView.xib; sourceTree = "<group>"; };
 		CB7808222C05021800F3E785 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
@@ -136,6 +155,7 @@
 		CB7808322C05021900F3E785 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
 		CB7808332C05021900F3E785 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		CB7808462C05039A00F3E785 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
+		CB7808482C15EE5600F3E785 /* RegisterAsSelectionTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAsSelectionTwo.swift; sourceTree = "<group>"; };
 		CB89DFB12BFE6A7200F7458B /* DEPD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DEPD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB89DFB42BFE6A7200F7458B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB89DFB62BFE6A7200F7458B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +174,9 @@
 		CB89DFF22BFE6B9400F7458B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		CB89DFF82BFE6DE000F7458B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
+		CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPMetaDataHandler.swift; sourceTree = "<group>"; };
+		CBA118F72C7B821E00F9D633 /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
+		CBA118F92C7B924900F9D633 /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
 		CBC032052BFE77E100B45EEC /* UIView+extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extention.swift"; sourceTree = "<group>"; };
 		CBC032072BFE784100B45EEC /* CALayer+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extention.swift"; sourceTree = "<group>"; };
 		CBC032092BFE78E100B45EEC /* UserDefaults+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extentions.swift"; sourceTree = "<group>"; };
@@ -189,6 +212,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CBA118FE2C7B9C0600F9D633 /* Kingfisher in Frameworks */,
 				CBF98C3E2C02485A00061829 /* NVActivityIndicatorView in Frameworks */,
 				CBF98C3C2C02484D00061829 /* SwiftMessages in Frameworks */,
 				CB43B3C52C03D1C3009E990E /* IQKeyboardManagerSwift in Frameworks */,
@@ -226,6 +250,11 @@
 		CB43B3CF2C03D3CA009E990E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB08CEF32C39E8E6004E3DEC /* User.swift */,
+				CB08CEF52C39EB94004E3DEC /* ApiResponse.swift */,
+				CB08CEF92C3AC752004E3DEC /* Student.swift */,
+				CBA118F72C7B821E00F9D633 /* District.swift */,
+				CBA118F92C7B924900F9D633 /* School.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -253,9 +282,11 @@
 		CB43B3E42C04F187009E990E /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				CB2B55E22C5596DB008A8B83 /* InclusiveScreen.swift */,
 				CB43B3BE2C03C110009E990E /* RegisterViewController.swift */,
 				CB43B3E02C04EE10009E990E /* RegisterAsSelectionOne.swift */,
-				CB43B3E22C04EE41009E990E /* RegisterAsSelectionSchool.swift */,
+				CB7808482C15EE5600F3E785 /* RegisterAsSelectionTwo.swift */,
+				CB08CEF12C39D2B7004E3DEC /* RegisterSimpleViewController.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -318,6 +349,7 @@
 		CB89DFB32BFE6A7200F7458B /* DEPD */ = {
 			isa = PBXGroup;
 			children = (
+				CBA118F42C7B81C700F9D633 /* Managers */,
 				CB43B3CF2C03D3CA009E990E /* Models */,
 				CB43B3C62C03D26F009E990E /* Network */,
 				CB89DFED2BFE6B3400F7458B /* Utilities */,
@@ -370,6 +402,7 @@
 				CBD17C452BFFF1B1001C3980 /* UIStackView+Extention.swift */,
 				CB43B3DC2C04D772009E990E /* String+extention.swift */,
 				CB7808462C05039A00F3E785 /* UILabel+Extention.swift */,
+				CB08CEF72C3AC5D5004E3DEC /* UserSession.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -402,6 +435,8 @@
 				CBD17C432BFFF030001C3980 /* ListTes.swift */,
 				CB43B3D22C03E7DC009E990E /* UserHomeView */,
 				CB43B3DE2C04E261009E990E /* ThankYouViewController.swift */,
+				CB1AA5FA2C3AD6E300079270 /* SettingViewController.swift */,
+				CB2B55E42C55A27F008A8B83 /* InstituteDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -415,6 +450,14 @@
 				CB89DFF82BFE6DE000F7458B /* Colors.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		CBA118F42C7B81C700F9D633 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		CBC0320F2BFE815D00B45EEC /* Languages */ = {
@@ -491,6 +534,7 @@
 				CBF98C3B2C02484D00061829 /* SwiftMessages */,
 				CBF98C3D2C02485A00061829 /* NVActivityIndicatorView */,
 				CB43B3C42C03D1C3009E990E /* IQKeyboardManagerSwift */,
+				CBA118FD2C7B9C0600F9D633 /* Kingfisher */,
 			);
 			productName = DEPD;
 			productReference = CB89DFB12BFE6A7200F7458B /* DEPD.app */;
@@ -570,6 +614,7 @@
 				CBA851842C02391600E4A6D0 /* XCRemoteSwiftPackageReference "SwiftMessages" */,
 				CBA851872C023B0800E4A6D0 /* XCRemoteSwiftPackageReference "NVActivityIndicatorView" */,
 				CB43B3C12C03D180009E990E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				CBA118FC2C7B9C0600F9D633 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = CB89DFB22BFE6A7200F7458B /* Products */;
 			projectDirPath = "";
@@ -641,14 +686,16 @@
 			files = (
 				CB43B3D42C03E7FC009E990E /* UserHomeViewModel.swift in Sources */,
 				CB43B3BF2C03C110009E990E /* RegisterViewController.swift in Sources */,
-				CB43B3E32C04EE41009E990E /* RegisterAsSelectionSchool.swift in Sources */,
+				CB2B55E32C5596DB008A8B83 /* InclusiveScreen.swift in Sources */,
 				CB43B3CA2C03D32F009E990E /* Endpoint.swift in Sources */,
 				CBD17C4B2BFFF249001C3980 /* InstituteCollectionView.swift in Sources */,
 				CB43B3CE2C03D392009E990E /* NetworkConstants.swift in Sources */,
 				CB89DFF02BFE6B4700F7458B /* Storyboard+extention.swift in Sources */,
+				CB08CEF82C3AC5D5004E3DEC /* UserSession.swift in Sources */,
 				CBD17C3F2BFFEB74001C3980 /* BannerCCell.swift in Sources */,
 				CBC032152BFE892A00B45EEC /* String+extentions.swift in Sources */,
 				CB89DFB52BFE6A7200F7458B /* AppDelegate.swift in Sources */,
+				CBA118FA2C7B924900F9D633 /* School.swift in Sources */,
 				CB43B3DB2C04D428009E990E /* FPEmailSentViewController.swift in Sources */,
 				CBD17C322BFFE106001C3980 /* HomeViewController.swift in Sources */,
 				CBC032082BFE784100B45EEC /* CALayer+Extention.swift in Sources */,
@@ -660,8 +707,11 @@
 				CBD17C412BFFEB74001C3980 /* BannerView.swift in Sources */,
 				CB43B3E72C04F445009E990E /* BottomView.swift in Sources */,
 				CBC0320A2BFE78E100B45EEC /* UserDefaults+Extentions.swift in Sources */,
+				CB1AA5FB2C3AD6E300079270 /* SettingViewController.swift in Sources */,
+				CBA118F62C7B81DE00F9D633 /* APPMetaDataHandler.swift in Sources */,
 				CB89DFE52BFE6AA600F7458B /* Bootstrapper.swift in Sources */,
 				CB43B3E12C04EE10009E990E /* RegisterAsSelectionOne.swift in Sources */,
+				CB2B55E52C55A27F008A8B83 /* InstituteDetailViewController.swift in Sources */,
 				CB43B3CC2C03D359009E990E /* APIService.swift in Sources */,
 				CBC032062BFE77E100B45EEC /* UIView+extention.swift in Sources */,
 				CBC032192BFE8FC400B45EEC /* UiColor+Extention.swift in Sources */,
@@ -669,9 +719,13 @@
 				CB43B3DF2C04E261009E990E /* ThankYouViewController.swift in Sources */,
 				CB89DFF32BFE6B9400F7458B /* SplashViewController.swift in Sources */,
 				CB89DFF12BFE6B4700F7458B /* ShortCuts.swift in Sources */,
+				CBA118F82C7B821E00F9D633 /* District.swift in Sources */,
 				CB7808472C05039A00F3E785 /* UILabel+Extention.swift in Sources */,
 				CBD17C2D2BFFB92B001C3980 /* UiButton+extention.swift in Sources */,
+				CB7808492C15EE5600F3E785 /* RegisterAsSelectionTwo.swift in Sources */,
+				CB08CEFA2C3AC752004E3DEC /* Student.swift in Sources */,
 				CB89DFFB2BFE6F1700F7458B /* LanguageSelectionViewController.swift in Sources */,
+				CB08CEF62C39EB94004E3DEC /* ApiResponse.swift in Sources */,
 				CBD17C442BFFF030001C3980 /* ListTes.swift in Sources */,
 				CBC032132BFE820600B45EEC /* LoginViewController.swift in Sources */,
 				CB43B3D92C04C5F0009E990E /* ForgotPasswordViewController.swift in Sources */,
@@ -680,6 +734,8 @@
 				CBD17C362BFFE1B3001C3980 /* ScrollView+Extention.swift in Sources */,
 				CB43B3D12C03DA58009E990E /* UserHomeViewController.swift in Sources */,
 				CBDB23A12BFFF52800AEA1E7 /* InstituteCell.swift in Sources */,
+				CB08CEF22C39D2B7004E3DEC /* RegisterSimpleViewController.swift in Sources */,
+				CB08CEF42C39E8E6004E3DEC /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -869,9 +925,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AXXYKW7R5J;
+				DEVELOPMENT_TEAM = B3HGGG8FWW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DEPD/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "DEPD would use your photo for the Pofile picture. ";
@@ -887,8 +944,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sib.apptesting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.prefixdigital.depd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -900,9 +958,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = AXXYKW7R5J;
+				DEVELOPMENT_TEAM = B3HGGG8FWW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DEPD/Info.plist;
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "DEPD would use your photo for the Pofile picture. ";
@@ -918,8 +977,9 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.sib.apptesting;
+				PRODUCT_BUNDLE_IDENTIFIER = com.prefixdigital.depd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1048,6 +1108,14 @@
 				minimumVersion = 7.0.3;
 			};
 		};
+		CBA118FC2C7B9C0600F9D633 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.12.0;
+			};
+		};
 		CBA851842C02391600E4A6D0 /* XCRemoteSwiftPackageReference "SwiftMessages" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftKickMobile/SwiftMessages";
@@ -1071,6 +1139,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CB43B3C12C03D180009E990E /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		CBA118FD2C7B9C0600F9D633 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CBA118FC2C7B9C0600F9D633 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 		CBF98C382C0247E900061829 /* SwiftMessages */ = {
 			isa = XCSwiftPackageProductDependency;

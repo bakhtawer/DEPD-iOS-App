@@ -31,12 +31,16 @@ struct Bootstrapper {
         instance!.startAppAfterSetup()
     }
     
-    static func createLogin() {
+    static func createSplash() {
         guard let instance = instance else { fatalError("Instance is not initialized") }
-        instance.showLogin()
+        instance.showSetupView()
+    }
+    
+    static func createLogin(screenType: LoginScreenType) {
+        guard let instance = instance else { fatalError("Instance is not initialized") }
+        instance.showLogin(screenType: screenType)
     }
 
-    
     static func createLoginSignup() {
         guard let instance = instance else { fatalError("Instance is not initialized") }
         instance.showSignupLogin()
@@ -55,6 +59,16 @@ struct Bootstrapper {
     static func createLanguageSelection() {
         guard let instance = instance else { fatalError("Instance is not initialized") }
         instance.showLanguageSelection()
+    }
+    
+    static func createshowRegisterAsSelectionOne() {
+        guard let instance = instance else { fatalError("Instance is not initialized") }
+        instance.showRegisterAsSelectionOne()
+    }
+    
+    static func createInclusiveScreen() {
+        guard let instance = instance else { fatalError("Instance is not initialized") }
+        instance.showInclusiveScreen()
     }
 }
 
@@ -93,8 +107,7 @@ extension Bootstrapper {
         
         Bootstrapper.createLanguageSelection()
         
-        
-        
+
 //        let isLogin = UserDefaults.userLogin
 //        
 //        if (isLogin) {
@@ -113,6 +126,20 @@ extension Bootstrapper {
     private func showLanguageSelection() {
         let storyboard = getStoryBoard(.main)
         let view = storyboard.instantiateViewController(ofType: LanguageSelectionViewController.self)
+        let nav = UINavigationController(rootViewController: view)
+        self.window.rootViewController = nav
+    }
+    
+    private func showInclusiveScreen() {
+        let storyboard = getStoryBoard(.main)
+        let view = storyboard.instantiateViewController(ofType: InclusiveScreen.self)
+        let nav = UINavigationController(rootViewController: view)
+        self.window.rootViewController = nav
+    }
+    
+    private func showRegisterAsSelectionOne() {
+        let storyboard = getStoryBoard(.main)
+        let view = storyboard.instantiateViewController(ofType: RegisterAsSelectionOne.self)
         let nav = UINavigationController(rootViewController: view)
         self.window.rootViewController = nav
     }
@@ -140,9 +167,10 @@ extension Bootstrapper {
 //        self.window.rootViewController?.navigationController?.pushViewController(view, animated: true)
     }
     
-    private func showLogin() {
+    private func showLogin(screenType: LoginScreenType) {
         let storyboard = getStoryBoard(.main)
         let view = storyboard.instantiateViewController(ofType: LoginViewController.self)
+        view.screenType = screenType
         let nav = UINavigationController(rootViewController: view)
         self.window.rootViewController = nav
     }

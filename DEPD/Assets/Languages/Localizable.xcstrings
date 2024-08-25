@@ -24,6 +24,29 @@
         }
       }
     },
+    "continue_as_guest" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue as guest"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مهمان طور جاري رکو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مہمان کے طور پر جاری رکھیں"
+          }
+        }
+      }
+    },
     "forgot_password_recovery_email" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -139,6 +162,98 @@
         }
       }
     },
+    "i_am" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I am a"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آئون آهيان"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "میں ہوں"
+          }
+        }
+      }
+    },
+    "i_am_looking_for_a" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I am looking for a"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مان ڳولي رهيو آهيان "
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "میں تلاش کر رہا ہوں "
+          }
+        }
+      }
+    },
+    "inclusive_screen_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The purpose of creating this portal is to bridge the educational gap between individuals with disabilities and the general population. Education is a fundamental right for every individual, so why should people with disabilities be deprived of this right? Let's come together to make education accessible for everyone. On this portal, the number of seats allocated for students with disabilities in schools can be registered, and individuals with disabilities can apply for admission here."
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هن پورٽل کي ٺاهڻ جو مقصد معذور ماڻهن ۽ عام آبادي جي وچ ۾ تعليمي فرق کي ختم ڪرڻ آهي. تعليم هر فرد جو بنيادي حق آهي ته پوءِ معذور ماڻهن کي ان حق کان ڇو محروم رکيو وڃي؟ اچو ته گڏجي تعليم کي هر ڪنهن جي پهچ ۾ آڻيون. هن پورٽل تي، اسڪولن ۾ معذور شاگردن لاءِ مختص ڪيل سيٽن جو تعداد رجسٽر ٿي سگهي ٿو، ۽ معذور ماڻهو هتي داخلا لاءِ درخواست ڏئي سگهن ٿا."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اس پورٹل کو بنانے کا مقصد معذور افراد اور عام آبادی کے درمیان تعلیمی فرق کو ختم کرنا ہے۔ تعلیم ہر فرد کا بنیادی حق ہے تو معذور افراد کو اس حق سے کیوں محروم رکھا جائے؟ آئیے مل کر تعلیم کو سب کے لیے قابل رسائی بنائیں۔ اس پورٹل پر، اسکولوں میں معذور طلباء کے لیے مختص نشستوں کی تعداد کو رجسٹر کیا جا سکتا ہے، اور معذور افراد یہاں داخلے کے لیے درخواست دے سکتے ہیں۔"
+          }
+        }
+      }
+    },
+    "job_seeker" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Job Seeker"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪري ڳوليندڙ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوکری کا خواہشمند"
+          }
+        }
+      }
+    },
     "langauge" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -186,6 +301,98 @@
         }
       }
     },
+    "login_as_company_hiring_manager" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login as Company /Hiring Manager"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لاگ ان ٿيو ڪمپني جي طور تي/هائرنگ مئنيجر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کمپنی/ہائرنگ مینیجر کے طور پر لاگ ان کریں۔"
+          }
+        }
+      }
+    },
+    "login_as_institute" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login as Institute"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسٽيٽيوٽ طور لاگ ان ٿيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسٹی ٹیوٹ کے طور پر لاگ ان کریں۔"
+          }
+        }
+      }
+    },
+    "login_as_job_seeker" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login as Job Seeker"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪري ڳوليندڙ طور لاگ ان ٿيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملازمت کے متلاشی کے طور پر لاگ ان کریں۔"
+          }
+        }
+      }
+    },
+    "login_as_student" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login as Student"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شاگرد طور لاگ ان ٿيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملازمت کے متلاشی کے طور پر لاگ ان کریں۔"
+          }
+        }
+      }
+    },
     "login_forgot_password" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -204,7 +411,7 @@
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "پاسورڈ بھول گے؟"
+            "value" : "پاس ورڈ  بھول گئے؟"
           }
         }
       }
@@ -347,6 +554,98 @@
         }
       }
     },
+    "register_as_company_hiring_manager" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register as Company / Hiring Manager"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رجسٽر ٿيو ڪمپني / نوڪرين جي مينيجر طور"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کمپنی / ہائرنگ مینیجر کے طور پر رجسٹر ہوں۔"
+          }
+        }
+      }
+    },
+    "register_as_institute" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register as Institute"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسٽيٽيوٽ طور رجسٽر ٿيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسٹی ٹیوٹ کے طور پر رجسٹر ہوں۔"
+          }
+        }
+      }
+    },
+    "register_as_job_seeker" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register as Job seeker"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪري ڳوليندڙ طور رجسٽر ٿيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملازمت کے متلاشی کے طور پر رجسٹر ہوں۔"
+          }
+        }
+      }
+    },
+    "register_as_student" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register as Student"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شاگرد طور رجسٽر ٿيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طالب علم کے طور پر رجسٹر کریں۔"
+          }
+        }
+      }
+    },
     "register_company_hiring" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -366,6 +665,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "کمپنی کی خدمات حاصل کرنا"
+          }
+        }
+      }
+    },
+    "register_inclusive_career" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inclusive Career"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شموليت وارو ڪيريئر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جامع کیریئر"
+          }
+        }
+      }
+    },
+    "register_inclusive_education" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inclusive Education"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شموليت واري تعليم"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جامع تعلیم"
           }
         }
       }
@@ -646,9 +991,38 @@
         }
       }
     },
+    "student" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Student"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شاگرد"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طالب علم"
+          }
+        }
+      }
+    },
     "view_info" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Info"
+          }
+        },
         "sd" : {
           "stringUnit" : {
             "state" : "translated",

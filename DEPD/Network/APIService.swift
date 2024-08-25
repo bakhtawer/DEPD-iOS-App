@@ -30,10 +30,18 @@ class APIService: Service {
                 return
             }
             
-            if let resp = resp as? HTTPURLResponse, resp.statusCode != 200 || resp.statusCode != 201 {
-                completion(nil, .serverError())
-                return
+            if let resp = resp as? HTTPURLResponse {
+                        print("Status Code: \(resp.statusCode)")
+                        if resp.statusCode != 200 && resp.statusCode != 201 {
+                            completion(nil, .serverError())
+                            return
+                        }
             }
+            
+//            if let resp = resp as? HTTPURLResponse, resp.statusCode != 200 || resp.statusCode != 201 {
+//                completion(nil, .serverError())
+//                return
+//            }
             
             guard let data = data else {
                 completion(nil, .invalidResponse())
@@ -42,6 +50,7 @@ class APIService: Service {
 
             do {
                 let result = try JSONDecoder().decode(T.self, from: data)
+                print("PRINT:", String(bytes: data, encoding: .utf8) ?? "")
                 completion(result, nil)
                 
             } catch let err {
