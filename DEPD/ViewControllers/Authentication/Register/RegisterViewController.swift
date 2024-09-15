@@ -10,7 +10,6 @@ import UIKit
 class RegisterViewController: BaseViewController {
     
     @IBOutlet weak var imageProfile: UIImageView!
-    
     @IBOutlet weak var labelPersonalDetails: UILabel!
     
     @IBOutlet weak var tfFullName: UITextField!
@@ -26,6 +25,8 @@ class RegisterViewController: BaseViewController {
     private var selectedOption = ""
     private var dropDownListGender = ["Male", "Female", "Other"]
     
+    
+    var userType: UserType = UserType.Student
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()

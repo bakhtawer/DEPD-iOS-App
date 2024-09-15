@@ -46,9 +46,9 @@ struct Bootstrapper {
         instance.showSignupLogin()
     }
     
-    static func createHome() {
+    static func createHome(_ userType: UserType = APPMetaDataHandler.shared.userType) {
         guard let instance = instance else { fatalError("Instance is not initialized") }
-        instance.showHome()
+        instance.showHome(userType)
     }
     
     static func decideScreenToOpen() {
@@ -70,6 +70,11 @@ struct Bootstrapper {
         guard let instance = instance else { fatalError("Instance is not initialized") }
         instance.showInclusiveScreen()
     }
+    
+    static func showLoginAlert() {
+        guard let instance = instance else { fatalError("Instance is not initialized") }
+        instance.showLoginAlert()
+    }
 }
 
 extension Bootstrapper {
@@ -81,6 +86,22 @@ extension Bootstrapper {
               let delegate = windowScene.delegate as? SceneDelegate, let window = delegate.window else { fatalError()
         }
         return window
+    }
+    
+    private func showLoginAlert() {
+        let alert = UIAlertController(title: "Login Required",
+                                      message: "You cannot continue because you are not logged in. Please log in to proceed.",
+                                      preferredStyle: .alert)
+        
+        let loginAction = UIAlertAction(title: "Login", style: .default) { _ in
+            Bootstrapper.createInclusiveScreen()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(loginAction)
+        alert.addAction(cancelAction)
+        
+        self.window.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
     private func showSetupView() {
@@ -144,14 +165,30 @@ extension Bootstrapper {
         self.window.rootViewController = nav
     }
     
-    private func showHome() {
+    private func showHome(_ userType: UserType) {
         let storyboard = getStoryBoard(.main)
         //        let view = storyboard.instantiateViewController(ofType: UserHomeViewController.self)
         
-        let viewController = storyboard.instantiateViewController(identifier: "UserHomeViewController") {coder in
-            let viewModel = UserHomeViewModel()
-            let vc = UserHomeViewController(coder: coder, viewModel: viewModel)
-            return vc
+        
+        let viewController: UIViewController
+        
+        switch userType {
+        case .Student, .StudentGuest:
+            viewController = storyboard.instantiateViewController(identifier: "UserHomeViewController") { coder in
+                let viewModel = UserHomeViewModel()
+                let vc = UserHomeViewController(coder: coder, viewModel: viewModel)
+                return vc
+            }
+        case .School:
+            viewController = storyboard.instantiateViewController(identifier: "SchoolHomeViewController") { coder in
+                let viewModel = SchoolHomeViewModel()
+                let vc = SchoolHomeViewController(coder: coder, viewModel: viewModel)
+                return vc
+            }
+        case .JobSeeker:
+            preconditionFailure("Not applied yet")
+        case .Employer:
+            preconditionFailure("Not applied yet")
         }
         
         let nav = UINavigationController(rootViewController: viewController)

@@ -7,11 +7,22 @@
 
 import Foundation
 
+public enum UserType: Int {
+    case Student = 1
+    case School = 2
+    case JobSeeker = 3
+    case Employer = 4
+    
+    case StudentGuest = 5
+}
+
 final class APPMetaDataHandler {
     static let shared = APPMetaDataHandler()
     private init() {}
     
     private let service = APIService()
+    
+    var userType: UserType = UserType.Student
     
     // MARK: District
     private var districts = [District]()

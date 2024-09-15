@@ -11,9 +11,9 @@ class LanguageSelectionViewController: UIViewController {
     
     @IBOutlet weak var labelSelectLangauge: UILabel!
     
-    @IBOutlet weak var buttonUrdu: UIButton!
-    @IBOutlet weak var buttonEnglish: UIButton!
-    @IBOutlet weak var buttonSindhi: UIButton!
+    @IBOutlet weak var buttonUrdu: DEPDButton!
+    @IBOutlet weak var buttonEnglish: DEPDButton!
+    @IBOutlet weak var buttonSindhi: DEPDButton!
     
     var isSelection: Bool = false
     
@@ -24,11 +24,27 @@ class LanguageSelectionViewController: UIViewController {
         buttonEnglish.isAccessibilityElement = true
         buttonSindhi.isAccessibilityElement = true
         
-        buttonUrdu.makeItThemePrimary()
-        buttonEnglish.makeItThemePrimary()
-        buttonSindhi.makeItThemePrimary()
+        labelSelectLangauge.makeItTheme()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        view.layoutSubviews()
+        view.layoutIfNeeded()
+        view.setNeedsDisplay()
         
         labelSelectLangauge.makeItTheme()
+        
+        buttonUrdu.makeItTheme(text: "اردو",
+                              .bold, 16, .appLight)
+        buttonEnglish.makeItTheme(text: "English",
+                              .bold, 16, .appLight)
+        buttonSindhi.makeItTheme(text: "سنڌي",
+                              .bold, 16, .appLight)
+        
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewDidLoad() {
@@ -75,10 +91,12 @@ class LanguageSelectionViewController: UIViewController {
                 UITextField.appearance().semanticContentAttribute = .forceLeftToRight
             }
             
-            Bootstrapper.createInclusiveScreen()
-//            if self.isSelection {
-//                self.navigationController?.dismiss(animated: true)
-//            }else {   }
+//            Bootstrapper.createInclusiveScreen()
+            if self.isSelection {
+                self.navigationController?.dismiss(animated: true)
+            }else {  
+                Bootstrapper.createInclusiveScreen()
+            }
         }
     }
 }

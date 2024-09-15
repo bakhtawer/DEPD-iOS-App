@@ -54,11 +54,15 @@ class BottomView: UIView {
         contentView.backgroundColor = .appGreen
         
         viewAccessibility.addTapGestureRecognizer {
-            SMM.shared.showStatusInfo(message: "view Accessibility")
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: AccessibilityViewController.self)
+            openModuleOnFullScreen(controller: view)
         }
         
         viewhelp.addTapGestureRecognizer {
-            SMM.shared.showStatusInfo(message: "view Help")
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: HelpViewController.self)
+            openModuleOnFullScreen(controller: view)
         }
         
         viewLangauge.addTapGestureRecognizer {

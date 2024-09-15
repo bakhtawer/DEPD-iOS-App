@@ -28,7 +28,7 @@ struct InstituteModel: Codable, Hashable {
     var HasTrainingMaterial: Bool?
     var LastUpdated: String?
     var FormattedLastUpdated: String?
-    var FreeOrPaid: Int?
+    var FreeOrPaid: Bool?
     var SchoolMultiMediaList: [SchoolMultiMedia]?
     var DisabilityStatusList: [Disability]?
     var SchoolDisabilityList: [SchoolDisability]?
@@ -66,25 +66,25 @@ struct InstituteModel: Codable, Hashable {
             idMain = UUID()
             let values = try decoder.container(keyedBy: CodingKeys.self)
             InstituteId = try values.decodeIfPresent(Int.self, forKey: .InstituteId) ?? -1
-            SchoolName = try values.decodeIfPresent(String.self, forKey: .SchoolName) ?? ""
+            SchoolName = try values.decodeIfPresent(String.self, forKey: .SchoolName) ?? "N/A"
             ImageURL = try values.decodeIfPresent(String.self, forKey: .ImageURL) ?? ""
             applyForSchoolUrl = try values.decodeIfPresent(String.self, forKey: .applyForSchoolUrl) ?? ""
             NumberOfSeats = try values.decodeIfPresent(Int.self, forKey: .NumberOfSeats) ?? -1
             EmailAddress = try values.decodeIfPresent(String.self, forKey: .EmailAddress) ?? "Email is not available"
             ContactNumber = try values.decodeIfPresent(String.self, forKey: .ContactNumber) ?? "Contact is not available"
-            NTNNUmber = try values.decodeIfPresent(String.self, forKey: .NTNNUmber) ?? ""
-            Designation = try values.decodeIfPresent(String.self, forKey: .Designation) ?? ""
-            AboutText = try values.decodeIfPresent(String.self, forKey: .AboutText) ?? ""
-            Location = try values.decodeIfPresent(String.self, forKey: .Location) ?? ""
+            NTNNUmber = try values.decodeIfPresent(String.self, forKey: .NTNNUmber) ?? "N/A"
+            Designation = try values.decodeIfPresent(String.self, forKey: .Designation) ?? "N/A"
+            AboutText = try values.decodeIfPresent(String.self, forKey: .AboutText) ?? "N/A"
+            Location = try values.decodeIfPresent(String.self, forKey: .Location) ?? "N/A"
             EstablishedYear = try values.decodeIfPresent(Int.self, forKey: .EstablishedYear) ?? -1
             NumOfTrainedTeachers = try values.decodeIfPresent(Int.self, forKey: .NumOfTrainedTeachers) ?? -1
             SchoolTypeId = try values.decodeIfPresent(Int.self, forKey: .SchoolTypeId) ?? -1
-            SchoolTypeName = try values.decodeIfPresent(String.self, forKey: .SchoolTypeName) ?? ""
+            SchoolTypeName = try values.decodeIfPresent(String.self, forKey: .SchoolTypeName) ?? "N/A"
             HasAccessibilityMaterial = try values.decodeIfPresent(Bool.self, forKey: .HasAccessibilityMaterial) ?? false
             HasTrainingMaterial = try values.decodeIfPresent(Bool.self, forKey: .HasTrainingMaterial) ?? false
-            LastUpdated = try values.decodeIfPresent(String.self, forKey: .LastUpdated) ?? ""
-            FormattedLastUpdated = try values.decodeIfPresent(String.self, forKey: .FormattedLastUpdated) ?? ""
-            FreeOrPaid = try values.decodeIfPresent(Int.self, forKey: .FreeOrPaid) ?? -1
+            LastUpdated = try values.decodeIfPresent(String.self, forKey: .LastUpdated) ?? "N/A"
+            FormattedLastUpdated = try values.decodeIfPresent(String.self, forKey: .FormattedLastUpdated) ?? "N/A"
+            FreeOrPaid = try values.decodeIfPresent(Bool.self, forKey: .FreeOrPaid) ?? false
             SchoolMultiMediaList = try values.decodeIfPresent([SchoolMultiMedia].self, forKey: .SchoolMultiMediaList) ?? []
             DisabilityStatusList = try values.decodeIfPresent([Disability].self, forKey: .DisabilityStatusList) ?? []
             SchoolDisabilityList = try values.decodeIfPresent([SchoolDisability].self, forKey: .SchoolDisabilityList) ?? []

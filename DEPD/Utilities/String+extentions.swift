@@ -35,3 +35,16 @@ extension Bundle {
         bundle = Bundle(path: path!)
     }
 }
+
+extension String {
+    /// Converts an HTTP URL to HTTPS if it starts with "http://".
+    func convertToHttps() -> String {
+        // Check if the string starts with "http://"
+        if self.hasPrefix("http://") {
+            // Replace "http://" with "https://"
+            return self.replacingOccurrences(of: "http://", with: "https://")
+        }
+        // Return the original string if no change is needed
+        return self
+    }
+}

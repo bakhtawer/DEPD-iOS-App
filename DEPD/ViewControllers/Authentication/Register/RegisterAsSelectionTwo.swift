@@ -9,12 +9,7 @@ import UIKit
 
 class RegisterAsSelectionTwo: BaseViewController {
     
-    enum ScreenType {
-        case student
-        case job
-    }
-    
-    var screenType: ScreenType = .student
+    var screenType: LoginScreenType = .student
     
     @IBOutlet weak var labelTitle: UILabel!
     
@@ -33,14 +28,15 @@ class RegisterAsSelectionTwo: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.navigationController?.navigationBar.isHidden = false
         
         labelTitle.text = "i_am".localized()
         
         switch screenType {
-        case .student:
+        case .student, .institute:
             setUpForStudent()
-        case .job:
+        case .jobSeeker, .companyHiring:
             setUpForJob()
         }
     }
@@ -51,21 +47,31 @@ class RegisterAsSelectionTwo: BaseViewController {
         
         buttonOne.addTapGestureRecognizer {[weak self] in
             self?.goForward()
+            guard let self = self else {return}
+            self.screenType = .student
+            self.goForward()
         }
         buttonTwo.addTapGestureRecognizer {[weak self] in
             self?.goForward()
+            guard let self = self else {return}
+            self.screenType = .institute
+            self.goForward()
         }
     }
     
     private func setUpForJob() {
-        buttonOne.setTitle("student".localized(), for: .normal)
-        buttonTwo.setTitle("job_seeker".localized(), for: .normal)
+        buttonOne.setTitle("job_seeker".localized(), for: .normal)
+        buttonTwo.setTitle("company_hiring".localized(), for: .normal)
         
         buttonOne.addTapGestureRecognizer {[weak self] in
-            self?.goForward()
+            guard let self = self else {return}
+            self.screenType = .jobSeeker
+            self.goForward()
         }
         buttonTwo.addTapGestureRecognizer {[weak self] in
-            self?.goForward()
+            guard let self = self else {return}
+            self.screenType = .companyHiring
+            self.goForward()
         }
     }
     
@@ -73,8 +79,12 @@ class RegisterAsSelectionTwo: BaseViewController {
         switch screenType {
         case .student:
             Bootstrapper.createLogin(screenType: .student)
-        case .job:
+        case .jobSeeker:
             Bootstrapper.createLogin(screenType: .jobSeeker)
+        case .companyHiring:
+            Bootstrapper.createLogin(screenType: .companyHiring)
+        case .institute:
+            Bootstrapper.createLogin(screenType: .institute)
         }
     }
     

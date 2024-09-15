@@ -33,16 +33,26 @@ class LoginViewController: BaseViewController {
     
     @IBOutlet weak var labelLoginAsGust: UILabel!
     
+    private var userType: UserType = UserType.Student
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
+        setView()
+    }
+    
+    private func setView() {
         tfUserName.makeItThemeTF()
         tfPassword.makeItThemeTF()
         
+        if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
+            UITextField.appearance().textAlignment = .right
+        } else {
+            UITextField.appearance().textAlignment = .left
+        }
+        
         buttonLogin.makeItThemePrimary()
         buttonRegister.makeItThemePrimary()
-        
-        labelForgotPassword.makeItTheme(.regular, 12, .appBlue, 14.06)
         
         tfUserName.isAccessibilityElement = true
         tfPassword.isAccessibilityElement = true
@@ -50,26 +60,24 @@ class LoginViewController: BaseViewController {
         buttonRegister.isAccessibilityElement = true
         
         labelLoginTitle.makeItTheme(.light, 20, .textDark)
-        labelLoginAsGust.makeItTheme(.regular, 20, .appGreen)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        labelLoginAsGust.makeItTheme(.regular, 14, .appGreen)
         
         switch screenType {
         case .student:
+            tfUserName.text = "4111111111111"
+            tfPassword.text = "12345678"
             setUpStudent()
         case .jobSeeker:
             setUpJobSeeker()
         case .companyHiring:
             setUpCompanyHiring()
         case .institute:
+            tfUserName.text = "4222222222222"
+            tfPassword.text = "12345678"
             setUpInstitute()
         }
         
-        labelLoginAsGust.text = "continue_as_guest".localized()
-        
-        tfUserName.placeholder = "login_user_name".localized()
+        tfUserName.placeholder = "cnic".localized()
         tfPassword.placeholder = "login_password".localized()
         
         tfUserName.accessibilityLabel = "login_user_name".localized()
@@ -78,20 +86,28 @@ class LoginViewController: BaseViewController {
         buttonLogin.accessibilityLabel = "press login and go to next screen".localized()
         buttonRegister.accessibilityLabel = "login_register".localized()
         
+        labelLoginAsGust.text = "continue_as_guest".localized()
         labelForgotPassword.text = "login_forgot_password".localized()
         
+        labelForgotPassword.makeItTheme(.regular, 12, .appBlue, 14.06)
         
-//        labelForgotPassword.addTapGestureRecognizer {[weak self] in
-//            self?.onSayMeSomething()
-//            
-//            if !(self?.isVoiceOverRunning() ?? true) {
-//                self?.openVoiceOverSettings()
-//            }
-//            let storyboard = getStoryBoard(.main)
-//            let view = storyboard.instantiateViewController(ofType: ForgotPasswordViewController.self)
-//            view.previousEmail = self?.tfUserName.text ?? ""
-//            self?.navigationController?.pushViewController(view, animated: true)
-//        }
+        buttonLogin.setTitle("login_login".localized(), for: .normal)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setView()
+        
+        labelForgotPassword.addTapGestureRecognizer {[weak self] in
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: ForgotPasswordViewController.self)
+            view.previousEmail = self?.tfUserName.text ?? ""
+            self?.navigationController?.pushViewController(view, animated: true)
+        }
+        
+        tfUserName.delegate = self
+        tfUserName.keyboardType = .numberPad
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -100,7 +116,8 @@ class LoginViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setLogo()
+        setupNavigation()
+        setView()
     }
     
     private func setUpStudent() {
@@ -111,26 +128,34 @@ class LoginViewController: BaseViewController {
         buttonRegister.setTitle("register_as_student".localized(), for: .normal)
 
         buttonLogin.addTapGestureRecognizer {[weak self] in
-            self?.login(email: self?.tfUserName.text ?? "",
-                        Password: self?.tfPassword.text ?? "")
+            guard let cnic = self?.tfUserName.text, 
+                    cnic.count > 10
+            else {
+                SMM().showError(title: "Wrong Info", message: "Please provide correct CNIC number")
+                return
+            }
+            guard let password = self?.tfPassword.text,
+                  password.count > 1
+            else {
+                SMM().showError(title: "Wrong Info", message: "Please provide correct Password")
+                return
+            }
+            APPMetaDataHandler.shared.userType = .Student
+            self?.login(email: cnic,
+                        Password:password)
         }
         
         buttonRegister.addTapGestureRecognizer {[weak self] in
             let storyboard = getStoryBoard(.main)
-            let view = storyboard.instantiateViewController(ofType: RegisterSimpleViewController.self)
+            let view = storyboard.instantiateViewController(ofType: RegisterAndroidViewController.self)
             view.userType = .Student
             openModuleOnNavigation(from: self, controller: view)
         }
         
-        labelLoginAsGust.addTapGestureRecognizer { Bootstrapper.createHome() }
-        
-        labelForgotPassword.addTapGestureRecognizer {[weak self] in
-            let storyboard = getStoryBoard(.main)
-            let view = storyboard.instantiateViewController(ofType: ForgotPasswordViewController.self)
-            view.previousEmail = self?.tfUserName.text ?? ""
-            self?.navigationController?.pushViewController(view, animated: true)
+        labelLoginAsGust.addTapGestureRecognizer {
+            APPMetaDataHandler.shared.userType = .StudentGuest
+            Bootstrapper.createHome(.StudentGuest)
         }
-        
     }
     private func setUpJobSeeker() {
         labelLoginTitle.text = "login_as_job_seeker".localized()
@@ -143,6 +168,35 @@ class LoginViewController: BaseViewController {
     private func setUpInstitute() {
         labelLoginTitle.text = "login_as_institute".localized()
         buttonRegister.setTitle("register_as_institute".localized(), for: .normal)
+        labelLoginAsGust.isHidden = true
+        
+        
+        buttonLogin.addTapGestureRecognizer {[weak self] in
+            guard let cnic = self?.tfUserName.text,
+                    cnic.count > 10
+            else {
+                SMM().showError(title: "Wrong Info", message: "Please provide correct CNIC number")
+                return
+            }
+            guard let password = self?.tfPassword.text,
+                  password.count > 1
+            else {
+                SMM().showError(title: "Wrong Info", message: "Please provide correct Password")
+                return
+            }
+            APPMetaDataHandler.shared.userType = .School
+            self?.login(email: cnic,
+                        Password:password)
+        }
+        
+        buttonRegister.addTapGestureRecognizer {[weak self] in
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: RegisterAndroidViewController.self)
+            view.userType = .Student
+            APPMetaDataHandler.shared.userType = .StudentGuest
+            openModuleOnNavigation(from: self, controller: view)
+        }
+        
     }
     
     func onSayMeSomething() {
@@ -177,8 +231,28 @@ extension LoginViewController {
             if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
             guard let user = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
             UserSessionManager.shared.setUser(user: user)
-            
             DispatchQueue.main.async { Bootstrapper.createHome()}
         }
+    }
+}
+
+extension LoginViewController {
+    func setupNavigation() {
+        setLogo()
+        self.setBackButton(.appBlue).addTapGestureRecognizer {
+            Bootstrapper.createInclusiveScreen()
+        }
+    }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // Combine the existing text with the new text
+        let currentText = textField.text ?? ""
+        let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
+
+        // Allow only digits and limit to 16 characters
+        let isNumeric = prospectiveText.isEmpty || (prospectiveText.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil)
+        return isNumeric && prospectiveText.count <= 16
     }
 }

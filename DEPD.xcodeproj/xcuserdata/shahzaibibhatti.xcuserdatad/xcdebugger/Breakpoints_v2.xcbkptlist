@@ -14,13 +14,13 @@
             filePath = "DEPD/ViewControllers/Authentication/Register/RegisterSimpleViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "297"
+            endingLineNumber = "297"
             landmarkName = "register(creds:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "9A2F0B95-3B81-4D62-A69B-3EA89573D33D - e7022fb41cf0f1b3"
+                  uuid = "9A2F0B95-3B81-4D62-A69B-3EA89573D33D - e7022fb41cf0f110"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -30,11 +30,11 @@
                   urlString = "file:///Users/shahzaibibhatti/Projects/DEPD-iOS-App/DEPD/ViewControllers/Authentication/Register/RegisterSimpleViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "300"
-                  endingLineNumber = "300">
+                  startingLineNumber = "297"
+                  endingLineNumber = "297">
                </Location>
                <Location
-                  uuid = "9A2F0B95-3B81-4D62-A69B-3EA89573D33D - e7022fb41cf0f1b3"
+                  uuid = "9A2F0B95-3B81-4D62-A69B-3EA89573D33D - e7022fb41cf0f110"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -44,8 +44,8 @@
                   urlString = "file:///Users/shahzaibibhatti/Projects/DEPD-iOS-App/DEPD/ViewControllers/Authentication/Register/RegisterSimpleViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "300"
-                  endingLineNumber = "300">
+                  startingLineNumber = "297"
+                  endingLineNumber = "297">
                </Location>
             </Locations>
          </BreakpointContent>

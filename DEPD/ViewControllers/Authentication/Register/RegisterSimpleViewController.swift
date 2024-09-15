@@ -13,6 +13,7 @@ struct SignUpCredentials: Codable {
     let CNIC: String
     let ContactNo: String
     let Password: String
+    let Email: String
     let UserTypeId: Int
 }
 
@@ -85,11 +86,6 @@ class RegisterSimpleViewController: BaseViewController {
         
         buttonSubmit.addTapGestureRecognizer {[weak self] in
             self?.signUp()
-//            let storyboard = getStoryBoard(.main)
-//            let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
-//            contentVC.messageThankYou = .registeredSuccess
-//            contentVC.moveThankYou = .home
-//            openModuleOverFullScreen(controller: contentVC)
         }
     }
     
@@ -121,6 +117,7 @@ class RegisterSimpleViewController: BaseViewController {
                                       CNIC: cnic,
                                       ContactNo: tempEmail ?? "",
                                       Password: password,
+                                      Email: "",
                                       UserTypeId: userType.rawValue)
         register(creds: creds)
     }

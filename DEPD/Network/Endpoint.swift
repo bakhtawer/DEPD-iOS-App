@@ -39,6 +39,8 @@ enum Endpoint {
     case getSchoolList
     case applyForSchool(schoolID: Int)
     
+    case getStudentAdmissions(schoolID: Int)
+    
     case fetchPosts(url: String = "/posts")
     case fetchOnePost(url: String = "/posts", postId: Int = 1)
     case sendPost(url: String = "/posts", post: Post)
@@ -69,7 +71,7 @@ enum Endpoint {
         case .sendPost(let url, _): return url
         case .login(url: let url, _, _): return url
         case .register(let url, _): return url
-        case .getDistrict, .getDisstatList, .getGenders, .getDesignations: return "/Api/General.ashx"
+        case .getDistrict, .getDisstatList, .getGenders, .getDesignations, .getStudentAdmissions: return "/Api/General.ashx"
         case .getSchoolList, .applyForSchool: return "/Api/school.ashx"
         }
     }
@@ -84,7 +86,10 @@ enum Endpoint {
         case .getDisstatList: return [URLQueryItem(name: "method", value: "getdisstatlist")]
         case .getSchoolList: return [URLQueryItem(name: "method", value: "getSchoolList")]
         case .applyForSchool: return [URLQueryItem(name: "method", value: "applyForSchool")]
-        default: return []
+        case .getStudentAdmissions(let schoolID): return [URLQueryItem(name: "method", value: "getStudentAdmissions")]
+        case .fetchPosts(url: let url): return []
+        case .fetchOnePost(url: let url, postId: let postId): return []
+        case .sendPost(url: let url, post: let post): return []
         }
     }
     
@@ -96,7 +101,8 @@ enum Endpoint {
              .getSchoolList:
             return HTTP.Method.get.rawValue
         case .sendPost, .login, .register,
-            .applyForSchool:
+            .applyForSchool,
+            .getStudentAdmissions:
             return HTTP.Method.post.rawValue
         }
     }
@@ -115,7 +121,8 @@ enum Endpoint {
             let login = LoginCredentials(CNIC: email, Password: password)
             let jsonPost = try? JSONEncoder().encode(login)
             return jsonPost
-        case .applyForSchool(let schoolID):
+        case .applyForSchool(let schoolID),
+             .getStudentAdmissions(let schoolID):
             let creds = ApplySchool(SchoolId: schoolID)
             let jsonPost = try? JSONEncoder().encode(creds)
             return jsonPost
@@ -136,7 +143,7 @@ extension URLRequest {
                 .login,
                 .register,
                 .getDistrict, .getDisstatList, .getGenders, .getDesignations,
-                .getSchoolList, .applyForSchool:
+                .getSchoolList, .applyForSchool, .getStudentAdmissions:
             self.setValue(
                 HTTP.Headers.Value.applicationJson.rawValue,
                 forHTTPHeaderField: HTTP.Headers.Key.contentType.rawValue

@@ -57,12 +57,12 @@ class UserHomeViewModel {
     func getInstitutes() -> [InstituteModel] {
         var institutes = dataProds
         
-        if let district = selectedDistrict {
-            institutes = dataProds.filter { $0.Location == district.name }
+        if let disability = selectedDisability {
+            institutes = institutes.filter { $0.SchoolDisabilityList?.contains(where: {$0.schoolDisabilityId == disability.disabilityId }) ?? false }
         }
         
-        if let disability = selectedDisability {
-            institutes = dataProds.filter { $0.SchoolDisabilityList?.contains(where: {$0.schoolDisabilityId == disability.disabilityId }) ?? false }
+        if let district = selectedDistrict {
+            institutes = institutes.filter { $0.Location == district.name }
         }
         
         return institutes
@@ -78,10 +78,11 @@ class UserHomeViewModel {
     }
     
     func getDistrictName() -> String {
-        selectedDistrict?.name ?? "Select Location"
+        selectedDistrict?.name ?? "select_location".localized()
     }
+    
     func getDisabilityName() -> String {
-        selectedDisability?.name ?? "Select Disability"
+        selectedDisability?.name ?? "select_disablility".localized()
     }
     
     func resetAll() {
@@ -89,5 +90,4 @@ class UserHomeViewModel {
         selectedDisability = nil
         delegate?.fetchedInstitutes()
     }
-    
 }

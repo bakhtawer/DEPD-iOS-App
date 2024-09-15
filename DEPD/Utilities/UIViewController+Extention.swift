@@ -112,6 +112,30 @@ extension UIViewController {
         return buttonMenu
     }
     
+    func setMenuButton(_ tint: UIColor = .clear) -> UIButton {
+        let buttonMenu: UIButton = UIButton.init(type: .custom)
+        var image = UIImage(named: "icon_settings")?.withRenderingMode(.alwaysTemplate)
+        if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
+            image = image?.flipHorizontally()?.withRenderingMode(.alwaysTemplate)
+            buttonMenu.contentHorizontalAlignment = .left
+        }else {
+            buttonMenu.contentHorizontalAlignment = .right
+        }
+        
+        buttonMenu.setImage(image,
+                            for: UIControl.State.normal)
+        buttonMenu.setImage(image,
+                            for: UIControl.State.highlighted)
+        buttonMenu.setImage(image,
+                            for: UIControl.State.selected)
+        buttonMenu.frame = CGRect(x: 0, y: 0, width: 44, height: 44)
+        buttonMenu.tintColor = tint
+        let buttonBackBar = UIBarButtonItem(customView: buttonMenu)
+        self.navigationItem.rightBarButtonItem = buttonBackBar
+        return buttonMenu
+    }
+    
+    
     func setNavigationTransparent(_ title: String = "") {
         self.setLogo()
         self.setNavBarColor(.white)

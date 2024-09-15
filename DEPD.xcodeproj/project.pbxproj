@@ -13,6 +13,7 @@
 		CB08CEF82C3AC5D5004E3DEC /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB08CEF72C3AC5D5004E3DEC /* UserSession.swift */; };
 		CB08CEFA2C3AC752004E3DEC /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB08CEF92C3AC752004E3DEC /* Student.swift */; };
 		CB1AA5FB2C3AD6E300079270 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1AA5FA2C3AD6E300079270 /* SettingViewController.swift */; };
+		CB27B7792C973A4E0042CE6C /* SchoolDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB27B7782C973A4D0042CE6C /* SchoolDetailsViewController.swift */; };
 		CB2B55E32C5596DB008A8B83 /* InclusiveScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2B55E22C5596DB008A8B83 /* InclusiveScreen.swift */; };
 		CB2B55E52C55A27F008A8B83 /* InstituteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2B55E42C55A27F008A8B83 /* InstituteDetailViewController.swift */; };
 		CB43B3BF2C03C110009E990E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3BE2C03C110009E990E /* RegisterViewController.swift */; };
@@ -64,10 +65,17 @@
 		CB89DFF32BFE6B9400F7458B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFF22BFE6B9400F7458B /* SplashViewController.swift */; };
 		CB89DFF92BFE6DE000F7458B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB89DFF82BFE6DE000F7458B /* Colors.xcassets */; };
 		CB89DFFB2BFE6F1700F7458B /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */; };
+		CBA06E282C9726B500BFC470 /* SchoolStudentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA06E272C9726B500BFC470 /* SchoolStudentDetailViewController.swift */; };
+		CBA06E2A2C9732A800BFC470 /* DEPDWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA06E292C9732A700BFC470 /* DEPDWebViewController.swift */; };
 		CBA118F62C7B81DE00F9D633 /* APPMetaDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */; };
 		CBA118F82C7B821E00F9D633 /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA118F72C7B821E00F9D633 /* District.swift */; };
 		CBA118FA2C7B924900F9D633 /* School.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA118F92C7B924900F9D633 /* School.swift */; };
 		CBA118FE2C7B9C0600F9D633 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = CBA118FD2C7B9C0600F9D633 /* Kingfisher */; };
+		CBBD16F32C7BBE3200171E4B /* AccessibilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD16F22C7BBE3100171E4B /* AccessibilityViewController.swift */; };
+		CBBD16F52C7CEB8B00171E4B /* ResizeableButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD16F42C7CEB8B00171E4B /* ResizeableButton.swift */; };
+		CBBD16F82C7D135100171E4B /* DEPDButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD16F72C7D135100171E4B /* DEPDButton.swift */; };
+		CBBD16FA2C7D13C900171E4B /* DEPDButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBBD16F92C7D13C900171E4B /* DEPDButton.xib */; };
+		CBBD16FC2C7E4AD000171E4B /* RegisterAndroidViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBBD16FB2C7E4AD000171E4B /* RegisterAndroidViewController.swift */; };
 		CBC032062BFE77E100B45EEC /* UIView+extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC032052BFE77E100B45EEC /* UIView+extention.swift */; };
 		CBC032082BFE784100B45EEC /* CALayer+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC032072BFE784100B45EEC /* CALayer+Extention.swift */; };
 		CBC0320A2BFE78E100B45EEC /* UserDefaults+Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC032092BFE78E100B45EEC /* UserDefaults+Extentions.swift */; };
@@ -92,6 +100,15 @@
 		CBD17C4B2BFFF249001C3980 /* InstituteCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD17C4A2BFFF249001C3980 /* InstituteCollectionView.swift */; };
 		CBDB23A12BFFF52800AEA1E7 /* InstituteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB239F2BFFF52800AEA1E7 /* InstituteCell.swift */; };
 		CBDB23A22BFFF52800AEA1E7 /* InstituteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBDB23A02BFFF52800AEA1E7 /* InstituteCell.xib */; };
+		CBEAF5712C8B9E1E00153662 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAF5702C8B9E1E00153662 /* HelpViewController.swift */; };
+		CBEAF5732C8BA60B00153662 /* GenericFormBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAF5722C8BA60B00153662 /* GenericFormBuilderViewController.swift */; };
+		CBEAF5752C8BAB9B00153662 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAF5742C8BAB9B00153662 /* PlaceholderTextView.swift */; };
+		CBEAF5772C8BBB0E00153662 /* WatchVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAF5762C8BBB0E00153662 /* WatchVideoViewController.swift */; };
+		CBEAF57A2C9616C400153662 /* SchoolHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAF5792C9616C400153662 /* SchoolHomeViewController.swift */; };
+		CBEAF57C2C9616E300153662 /* SchoolHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAF57B2C9616E300153662 /* SchoolHomeViewModel.swift */; };
+		CBEAF57E2C96252200153662 /* InstituteHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAF57D2C96252200153662 /* InstituteHomeModel.swift */; };
+		CBEAF5832C962BCD00153662 /* InstituteStudentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBEAF5822C962BCD00153662 /* InstituteStudentCell.xib */; };
+		CBEAF5842C962BCD00153662 /* InstituteStudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAF5812C962BCD00153662 /* InstituteStudentCell.swift */; };
 		CBF98C3C2C02484D00061829 /* SwiftMessages in Frameworks */ = {isa = PBXBuildFile; productRef = CBF98C3B2C02484D00061829 /* SwiftMessages */; };
 		CBF98C3E2C02485A00061829 /* NVActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = CBF98C3D2C02485A00061829 /* NVActivityIndicatorView */; };
 /* End PBXBuildFile section */
@@ -120,6 +137,7 @@
 		CB08CEF72C3AC5D5004E3DEC /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		CB08CEF92C3AC752004E3DEC /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		CB1AA5FA2C3AD6E300079270 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		CB27B7782C973A4D0042CE6C /* SchoolDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetailsViewController.swift; sourceTree = "<group>"; };
 		CB2B55E22C5596DB008A8B83 /* InclusiveScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InclusiveScreen.swift; sourceTree = "<group>"; };
 		CB2B55E42C55A27F008A8B83 /* InstituteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituteDetailViewController.swift; sourceTree = "<group>"; };
 		CB43B3BE2C03C110009E990E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +154,7 @@
 		CB43B3E02C04EE10009E990E /* RegisterAsSelectionOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAsSelectionOne.swift; sourceTree = "<group>"; };
 		CB43B3E62C04F445009E990E /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		CB43B3E82C04F44E009E990E /* BottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomView.xib; sourceTree = "<group>"; };
+		CB6C1C982C7BBADF007F2F74 /* Jameel-Noori-Nastaleeq-Kasheeda.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jameel-Noori-Nastaleeq-Kasheeda.ttf"; sourceTree = "<group>"; };
 		CB7808222C05021800F3E785 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
 		CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -174,9 +193,16 @@
 		CB89DFF22BFE6B9400F7458B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		CB89DFF82BFE6DE000F7458B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
+		CBA06E272C9726B500BFC470 /* SchoolStudentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolStudentDetailViewController.swift; sourceTree = "<group>"; };
+		CBA06E292C9732A700BFC470 /* DEPDWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEPDWebViewController.swift; sourceTree = "<group>"; };
 		CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPMetaDataHandler.swift; sourceTree = "<group>"; };
 		CBA118F72C7B821E00F9D633 /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
 		CBA118F92C7B924900F9D633 /* School.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = School.swift; sourceTree = "<group>"; };
+		CBBD16F22C7BBE3100171E4B /* AccessibilityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityViewController.swift; sourceTree = "<group>"; };
+		CBBD16F42C7CEB8B00171E4B /* ResizeableButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizeableButton.swift; sourceTree = "<group>"; };
+		CBBD16F72C7D135100171E4B /* DEPDButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEPDButton.swift; sourceTree = "<group>"; };
+		CBBD16F92C7D13C900171E4B /* DEPDButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DEPDButton.xib; sourceTree = "<group>"; };
+		CBBD16FB2C7E4AD000171E4B /* RegisterAndroidViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAndroidViewController.swift; sourceTree = "<group>"; };
 		CBC032052BFE77E100B45EEC /* UIView+extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+extention.swift"; sourceTree = "<group>"; };
 		CBC032072BFE784100B45EEC /* CALayer+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+Extention.swift"; sourceTree = "<group>"; };
 		CBC032092BFE78E100B45EEC /* UserDefaults+Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extentions.swift"; sourceTree = "<group>"; };
@@ -205,6 +231,15 @@
 		CBD17C4A2BFFF249001C3980 /* InstituteCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituteCollectionView.swift; sourceTree = "<group>"; };
 		CBDB239F2BFFF52800AEA1E7 /* InstituteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituteCell.swift; sourceTree = "<group>"; };
 		CBDB23A02BFFF52800AEA1E7 /* InstituteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstituteCell.xib; sourceTree = "<group>"; };
+		CBEAF5702C8B9E1E00153662 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		CBEAF5722C8BA60B00153662 /* GenericFormBuilderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericFormBuilderViewController.swift; sourceTree = "<group>"; };
+		CBEAF5742C8BAB9B00153662 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
+		CBEAF5762C8BBB0E00153662 /* WatchVideoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchVideoViewController.swift; sourceTree = "<group>"; };
+		CBEAF5792C9616C400153662 /* SchoolHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolHomeViewController.swift; sourceTree = "<group>"; };
+		CBEAF57B2C9616E300153662 /* SchoolHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolHomeViewModel.swift; sourceTree = "<group>"; };
+		CBEAF57D2C96252200153662 /* InstituteHomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituteHomeModel.swift; sourceTree = "<group>"; };
+		CBEAF5812C962BCD00153662 /* InstituteStudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituteStudentCell.swift; sourceTree = "<group>"; };
+		CBEAF5822C962BCD00153662 /* InstituteStudentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstituteStudentCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -255,6 +290,7 @@
 				CB08CEF92C3AC752004E3DEC /* Student.swift */,
 				CBA118F72C7B821E00F9D633 /* District.swift */,
 				CBA118F92C7B924900F9D633 /* School.swift */,
+				CBEAF57D2C96252200153662 /* InstituteHomeModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -287,6 +323,7 @@
 				CB43B3E02C04EE10009E990E /* RegisterAsSelectionOne.swift */,
 				CB7808482C15EE5600F3E785 /* RegisterAsSelectionTwo.swift */,
 				CB08CEF12C39D2B7004E3DEC /* RegisterSimpleViewController.swift */,
+				CBBD16FB2C7E4AD000171E4B /* RegisterAndroidViewController.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -303,6 +340,7 @@
 		CB7807FD2C04FF7A00F3E785 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				CB6C1C982C7BBADF007F2F74 /* Jameel-Noori-Nastaleeq-Kasheeda.ttf */,
 				CB7808292C05021900F3E785 /* RobotoBlack.ttf */,
 				CB78082F2C05021900F3E785 /* Roboto-BlackItalic.ttf */,
 				CB7808252C05021800F3E785 /* Roboto-Bold.ttf */,
@@ -382,6 +420,7 @@
 		CB89DFED2BFE6B3400F7458B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CBBD16F62C7D131400171E4B /* DEPDButton */,
 				CB43B3E52C04F415009E990E /* BottomView */,
 				CBD17C472BFFF1FD001C3980 /* InstituteCollectionView */,
 				CBD17C3E2BFFEB74001C3980 /* BannerView */,
@@ -403,6 +442,8 @@
 				CB43B3DC2C04D772009E990E /* String+extention.swift */,
 				CB7808462C05039A00F3E785 /* UILabel+Extention.swift */,
 				CB08CEF72C3AC5D5004E3DEC /* UserSession.swift */,
+				CBBD16F42C7CEB8B00171E4B /* ResizeableButton.swift */,
+				CBEAF5742C8BAB9B00153662 /* PlaceholderTextView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -428,6 +469,7 @@
 		CB89DFF62BFE6D8E00F7458B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CBEAF5782C9616AA00153662 /* School */,
 				CB43B3D72C04C5C4009E990E /* Authentication */,
 				CB89DFF22BFE6B9400F7458B /* SplashViewController.swift */,
 				CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */,
@@ -437,6 +479,11 @@
 				CB43B3DE2C04E261009E990E /* ThankYouViewController.swift */,
 				CB1AA5FA2C3AD6E300079270 /* SettingViewController.swift */,
 				CB2B55E42C55A27F008A8B83 /* InstituteDetailViewController.swift */,
+				CBBD16F22C7BBE3100171E4B /* AccessibilityViewController.swift */,
+				CBEAF5702C8B9E1E00153662 /* HelpViewController.swift */,
+				CBEAF5722C8BA60B00153662 /* GenericFormBuilderViewController.swift */,
+				CBEAF5762C8BBB0E00153662 /* WatchVideoViewController.swift */,
+				CBA06E292C9732A700BFC470 /* DEPDWebViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -458,6 +505,15 @@
 				CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		CBBD16F62C7D131400171E4B /* DEPDButton */ = {
+			isa = PBXGroup;
+			children = (
+				CBBD16F72C7D135100171E4B /* DEPDButton.swift */,
+				CBBD16F92C7D13C900171E4B /* DEPDButton.xib */,
+			);
+			path = DEPDButton;
 			sourceTree = "<group>";
 		};
 		CBC0320F2BFE815D00B45EEC /* Languages */ = {
@@ -504,6 +560,19 @@
 				CBDB23A02BFFF52800AEA1E7 /* InstituteCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		CBEAF5782C9616AA00153662 /* School */ = {
+			isa = PBXGroup;
+			children = (
+				CBEAF5792C9616C400153662 /* SchoolHomeViewController.swift */,
+				CBEAF57B2C9616E300153662 /* SchoolHomeViewModel.swift */,
+				CBEAF5812C962BCD00153662 /* InstituteStudentCell.swift */,
+				CBEAF5822C962BCD00153662 /* InstituteStudentCell.xib */,
+				CBA06E272C9726B500BFC470 /* SchoolStudentDetailViewController.swift */,
+				CB27B7782C973A4D0042CE6C /* SchoolDetailsViewController.swift */,
+			);
+			path = School;
 			sourceTree = "<group>";
 		};
 		CBF98C3A2C02484D00061829 /* Frameworks */ = {
@@ -638,6 +707,8 @@
 				CB7808372C05021900F3E785 /* Roboto-Bold.ttf in Resources */,
 				CB7808382C05021900F3E785 /* Roboto-MediumItalic.ttf in Resources */,
 				CB7808432C05021900F3E785 /* Roboto-BoldItalic.ttf in Resources */,
+				CBBD16FA2C7D13C900171E4B /* DEPDButton.xib in Resources */,
+				CBEAF5832C962BCD00153662 /* InstituteStudentCell.xib in Resources */,
 				CBD17C422BFFEB74001C3980 /* BannerView.xib in Resources */,
 				CB89DFBE2BFE6A7400F7458B /* Assets.xcassets in Resources */,
 				CB78083B2C05021900F3E785 /* RobotoBlack.ttf in Resources */,
@@ -699,9 +770,14 @@
 				CB43B3DB2C04D428009E990E /* FPEmailSentViewController.swift in Sources */,
 				CBD17C322BFFE106001C3980 /* HomeViewController.swift in Sources */,
 				CBC032082BFE784100B45EEC /* CALayer+Extention.swift in Sources */,
+				CBBD16F52C7CEB8B00171E4B /* ResizeableButton.swift in Sources */,
+				CB27B7792C973A4E0042CE6C /* SchoolDetailsViewController.swift in Sources */,
 				CBD17C462BFFF1B1001C3980 /* UIStackView+Extention.swift in Sources */,
 				CB43B3DD2C04D772009E990E /* String+extention.swift in Sources */,
+				CBEAF5752C8BAB9B00153662 /* PlaceholderTextView.swift in Sources */,
 				CB43B3C82C03D30C009E990E /* HTTP.swift in Sources */,
+				CBBD16F82C7D135100171E4B /* DEPDButton.swift in Sources */,
+				CBEAF5732C8BA60B00153662 /* GenericFormBuilderViewController.swift in Sources */,
 				CBD17C342BFFE128001C3980 /* BaseViewController.swift in Sources */,
 				CBC032172BFE8F6200B45EEC /* UITextField+extention.swift in Sources */,
 				CBD17C412BFFEB74001C3980 /* BannerView.swift in Sources */,
@@ -713,17 +789,23 @@
 				CB43B3E12C04EE10009E990E /* RegisterAsSelectionOne.swift in Sources */,
 				CB2B55E52C55A27F008A8B83 /* InstituteDetailViewController.swift in Sources */,
 				CB43B3CC2C03D359009E990E /* APIService.swift in Sources */,
+				CBEAF5712C8B9E1E00153662 /* HelpViewController.swift in Sources */,
 				CBC032062BFE77E100B45EEC /* UIView+extention.swift in Sources */,
 				CBC032192BFE8FC400B45EEC /* UiColor+Extention.swift in Sources */,
 				CB89DFB72BFE6A7200F7458B /* SceneDelegate.swift in Sources */,
+				CBEAF5842C962BCD00153662 /* InstituteStudentCell.swift in Sources */,
 				CB43B3DF2C04E261009E990E /* ThankYouViewController.swift in Sources */,
 				CB89DFF32BFE6B9400F7458B /* SplashViewController.swift in Sources */,
 				CB89DFF12BFE6B4700F7458B /* ShortCuts.swift in Sources */,
 				CBA118F82C7B821E00F9D633 /* District.swift in Sources */,
+				CBBD16F32C7BBE3200171E4B /* AccessibilityViewController.swift in Sources */,
 				CB7808472C05039A00F3E785 /* UILabel+Extention.swift in Sources */,
+				CBA06E2A2C9732A800BFC470 /* DEPDWebViewController.swift in Sources */,
 				CBD17C2D2BFFB92B001C3980 /* UiButton+extention.swift in Sources */,
 				CB7808492C15EE5600F3E785 /* RegisterAsSelectionTwo.swift in Sources */,
+				CBEAF57C2C9616E300153662 /* SchoolHomeViewModel.swift in Sources */,
 				CB08CEFA2C3AC752004E3DEC /* Student.swift in Sources */,
+				CBA06E282C9726B500BFC470 /* SchoolStudentDetailViewController.swift in Sources */,
 				CB89DFFB2BFE6F1700F7458B /* LanguageSelectionViewController.swift in Sources */,
 				CB08CEF62C39EB94004E3DEC /* ApiResponse.swift in Sources */,
 				CBD17C442BFFF030001C3980 /* ListTes.swift in Sources */,
@@ -732,9 +814,13 @@
 				CBD17C302BFFDBE2001C3980 /* InformativeAlertManager.swift in Sources */,
 				CBD17C382BFFE233001C3980 /* UIViewController+Extention.swift in Sources */,
 				CBD17C362BFFE1B3001C3980 /* ScrollView+Extention.swift in Sources */,
+				CBEAF57A2C9616C400153662 /* SchoolHomeViewController.swift in Sources */,
+				CBBD16FC2C7E4AD000171E4B /* RegisterAndroidViewController.swift in Sources */,
 				CB43B3D12C03DA58009E990E /* UserHomeViewController.swift in Sources */,
 				CBDB23A12BFFF52800AEA1E7 /* InstituteCell.swift in Sources */,
 				CB08CEF22C39D2B7004E3DEC /* RegisterSimpleViewController.swift in Sources */,
+				CBEAF57E2C96252200153662 /* InstituteHomeModel.swift in Sources */,
+				CBEAF5772C8BBB0E00153662 /* WatchVideoViewController.swift in Sources */,
 				CB08CEF42C39E8E6004E3DEC /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -943,13 +1029,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 99;
 				PRODUCT_BUNDLE_IDENTIFIER = com.prefixdigital.depd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -976,13 +1066,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 99;
 				PRODUCT_BUNDLE_IDENTIFIER = com.prefixdigital.depd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

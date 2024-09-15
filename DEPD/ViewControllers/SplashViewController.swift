@@ -15,8 +15,10 @@ class SplashViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        dump(UIFont.familyNames)
+        dump(UIFont.familyNames)
 //        dump(UIFont.fontNames(forFamilyName: "Roboto"))
+//        dump(UIFont.fontNames(forFamilyName: "Jameel-Noori-Sindhi"))
+//        dump(UIFont.fontNames(forFamilyName: "Lateefi-Regular-Urdu"))
         DispatchQueue.main.asyncAfter(deadline: .now()+2, execute: {[weak self] in
             self?.canGoForword()
         })

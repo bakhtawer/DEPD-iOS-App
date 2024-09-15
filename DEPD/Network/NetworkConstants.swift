@@ -10,7 +10,7 @@ import Foundation
 struct NetworkConstants {
     
     // MARK: - API
-    static let scheme = "http"
+    static let scheme = "https"
     static let baseURL = "hub.depdportal.com"
     static let port: Int? = nil // If there's no specific port, keep it nil
 }

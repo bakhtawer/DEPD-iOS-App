@@ -7,13 +7,6 @@
 
 import Foundation
 
-public enum UserType: Int {
-    case Student = 1
-    case School = 2
-    case JobSeeker = 3
-    case Employer = 4
-}
-
 struct User: Codable {
     
    var cNIC: String?

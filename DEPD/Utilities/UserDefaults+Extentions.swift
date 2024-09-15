@@ -12,6 +12,7 @@ extension UserDefaults {
     struct Keys {
         // MARK: - Constants
         static let selectedLanguage = "selectedLanguage"
+        static let selectedAccessibility = "selectedAccessibility"
         static let firstTimeUser = "firstTimeUser"
     }
     
@@ -33,5 +34,15 @@ extension UserDefaults {
     
     class func set(firstTimeUser: Bool) {
         UserDefaults.standard.set(firstTimeUser, forKey: UserDefaults.Keys.firstTimeUser)
+    }
+    
+    // MARK: - Language
+    class var selectedAccessibility: Int {
+        let storedValue = UserDefaults.standard.integer(forKey: UserDefaults.Keys.selectedAccessibility)
+        return storedValue
+    }
+    
+    class func set(selectedAccessibility: Int) {
+        UserDefaults.standard.set(selectedAccessibility, forKey: UserDefaults.Keys.selectedAccessibility)
     }
 }

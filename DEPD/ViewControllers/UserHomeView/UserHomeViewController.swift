@@ -35,6 +35,10 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         super.viewWillLayoutSubviews()
         viewBottom.setLanguage()
         
+        setView()
+    }
+    
+    private func setView() {
         imageUser.roundCorner(withRadis: imageUser.viewHeight.half)
         
         buttonMyComplaints.makeItThemeRegular(12.0, .appLight, .appGreen)
@@ -43,6 +47,11 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         buttonTotalSchool.makeItThemeRegular(10.0, .textDark, .appBGDark)
         buttonSelectDisability.makeItThemeRegular(10.0, .textDark, .appBGDark)
         buttonLocation.makeItThemeRegular(10.0, .textDark, .appBGDark)
+        
+        labelUserName.makeItTheme(.bold, 16)
+        
+        buttonMyComplaints.setTitle("my_complains".localized(), for: .normal)
+        labelMyApplications.setTitle("my_applications".localized(), for: .normal)
         
         if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
             buttonTotalSchool.semanticContentAttribute = .forceLeftToRight
@@ -64,12 +73,13 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         
         setUpCollectionView()
         
+        buttonTotalSchool.setTitle("total_school".localized(), for: .normal)
+        
         buttonSetting.addTapGestureRecognizer {
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: SettingViewController.self)
             openModulePopOver(controller: view)
         }
-        
         
         buttonTotalSchool.addTapGestureRecognizer {[weak self] in
             self?.viewModel.resetAll()
@@ -87,6 +97,9 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         super.viewWillAppear(animated)
         labelUserName.text = USM.shared.getUserFullName()
         labelLocation.text = ""
+        setView()
+        
+        collectionView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -104,7 +117,6 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         
         createDataSource()
     }
-    
 }
 
 extension UserHomeViewController: UserHomeVM {
@@ -157,7 +169,6 @@ extension UserHomeViewController {
                 return UICollectionViewCell()
             }
             cell.configure(with: app)
-//            cell.delegate = self
             return cell
         }
     }
@@ -173,7 +184,11 @@ extension UserHomeViewController {
 }
 extension UserHomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        delegate?.selectedProduct(product: dataProds[indexPath.row])
+        if APPMetaDataHandler.shared.userType == .StudentGuest {
+            Bootstrapper.showLoginAlert()
+            return
+        }
+        
         DispatchQueue.main.async {[weak self] in
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: InstituteDetailViewController.self)
@@ -209,11 +224,10 @@ extension UserHomeViewController { // Make Search Section
     }
 }
 
-
 extension UserHomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     private func setUpPickerViewDistrict() {
-        var tfView = UITextField(frame: CGRect(x: -100, y: -500, width: 30, height: 30))
+        let tfView = UITextField(frame: CGRect(x: -100, y: -500, width: 30, height: 30))
         
         let picker: UIPickerView
         picker = UIPickerView(frame:CGRect(x: 0, y: 0, width: view.frame.width, height: 300))
@@ -252,7 +266,7 @@ extension UserHomeViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     private func setUpPickerViewDisabilities() {
         
-        var tfView = UITextField(frame: CGRect(x: -100, y: -500, width: 30, height: 30))
+        let tfView = UITextField(frame: CGRect(x: -100, y: -500, width: 30, height: 30))
         
         let picker: UIPickerView
         picker = UIPickerView(frame:CGRect(x: 0, y: 0, width: view.frame.width, height: 300))

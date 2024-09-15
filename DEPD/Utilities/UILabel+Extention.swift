@@ -24,6 +24,7 @@ enum APPFontType: String {
 //        - "Roboto-BoldItalic"
 //        - "Roboto-Black"
 //        - "Roboto-BlackItalic"
+    
 }
 
 extension UILabel {
@@ -42,8 +43,8 @@ extension UILabel {
         var lineHight = lightHight
         var textSize = size
         if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
-            lineHight = lightHight * 2
-            textSize = size - 2
+            lineHight = lightHight * 1.5
+            textSize = size
             self.textAlignment = .right
         } else {
             lineHight = lightHight
@@ -52,32 +53,37 @@ extension UILabel {
             textSize = size
         }
         
+        switch UserDefaults.selectedAccessibility {
+        case 1: textSize = textSize*1.2
+        case 2: textSize = textSize*1.5
+        case 3: textSize = textSize*1.6
+        default: break
+        }
+        
         if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
             UILabel.appearance().semanticContentAttribute = .forceRightToLeft
         } else {
             UILabel.appearance().semanticContentAttribute = .forceLeftToRight
         }
         
-        
-        
         let textStyle: UIFont.TextStyle
         switch fontType {
         case .bold:
             textStyle = .title2
+            self.font = UIFont.robotoDynamic(forTextStyle: textStyle, weight: .bold, size: textSize)
         case .light:
             textStyle = .subheadline
+            self.font = UIFont.robotoDynamic(forTextStyle: textStyle, weight: .light, size: textSize)
         case .regular:
             textStyle = .body
+            self.font = UIFont.robotoDynamic(forTextStyle: textStyle, weight: .regular, size: textSize)
         case .medium:
             textStyle = .title2
+            self.font = UIFont.robotoDynamic(forTextStyle: textStyle, weight: .semibold, size: textSize)
         }
-        
-        self.font = UIFont.robotoDynamic(forTextStyle: textStyle, weight: .bold, size: textSize)
-        
         
         // Set text color
         self.textColor = color
-        
         
         
         // Create a paragraph style for the line height
@@ -100,12 +106,21 @@ extension UIFont {
                               size: CGFloat = 24) -> UIFont {
         let size = size //UIFont.preferredFont(forTextStyle: textStyle).pointSize
         let font: UIFont
-
-        switch weight {
-        case .bold:
-            font = UIFont(name: "Roboto-Bold", size: size) ?? UIFont.systemFont(ofSize: size, weight: .bold)
-        default:
-            font = UIFont(name: "Roboto-Regular", size: size) ?? UIFont.systemFont(ofSize: size, weight: .regular)
+        
+        if UserDefaults.selectedLanguage ==  "ur" {
+            font = UIFont(name: "Lateefi-Regular-Urdu", size: size) ?? UIFont.systemFont(ofSize: size, weight: .regular)
+        }
+        else if UserDefaults.selectedLanguage ==  "sd" {
+            font = UIFont(name: "Jameel-Noori-Sindhi", size: size) ?? UIFont.systemFont(ofSize: size, weight: .regular)
+        } else {
+            switch weight {
+            case .bold:
+                font = UIFont(name: "Roboto-Bold", size: size) ?? UIFont.systemFont(ofSize: size, weight: .bold)
+            case .light:
+                font = UIFont(name: "Roboto-Thin", size: size) ?? UIFont.systemFont(ofSize: size, weight: .bold)
+            default:
+                font = UIFont(name: "Roboto-Regular", size: size) ?? UIFont.systemFont(ofSize: size, weight: .regular)
+            }
         }
 
         return UIFontMetrics(forTextStyle: textStyle).scaledFont(for: font)

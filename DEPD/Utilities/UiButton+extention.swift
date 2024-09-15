@@ -9,14 +9,14 @@ import UIKit
 
 extension UIButton {
     
-    func makeItThemePrimary(_ fontSize: CGFloat = 20.0) {
+    func makeItThemePrimary(_ fontSize: CGFloat = 18.0) {
         self.setRoundBorderColor(.clear, 0.0, 5.0)
         self.backgroundColor = .buttonBG
         styleButton(fontSize, .appLight, .regular)
         self.applyShadow()
     }
     
-    func makeItThemeGreenPrimary(_ fontSize: CGFloat = 20.0) {
+    func makeItThemeGreenPrimary(_ fontSize: CGFloat = 18.0) {
         self.setRoundBorderColor(.clear, 0.0, 5.0)
         self.backgroundColor = .appGreen
         styleButton(fontSize, .appLight, .regular)
@@ -58,8 +58,16 @@ extension UIButton {
     }
     
     
-    func styleButton(_ fontSize: CGFloat = 20.0, _ color: UIColor = .textLight, _ fontType: APPFontType = .bold) {
+    func styleButton(_ fontSize: CGFloat = 18.0, _ color: UIColor = .textLight, _ fontType: APPFontType = .bold) {
         var reSize = fontSize
+        
+        switch UserDefaults.selectedAccessibility {
+        case 1: reSize = reSize*1.2
+        case 2: reSize = reSize*1.4
+        case 3: reSize = reSize*1.6
+        default: break
+        }
+        
         if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
             reSize = reSize - 1
         }
@@ -72,8 +80,8 @@ extension UIButton {
         
         // Create a paragraph style for the line height
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.minimumLineHeight = 23.44
-        paragraphStyle.maximumLineHeight = 23.44
+//        paragraphStyle.minimumLineHeight = 23.44
+//        paragraphStyle.maximumLineHeight = 23.44
         paragraphStyle.alignment = .center
         
         // Apply the paragraph style to the button's attributed title

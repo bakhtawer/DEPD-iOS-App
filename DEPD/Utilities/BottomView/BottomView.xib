@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BottomView" customModule="DEPD" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="oZV-op-r3U" id="Q34-To-dBX"/>
-                <outlet property="labelAccessibility" destination="sou-y8-REJ" id="Jfh-G9-tlA"/>
+                <outlet property="labelAccessibility" destination="sou-y8-REJ" id="f9K-bO-h69"/>
                 <outlet property="labelHelp" destination="88u-pU-usn" id="sKa-mJ-coU"/>
                 <outlet property="labelLanguage" destination="mU5-Uz-ZsU" id="GvA-U0-RgH"/>
                 <outlet property="viewAccessibility" destination="Y6P-ZO-bIt" id="TBZ-0L-d4H"/>

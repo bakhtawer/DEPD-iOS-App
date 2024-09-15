@@ -1,6 +1,52 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "about_your_school" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Your School"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "توهان جي اسڪول جي باري ۾"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آپ کے اسکول کے بارے میں"
+          }
+        }
+      }
+    },
+    "accept" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accept"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قبول ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قبول کریں۔"
+          }
+        }
+      }
+    },
     "accessibility" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -24,6 +70,213 @@
         }
       }
     },
+    "accessibility_material" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accessibility Material"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رسائي جو مواد"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قابل رسائی مواد"
+          }
+        }
+      }
+    },
+    "additional_info" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Additional Info"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضافي معلومات"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضافی معلومات"
+          }
+        }
+      }
+    },
+    "applicant_profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Applicant Profile"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "درخواست ڪندڙ پروفائل"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "درخواست گزار پروفائل"
+          }
+        }
+      }
+    },
+    "Available Seat" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Available Seat"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دستياب سيٽ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دستیاب سیٹ"
+          }
+        }
+      }
+    },
+    "available_seats_pwd" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Available Seats for PWD's"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PWD جي لاءِ دستياب سيٽون"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پی ڈبلیو ڈی کے لیے دستیاب نشستیں۔"
+          }
+        }
+      }
+    },
+    "cancel" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منسوخ ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منسوخ کریں"
+          }
+        }
+      }
+    },
+    "cnic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CNIC"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قومي سڃاڻپ ڪارڊ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قومی شناختی کارڈ"
+          }
+        }
+      }
+    },
+    "cnic_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CNIC Number"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قومي سڃاڻپ ڪارڊ نمبر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قومی شناختی کارڈ نمبر"
+          }
+        }
+      }
+    },
+    "contact_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contact Number"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رابطو نمبر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رابطہ نمبر"
+          }
+        }
+      }
+    },
     "continue_as_guest" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -43,6 +296,190 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "مہمان کے طور پر جاری رکھیں"
+          }
+        }
+      }
+    },
+    "designation" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Designation"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عهدو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عہدہ"
+          }
+        }
+      }
+    },
+    "disability_status" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disability Status"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوري جي حالت"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوری کی حیثیت"
+          }
+        }
+      }
+    },
+    "district" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "District"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ضلعو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ضلع"
+          }
+        }
+      }
+    },
+    "download_disability_certificate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download Disability Certificate"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڊائون لوڊ ڪريو معذور سرٽيفڪيٽ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوری کا سرٹیفکیٹ ڈاؤن لوڈ کریں۔"
+          }
+        }
+      }
+    },
+    "email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اي ميل"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ای میل"
+          }
+        }
+      }
+    },
+    "establish_year" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Establish Year"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سال قائم ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سال قائم کریں۔"
+          }
+        }
+      }
+    },
+    "father_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Father Name"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پيءُ جو نالو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "والد کا نام"
+          }
+        }
+      }
+    },
+    "first_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "First Name"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پهريون نالو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پہلا نام"
           }
         }
       }
@@ -139,6 +576,75 @@
         }
       }
     },
+    "free_or_paid_education" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Free or Paid Education"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مفت يا ادا ڪيل تعليم"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مفت یا معاوضہ تعلیم"
+          }
+        }
+      }
+    },
+    "Gallery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gallery"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "گيلري"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "گیلری"
+          }
+        }
+      }
+    },
+    "gender" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gender"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جنس"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جنس"
+          }
+        }
+      }
+    },
     "help" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -158,6 +664,98 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "مدد"
+          }
+        }
+      }
+    },
+    "help_complain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Complain"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شڪايت"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شکایت"
+          }
+        }
+      }
+    },
+    "help_legal_rights" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Read Your Legal Rights"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پڙهو پنهنجا قانوني حق"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپنے قانونی حقوق پڑھیں"
+          }
+        }
+      }
+    },
+    "help_suggestions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suggestions"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تجويزون"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تجاویز"
+          }
+        }
+      }
+    },
+    "help_watch_videos" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Watch Video"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وڊيو ڏسو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ویڈیو دیکھیں"
           }
         }
       }
@@ -214,19 +812,19 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "The purpose of creating this portal is to bridge the educational gap between individuals with disabilities and the general population. Education is a fundamental right for every individual, so why should people with disabilities be deprived of this right? Let's come together to make education accessible for everyone. On this portal, the number of seats allocated for students with disabilities in schools can be registered, and individuals with disabilities can apply for admission here."
+            "value" : "Department of Empowerment of Persons with Disabilities DEPD Government of Sindh has launched a career web to empower them by providing better access to employment opportunities. 5% quota is to be implemented The main objective of this pilot form is to bridge the gaps between special individuals and organizations so that they have easy access to job placements Moreover, this portal provides Jap providers and Jap recipients. Data collection will be done."
           }
         },
         "sd" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "هن پورٽل کي ٺاهڻ جو مقصد معذور ماڻهن ۽ عام آبادي جي وچ ۾ تعليمي فرق کي ختم ڪرڻ آهي. تعليم هر فرد جو بنيادي حق آهي ته پوءِ معذور ماڻهن کي ان حق کان ڇو محروم رکيو وڃي؟ اچو ته گڏجي تعليم کي هر ڪنهن جي پهچ ۾ آڻيون. هن پورٽل تي، اسڪولن ۾ معذور شاگردن لاءِ مختص ڪيل سيٽن جو تعداد رجسٽر ٿي سگهي ٿو، ۽ معذور ماڻهو هتي داخلا لاءِ درخواست ڏئي سگهن ٿا."
+            "value" : "معذور ماڻهن جي بااختياريءَ جو کاتو، DEPD، سنڌ حڪومت کين روزگار جا موقعا فراهم ڪندي کين بااختيار بڻائڻ لاءِ هڪ ڪيريئر ويب شروع ڪيو آهي. 5٪ ڪوٽا لاڳو ڪيو وڃي ٿو، هن پائلٽ فارم جو بنيادي مقصد خاص ماڻهن ۽ تنظيمن جي وچ ۾ فرق کي ختم ڪرڻ آهي ته جيئن انهن کي نوڪري جي جڳهه تائين آسان رسائي حاصل ڪري سگهي، ان کان علاوه، هي پورٽل مهيا ڪري ٿو Jap فراهم ڪندڙ ۽ Jap وصول ڪندڙ. ڊيٽا گڏ ڪرڻ جو ڪم ڪيو ويندو."
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "اس پورٹل کو بنانے کا مقصد معذور افراد اور عام آبادی کے درمیان تعلیمی فرق کو ختم کرنا ہے۔ تعلیم ہر فرد کا بنیادی حق ہے تو معذور افراد کو اس حق سے کیوں محروم رکھا جائے؟ آئیے مل کر تعلیم کو سب کے لیے قابل رسائی بنائیں۔ اس پورٹل پر، اسکولوں میں معذور طلباء کے لیے مختص نشستوں کی تعداد کو رجسٹر کیا جا سکتا ہے، اور معذور افراد یہاں داخلے کے لیے درخواست دے سکتے ہیں۔"
+            "value" : "خصوصی افراد کو با اختیار بنانے کے محکمے DEPD گورنمنٹ اف سندھ نے روزگار کے مواقع تک بہتر رسائی فراہم کر کے انہیں با اختیار بنانے کے لیے ایک کریئر ویب کا اغاز کیا ہے اس اقدام کا مقصد سندھ میں خصوصی افراد کے ایکٹ 2018 کے تحت بیان کردہ 5% کوٹا کو نافذ کرنا ہے اس پائلٹ فارم کا بنیادی مقصد خصوصی افراد اور تنظیموں کے درمیان فاصلوں کو ختم کرنا ہے تاکہ انہیں آسانی سے ملازمت کی جگہ تک رسائی ہو مزید یہ کہ یہ پورٹل جاپ فراہم کرنے والے ادارے اور جاپ حاصل کرنے والے افراد کا ڈیٹا کا ڈیٹا جمع کرنے کا کام کرے گا۔"
           }
         }
       }
@@ -273,6 +871,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "زبان"
+          }
+        }
+      }
+    },
+    "last_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Last Name"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آخري نالو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آخری نام"
+          }
+        }
+      }
+    },
+    "location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مقام"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مقام"
           }
         }
       }
@@ -508,6 +1152,144 @@
         }
       }
     },
+    "my_applications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Applications"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منهنجون درخواستون"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "میری درخواستیں"
+          }
+        }
+      }
+    },
+    "my_complains" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Complains"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منهنجون شڪايتون"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "میری شکایات"
+          }
+        }
+      }
+    },
+    "name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Name"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نالو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نام"
+          }
+        }
+      }
+    },
+    "ntn_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NTN Number"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NTN نمبر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NTN نمبر"
+          }
+        }
+      }
+    },
+    "number_of_total_students" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number of Total Students"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪل شاگردن جو تعداد"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کل طلباء کی تعداد"
+          }
+        }
+      }
+    },
+    "number_of_trained_teachers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number of Trained Teachers"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تربيت يافته استادن جو تعداد"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تربیت یافتہ اساتذہ کی تعداد"
+          }
+        }
+      }
+    },
     "Password" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -531,6 +1313,75 @@
         }
       }
     },
+    "pending" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pending"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "باقي رهيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "زیر التواء"
+          }
+        }
+      }
+    },
+    "pending_students" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pending Students"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "باقي شاگرد"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "زیر التواء طلباء"
+          }
+        }
+      }
+    },
+    "personal_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal Details"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ذاتي تفصيل"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ذاتی تفصیلات"
+          }
+        }
+      }
+    },
     "press login and go to next screen" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -550,6 +1401,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "لاگ ان دبائیں اور اگلی اسکرین پر جائیں۔"
+          }
+        }
+      }
+    },
+    "profile_completed" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile Completed"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پروفائل مڪمل ٿيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پروفائل مکمل ہو گیا۔"
           }
         }
       }
@@ -876,6 +1750,144 @@
         }
       }
     },
+    "registered_students" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registered Students"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رجسٽرڊ شاگرد"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رجسٹرڈ طلباء"
+          }
+        }
+      }
+    },
+    "rejected_students" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rejected Students"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رد ٿيل شاگرد"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مسترد شدہ طلباء"
+          }
+        }
+      }
+    },
+    "school_information" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "School Information"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسڪول جي ڄاڻ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسکول کی معلومات"
+          }
+        }
+      }
+    },
+    "school_multi_media" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "School Multi media"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسڪول ملٽي ميڊيا"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسکول ملٹی میڈیا"
+          }
+        }
+      }
+    },
+    "school_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "School Name"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسڪول جو نالو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سکول کا نام"
+          }
+        }
+      }
+    },
+    "schoool_college_maddarsa" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Schoool/College/Maddarsa"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسڪول/ ڪاليج/ مدرسا"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سکول/کالج/مدرسہ"
+          }
+        }
+      }
+    },
     "select en here" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -968,6 +1980,29 @@
         }
       }
     },
+    "select_disablility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disability"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوري"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوری۔"
+          }
+        }
+      }
+    },
     "select_language" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -987,6 +2022,75 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "زبان منتخب کریں۔"
+          }
+        }
+      }
+    },
+    "select_location" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Location"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مقام"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مقام"
+          }
+        }
+      }
+    },
+    "send_addmission_request" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send Addmission Request"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "داخل ڪرڻ جي درخواست موڪليو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "داخلے کی درخواست بھیجیں۔"
+          }
+        }
+      }
+    },
+    "socail_media_links" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Social Media Links"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سوشل ميڊيا لنڪس"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سوشل میڈیا لنکس"
           }
         }
       }
@@ -1014,6 +2118,167 @@
         }
       }
     },
+    "suggestion_complains" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suggestion/Complains"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تجويز / شڪايتون"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تجویز/شکایات"
+          }
+        }
+      }
+    },
+    "total_applications" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Applications"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪل درخواستون"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کل درخواستیں"
+          }
+        }
+      }
+    },
+    "total_school" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total School"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪل اسڪول"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ٹوٹل سکول"
+          }
+        }
+      }
+    },
+    "trained_material" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accessibility Material"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رسائي جو مواد"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قابل رسائی مواد"
+          }
+        }
+      }
+    },
+    "trained_teachers" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trained Teachers"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تربيت يافته استاد"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تربیت یافتہ اساتذہ"
+          }
+        }
+      }
+    },
+    "training_material" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Training Material"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تربيتي مواد"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تربیتی مواد"
+          }
+        }
+      }
+    },
+    "user_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "User Name"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "استعمال ڪندڙ جو نالو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "صارف کا نام"
+          }
+        }
+      }
+    },
     "view_info" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1033,6 +2298,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "معلومات دیکھیں"
+          }
+        }
+      }
+    },
+    "view_profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "View Profile"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پروفائل ڏسو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پروفائل دیکھیں"
+          }
+        }
+      }
+    },
+    "we_can_educate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We Can Educate"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسان تعليم ڪري سگهون ٿا"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ہم تعلیم دے سکتے ہیں۔"
           }
         }
       }

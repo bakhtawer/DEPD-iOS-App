@@ -37,17 +37,44 @@ class InstituteDetailViewController: BaseViewController {
     @IBOutlet weak var buttonCancel: UILabel!
     
     
+    @IBOutlet weak var labelTrainedTeachers: UILabel!
+    @IBOutlet weak var labelAccessibility: UILabel!
+    @IBOutlet weak var labelAvailableSeats: UILabel!
+    @IBOutlet weak var labelTraningMaterial: UILabel!
+    @IBOutlet weak var labelGalery: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
-        
-        
+        setView()
         guard let data = selectedInstitute else { return }
-        
+        buttonAdmission.addTapGestureRecognizer {[weak self] in
+            let request = Endpoint.applyForSchool(schoolID: data.InstituteId ?? -1).request!
+            self?.service.makeRequest(with: request, respModel: ApiResponse<String>.self) {[weak self] userResponse, error in
+                if let error = error { print("DEBUG PRINT:", error); return }
+                if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
+                
+                DispatchQueue.main.async {
+                    let storyboard = getStoryBoard(.main)
+                    let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
+                    contentVC.messageThankYou = .yourSchoolHasBeen("hello")
+                    contentVC.moveThankYou = .home
+                    openModuleOverFullScreen(controller: contentVC)
+                }
+            }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setView()
+    }
+    
+    private func setView() {
+        guard let data = selectedInstitute else { return }
         
         labelName.text = ""
         labelTopLocation.text = ""
-        
         labelSchoolName.text = data.SchoolName
         labelSchoolLocation.text = data.Location
         
@@ -80,28 +107,21 @@ class InstituteDetailViewController: BaseViewController {
         iconMaterial.tintColor = .white
         iconTrainingMaterial.tintColor = .white
         
-        buttonAdmission.addTapGestureRecognizer {[weak self] in
-            let request = Endpoint.applyForSchool(schoolID: data.InstituteId ?? -1).request!
-            self?.service.makeRequest(with: request, respModel: ApiResponse<String>.self) {[weak self] userResponse, error in
-                if let error = error { print("DEBUG PRINT:", error); return }
-                if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
-                
-                
-                let storyboard = getStoryBoard(.main)
-                let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
-                contentVC.messageThankYou = .yourSchoolHasBeen("hello")
-                contentVC.moveThankYou = .home
-                openModuleOverFullScreen(controller: contentVC)
-            }
-        }
+        labelTrainedTeachers.text = "trained_teachers".localized()
+        labelAccessibility.text = "trained_material".localized()
+        labelAvailableSeats.text = "Available Seat".localized()
+        labelTraningMaterial.text = "training_material".localized()
+        labelGalery.text = "Gallery".localized()
         
+        buttonAdmission.setTitle("send_addmission_request".localized(), for: .normal)
+        buttonCancel.text = "cancel".localized()
     }
 }
 extension InstituteDetailViewController {
     
     func setupNavigation() {
         self.navigationController?.navigationBar.isHidden = false
-        self.setBackButton(.appBlue).addTapGestureRecognizer {[weak self] in
+        self.setBackButton(.textDark).addTapGestureRecognizer {[weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
     }

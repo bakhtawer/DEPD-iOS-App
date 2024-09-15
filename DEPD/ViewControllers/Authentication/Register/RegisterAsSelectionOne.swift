@@ -42,7 +42,7 @@ class RegisterAsSelectionOne: BaseViewController {
         buttonInclusiveCareer.addTapGestureRecognizer {
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: RegisterAsSelectionTwo.self)
-            view.screenType = .job
+            view.screenType = .institute
             openModuleOnNavigation(from: self, controller: view)
         }
     }

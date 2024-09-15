@@ -34,9 +34,10 @@ class InstituteCell: UICollectionViewCell {
         labelDistrict.text = model.Location
         labelSeats.text = "\(model.NumberOfSeats ?? 0) seats available"
         
+        labelDistrict.makeItTheme(.medium, 12, .appBlue)
+        labelSeats.makeItTheme(.light, 8, .textDark)
         
         guard let image = URL(string: model.ImageURL ?? "") else { return }
         imageSchool.kf.setImage(with: image)
     }
-
 }
