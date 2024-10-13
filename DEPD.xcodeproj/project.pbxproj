@@ -65,6 +65,8 @@
 		CB89DFF32BFE6B9400F7458B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFF22BFE6B9400F7458B /* SplashViewController.swift */; };
 		CB89DFF92BFE6DE000F7458B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB89DFF82BFE6DE000F7458B /* Colors.xcassets */; };
 		CB89DFFB2BFE6F1700F7458B /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */; };
+		CB90B1D22CA860AC0069EA2D /* FormBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB90B1D12CA860AC0069EA2D /* FormBuilderViewController.swift */; };
+		CB90B1D42CA865B10069EA2D /* FormBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB90B1D32CA865B10069EA2D /* FormBuilderView.swift */; };
 		CBA06E282C9726B500BFC470 /* SchoolStudentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA06E272C9726B500BFC470 /* SchoolStudentDetailViewController.swift */; };
 		CBA06E2A2C9732A800BFC470 /* DEPDWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA06E292C9732A700BFC470 /* DEPDWebViewController.swift */; };
 		CBA118F62C7B81DE00F9D633 /* APPMetaDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */; };
@@ -193,6 +195,8 @@
 		CB89DFF22BFE6B9400F7458B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		CB89DFF82BFE6DE000F7458B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
+		CB90B1D12CA860AC0069EA2D /* FormBuilderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormBuilderViewController.swift; sourceTree = "<group>"; };
+		CB90B1D32CA865B10069EA2D /* FormBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormBuilderView.swift; sourceTree = "<group>"; };
 		CBA06E272C9726B500BFC470 /* SchoolStudentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolStudentDetailViewController.swift; sourceTree = "<group>"; };
 		CBA06E292C9732A700BFC470 /* DEPDWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEPDWebViewController.swift; sourceTree = "<group>"; };
 		CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPMetaDataHandler.swift; sourceTree = "<group>"; };
@@ -469,6 +473,7 @@
 		CB89DFF62BFE6D8E00F7458B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CB90B1D02CA8607E0069EA2D /* GeneralFormBuilder */,
 				CBEAF5782C9616AA00153662 /* School */,
 				CB43B3D72C04C5C4009E990E /* Authentication */,
 				CB89DFF22BFE6B9400F7458B /* SplashViewController.swift */,
@@ -497,6 +502,15 @@
 				CB89DFF82BFE6DE000F7458B /* Colors.xcassets */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		CB90B1D02CA8607E0069EA2D /* GeneralFormBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				CB90B1D12CA860AC0069EA2D /* FormBuilderViewController.swift */,
+				CB90B1D32CA865B10069EA2D /* FormBuilderView.swift */,
+			);
+			path = GeneralFormBuilder;
 			sourceTree = "<group>";
 		};
 		CBA118F42C7B81C700F9D633 /* Managers */ = {
@@ -758,11 +772,13 @@
 				CB43B3D42C03E7FC009E990E /* UserHomeViewModel.swift in Sources */,
 				CB43B3BF2C03C110009E990E /* RegisterViewController.swift in Sources */,
 				CB2B55E32C5596DB008A8B83 /* InclusiveScreen.swift in Sources */,
+				CB90B1D42CA865B10069EA2D /* FormBuilderView.swift in Sources */,
 				CB43B3CA2C03D32F009E990E /* Endpoint.swift in Sources */,
 				CBD17C4B2BFFF249001C3980 /* InstituteCollectionView.swift in Sources */,
 				CB43B3CE2C03D392009E990E /* NetworkConstants.swift in Sources */,
 				CB89DFF02BFE6B4700F7458B /* Storyboard+extention.swift in Sources */,
 				CB08CEF82C3AC5D5004E3DEC /* UserSession.swift in Sources */,
+				CB90B1D22CA860AC0069EA2D /* FormBuilderViewController.swift in Sources */,
 				CBD17C3F2BFFEB74001C3980 /* BannerCCell.swift in Sources */,
 				CBC032152BFE892A00B45EEC /* String+extentions.swift in Sources */,
 				CB89DFB52BFE6A7200F7458B /* AppDelegate.swift in Sources */,
@@ -1013,7 +1029,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = B3HGGG8FWW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DEPD/Info.plist;
@@ -1050,7 +1066,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = B3HGGG8FWW;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DEPD/Info.plist;

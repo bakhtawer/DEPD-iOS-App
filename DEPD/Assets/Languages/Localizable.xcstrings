@@ -254,6 +254,52 @@
         }
       }
     },
+    "company_hiring" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Company Hiring"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪمپني ملازمت"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کمپنی کی خدمات حاصل کرنا"
+          }
+        }
+      }
+    },
+    "confirm_password" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm Password"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پاس ورڊ جي تصديق ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پاس ورڈ کی تصدیق کریں۔"
+          }
+        }
+      }
+    },
     "contact_number" : {
       "extractionState" : "manual",
       "localizations" : {

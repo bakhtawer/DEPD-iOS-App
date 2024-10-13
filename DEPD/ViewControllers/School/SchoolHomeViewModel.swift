@@ -31,6 +31,7 @@ class SchoolHomeViewModel {
     init() {
         print("SchoolHomeViewModel- init")
         self.schoolID = -1
+        APPMetaDataHandler.shared.populateDesignations()
         guard let schoolID = USM.shared.getUser().userId, schoolID != -1 else { return }
         self.schoolID = schoolID
         fetchALlSchoolsForDetailsStudents()

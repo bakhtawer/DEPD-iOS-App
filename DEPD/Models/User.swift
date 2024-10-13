@@ -17,6 +17,7 @@ struct User: Codable {
    var lastName: String?
    var contactNo: String?
    var isVerified: Bool?
+   var emailAddress: String?
     
     enum CodingKeys: String, CodingKey {
         case cNIC = "CNIC"
@@ -27,6 +28,7 @@ struct User: Codable {
         case lastName = "LastName"
         case contactNo = "ContactNo"
         case isVerified = "IsVerified"
+        case emailAddress = "EmailAddress"
     }
     
     init(from decoder: Decoder) throws {
@@ -40,6 +42,7 @@ struct User: Codable {
             lastName = try values.decodeIfPresent(String.self, forKey: .lastName) ?? nil
             contactNo = try values.decodeIfPresent(String.self, forKey: .contactNo) ?? ""
             isVerified = try values.decodeIfPresent(Bool.self, forKey: .isVerified) ?? nil
+            emailAddress = try values.decodeIfPresent(String.self, forKey: .emailAddress) ?? nil
             
         } catch let DecodingError.typeMismatch(type, context) {
             print("Type '\(type)' mismatch:", context.debugDescription)

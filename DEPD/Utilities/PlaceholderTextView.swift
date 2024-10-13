@@ -10,7 +10,7 @@ import UIKit
 class PlaceholderTextView: UITextView {
     
     // Placeholder Label
-    private let placeholderLabel: UILabel = {
+    let placeholderLabel: UILabel = {
         let label = UILabel()
         label.text = "Message"
         label.textColor = UIColor.lightGray

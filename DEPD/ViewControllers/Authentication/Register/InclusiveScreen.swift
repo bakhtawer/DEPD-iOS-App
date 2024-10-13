@@ -53,7 +53,7 @@ class InclusiveScreen: BaseViewController {
         buttonTwo.addTapGestureRecognizer {
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: RegisterAsSelectionTwo.self)
-            view.screenType = .institute
+            view.screenType = .jobSeeker
             openModuleOnNavigation(from: self, controller: view)
         }
 

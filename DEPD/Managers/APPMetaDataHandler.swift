@@ -39,6 +39,9 @@ final class APPMetaDataHandler {
     func getDistricts() -> [District] {
         districts
     }
+    func getDistrictsNames() -> [String] {
+        districts.map {$0.name ?? ""}
+    }
     
     // MARK: Disability
     private var disabilities = [Disability]()
@@ -86,8 +89,8 @@ final class APPMetaDataHandler {
             self?.designations = designations
         }
     }
-    func getDesignations() -> [Designations] {
-        designations
+    func getDesignations() -> [String] {
+        designations.map {$0.name ?? ""}
     }
     
 }

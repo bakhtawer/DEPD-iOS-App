@@ -17,18 +17,20 @@ class ThankYouViewController: BaseViewController {
         case none
         case registeredSuccess
         case yourSchoolHasBeen(_ school: String)
-        
+        case updateSchoolInfo
         var value: String {
             switch self {
             case .none: return ""
             case .registeredSuccess: return "register_success_message".localized()
             case .yourSchoolHasBeen(let school): return "Your Application has been submitted to \(school) school"
+            case .updateSchoolInfo: return "\("school_information".localized()) Updated"
             }
         }
     }
     
     enum MoveThankYou {
         case home
+        case stay
     }
     
     var messageThankYou: MessageThankYou = .none
@@ -57,7 +59,8 @@ class ThankYouViewController: BaseViewController {
         DispatchQueue.main.async {[weak self] in
             switch self?.moveThankYou {
             case .home: Bootstrapper.createHome()
-            default: Bootstrapper.decideScreenToOpen()
+            case .stay: self?.dismiss(animated: true)
+            case .none: break
             }
         }
     }

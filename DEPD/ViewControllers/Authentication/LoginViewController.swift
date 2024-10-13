@@ -64,16 +64,20 @@ class LoginViewController: BaseViewController {
         
         switch screenType {
         case .student:
+#if DEBUG
             tfUserName.text = "4111111111111"
             tfPassword.text = "12345678"
+#endif
             setUpStudent()
         case .jobSeeker:
             setUpJobSeeker()
         case .companyHiring:
             setUpCompanyHiring()
         case .institute:
+#if DEBUG
             tfUserName.text = "4222222222222"
             tfPassword.text = "12345678"
+#endif
             setUpInstitute()
         }
         
@@ -164,6 +168,8 @@ class LoginViewController: BaseViewController {
     private func setUpCompanyHiring() {
         labelLoginTitle.text = "login_as_company_hiring_manager".localized()
         buttonRegister.setTitle("register_as_company_hiring_manager".localized(), for: .normal)
+        labelLoginAsGust.isHidden = true
+        
     }
     private func setUpInstitute() {
         labelLoginTitle.text = "login_as_institute".localized()

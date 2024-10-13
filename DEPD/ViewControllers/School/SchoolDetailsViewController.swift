@@ -41,6 +41,36 @@ class SchoolDetailsViewController: BaseViewController {
         imageSchool.contentMode = .scaleAspectFill
         imageSchool.kf.setImage(with: image,
                                 placeholder: UIImage(named: "studentplacehoder"))
+        
+        buttonEditSchoolInfo.addTapGestureRecognizer {
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.type = .schoolInfo
+                view.selectedSchool = selectedSchool
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        }
+        
+        buttonEditAbout.addTapGestureRecognizer {
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.type = .aboutYourSchool
+                view.selectedSchool = selectedSchool
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        }
+        
+        buttonEditAdtionalInfo.addTapGestureRecognizer {
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.type = .additionalInfo
+                view.selectedSchool = selectedSchool
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,7 +128,6 @@ class SchoolDetailsViewController: BaseViewController {
 \("number_of_total_students".localized()): \(selectedSchool.NumberOfSeats ?? 0)
 """
         labelAddiontalInfoDetails.text = additionalInfo
-        
         
     }
     

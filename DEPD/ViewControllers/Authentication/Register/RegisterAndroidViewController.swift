@@ -28,16 +28,7 @@ class RegisterAndroidViewController: BaseViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        tfCnic.makeItThemeTF()
-        tfEmail.makeItThemeTF()
-        tfFullName.makeItThemeTF()
-        labelFatherName.makeItThemeTF()
-        labelContactNo.makeItThemeTF()
-        tfPassword.makeItThemeTF()
-        tfConfirmPassword.makeItThemeTF()
 
-        
-        buttonSubmit.makeItThemePrimary()
         
         viewBottom.setLanguage()
     }
@@ -51,16 +42,43 @@ class RegisterAndroidViewController: BaseViewController {
         tfCnic.keyboardType = .numberPad
         labelContactNo.keyboardType = .numberPad
         tfEmail.keyboardType = .numberPad
-        tfFullName.placeholder = "First Name"
-        labelFatherName.placeholder = "Last Name"
         tfPassword.isSecureTextEntry = true
         tfConfirmPassword.isSecureTextEntry = true
         
-        buttonSubmit.setTitle("register_title".localized(), for: .normal)
+        setUpView()
         
         buttonSubmit.addTapGestureRecognizer {[weak self] in
             self?.signUp()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpView()
+    }
+    
+    private func setUpView() {
+        tfCnic.placeholder = "cnic".localized()
+        tfFullName.placeholder = "first_name".localized()
+        labelFatherName.placeholder = "last_name".localized()
+        tfEmail.placeholder = "email".localized()
+        labelContactNo.placeholder = "contact_number".localized()
+        tfPassword.placeholder = "login_password".localized()
+        tfConfirmPassword.placeholder = "confirm_password".localized()
+        
+        tfCnic.makeItThemeTF()
+        tfEmail.makeItThemeTF()
+        tfFullName.makeItThemeTF()
+        labelFatherName.makeItThemeTF()
+        labelContactNo.makeItThemeTF()
+        tfPassword.makeItThemeTF()
+        tfConfirmPassword.makeItThemeTF()
+
+        buttonSubmit.makeItThemePrimary()
+        
+        viewBottom.setLanguage()
+        
+        buttonSubmit.setTitle("register_title".localized(), for: .normal)
     }
     
     private func signUp() {
