@@ -13,9 +13,22 @@
 		CB08CEF82C3AC5D5004E3DEC /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB08CEF72C3AC5D5004E3DEC /* UserSession.swift */; };
 		CB08CEFA2C3AC752004E3DEC /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB08CEF92C3AC752004E3DEC /* Student.swift */; };
 		CB1AA5FB2C3AD6E300079270 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1AA5FA2C3AD6E300079270 /* SettingViewController.swift */; };
+		CB1CE0BF2CCD26C300ABFAEA /* JobSeekerHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1CE0BE2CCD26C300ABFAEA /* JobSeekerHomeViewController.swift */; };
+		CB1CE0C12CCD26CE00ABFAEA /* JobSeekerHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1CE0C02CCD26CE00ABFAEA /* JobSeekerHomeViewModel.swift */; };
+		CB1CE0C72CCD2D1500ABFAEA /* JobSeekerCompanyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1CE0C52CCD2D1500ABFAEA /* JobSeekerCompanyCell.swift */; };
+		CB1CE0C82CCD2D1500ABFAEA /* JobSeekerCompanyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB1CE0C62CCD2D1500ABFAEA /* JobSeekerCompanyCell.xib */; };
+		CB1CE0CB2CCD2FFD00ABFAEA /* GenericFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1CE0CA2CCD2FFD00ABFAEA /* GenericFilter.swift */; };
 		CB27B7792C973A4E0042CE6C /* SchoolDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB27B7782C973A4D0042CE6C /* SchoolDetailsViewController.swift */; };
 		CB2B55E32C5596DB008A8B83 /* InclusiveScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2B55E22C5596DB008A8B83 /* InclusiveScreen.swift */; };
 		CB2B55E52C55A27F008A8B83 /* InstituteDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2B55E42C55A27F008A8B83 /* InstituteDetailViewController.swift */; };
+		CB358CBD2CBC12F000CD25A9 /* EmployerHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB358CBC2CBC12F000CD25A9 /* EmployerHomeViewController.swift */; };
+		CB358CBF2CBC130000CD25A9 /* EmployerHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB358CBE2CBC130000CD25A9 /* EmployerHomeViewModel.swift */; };
+		CB358CC12CBC178700CD25A9 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB358CC02CBC178700CD25A9 /* Company.swift */; };
+		CB358CC42CBC1BE800CD25A9 /* CompanyJobCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB358CC32CBC1BE800CD25A9 /* CompanyJobCell.xib */; };
+		CB358CC52CBC1BE800CD25A9 /* CompanyJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB358CC22CBC1BE800CD25A9 /* CompanyJobCell.swift */; };
+		CB358CC72CBC27E200CD25A9 /* JobSeeker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB358CC62CBC27E200CD25A9 /* JobSeeker.swift */; };
+		CB358CCA2CBC34A000CD25A9 /* CompanyAdvertiseJobCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB358CC92CBC34A000CD25A9 /* CompanyAdvertiseJobCell.xib */; };
+		CB358CCB2CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB358CC82CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift */; };
 		CB43B3BF2C03C110009E990E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3BE2C03C110009E990E /* RegisterViewController.swift */; };
 		CB43B3C52C03D1C3009E990E /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CB43B3C42C03D1C3009E990E /* IQKeyboardManagerSwift */; };
 		CB43B3C82C03D30C009E990E /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3C72C03D30C009E990E /* HTTP.swift */; };
@@ -67,6 +80,8 @@
 		CB89DFFB2BFE6F1700F7458B /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */; };
 		CB90B1D22CA860AC0069EA2D /* FormBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB90B1D12CA860AC0069EA2D /* FormBuilderViewController.swift */; };
 		CB90B1D42CA865B10069EA2D /* FormBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB90B1D32CA865B10069EA2D /* FormBuilderView.swift */; };
+		CB948E0A2CD4272300A6960F /* JobSeekerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB948E092CD4271A00A6960F /* JobSeekerProfile.swift */; };
+		CB948E0C2CD4274500A6960F /* JobSeekerProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB948E0B2CD4273F00A6960F /* JobSeekerProfileModel.swift */; };
 		CBA06E282C9726B500BFC470 /* SchoolStudentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA06E272C9726B500BFC470 /* SchoolStudentDetailViewController.swift */; };
 		CBA06E2A2C9732A800BFC470 /* DEPDWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA06E292C9732A700BFC470 /* DEPDWebViewController.swift */; };
 		CBA118F62C7B81DE00F9D633 /* APPMetaDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */; };
@@ -139,9 +154,22 @@
 		CB08CEF72C3AC5D5004E3DEC /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		CB08CEF92C3AC752004E3DEC /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		CB1AA5FA2C3AD6E300079270 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		CB1CE0BE2CCD26C300ABFAEA /* JobSeekerHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeekerHomeViewController.swift; sourceTree = "<group>"; };
+		CB1CE0C02CCD26CE00ABFAEA /* JobSeekerHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeekerHomeViewModel.swift; sourceTree = "<group>"; };
+		CB1CE0C52CCD2D1500ABFAEA /* JobSeekerCompanyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeekerCompanyCell.swift; sourceTree = "<group>"; };
+		CB1CE0C62CCD2D1500ABFAEA /* JobSeekerCompanyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JobSeekerCompanyCell.xib; sourceTree = "<group>"; };
+		CB1CE0CA2CCD2FFD00ABFAEA /* GenericFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericFilter.swift; sourceTree = "<group>"; };
 		CB27B7782C973A4D0042CE6C /* SchoolDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolDetailsViewController.swift; sourceTree = "<group>"; };
 		CB2B55E22C5596DB008A8B83 /* InclusiveScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InclusiveScreen.swift; sourceTree = "<group>"; };
 		CB2B55E42C55A27F008A8B83 /* InstituteDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituteDetailViewController.swift; sourceTree = "<group>"; };
+		CB358CBC2CBC12F000CD25A9 /* EmployerHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerHomeViewController.swift; sourceTree = "<group>"; };
+		CB358CBE2CBC130000CD25A9 /* EmployerHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerHomeViewModel.swift; sourceTree = "<group>"; };
+		CB358CC02CBC178700CD25A9 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
+		CB358CC22CBC1BE800CD25A9 /* CompanyJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyJobCell.swift; sourceTree = "<group>"; };
+		CB358CC32CBC1BE800CD25A9 /* CompanyJobCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyJobCell.xib; sourceTree = "<group>"; };
+		CB358CC62CBC27E200CD25A9 /* JobSeeker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeeker.swift; sourceTree = "<group>"; };
+		CB358CC82CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyAdvertiseJobCell.swift; sourceTree = "<group>"; };
+		CB358CC92CBC34A000CD25A9 /* CompanyAdvertiseJobCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyAdvertiseJobCell.xib; sourceTree = "<group>"; };
 		CB43B3BE2C03C110009E990E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CB43B3C72C03D30C009E990E /* HTTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		CB43B3C92C03D32F009E990E /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -197,6 +225,8 @@
 		CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
 		CB90B1D12CA860AC0069EA2D /* FormBuilderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormBuilderViewController.swift; sourceTree = "<group>"; };
 		CB90B1D32CA865B10069EA2D /* FormBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormBuilderView.swift; sourceTree = "<group>"; };
+		CB948E092CD4271A00A6960F /* JobSeekerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeekerProfile.swift; sourceTree = "<group>"; };
+		CB948E0B2CD4273F00A6960F /* JobSeekerProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeekerProfileModel.swift; sourceTree = "<group>"; };
 		CBA06E272C9726B500BFC470 /* SchoolStudentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolStudentDetailViewController.swift; sourceTree = "<group>"; };
 		CBA06E292C9732A700BFC470 /* DEPDWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEPDWebViewController.swift; sourceTree = "<group>"; };
 		CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPMetaDataHandler.swift; sourceTree = "<group>"; };
@@ -275,6 +305,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CB1CE0BD2CCD260900ABFAEA /* JobSeeker */ = {
+			isa = PBXGroup;
+			children = (
+				CB1CE0BE2CCD26C300ABFAEA /* JobSeekerHomeViewController.swift */,
+				CB1CE0C02CCD26CE00ABFAEA /* JobSeekerHomeViewModel.swift */,
+				CB1CE0C52CCD2D1500ABFAEA /* JobSeekerCompanyCell.swift */,
+				CB1CE0C62CCD2D1500ABFAEA /* JobSeekerCompanyCell.xib */,
+			);
+			path = JobSeeker;
+			sourceTree = "<group>";
+		};
+		CB1CE0C92CCD2DEF00ABFAEA /* GenericFilter */ = {
+			isa = PBXGroup;
+			children = (
+				CB1CE0CA2CCD2FFD00ABFAEA /* GenericFilter.swift */,
+			);
+			path = GenericFilter;
+			sourceTree = "<group>";
+		};
+		CB358CBB2CBC12CB00CD25A9 /* Employer */ = {
+			isa = PBXGroup;
+			children = (
+				CB358CBC2CBC12F000CD25A9 /* EmployerHomeViewController.swift */,
+				CB358CBE2CBC130000CD25A9 /* EmployerHomeViewModel.swift */,
+				CB358CC22CBC1BE800CD25A9 /* CompanyJobCell.swift */,
+				CB358CC32CBC1BE800CD25A9 /* CompanyJobCell.xib */,
+				CB358CC82CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift */,
+				CB358CC92CBC34A000CD25A9 /* CompanyAdvertiseJobCell.xib */,
+			);
+			path = Employer;
+			sourceTree = "<group>";
+		};
 		CB43B3C62C03D26F009E990E /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,12 +351,15 @@
 		CB43B3CF2C03D3CA009E990E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB948E0B2CD4273F00A6960F /* JobSeekerProfileModel.swift */,
 				CB08CEF32C39E8E6004E3DEC /* User.swift */,
 				CB08CEF52C39EB94004E3DEC /* ApiResponse.swift */,
 				CB08CEF92C3AC752004E3DEC /* Student.swift */,
 				CBA118F72C7B821E00F9D633 /* District.swift */,
 				CBA118F92C7B924900F9D633 /* School.swift */,
 				CBEAF57D2C96252200153662 /* InstituteHomeModel.swift */,
+				CB358CC02CBC178700CD25A9 /* Company.swift */,
+				CB358CC62CBC27E200CD25A9 /* JobSeeker.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -473,6 +538,10 @@
 		CB89DFF62BFE6D8E00F7458B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CB948E082CD4270E00A6960F /* JobSeekerProfileVIew */,
+				CB1CE0C92CCD2DEF00ABFAEA /* GenericFilter */,
+				CB1CE0BD2CCD260900ABFAEA /* JobSeeker */,
+				CB358CBB2CBC12CB00CD25A9 /* Employer */,
 				CB90B1D02CA8607E0069EA2D /* GeneralFormBuilder */,
 				CBEAF5782C9616AA00153662 /* School */,
 				CB43B3D72C04C5C4009E990E /* Authentication */,
@@ -511,6 +580,14 @@
 				CB90B1D32CA865B10069EA2D /* FormBuilderView.swift */,
 			);
 			path = GeneralFormBuilder;
+			sourceTree = "<group>";
+		};
+		CB948E082CD4270E00A6960F /* JobSeekerProfileVIew */ = {
+			isa = PBXGroup;
+			children = (
+				CB948E092CD4271A00A6960F /* JobSeekerProfile.swift */,
+			);
+			path = JobSeekerProfileVIew;
 			sourceTree = "<group>";
 		};
 		CBA118F42C7B81C700F9D633 /* Managers */ = {
@@ -720,11 +797,13 @@
 				CB78083A2C05021900F3E785 /* RobotoCondensed-Light.ttf in Resources */,
 				CB7808372C05021900F3E785 /* Roboto-Bold.ttf in Resources */,
 				CB7808382C05021900F3E785 /* Roboto-MediumItalic.ttf in Resources */,
+				CB358CCA2CBC34A000CD25A9 /* CompanyAdvertiseJobCell.xib in Resources */,
 				CB7808432C05021900F3E785 /* Roboto-BoldItalic.ttf in Resources */,
 				CBBD16FA2C7D13C900171E4B /* DEPDButton.xib in Resources */,
 				CBEAF5832C962BCD00153662 /* InstituteStudentCell.xib in Resources */,
 				CBD17C422BFFEB74001C3980 /* BannerView.xib in Resources */,
 				CB89DFBE2BFE6A7400F7458B /* Assets.xcassets in Resources */,
+				CB358CC42CBC1BE800CD25A9 /* CompanyJobCell.xib in Resources */,
 				CB78083B2C05021900F3E785 /* RobotoBlack.ttf in Resources */,
 				CB7808412C05021900F3E785 /* Roboto-BlackItalic.ttf in Resources */,
 				CBC032112BFE819200B45EEC /* Localizable.xcstrings in Resources */,
@@ -737,6 +816,7 @@
 				CB78083F2C05021900F3E785 /* Roboto-Regular.ttf in Resources */,
 				CB7808352C05021900F3E785 /* RobotoCondensed-Italic.ttf in Resources */,
 				CBD17C492BFFF23F001C3980 /* InstituteCollectionView.xib in Resources */,
+				CB1CE0C82CCD2D1500ABFAEA /* JobSeekerCompanyCell.xib in Resources */,
 				CB78083E2C05021900F3E785 /* RobotoCondensed-BoldItalic.ttf in Resources */,
 				CB7808392C05021900F3E785 /* RobotoCondensed-Bold.ttf in Resources */,
 				CB89DFC12BFE6A7400F7458B /* Base in Resources */,
@@ -775,26 +855,32 @@
 				CB90B1D42CA865B10069EA2D /* FormBuilderView.swift in Sources */,
 				CB43B3CA2C03D32F009E990E /* Endpoint.swift in Sources */,
 				CBD17C4B2BFFF249001C3980 /* InstituteCollectionView.swift in Sources */,
+				CB358CC72CBC27E200CD25A9 /* JobSeeker.swift in Sources */,
 				CB43B3CE2C03D392009E990E /* NetworkConstants.swift in Sources */,
 				CB89DFF02BFE6B4700F7458B /* Storyboard+extention.swift in Sources */,
 				CB08CEF82C3AC5D5004E3DEC /* UserSession.swift in Sources */,
+				CB1CE0BF2CCD26C300ABFAEA /* JobSeekerHomeViewController.swift in Sources */,
 				CB90B1D22CA860AC0069EA2D /* FormBuilderViewController.swift in Sources */,
 				CBD17C3F2BFFEB74001C3980 /* BannerCCell.swift in Sources */,
 				CBC032152BFE892A00B45EEC /* String+extentions.swift in Sources */,
 				CB89DFB52BFE6A7200F7458B /* AppDelegate.swift in Sources */,
 				CBA118FA2C7B924900F9D633 /* School.swift in Sources */,
 				CB43B3DB2C04D428009E990E /* FPEmailSentViewController.swift in Sources */,
+				CB358CCB2CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift in Sources */,
 				CBD17C322BFFE106001C3980 /* HomeViewController.swift in Sources */,
 				CBC032082BFE784100B45EEC /* CALayer+Extention.swift in Sources */,
+				CB1CE0CB2CCD2FFD00ABFAEA /* GenericFilter.swift in Sources */,
 				CBBD16F52C7CEB8B00171E4B /* ResizeableButton.swift in Sources */,
 				CB27B7792C973A4E0042CE6C /* SchoolDetailsViewController.swift in Sources */,
 				CBD17C462BFFF1B1001C3980 /* UIStackView+Extention.swift in Sources */,
 				CB43B3DD2C04D772009E990E /* String+extention.swift in Sources */,
 				CBEAF5752C8BAB9B00153662 /* PlaceholderTextView.swift in Sources */,
 				CB43B3C82C03D30C009E990E /* HTTP.swift in Sources */,
+				CB358CBF2CBC130000CD25A9 /* EmployerHomeViewModel.swift in Sources */,
 				CBBD16F82C7D135100171E4B /* DEPDButton.swift in Sources */,
 				CBEAF5732C8BA60B00153662 /* GenericFormBuilderViewController.swift in Sources */,
 				CBD17C342BFFE128001C3980 /* BaseViewController.swift in Sources */,
+				CB358CBD2CBC12F000CD25A9 /* EmployerHomeViewController.swift in Sources */,
 				CBC032172BFE8F6200B45EEC /* UITextField+extention.swift in Sources */,
 				CBD17C412BFFEB74001C3980 /* BannerView.swift in Sources */,
 				CB43B3E72C04F445009E990E /* BottomView.swift in Sources */,
@@ -804,6 +890,7 @@
 				CB89DFE52BFE6AA600F7458B /* Bootstrapper.swift in Sources */,
 				CB43B3E12C04EE10009E990E /* RegisterAsSelectionOne.swift in Sources */,
 				CB2B55E52C55A27F008A8B83 /* InstituteDetailViewController.swift in Sources */,
+				CB358CC52CBC1BE800CD25A9 /* CompanyJobCell.swift in Sources */,
 				CB43B3CC2C03D359009E990E /* APIService.swift in Sources */,
 				CBEAF5712C8B9E1E00153662 /* HelpViewController.swift in Sources */,
 				CBC032062BFE77E100B45EEC /* UIView+extention.swift in Sources */,
@@ -811,16 +898,21 @@
 				CB89DFB72BFE6A7200F7458B /* SceneDelegate.swift in Sources */,
 				CBEAF5842C962BCD00153662 /* InstituteStudentCell.swift in Sources */,
 				CB43B3DF2C04E261009E990E /* ThankYouViewController.swift in Sources */,
+				CB948E0C2CD4274500A6960F /* JobSeekerProfileModel.swift in Sources */,
 				CB89DFF32BFE6B9400F7458B /* SplashViewController.swift in Sources */,
 				CB89DFF12BFE6B4700F7458B /* ShortCuts.swift in Sources */,
+				CB1CE0C72CCD2D1500ABFAEA /* JobSeekerCompanyCell.swift in Sources */,
 				CBA118F82C7B821E00F9D633 /* District.swift in Sources */,
+				CB358CC12CBC178700CD25A9 /* Company.swift in Sources */,
 				CBBD16F32C7BBE3200171E4B /* AccessibilityViewController.swift in Sources */,
 				CB7808472C05039A00F3E785 /* UILabel+Extention.swift in Sources */,
 				CBA06E2A2C9732A800BFC470 /* DEPDWebViewController.swift in Sources */,
 				CBD17C2D2BFFB92B001C3980 /* UiButton+extention.swift in Sources */,
 				CB7808492C15EE5600F3E785 /* RegisterAsSelectionTwo.swift in Sources */,
 				CBEAF57C2C9616E300153662 /* SchoolHomeViewModel.swift in Sources */,
+				CB948E0A2CD4272300A6960F /* JobSeekerProfile.swift in Sources */,
 				CB08CEFA2C3AC752004E3DEC /* Student.swift in Sources */,
+				CB1CE0C12CCD26CE00ABFAEA /* JobSeekerHomeViewModel.swift in Sources */,
 				CBA06E282C9726B500BFC470 /* SchoolStudentDetailViewController.swift in Sources */,
 				CB89DFFB2BFE6F1700F7458B /* LanguageSelectionViewController.swift in Sources */,
 				CB08CEF62C39EB94004E3DEC /* ApiResponse.swift in Sources */,

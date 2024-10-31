@@ -31,4 +31,9 @@ class UserSessionManager: UserSession {
     func getUserFullName() -> String {
         "\(self.user.firstName ?? "Guest") \(self.user.lastName ?? "User")"
     }
+    
+    
+    func LogoutUser(){
+        self.user = User()
+    }
 }

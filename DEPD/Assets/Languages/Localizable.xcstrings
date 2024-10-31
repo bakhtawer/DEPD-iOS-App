@@ -116,6 +116,29 @@
         }
       }
     },
+    "advertise_vacancies" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advertise Vacancies"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آسامیوں کا اشتہار دیں۔"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خالي جايون اشتهار ڏيو"
+          }
+        }
+      }
+    },
     "applicant_profile" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -277,6 +300,29 @@
         }
       }
     },
+    "confirm_hiring" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm Hiring"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بھرتی کی تصدیق کریں۔"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملازمت جي تصديق ڪريو"
+          }
+        }
+      }
+    },
     "confirm_password" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -342,6 +388,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "مہمان کے طور پر جاری رکھیں"
+          }
+        }
+      }
+    },
+    "description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تفصیل"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وصف"
           }
         }
       }
@@ -503,6 +572,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "والد کا نام"
+          }
+        }
+      }
+    },
+    "find_an_employee" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find an Employee"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : " ملازم تلاش کریں۔"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ھڪڙو ملازم ڳولھيو"
           }
         }
       }
@@ -897,6 +989,9 @@
           }
         }
       }
+    },
+    "JobSeeker Profile" : {
+
     },
     "langauge" : {
       "extractionState" : "manual",
@@ -1934,6 +2029,75 @@
         }
       }
     },
+    "search_employee" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Employee"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملازم تلاش کریں۔"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڳولا ملازم"
+          }
+        }
+      }
+    },
+    "search_jobs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Job"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوکری تلاش کریں۔"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڳولها نوڪري"
+          }
+        }
+      }
+    },
+    "search_students" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search Students"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طلباء تلاش کریں۔"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شاگردن جي ڳولا ڪريو"
+          }
+        }
+      }
+    },
     "select en here" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2390,6 +2554,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ہم تعلیم دے سکتے ہیں۔"
+          }
+        }
+      }
+    },
+    "welcom_to_employer_hub" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Employer's Hub"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ایمپلائرز ہب میں خوش آمدید"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آجر جي مرڪز ۾ ڀليڪار"
           }
         }
       }

@@ -70,8 +70,16 @@ class LoginViewController: BaseViewController {
 #endif
             setUpStudent()
         case .jobSeeker:
+#if DEBUG
+            tfUserName.text = "4333333333333"
+            tfPassword.text = "12345678"
+#endif
             setUpJobSeeker()
         case .companyHiring:
+#if DEBUG
+            tfUserName.text = "4444444444444"
+            tfPassword.text = "12345678"
+#endif
             setUpCompanyHiring()
         case .institute:
 #if DEBUG
@@ -164,11 +172,48 @@ class LoginViewController: BaseViewController {
     private func setUpJobSeeker() {
         labelLoginTitle.text = "login_as_job_seeker".localized()
         buttonRegister.setTitle("register_as_job_seeker".localized(), for: .normal)
+        
+        buttonLogin.addTapGestureRecognizer {[weak self] in
+            
+            guard let cnic = self?.tfUserName.text,
+                    cnic.count > 10
+            else {
+                SMM().showError(title: "Wrong Info", message: "Please provide correct CNIC number")
+                return
+            }
+            guard let password = self?.tfPassword.text,
+                  password.count > 1
+            else {
+                SMM().showError(title: "Wrong Info", message: "Please provide correct Password")
+                return
+            }
+            APPMetaDataHandler.shared.userType = .JobSeeker
+            self?.login(email: cnic,
+                        Password:password)
+        }
     }
     private func setUpCompanyHiring() {
         labelLoginTitle.text = "login_as_company_hiring_manager".localized()
         buttonRegister.setTitle("register_as_company_hiring_manager".localized(), for: .normal)
         labelLoginAsGust.isHidden = true
+        
+        buttonLogin.addTapGestureRecognizer {[weak self] in
+            guard let cnic = self?.tfUserName.text,
+                    cnic.count > 10
+            else {
+                SMM().showError(title: "Wrong Info", message: "Please provide correct CNIC number")
+                return
+            }
+            guard let password = self?.tfPassword.text,
+                  password.count > 1
+            else {
+                SMM().showError(title: "Wrong Info", message: "Please provide correct Password")
+                return
+            }
+            APPMetaDataHandler.shared.userType = .Employer
+            self?.login(email: cnic,
+                        Password:password)
+        }
         
     }
     private func setUpInstitute() {

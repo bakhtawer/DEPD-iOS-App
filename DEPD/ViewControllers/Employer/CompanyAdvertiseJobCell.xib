@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CompanyAdvertiseJobCell" id="HJw-yJ-XPE" customClass="CompanyAdvertiseJobCell" customModule="DEPD" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="261"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="261"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1A4-06-3Ru">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="261"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G5o-2r-Omk">
+                                <rect key="frame" x="16" y="12" width="343" height="220"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="studentplacehoder" translatesAutoresizingMaskIntoConstraints="NO" id="cdI-jj-xiv">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="220"/>
+                                        <color key="backgroundColor" name="AppGray"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="AppLight"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="cdI-jj-xiv" secondAttribute="bottom" id="08m-cw-zJi"/>
+                                    <constraint firstAttribute="height" constant="220" id="1gD-wq-KYJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="cdI-jj-xiv" secondAttribute="trailing" id="mH8-Dc-Krl"/>
+                                    <constraint firstItem="cdI-jj-xiv" firstAttribute="top" secondItem="G5o-2r-Omk" secondAttribute="top" id="q1k-2A-LGK"/>
+                                    <constraint firstItem="cdI-jj-xiv" firstAttribute="leading" secondItem="G5o-2r-Omk" secondAttribute="leading" id="scJ-Ts-KFJ"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="AppBG"/>
+                        <constraints>
+                            <constraint firstItem="G5o-2r-Omk" firstAttribute="top" secondItem="1A4-06-3Ru" secondAttribute="top" constant="12" id="HeV-Zr-Y6K"/>
+                            <constraint firstItem="G5o-2r-Omk" firstAttribute="centerX" secondItem="1A4-06-3Ru" secondAttribute="centerX" id="JOw-Ah-bKR"/>
+                            <constraint firstItem="G5o-2r-Omk" firstAttribute="leading" secondItem="1A4-06-3Ru" secondAttribute="leading" constant="16" id="Ope-uT-mgI"/>
+                            <constraint firstAttribute="trailing" secondItem="G5o-2r-Omk" secondAttribute="trailing" constant="16" id="Zvo-zC-L8b"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="BST-Ec-Z2a"/>
+            <constraints>
+                <constraint firstItem="1A4-06-3Ru" firstAttribute="leading" secondItem="HJw-yJ-XPE" secondAttribute="leading" id="BMZ-rX-mgM"/>
+                <constraint firstAttribute="trailing" secondItem="1A4-06-3Ru" secondAttribute="trailing" id="D7A-9A-rVI"/>
+                <constraint firstAttribute="bottom" secondItem="1A4-06-3Ru" secondAttribute="bottom" id="YBg-jW-VIn"/>
+                <constraint firstItem="1A4-06-3Ru" firstAttribute="leading" secondItem="HJw-yJ-XPE" secondAttribute="leading" id="eqK-9K-kMo"/>
+                <constraint firstItem="1A4-06-3Ru" firstAttribute="top" secondItem="HJw-yJ-XPE" secondAttribute="top" id="qMm-pF-AXz"/>
+                <constraint firstItem="1A4-06-3Ru" firstAttribute="top" secondItem="HJw-yJ-XPE" secondAttribute="top" id="rUI-MA-8kG"/>
+            </constraints>
+            <size key="customSize" width="375" height="272"/>
+            <connections>
+                <outlet property="iconAd" destination="cdI-jj-xiv" id="D4T-wT-u5q"/>
+            </connections>
+            <point key="canvasLocation" x="257.25190839694653" y="113.73239436619718"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="studentplacehoder" width="61" height="61"/>
+        <namedColor name="AppBG">
+            <color red="0.90196078431372551" green="0.93725490196078431" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppGray">
+            <color red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppLight">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

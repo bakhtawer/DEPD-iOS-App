@@ -24,6 +24,7 @@ class SettingViewController: BaseViewController {
         labeluser.text = USM.shared.getUserFullName()
         
         buttonLogout.addTapGestureRecognizer {
+            UserSessionManager.shared.LogoutUser()
             Bootstrapper.createSplash()
         }
     }

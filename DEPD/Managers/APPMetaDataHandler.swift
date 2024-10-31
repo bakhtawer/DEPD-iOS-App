@@ -59,6 +59,9 @@ final class APPMetaDataHandler {
     func getDisabilities() -> [Disability] {
         disabilities
     }
+    func getDisabilitiesNames() -> [String] {
+        disabilities.map {$0.name ?? ""}
+    }
     
     // MARK: Gender
     private var genders = [Gender]()

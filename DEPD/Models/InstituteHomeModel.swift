@@ -32,6 +32,7 @@ struct InstituteHomeModel: Codable, Hashable {
     var ProfileCompletion: Float?
     var student: InstituteStudent?
     var ProfilePictureURL: String?
+    var Age: String?
     
     enum CodingKeys: String, CodingKey {
         case idMain
@@ -56,6 +57,7 @@ struct InstituteHomeModel: Codable, Hashable {
         case ProfileCompletion = "ProfileCompletion"
         case student = "User"
         case ProfilePictureURL = "ProfilePictureURL"
+        case Age = "Age"
     }
     
     init(from decoder: Decoder) throws {
@@ -82,6 +84,7 @@ struct InstituteHomeModel: Codable, Hashable {
             ProfileCompletion = try values.decodeIfPresent(Float.self, forKey: .ProfileCompletion) ?? 0
             student = try values.decodeIfPresent(InstituteStudent.self, forKey: .student)
             ProfilePictureURL = try values.decodeIfPresent(String.self, forKey: .ProfilePictureURL) ??  ""
+            Age = try values.decodeIfPresent(String.self, forKey: .ProfilePictureURL) ??  ""
         } catch let DecodingError.typeMismatch(type, context) {
             print("Type '\(type)' mismatch:", context.debugDescription)
             print("codingPath:", context.codingPath)
@@ -107,7 +110,6 @@ struct InstituteStudent: Codable {
     var LastName: String?
     var CNIC: String?
     var ContactNo: String?
-    var Password: String?
     var IsVerified: Bool?
     
     enum CodingKeys: String, CodingKey {
@@ -117,7 +119,6 @@ struct InstituteStudent: Codable {
         case LastName = "LastName"
         case CNIC = "CNIC"
         case ContactNo = "ContactNo"
-        case Password = "Password"
         case IsVerified = "IsVerified"
     }
     init(from decoder: Decoder) throws {
@@ -131,7 +132,6 @@ struct InstituteStudent: Codable {
             LastName = try values.decodeIfPresent(String.self, forKey: .LastName)  ?? ""
             CNIC = try values.decodeIfPresent(String.self, forKey: .CNIC) ?? ""
             ContactNo = try values.decodeIfPresent(String.self, forKey: .ContactNo) ?? ""
-            Password = try values.decodeIfPresent(String.self, forKey: .Password) ?? ""
             IsVerified = try values.decodeIfPresent(Bool.self, forKey: .IsVerified) ?? false
             
         } catch let DecodingError.typeMismatch(type, context) {

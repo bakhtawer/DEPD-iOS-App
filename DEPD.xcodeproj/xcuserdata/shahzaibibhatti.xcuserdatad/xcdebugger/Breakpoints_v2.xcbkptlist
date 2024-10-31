@@ -20,12 +20,12 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "9A2F0B95-3B81-4D62-A69B-3EA89573D33D - e7022fb41cf0f110"
+                  uuid = "9A2F0B95-3B81-4D62-A69B-3EA89573D33D - 907b3f190cbb9d85"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;DEPD.ApiResponse&lt;DEPD.User&gt;&gt;, Swift.Optional&lt;DEPD.APIError&gt;) -&gt; () in DEPD.RegisterSimpleViewController.register(creds: DEPD.SignUpCredentials) -&gt; ()"
-                  moduleName = "DEPD"
+                  moduleName = "DEPD.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shahzaibibhatti/Projects/DEPD-iOS-App/DEPD/ViewControllers/Authentication/Register/RegisterSimpleViewController.swift"
                   startingColumnNumber = "9223372036854775807"
@@ -34,12 +34,12 @@
                   endingLineNumber = "297">
                </Location>
                <Location
-                  uuid = "9A2F0B95-3B81-4D62-A69B-3EA89573D33D - e7022fb41cf0f110"
+                  uuid = "9A2F0B95-3B81-4D62-A69B-3EA89573D33D - 907b3f190cbb9d85"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 (Swift.Optional&lt;DEPD.ApiResponse&lt;DEPD.User&gt;&gt;, Swift.Optional&lt;DEPD.APIError&gt;) -&gt; () in DEPD.RegisterSimpleViewController.register(creds: DEPD.SignUpCredentials) -&gt; ()"
-                  moduleName = "DEPD"
+                  moduleName = "DEPD.debug.dylib"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/shahzaibibhatti/Projects/DEPD-iOS-App/DEPD/ViewControllers/Authentication/Register/RegisterSimpleViewController.swift"
                   startingColumnNumber = "9223372036854775807"

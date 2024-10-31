@@ -126,3 +126,66 @@ extension UIFont {
         return UIFontMetrics(forTextStyle: textStyle).scaledFont(for: font)
     }
 }
+
+import SwiftUI
+
+struct ThemedText: View {
+    var text: String
+    var fontType: APPFontType = .bold
+    var size: CGFloat = 24
+    var color: Color = Color("textDark") // Assuming you have this color in your asset catalog
+    var lightHeight: CGFloat = 14.0
+
+    @Environment(\.layoutDirection) var layoutDirection // To check for right-to-left
+
+    var body: some View {
+        Text(text)
+            .font(customFont()) // Apply the custom font
+            .foregroundColor(color)
+            .lineSpacing(customLineHeight()) // Set line spacing
+            .multilineTextAlignment(textAlignment())
+    }
+
+    // Function to determine the font based on the font type
+    private func customFont() -> Font {
+        let textSize: CGFloat = adjustedSize()
+        switch fontType {
+        case .bold:
+            return Font.custom("Roboto-Bold", size: textSize) // Adjust font name as necessary
+        case .light:
+            return Font.custom("Roboto-Light", size: textSize)
+        case .regular:
+            return Font.custom("Roboto-Regular", size: textSize)
+        case .medium:
+            return Font.custom("Roboto-Medium", size: textSize)
+        }
+    }
+
+    // Function to calculate adjusted size based on accessibility settings
+    private func adjustedSize() -> CGFloat {
+        var adjustedSize = size
+        switch UserDefaults.selectedAccessibility {
+        case 1: adjustedSize *= 1.2
+        case 2: adjustedSize *= 1.5
+        case 3: adjustedSize *= 1.6
+        default: break
+        }
+        return adjustedSize
+    }
+
+    // Function to determine line height
+    private func customLineHeight() -> CGFloat {
+        if layoutDirection == .rightToLeft {
+            return lightHeight * 1.5
+        }
+        return lightHeight
+    }
+
+    // Function to determine text alignment
+    private func textAlignment() -> TextAlignment {
+        if layoutDirection == .rightToLeft {
+            return .leading
+        }
+        return .trailing
+    }
+}

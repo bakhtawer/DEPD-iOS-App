@@ -186,9 +186,17 @@ extension Bootstrapper {
                 return vc
             }
         case .JobSeeker:
-            preconditionFailure("Not applied yet")
+            viewController = storyboard.instantiateViewController(identifier: "JobSeekerHomeViewController") { coder in
+                let viewModel = JobSeekerHomeViewModel()
+                let vc = JobSeekerHomeViewController(coder: coder, viewModel: viewModel)
+                return vc
+            }
         case .Employer:
-            preconditionFailure("Not applied yet")
+            viewController = storyboard.instantiateViewController(identifier: "EmployerHomeViewController") { coder in
+                let viewModel = EmployerHomeViewModel()
+                let vc = EmployerHomeViewController(coder: coder, viewModel: viewModel)
+                return vc
+            }
         }
         
         let nav = UINavigationController(rootViewController: viewController)

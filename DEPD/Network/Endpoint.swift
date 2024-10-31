@@ -80,6 +80,9 @@ enum Endpoint {
     case InsertDisabilityStatus(url: String = "/api/School.ashx",
                                creds: InsertDisabilityStatusCreds)
     
+    
+    case getJobList
+    
     case fetchPosts(url: String = "/posts")
     case fetchOnePost(url: String = "/posts", postId: Int = 1)
     case sendPost(url: String = "/posts", post: Post)
@@ -117,6 +120,7 @@ enum Endpoint {
              .InsertDisabilityStatus(let url, _): return url
         case .getDistrict, .getDisstatList, .getGenders, .getDesignations, .getStudentAdmissions: return "/Api/General.ashx"
         case .getSchoolList, .applyForSchool: return "/Api/school.ashx"
+        case .getJobList: return "/Api/job.ashx"
         }
     }
     
@@ -143,6 +147,7 @@ enum Endpoint {
             return [URLQueryItem(name: "method", value: "InsertSocialMediaLink")]
         case .InsertDisabilityStatus(url: let url, creds: let creds):
             return [URLQueryItem(name: "method", value: "InsertDisabilityStatus")]
+        case .getJobList: return [URLQueryItem(name: "method", value: "getJobList")]
         }
     }
     
@@ -151,7 +156,8 @@ enum Endpoint {
         case .fetchPosts,
              .fetchOnePost,
              .getDistrict, .getDisstatList, .getGenders, .getDesignations,
-             .getSchoolList:
+             .getSchoolList,
+             .getJobList:
             return HTTP.Method.get.rawValue
         case .sendPost, .login, .register,
             .applyForSchool,
@@ -168,7 +174,8 @@ enum Endpoint {
         case .fetchPosts,
              .fetchOnePost,
              .getDistrict, .getDisstatList, .getGenders, .getDesignations,
-             .getSchoolList:
+             .getSchoolList,
+             .getJobList:
             return nil
         case .register(_ ,let creds):
             let jsonPost = try? JSONEncoder().encode(creds)
@@ -217,7 +224,8 @@ extension URLRequest {
                 .getSchoolList, .applyForSchool, .getStudentAdmissions,
                 .updatePersonalInfo, .UpdateAboutYourSchool,
                 .UpdateAdditionalInfo, .InsertSocialMediaLink,
-                .InsertDisabilityStatus:
+                .InsertDisabilityStatus,
+                .getJobList:
             self.setValue(
                 HTTP.Headers.Value.applicationJson.rawValue,
                 forHTTPHeaderField: HTTP.Headers.Key.contentType.rawValue

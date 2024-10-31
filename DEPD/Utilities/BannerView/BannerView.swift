@@ -24,6 +24,7 @@ struct BannerModel: Codable, Hashable {
 enum PoitsSection {
    case all
 }
+
 protocol PointsBanerProtocol: AnyObject {
     func selectedBanner(banner: BannerModel)
 }

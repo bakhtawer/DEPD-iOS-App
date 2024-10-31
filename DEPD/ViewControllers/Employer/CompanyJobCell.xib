@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CompanyJobCell" id="tEz-Lb-MQz" customClass="CompanyJobCell" customModule="DEPD" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="365" height="142"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="365" height="142"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Va-tt-qUo">
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="142"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mGm-hd-S1h">
+                                <rect key="frame" x="16" y="12" width="333" height="118"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="studentplacehoder" translatesAutoresizingMaskIntoConstraints="NO" id="QUm-AI-QfU">
+                                        <rect key="frame" x="12" y="12" width="60" height="60"/>
+                                        <color key="backgroundColor" name="AppGray"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="QUm-AI-QfU" secondAttribute="height" multiplier="1:1" id="CFM-Gc-cpb"/>
+                                            <constraint firstAttribute="height" constant="60" id="MJ2-Dx-z2g"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="SWk-Cm-oMt">
+                                        <rect key="frame" x="84" y="12" width="233" height="106"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ali Rehman" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="61u-zh-EmZ">
+                                                <rect key="frame" x="0.0" y="0.0" width="81.333333333333329" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <color key="textColor" name="textDark"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Disability Status" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H02-1h-JCE">
+                                                <rect key="frame" x="0.0" y="22" width="91.666666666666671" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" name="AppBlue"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age: 25 years | Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYq-G5-in4">
+                                                <rect key="frame" x="0.0" y="44" width="114.33333333333333" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" name="AppBlue"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pubnjab, Pakistan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7pd-Ee-IIg">
+                                                <rect key="frame" x="0.0" y="66" width="100.66666666666667" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" name="AppBlue"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3RA-4K-56b">
+                                                <rect key="frame" x="0.0" y="88" width="233" height="18"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="View Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9w0-fh-yZp">
+                                        <rect key="frame" x="250" y="52" width="67" height="14.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" name="AppBlue"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="AppLight"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="9w0-fh-yZp" secondAttribute="trailing" constant="16" id="4uR-Uc-Azz"/>
+                                    <constraint firstItem="9w0-fh-yZp" firstAttribute="centerY" secondItem="mGm-hd-S1h" secondAttribute="centerY" id="BiR-LF-lB2"/>
+                                    <constraint firstItem="SWk-Cm-oMt" firstAttribute="top" secondItem="QUm-AI-QfU" secondAttribute="top" id="Jav-sC-uKn"/>
+                                    <constraint firstItem="SWk-Cm-oMt" firstAttribute="leading" secondItem="QUm-AI-QfU" secondAttribute="trailing" constant="12" id="K1p-KK-sjX"/>
+                                    <constraint firstItem="QUm-AI-QfU" firstAttribute="top" secondItem="mGm-hd-S1h" secondAttribute="top" constant="12" id="OP8-yx-cx3"/>
+                                    <constraint firstAttribute="height" constant="118" id="g7P-yd-fWt"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="SWk-Cm-oMt" secondAttribute="bottom" id="rBz-RS-uIs"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="SWk-Cm-oMt" secondAttribute="trailing" constant="16" id="sZ1-XB-hCa"/>
+                                    <constraint firstItem="QUm-AI-QfU" firstAttribute="leading" secondItem="mGm-hd-S1h" secondAttribute="leading" constant="12" id="y7B-DN-Ku9"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="AppBG"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mGm-hd-S1h" secondAttribute="trailing" constant="16" id="3cX-o7-C9P"/>
+                            <constraint firstItem="mGm-hd-S1h" firstAttribute="top" secondItem="4Va-tt-qUo" secondAttribute="top" constant="12" id="cBw-82-tVb"/>
+                            <constraint firstItem="mGm-hd-S1h" firstAttribute="leading" secondItem="4Va-tt-qUo" secondAttribute="leading" constant="16" id="jzK-R1-lZe"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="yyf-Qo-vjc"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="4Va-tt-qUo" secondAttribute="trailing" id="4YO-rT-rvD"/>
+                <constraint firstAttribute="bottom" secondItem="4Va-tt-qUo" secondAttribute="bottom" id="OBT-AP-Isr"/>
+                <constraint firstItem="4Va-tt-qUo" firstAttribute="leading" secondItem="tEz-Lb-MQz" secondAttribute="leading" id="OP4-DK-72J"/>
+                <constraint firstItem="4Va-tt-qUo" firstAttribute="top" secondItem="tEz-Lb-MQz" secondAttribute="top" id="Y79-Am-G2K"/>
+            </constraints>
+            <size key="customSize" width="365" height="153"/>
+            <connections>
+                <outlet property="ageNGender" destination="pYq-G5-in4" id="wXy-9d-5nn"/>
+                <outlet property="disablility" destination="H02-1h-JCE" id="9Ma-bC-qIG"/>
+                <outlet property="iconStudent" destination="QUm-AI-QfU" id="xV8-bC-kGA"/>
+                <outlet property="location" destination="7pd-Ee-IIg" id="7Tt-n0-lw4"/>
+                <outlet property="studentname" destination="61u-zh-EmZ" id="aOg-Ys-awN"/>
+                <outlet property="viewBg" destination="mGm-hd-S1h" id="T1C-LI-Jw5"/>
+                <outlet property="viewProfile" destination="9w0-fh-yZp" id="5UM-9H-yLk"/>
+            </connections>
+            <point key="canvasLocation" x="250" y="73"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="studentplacehoder" width="61" height="61"/>
+        <namedColor name="AppBG">
+            <color red="0.90196078431372551" green="0.93725490196078431" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppBlue">
+            <color red="0.0" green="0.29019607843137257" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppGray">
+            <color red="0.85098039215686272" green="0.85098039215686272" blue="0.85098039215686272" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppLight">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textDark">
+            <color red="0.14117647058823529" green="0.14117647058823529" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
