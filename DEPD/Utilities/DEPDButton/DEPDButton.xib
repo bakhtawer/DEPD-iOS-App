@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,9 +12,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DEPDButton" customModule="DEPD" customModuleProvider="target">
             <connections>
                 <outlet property="buttonIcon" destination="15x-T0-w7t" id="tbn-KK-rHH"/>
+                <outlet property="buttonRight" destination="joT-FQ-mY8" id="ty3-mR-IqP"/>
                 <outlet property="constraintHightLabel" destination="8VY-kq-9z3" id="E8g-vt-j7k"/>
                 <outlet property="contentView" destination="z1S-Sg-rDg" id="lw8-mO-UoG"/>
                 <outlet property="labelName" destination="OA0-cQ-Wqd" id="rSW-Wi-gV8"/>
+                <outlet property="paddingBotom" destination="gJJ-uN-mPA" id="7qL-v1-4py"/>
+                <outlet property="paddingLeft" destination="BX8-O1-k6n" id="oi3-rH-9rf"/>
+                <outlet property="paddingRight" destination="VVe-jE-eqU" id="oHG-iW-W0q"/>
+                <outlet property="paddingTop" destination="gSS-ZB-9XG" id="NZS-ge-D8D"/>
                 <outlet property="viewBG" destination="xDk-8A-XxA" id="7Ej-oW-WCY"/>
             </connections>
         </placeholder>
@@ -33,8 +38,19 @@
                                 <constraint firstAttribute="width" secondItem="15x-T0-w7t" secondAttribute="height" multiplier="1:1" id="usp-AB-NMY"/>
                             </constraints>
                         </imageView>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="joT-FQ-mY8">
+                            <rect key="frame" x="260" y="63.666666666666671" width="25" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="6Jm-9T-RVn"/>
+                                <constraint firstAttribute="width" secondItem="joT-FQ-mY8" secondAttribute="height" multiplier="1:1" id="BzW-7H-78X"/>
+                                <constraint firstAttribute="width" secondItem="joT-FQ-mY8" secondAttribute="height" multiplier="1:1" id="kxq-M4-fVj"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" name="ButtonBG"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="joT-FQ-mY8" secondAttribute="trailing" constant="16" id="HC4-Wc-ZKr"/>
+                    </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="button" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OA0-cQ-Wqd">
                     <rect key="frame" x="87.000000000000014" y="49.666666666666664" width="139.33333333333337" height="64.666666666666686"/>
@@ -53,6 +69,7 @@
                 <constraint firstItem="xDk-8A-XxA" firstAttribute="leading" secondItem="gZN-fJ-Pqq" secondAttribute="leading" constant="6" id="BX8-O1-k6n"/>
                 <constraint firstItem="15x-T0-w7t" firstAttribute="centerY" secondItem="OA0-cQ-Wqd" secondAttribute="centerY" id="D8n-20-P6z"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="OA0-cQ-Wqd" secondAttribute="bottom" constant="8" id="GmI-Oh-9bh"/>
+                <constraint firstItem="joT-FQ-mY8" firstAttribute="centerY" secondItem="OA0-cQ-Wqd" secondAttribute="centerY" id="JqM-gj-Veq"/>
                 <constraint firstItem="gZN-fJ-Pqq" firstAttribute="trailing" secondItem="xDk-8A-XxA" secondAttribute="trailing" constant="6" id="VVe-jE-eqU"/>
                 <constraint firstItem="OA0-cQ-Wqd" firstAttribute="centerX" secondItem="gZN-fJ-Pqq" secondAttribute="centerX" id="Wvu-df-iwZ"/>
                 <constraint firstItem="OA0-cQ-Wqd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="z1S-Sg-rDg" secondAttribute="leading" constant="8" id="Y8h-Hr-3kB"/>

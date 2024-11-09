@@ -116,6 +116,29 @@
         }
       }
     },
+    "admissions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Admissions"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "داخلائون"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "داخلے"
+          }
+        }
+      }
+    },
     "advertise_vacancies" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -158,6 +181,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "درخواست گزار پروفائل"
+          }
+        }
+      }
+    },
+    "apply" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لاڳو ڪرڻ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لاگو کریں"
           }
         }
       }
@@ -231,6 +277,29 @@
         }
       }
     },
+    "candidate_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Candidate Details"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اميدوارن جا تفصيل"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "امیدوار کی تفصیلات"
+          }
+        }
+      }
+    },
     "cnic" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -300,6 +369,75 @@
         }
       }
     },
+    "complain_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Complain Details"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شڪايت جا تفصيل"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شکایت کی تفصیلات"
+          }
+        }
+      }
+    },
+    "complain_for_denial_of_admission" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Complain for Denial of Admission"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "داخل ٿيڻ کان انڪار جي شڪايت"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "داخلے سے انکار کی شکایت کریں۔"
+          }
+        }
+      }
+    },
+    "complain_for_denial_of_job" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Complain for Denial of Job"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪريءَ کان انڪار جي شڪايت"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملازمت سے انکار کی شکایت کریں۔"
+          }
+        }
+      }
+    },
     "confirm_hiring" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -342,6 +480,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "پاس ورڈ کی تصدیق کریں۔"
+          }
+        }
+      }
+    },
+    "contact_no" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Contact No"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رابطو نمبر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رابطہ نمبر"
           }
         }
       }
@@ -392,6 +553,52 @@
         }
       }
     },
+    "denial_of_admission" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denial of Admission"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "داخلا کان انڪار"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "داخلہ سے انکار"
+          }
+        }
+      }
+    },
+    "denial_of_job" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Denial of Job Application"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪري جي درخواست کان انڪار"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملازمت کی درخواست سے انکار"
+          }
+        }
+      }
+    },
     "description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -438,6 +645,29 @@
         }
       }
     },
+    "disability" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disability"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوري"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوری"
+          }
+        }
+      }
+    },
     "disability_status" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -457,6 +687,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "معذوری کی حیثیت"
+          }
+        }
+      }
+    },
+    "disablity" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disability"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوري"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوری"
           }
         }
       }
@@ -484,6 +737,29 @@
         }
       }
     },
+    "dob" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date of Birth"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پيدائش جي تاريخ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تاریخ پیدائش"
+          }
+        }
+      }
+    },
     "download_disability_certificate" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -503,6 +779,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "معذوری کا سرٹیفکیٹ ڈاؤن لوڈ کریں۔"
+          }
+        }
+      }
+    },
+    "edit_profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Edit Profile"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پروفائل کي تبديل ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پروفائل میں ترمیم کریں۔"
           }
         }
       }
@@ -553,6 +852,29 @@
         }
       }
     },
+    "father_cnic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Father's CNIC"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پيءُ جو قومي سڃاڻپ ڪارڊ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "والد کا قومی شناختی کارڈ"
+          }
+        }
+      }
+    },
     "father_name" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -576,6 +898,29 @@
         }
       }
     },
+    "find_a_job" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find a Job"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪري ڳوليو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوکری تلاش کریں۔"
+          }
+        }
+      }
+    },
     "find_an_employee" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -595,6 +940,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ھڪڙو ملازم ڳولھيو"
+          }
+        }
+      }
+    },
+    "find_job" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find Job"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪري ڳوليو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوکری تلاش کریں۔"
           }
         }
       }
@@ -733,6 +1101,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "مفت یا معاوضہ تعلیم"
+          }
+        }
+      }
+    },
+    "full_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Full Name"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پورو نالو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پورا نام"
           }
         }
       }
@@ -944,6 +1335,52 @@
         }
       }
     },
+    "i_herby_that" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I herby that all information provided in this complaint form is true and accurate to the best of my knowledge. I understand that providing false information may result in legal action against me."
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مان چوان ٿو ته هن شڪايتي فارم ۾ ڏنل سموري معلومات منهنجي ڄاڻ جي لحاظ کان درست ۽ درست آهي. مان سمجهان ٿو ته غلط معلومات مهيا ڪرڻ جي نتيجي ۾ منهنجي خلاف قانوني ڪارروائي ٿي سگهي ٿي."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "میں بتاتا ہوں کہ شکایت کے اس فارم میں فراہم کردہ تمام معلومات میری بہترین معلومات کے مطابق درست اور درست ہیں۔ میں سمجھتا ہوں کہ غلط معلومات فراہم کرنے کے نتیجے میں میرے خلاف قانونی کارروائی ہو سکتی ہے۔"
+          }
+        }
+      }
+    },
+    "if_the_complainant" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If the complainant is over 18 years of age than do not fill this part"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جيڪڏهن شڪايت ڪندڙ جي عمر 18 سالن کان مٿي آهي ته اهو حصو نه ڀريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اگر شکایت کنندہ کی عمر 18 سال سے زیادہ ہے تو اس حصے کو نہ بھریں۔"
+          }
+        }
+      }
+    },
     "inclusive_screen_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -963,6 +1400,98 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "خصوصی افراد کو با اختیار بنانے کے محکمے DEPD گورنمنٹ اف سندھ نے روزگار کے مواقع تک بہتر رسائی فراہم کر کے انہیں با اختیار بنانے کے لیے ایک کریئر ویب کا اغاز کیا ہے اس اقدام کا مقصد سندھ میں خصوصی افراد کے ایکٹ 2018 کے تحت بیان کردہ 5% کوٹا کو نافذ کرنا ہے اس پائلٹ فارم کا بنیادی مقصد خصوصی افراد اور تنظیموں کے درمیان فاصلوں کو ختم کرنا ہے تاکہ انہیں آسانی سے ملازمت کی جگہ تک رسائی ہو مزید یہ کہ یہ پورٹل جاپ فراہم کرنے والے ادارے اور جاپ حاصل کرنے والے افراد کا ڈیٹا کا ڈیٹا جمع کرنے کا کام کرے گا۔"
+          }
+        }
+      }
+    },
+    "institute_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Institute Address"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسٽيٽيوٽ ايڊريس"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسٹی ٹیوٹ کا پتہ"
+          }
+        }
+      }
+    },
+    "institute_contact_no" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Institute Contact Number"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسٽيٽيوٽ جو رابطو نمبر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ادارہ رابطہ نمبر"
+          }
+        }
+      }
+    },
+    "institute_email" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Institute Email Address"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسٽيٽيوٽ اي ميل پتو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسٹی ٹیوٹ کا ای میل پتہ"
+          }
+        }
+      }
+    },
+    "institute_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Institute Name"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسٽيٽيوٽ جو نالو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "انسٹی ٹیوٹ کا نام"
           }
         }
       }
@@ -990,8 +1519,73 @@
         }
       }
     },
+    "job_title" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Job Title"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪري جو عنوان"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملازمت کا عنوان"
+          }
+        }
+      }
+    },
+    "jobs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jobs"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪريون"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوکریاں"
+          }
+        }
+      }
+    },
     "JobSeeker Profile" : {
-
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "JobSeeker Profile"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪري ڳولڻ وارو پروفائل"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاب سیکر پروفائل"
+          }
+        }
+      }
     },
     "langauge" : {
       "extractionState" : "manual",
@@ -1362,6 +1956,52 @@
         }
       }
     },
+    "next" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Next"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اڳيان"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اگلا"
+          }
+        }
+      }
+    },
+    "ngo_welfare" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "NGO / Welfare"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اين جي او / ويلفيئر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "این جی او / ویلفیئر"
+          }
+        }
+      }
+    },
     "ntn_number" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1427,6 +2067,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "تربیت یافتہ اساتذہ کی تعداد"
+          }
+        }
+      }
+    },
+    "parent_details" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parent/Guardian Details"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "والدين / سرپرست تفصيلات"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "والدین/سرپرست کی تفصیلات"
           }
         }
       }
@@ -1523,6 +2186,29 @@
         }
       }
     },
+    "present_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Present Address here (Please mention Area / Taluka)"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موجوده ايڊريس هتي (مهرباني ڪري علائقي / تعلقي جو ذڪر ڪريو)"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "موجودہ پتہ یہاں (براہ کرم علاقہ/تعلقہ کا ذکر کریں)"
+          }
+        }
+      }
+    },
     "press login and go to next screen" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1546,6 +2232,29 @@
         }
       }
     },
+    "private" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Private"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خانگي"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نجی"
+          }
+        }
+      }
+    },
     "profile_completed" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1565,6 +2274,75 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "پروفائل مکمل ہو گیا۔"
+          }
+        }
+      }
+    },
+    "reason_of_denial_of_admission" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reason of Denial of Addmission"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "داخل ٿيڻ کان انڪار جو سبب"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "داخلے سے انکار کی وجہ"
+          }
+        }
+      }
+    },
+    "reason_of_denial_of_job" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reason of Denial of Job"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪريءَ کان انڪار جو سبب"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوکری سے انکار کی وجہ"
+          }
+        }
+      }
+    },
+    "record_your_message" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Record Your Message"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پنهنجو پيغام رڪارڊ ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپنا پیغام ریکارڈ کریں۔"
           }
         }
       }
@@ -1680,6 +2458,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "کمپنی کی خدمات حاصل کرنا"
+          }
+        }
+      }
+    },
+    "register_complain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register Complains"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شڪايتون رجسٽر ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شکایات رجسٹر کریں۔"
           }
         }
       }
@@ -1937,6 +2738,29 @@
         }
       }
     },
+    "relation_with_cadidate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relation with Candidate"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اميدوار سان تعلق"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "امیدوار کے ساتھ تعلق"
+          }
+        }
+      }
+    },
     "school_information" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2048,6 +2872,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ڳولا ملازم"
+          }
+        }
+      }
+    },
+    "search_for_job" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search for job"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪري ڳولڻ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوکری کی تلاش"
           }
         }
       }
@@ -2374,6 +3221,29 @@
         }
       }
     },
+    "total_jobs" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Jobs"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کل_نوڪريون"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کل_نوکریاں"
+          }
+        }
+      }
+    },
     "total_school" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2462,6 +3332,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "تربیتی مواد"
+          }
+        }
+      }
+    },
+    "update_profile" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Update Profile"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اميدوار سان تعلق"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "امیدوار کے ساتھ تعلق"
+          }
+        }
+      }
+    },
+    "upload_related_documents" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload Related Documents"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لاڳاپيل دستاويز اپ لوڊ ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "متعلقہ دستاویزات اپ لوڈ کریں۔"
           }
         }
       }

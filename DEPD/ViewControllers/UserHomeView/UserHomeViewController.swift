@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
     
@@ -28,6 +29,9 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
     @IBOutlet weak var buttonSelectDisability: UIButton!
     @IBOutlet weak var buttonLocation: UIButton!
     
+    @IBOutlet weak var iconEditProifile: UIButton!
+    @IBOutlet weak var labelEditProfile: UILabel!
+    
     private var tempDistrict: District? = nil
     private var tempDisability: Disability? = nil
     
@@ -41,17 +45,22 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
     private func setView() {
         imageUser.roundCorner(withRadis: imageUser.viewHeight.half)
         
-        buttonMyComplaints.makeItThemeRegular(12.0, .appLight, .appGreen)
-        labelMyApplications.makeItThemeRegular(12.0, .appLight, .appGreen)
+        buttonMyComplaints.makeItThemeRegular(14.0, .appLight, .appGreen)
+        labelMyApplications.makeItThemeRegular(14.0, .appLight, .appGreen)
         
         buttonTotalSchool.makeItThemeRegular(10.0, .textDark, .appBGDark)
         buttonSelectDisability.makeItThemeRegular(10.0, .textDark, .appBGDark)
         buttonLocation.makeItThemeRegular(10.0, .textDark, .appBGDark)
         
-        labelUserName.makeItTheme(.bold, 16)
+        labelUserName.makeItTheme(.bold, 22)
         
         buttonMyComplaints.setTitle("my_complains".localized(), for: .normal)
         labelMyApplications.setTitle("my_applications".localized(), for: .normal)
+        
+        labelEditProfile.makeItTheme(.regular, 16, .textDark)
+        labelEditProfile.text = "\("edit_profile".localized())"
+        
+        buttonTotalSchool.setTitle("total_school".localized(), for: .normal)
         
         if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
             buttonTotalSchool.semanticContentAttribute = .forceLeftToRight
@@ -73,12 +82,23 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         
         setUpCollectionView()
         
-        buttonTotalSchool.setTitle("total_school".localized(), for: .normal)
         
         buttonSetting.addTapGestureRecognizer {
+            if APPMetaDataHandler.shared.userType == .StudentGuest {
+                Bootstrapper.showLoginAlert()
+                return
+            }
+            
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: SettingViewController.self)
             openModulePopOver(controller: view)
+        }
+        
+        labelEditProfile.addTapGestureRecognizer {[weak self] in
+            self?.gotoEditProfile()
+        }
+        iconEditProifile.addTapGestureRecognizer {[weak self] in
+            self?.gotoEditProfile()
         }
         
         buttonTotalSchool.addTapGestureRecognizer {[weak self] in
@@ -91,6 +111,11 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
             self?.setUpPickerViewDistrict()
         }
         
+        guard let image = URL(string: USM.shared.getUserImage()) else { return }
+        imageUser.contentMode = .scaleAspectFit
+        imageUser.kf.setImage(with: image,
+                              placeholder: UIImage(named: "studentplacehoder"))
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -99,6 +124,7 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         labelLocation.text = ""
         setView()
         
+        collectionView.setNeedsDisplay()
         collectionView.reloadData()
     }
     
@@ -115,7 +141,23 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         
         collectionView.register(UINib(nibName: "InstituteCell", bundle: nil), forCellWithReuseIdentifier: InstituteCell.reuseIdentifier)
         
+        // Update the semantic content attribute based on the selected language
+        if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
+            collectionView.semanticContentAttribute = .forceRightToLeft
+        } else {
+            collectionView.semanticContentAttribute = .forceLeftToRight
+        }
+        
         createDataSource()
+    }
+    
+    private func gotoEditProfile() {
+        DispatchQueue.main.async {[weak self] in
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+            view.type = .studentProfile
+            openModuleOnNavigation(from: self, controller: view)
+        }
     }
 }
 

@@ -46,13 +46,11 @@ class RegisterAsSelectionTwo: BaseViewController {
         buttonTwo.setTitle("register_institute".localized(), for: .normal)
         
         buttonOne.addTapGestureRecognizer {[weak self] in
-            self?.goForward()
             guard let self = self else {return}
             self.screenType = .student
             self.goForward()
         }
         buttonTwo.addTapGestureRecognizer {[weak self] in
-            self?.goForward()
             guard let self = self else {return}
             self.screenType = .institute
             self.goForward()
@@ -78,9 +76,15 @@ class RegisterAsSelectionTwo: BaseViewController {
     private func goForward() {
         switch screenType {
         case .student:
-            Bootstrapper.createLogin(screenType: .student)
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: InclusiveScreenThreeButtons.self)
+            view.screenType = .student
+            openModuleOnNavigation(from: self, controller: view)
         case .jobSeeker:
-            Bootstrapper.createLogin(screenType: .jobSeeker)
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: InclusiveScreenThreeButtons.self)
+            view.screenType = .jobSeeker
+            openModuleOnNavigation(from: self, controller: view)
         case .companyHiring:
             Bootstrapper.createLogin(screenType: .companyHiring)
         case .institute:

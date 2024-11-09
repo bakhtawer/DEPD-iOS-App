@@ -15,9 +15,14 @@ class FormBuilderView: UIView {
     private var formData: [String: Any] = [:]  // To store the collected form data
     private let stackView = UIStackView()      // To layout fields vertically
     
+    private var buttonTitle: String = ""
+    
+    private var dateTF: UITextField?
+    
     // Initialize the FormBuilderView with an array of fields
-    init(fields: [FormField]) {
+    init(fields: [FormField], _ buttonTitle: String = "register_submit".localized()) {
         self.formFields = fields
+        self.buttonTitle = buttonTitle
         super.init(frame: .zero)
         setupForm()
     }
@@ -36,7 +41,7 @@ class FormBuilderView: UIView {
     // Setup form with fields
     private func setupForm() {
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 8
         stackView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(stackView)
         
@@ -56,10 +61,9 @@ class FormBuilderView: UIView {
         
         // Add Submit Button
         let submitButton = DEPDButton(frame: CGRect(x: 0, y: 0, width: self.viewWidth * 0.8, height: 100))
-        submitButton.makeItTheme(text: "register_submit".localized(),
+        submitButton.makeItTheme(text: buttonTitle,
                                  .bold, 16, .appLight)
-        
-        submitButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        submitButton.makeHight(height: 40, true)
         
         submitButton.addTapGestureRecognizer {[weak self] in
             self?.handleSubmit()
@@ -78,6 +82,8 @@ class FormBuilderView: UIView {
             value = nil
         }
         
+        let tfHeight: CGFloat = 50
+        
         switch field.fieldType {
         case .text:
             let textField = UITextField()
@@ -86,8 +92,8 @@ class FormBuilderView: UIView {
             textField.tag = fieldIndex  // Use the index to tag the field
             textField.text = value
             textField.makeItThemeTF()
-            
-            textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            textField.isUserInteractionEnabled = field.isEnabled
+            textField.heightAnchor.constraint(equalToConstant: tfHeight).isActive = true
             
             return textField
             
@@ -99,15 +105,37 @@ class FormBuilderView: UIView {
             numberField.tag = fieldIndex
             numberField.makeItThemeTF()
             numberField.text = value
-            numberField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            numberField.heightAnchor.constraint(equalToConstant: tfHeight).isActive = true
+            numberField.isUserInteractionEnabled = field.isEnabled
             return numberField
             
         case .date:
+            dateTF = UITextField()
+            guard let dateTF = dateTF else { return UITextField() }
+            
+            dateTF.placeholder = field.placeholder
+            dateTF.keyboardType = .numberPad
+            dateTF.borderStyle = .roundedRect
+            dateTF.tag = fieldIndex
+            dateTF.makeItThemeTF()
+            dateTF.text = value
+            
             let datePicker = UIDatePicker()
             datePicker.datePickerMode = .date
-            datePicker.preferredDatePickerStyle = .compact
+            datePicker.preferredDatePickerStyle = .wheels
             datePicker.tag = fieldIndex
-            return datePicker
+            datePicker.maximumDate = Date()
+            dateTF.inputView = datePicker
+            
+            // Add a toolbar with a "Done" button to dismiss the picker
+            let toolbar = UIToolbar()
+            toolbar.sizeToFit()
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDateButtonTapped))
+            toolbar.setItems([doneButton], animated: true)
+            dateTF.inputAccessoryView = toolbar
+            
+            dateTF.heightAnchor.constraint(equalToConstant: tfHeight).isActive = true
+            return dateTF
         case .email:
             let textField = UITextField()
             textField.placeholder = field.placeholder
@@ -116,8 +144,8 @@ class FormBuilderView: UIView {
             textField.tag = fieldIndex  // Use the index to tag the field
             textField.text = value
             textField.makeItThemeTF()
-            
-            textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            textField.isUserInteractionEnabled = field.isEnabled
+            textField.heightAnchor.constraint(equalToConstant: tfHeight).isActive = true
             
             return textField
             
@@ -127,7 +155,7 @@ class FormBuilderView: UIView {
             textField.borderStyle = .roundedRect
             textField.tag = fieldIndex
             textField.makeItThemeTF() // Apply custom theme
-            textField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+            textField.heightAnchor.constraint(equalToConstant: tfHeight).isActive = true
             
             // Create the picker
             let pickerView = UIPickerView()
@@ -146,13 +174,8 @@ class FormBuilderView: UIView {
             dropdownIcon.frame = CGRect(x: 16, y: 0, width: dropdownIcon.frame.width, height: dropdownIcon.frame.height)
             containerView.addSubview(dropdownIcon)
             
-            if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
-                textField.leftView = containerView
-                textField.leftViewMode = .always
-            } else {
-                textField.rightView = containerView
-                textField.rightViewMode = .always
-            }
+            textField.rightView = containerView
+            textField.rightViewMode = .always
 
             // Add a toolbar with a "Done" button to dismiss the picker
             let toolbar = UIToolbar()
@@ -170,6 +193,51 @@ class FormBuilderView: UIView {
             placeholderTextView.heightAnchor.constraint(equalToConstant: 150).isActive = true
             placeholderTextView.text = value
             return placeholderTextView
+            
+        case .checkbox:
+            let checkbox = CheckboxView(labelText: field.placeholder)
+            checkbox.makeItThemeHeight(height: 100)
+            return checkbox
+        case .uploadFile:
+            let button = DEPDButton()
+            button.makeItTheme(text: field.placeholder, .bold, 18, .textLight, .appGreen)
+            button.makeHight(height: 50)
+            button.makeButtonIconRight(named: "square.and.arrow.up")
+            return button
+        case .recordYourMessage:
+            
+            let textField = UITextField()
+            textField.placeholder = field.placeholder
+            textField.borderStyle = .roundedRect
+            textField.tag = fieldIndex  // Use the index to tag the field
+            textField.text = value
+            textField.isEnabled = false
+            textField.makeItThemeTF()
+            
+            textField.heightAnchor.constraint(equalToConstant: tfHeight).isActive = true
+            
+            let dropdownIcon = UIImageView(image: UIImage(systemName: "microphone.circle.fill"))
+            dropdownIcon.contentMode = .scaleAspectFit
+            dropdownIcon.tintColor = .textDark
+            
+            let containerView = UIView(frame: CGRect(x: 0, y: 0, width: dropdownIcon.frame.width + 32, height: dropdownIcon.frame.height))
+            dropdownIcon.frame = CGRect(x: 16, y: 0, width: dropdownIcon.frame.width, height: dropdownIcon.frame.height)
+            containerView.addSubview(dropdownIcon)
+            
+            if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
+                textField.leftView = containerView
+                textField.leftViewMode = .always
+            } else {
+                textField.rightView = containerView
+                textField.rightViewMode = .always
+            }
+            
+            return textField
+            
+        case .gap:
+            let gapView = UIView()
+            gapView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+            return gapView
         }
     }
     
@@ -231,7 +299,7 @@ extension FormBuilderView: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let formField = formFields[pickerView.tag]
-        if case .dropdown(let options) = formField.fieldType {
+        if case .dropdown(let options) = formField.fieldType, !options.isEmpty {
             let textField = self.viewWithTag(pickerView.tag) as? UITextField
             textField?.text = options[row]
         }
@@ -240,5 +308,101 @@ extension FormBuilderView: UIPickerViewDelegate, UIPickerViewDataSource {
     @objc func doneButtonTapped() {
         UIViewController.top().view.endEditing(true)
     }
+    
+    @objc func doneDateButtonTapped() {
+        if let datePicker = self.dateTF?.inputView as? UIDatePicker {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            self.dateTF?.text = dateFormatter.string(from: datePicker.date)
+        }
+        UIViewController.top().view.endEditing(true)
+    }
 }
 
+class CheckboxView: UIView {
+    
+    // MARK: - Properties
+    private let checkboxButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "square"), for: .normal)
+        button.tintColor = .gray
+        return button
+    }()
+    
+    private let label: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.makeItTheme(.bold, 12, .textDark)
+        return label
+    }()
+    
+    var isChecked: Bool = false {
+        didSet {
+            updateCheckboxAppearance()
+        }
+    }
+    
+    // Closure to notify about changes
+    var onToggle: (() -> Void)?
+    
+    // MARK: - Initializers
+    init(labelText: String) {
+        super.init(frame: .zero)
+        label.text = labelText
+        setupViews()
+        setupConstraints()
+        
+        // Add tap gesture to toggle checkbox
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCheckbox))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupViews()
+        setupConstraints()
+        
+        // Add tap gesture to toggle checkbox
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapCheckbox))
+        addGestureRecognizer(tapGesture)
+    }
+    
+    // MARK: - Setup Methods
+    private func setupViews() {
+        addSubview(checkboxButton)
+        addSubview(label)
+        
+        checkboxButton.addTarget(self, action: #selector(didTapCheckbox), for: .touchUpInside)
+    }
+    
+    private func setupConstraints() {
+        checkboxButton.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            checkboxButton.topAnchor.constraint(equalTo: topAnchor, constant: 20),
+            checkboxButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            checkboxButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            checkboxButton.widthAnchor.constraint(equalToConstant: 24),
+            checkboxButton.heightAnchor.constraint(equalToConstant: 24),
+            
+            label.leadingAnchor.constraint(equalTo: checkboxButton.trailingAnchor, constant: 8),
+            label.centerYAnchor.constraint(equalTo: centerYAnchor),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor),
+            label.topAnchor.constraint(equalTo: topAnchor),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+    }
+    
+    // MARK: - Checkbox Toggle
+    @objc private func didTapCheckbox() {
+        isChecked.toggle()
+        onToggle?() // Notify about the toggle action
+    }
+    
+    private func updateCheckboxAppearance() {
+        let imageName = isChecked ? "checkmark.square.fill" : "square"
+        checkboxButton.setImage(UIImage(systemName: imageName), for: .normal)
+        checkboxButton.tintColor = isChecked ? .systemBlue : .gray
+    }
+}

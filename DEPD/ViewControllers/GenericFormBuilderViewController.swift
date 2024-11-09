@@ -103,7 +103,7 @@ extension GenericFormBuilderViewController {
         case .complain:
             self.setTitle("help_complain".localized())
         }
-        self.setNavBarColor(.appBG)
+//        self.setNavBarColor(.appBG)
         self.navigationController?.navigationBar.isHidden = false
         self.setBackButton(.appDarkBG).addTapGestureRecognizer {[weak self] in
             self?.navigationController?.popViewController(animated: true)

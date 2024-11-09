@@ -124,7 +124,7 @@ class SchoolDetailsViewController: BaseViewController {
 \("available_seats_pwd".localized()): N/A
 \("accessibility_material".localized()): \(selectedSchool.HasAccessibilityMaterial ?? false)
 \("trained_teachers's".localized()): \(selectedSchool.HasTrainingMaterial ?? false)
-\("free_or_paid_education".localized()): \(selectedSchool.FreeOrPaid ?? false)
+\("free_or_paid_education".localized()): \(selectedSchool.FreeOrPaid ?? 0)
 \("number_of_total_students".localized()): \(selectedSchool.NumberOfSeats ?? 0)
 """
         labelAddiontalInfoDetails.text = additionalInfo

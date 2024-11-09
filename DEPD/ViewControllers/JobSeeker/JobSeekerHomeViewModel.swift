@@ -11,15 +11,14 @@ protocol JobSeekerVM: AnyObject {
     func showLoader()
     func hideLoader()
     
-    func fetchedInstitutes()
-    func fetchedInstituteDetails()
+    func fetchedJobs()
 }
 
 class JobSeekerHomeViewModel {
     
-    private var dataProds = [InstituteHomeModel]()
+    private var dataProds = [CompanyModel]()
     
-    weak var delegate: (SchoolHomeVM)?
+    weak var delegate: (JobSeekerVM)?
     
     private let service = APIService()
     
@@ -39,50 +38,42 @@ class JobSeekerHomeViewModel {
         print("JobSeekerHomeViewModel- deinit")
     }
     
-    func fetchStudents() {
+    func fetchAllJobs() {
         delegate?.showLoader()
-        let request = Endpoint.getStudentAdmissions(schoolID: -1).request!
-        service.makeRequest(with: request, respModel: ApiResponse<[InstituteHomeModel]>.self) {[weak self] userResponse, error in
+        let request = Endpoint.getJobList.request!
+        service.makeRequest(with: request, respModel: ApiResponse<[CompanyModel]>.self) {[weak self] userResponse, error in
             if let error = error { print("DEBUG PRINT:", error); return }
             if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
-            guard let schools = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
-            self?.dataProds = schools
-            print(schools.count)
+            guard let jobs = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
+            self?.dataProds = jobs
             DispatchQueue.main.asyncAfter(deadline: .now(), execute: {[weak self] in
                 self?.delegate?.hideLoader()
-                self?.delegate?.fetchedInstitutes()
+                self?.delegate?.fetchedJobs()
             })
         }
     }
-    
+
     func getCount() -> Int { dataProds.count }
     
-    func getInstitutes() -> [InstituteHomeModel] {
-        var students = dataProds
-        // Check if search text is provided
+    func getJobs() -> [CompanyModel] {
+        var jobs = dataProds
+//        // Check if search text is provided
         guard var searchText = searchText, !searchText.isEmpty else { return dataProds }
         searchText = searchText.lowercased()
-        // Filter based on student properties as well as Gender and District
-        students = students.filter { institute in
-            if let student = institute.student {
-                return (student.FirstName?.lowercased().contains(searchText) ?? false) ||
-                       (student.LastName?.lowercased().contains(searchText) ?? false) ||
-                       (student.CNIC?.lowercased().contains(searchText) ?? false) ||
-                       (institute.Gender?.lowercased().contains(searchText) ?? false) ||
-                       (institute.District?.lowercased().contains(searchText) ?? false)
-            }
-            return false
+        jobs = jobs.filter { job in
+            return (job.CompanyName?.lowercased().contains(searchText) ?? false) ||
+                   (job.PositionName?.lowercased().contains(searchText) ?? false)
         }
-        return students
+        return jobs
     }
     
     func resetAll() {
-        delegate?.fetchedInstitutes()
+        delegate?.fetchedJobs()
     }
     
     
     func search(text: String?) {
         searchText = text
-        delegate?.fetchedInstitutes()
+        delegate?.fetchedJobs()
     }
 }

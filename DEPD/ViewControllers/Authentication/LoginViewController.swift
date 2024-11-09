@@ -59,8 +59,8 @@ class LoginViewController: BaseViewController {
         buttonLogin.isAccessibilityElement = true
         buttonRegister.isAccessibilityElement = true
         
-        labelLoginTitle.makeItTheme(.light, 20, .textDark)
-        labelLoginAsGust.makeItTheme(.regular, 14, .appGreen)
+        labelLoginTitle.makeItTheme(.medium, 20, .textDark, .center)
+        labelLoginAsGust.makeItTheme(.bold, 14, .appGreen)
         
         switch screenType {
         case .student:
@@ -101,7 +101,7 @@ class LoginViewController: BaseViewController {
         labelLoginAsGust.text = "continue_as_guest".localized()
         labelForgotPassword.text = "login_forgot_password".localized()
         
-        labelForgotPassword.makeItTheme(.regular, 12, .appBlue, 14.06)
+        labelForgotPassword.makeItTheme(.regular, 12, .appBlue)
         
         buttonLogin.setTitle("login_login".localized(), for: .normal)
     }

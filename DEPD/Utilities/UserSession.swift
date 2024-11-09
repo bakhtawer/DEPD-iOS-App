@@ -32,6 +32,10 @@ class UserSessionManager: UserSession {
         "\(self.user.firstName ?? "Guest") \(self.user.lastName ?? "User")"
     }
     
+    func getUserImage() -> String {
+        self.user.firstName?.convertToHttps() ?? ""
+    }
+    
     
     func LogoutUser(){
         self.user = User()

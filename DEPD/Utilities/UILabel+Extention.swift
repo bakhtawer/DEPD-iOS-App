@@ -32,7 +32,9 @@ extension UILabel {
     func makeItTheme(_ fontType: APPFontType = .bold,
                      _ size: CGFloat = 24,
                      _ color: UIColor = .textDark,
-                     _ lightHight: CGFloat = 14.0) {
+                     _ alignment: NSTextAlignment? = nil,
+                     _ lightHight: CGFloat = 14.0
+                     ) {
         
         // Set font family, size, and weight
 //        self.font = UIFont(name: fontType.rawValue,
@@ -89,7 +91,9 @@ extension UILabel {
         // Create a paragraph style for the line height
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.minimumLineHeight = lineHight
-        paragraphStyle.alignment = .center
+        if let alignment = alignment {
+            paragraphStyle.alignment = alignment
+        }
         
         // Apply the paragraph style to the label's attributed text
         if let text = self.text {

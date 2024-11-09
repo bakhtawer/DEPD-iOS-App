@@ -25,7 +25,7 @@ class APIService: Service {
                                  completion: @escaping (T?, APIError?) -> Void) {
         
         URLSession.shared.dataTask(with: request) { data, resp, error in
-            print("DEBUG PRINT:", request )
+            print("DEBUG PRINT:", request)
             if let error = error {
                 completion(nil, .urlSessionError(error.localizedDescription))
                 return

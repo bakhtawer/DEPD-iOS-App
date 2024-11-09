@@ -14,7 +14,41 @@ extension String {
         let bundle = Bundle(path: path!)
         
         return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
-    }}
+    }
+    
+    /// Converts a date string from "d MMM yyyy" format to "dd/MM/yyyy" format.
+    func toFormattedDate() -> String? {
+        let inputDateFormatter = DateFormatter()
+        inputDateFormatter.dateFormat = "d MMM yyyy" // Matches "8 Nov 2022"
+        
+        let outputDateFormatter = DateFormatter()
+        outputDateFormatter.dateFormat = "dd/MM/yyyy" // Desired format
+        
+        if let date = inputDateFormatter.date(from: self) {
+            return outputDateFormatter.string(from: date)
+        }
+        
+        return nil // Return nil if the date could not be parsed
+    }
+    
+    /// Checks if the date string is at least 18 years from the current date.
+    func isAbove18() -> Bool {
+        let inputDateFormatter = DateFormatter()
+        inputDateFormatter.dateFormat = "d MMM yyyy"
+        
+        guard let dateOfBirth = inputDateFormatter.date(from: self) else {
+            return false // Return false if the date string is invalid
+        }
+        
+        let calendar = Calendar.current
+        if let ageLimitDate = calendar.date(byAdding: .year, value: 18, to: dateOfBirth) {
+            return Date() >= ageLimitDate
+        }
+        
+        return false
+    }
+    
+}
 
 extension Bundle {
     private static var bundle: Bundle!

@@ -17,12 +17,13 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
     @IBOutlet weak var schoolLocation: UILabel!
     @IBOutlet weak var schoolProfilePercentage: UILabel!
     
+    @IBOutlet weak var labelEditProfile: UILabel!
     @IBOutlet weak var tfSearchBar: UITextField!
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var constraintHeight: NSLayoutConstraint!
     
-    var dataSource: UICollectionViewDiffableDataSource<PoitsSection, InstituteHomeModel>?
+    var dataSource: UICollectionViewDiffableDataSource<PoitsSection, CompanyModel>?
     
     @IBOutlet weak var viewBottom: BottomView!
     
@@ -35,6 +36,7 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
     @IBOutlet weak var buttonPendingStudents: UILabel!
     @IBOutlet weak var buttonRejectedStudents: UILabel!
     
+    @IBOutlet weak var buttonNGO: UILabel!
     private var selectedFilterItems: [String : Any] = [:]
     
     override func viewWillLayoutSubviews() {
@@ -44,40 +46,42 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         setView()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
         
         setUpCollectionView()
         
-        viewApplications.isHidden = true
-        
         tfSearchBar.delegate = self
         viewModel.delegate = self
-        viewModel.fetchStudents()
+        viewModel.fetchAllJobs()
         
         buttonEdit.addTapGestureRecognizer {
             DispatchQueue.main.async {[weak self] in
                 
-                let filterItems = [
-                    FilterItem(type: .checkbox, title: "Registered User"),
-                    FilterItem(type: .checkbox, title: "Pending User"),
-                    FilterItem(type: .dropdown, title: "District", options: APPMetaDataHandler.shared.getDistrictsNames()),
-                    FilterItem(type: .multiSelect, title: "Disability", options:APPMetaDataHandler.shared.getDisabilitiesNames())
-                ]
-
-                let filterVC = FilterViewController()
-                filterVC.filterItems = filterItems
-                filterVC.selectedOptions = self?.selectedFilterItems ?? [:]
-                filterVC.delegate = self
-                openModulePopOver(controller: filterVC)
+//                let filterItems = [
+//                    FilterItem(type: .checkbox, title: "Registered User"),
+//                    FilterItem(type: .checkbox, title: "Pending User"),
+//                    FilterItem(type: .dropdown, title: "District", options: APPMetaDataHandler.shared.getDistrictsNames()),
+//                    FilterItem(type: .multiSelect, title: "Disability", options:APPMetaDataHandler.shared.getDisabilitiesNames())
+//                ]
+//
+//                let filterVC = FilterViewController()
+//                filterVC.filterItems = filterItems
+//                filterVC.selectedOptions = self?.selectedFilterItems ?? [:]
+//                filterVC.delegate = self
+//                openModulePopOver(controller: filterVC)
                 
-
                 
-//                let storyboard = getStoryBoard(.main)
-//                let view = storyboard.instantiateViewController(ofType: SchoolDetailsViewController.self)
-//                view.selectedSchool = self?.viewModel.selectedSchool
-//                openModuleOnNavigation(from: self, controller: view)
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: SchoolDetailsViewController.self)
+                view.selectedSchool = self?.viewModel.selectedSchool
+                openModuleOnNavigation(from: self, controller: view)
             }
         }
     }
@@ -87,30 +91,39 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         setupNavigation()
         setView()
         
+        collectionView.setNeedsDisplay()
         collectionView.reloadData()
     }
     
     private func setView() {
         
-        tfSearchBar.placeholder  = "Search for Job"
+        tfSearchBar.placeholder = "search_for_job".localized()
         
         mainIcon.roundCorner(withRadis: mainIcon.viewHeight.half)
         mainIconImage.roundCorner(withRadis: mainIconImage.viewHeight.half)
-        viewTopBG.applyShadow()
         
-        schoolName.makeItTheme(.bold, 16, .textDark)
-        schoolLocation.makeItTheme(.regular, 13, .textLightGray)
-        schoolProfilePercentage.makeItTheme(.regular, 13, .appBlue)
+        schoolName.makeItTheme(.bold, 20, .textDark)
+        schoolLocation.makeItTheme(.regular, 16, .textLightGray)
+        schoolProfilePercentage.makeItTheme(.regular, 16, .appBlue)
         
-        buttonTotalApplications.makeItTheme(.bold, 9, .appLight)
-        buttonRegisteredusers.makeItTheme(.bold, 9, .appLight)
-        buttonPendingStudents.makeItTheme(.bold, 9, .appLight)
-        buttonRejectedStudents.makeItTheme(.bold, 9, .appLight)
+        buttonTotalApplications.makeItTheme(.bold, 9, .appLight, .center)
+        buttonRegisteredusers.makeItTheme(.bold, 9, .appLight, .center)
+        buttonPendingStudents.makeItTheme(.bold, 9, .appLight, .center)
+        buttonRejectedStudents.makeItTheme(.bold, 9, .appLight, .center)
+        buttonNGO.makeItTheme(.bold, 9, .appLight)
         
-        buttonTotalApplications.text = "\("total_applications".localized()) \(viewModel.getCount())"
-        buttonRegisteredusers.text = "\("registered_students".localized())"
-        buttonPendingStudents.text = "\("pending_students".localized())"
-        buttonRejectedStudents.text = "\("rejected_students".localized())"
+        buttonTotalApplications.text = "\("total_jobs".localized()) \(viewModel.getCount())"
+        buttonRegisteredusers.text = "\("district".localized())"
+        buttonPendingStudents.text = "\("disablity".localized())"
+        buttonRejectedStudents.text = "\("private".localized())"
+        buttonNGO.text = "\("ngo_welfare".localized())"
+
+        labelEditProfile.text =  "\("edit_profile".localized())"
+        
+        buttonViewApplications.setTitle("\("find_job".localized())", for: .normal)
+        buttonEditYourProfile.setTitle("\("my_applications".localized())", for: .normal)
+        buttonViewApplications.makeItThemeGreenPrimary(14)
+        buttonEditYourProfile.makeItThemePrimary(14)
         
         schoolName.text = USM.shared.getUserFullName()
     }
@@ -124,14 +137,20 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         
         collectionView.register(UINib(nibName: "JobSeekerCompanyCell", bundle: nil), forCellWithReuseIdentifier: JobSeekerCompanyCell.reuseIdentifier)
         
+        // Update the semantic content attribute based on the selected language
+        if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
+            collectionView.semanticContentAttribute = .forceRightToLeft
+        } else {
+            collectionView.semanticContentAttribute = .forceLeftToRight
+        }
+        
         createDataSource()
     }
 }
 
 extension JobSeekerHomeViewController {
     func setupNavigation() {
-        self.navigationController?.navigationBar.isHidden = false
-        
+        self.setTitle("inclusive_career_hub".localized())
         self.setMenuButton(.textDark).addTapGestureRecognizer {
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: SettingViewController.self)
@@ -140,7 +159,21 @@ extension JobSeekerHomeViewController {
     }
 }
 
-extension JobSeekerHomeViewController: SchoolHomeVM {
+extension JobSeekerHomeViewController: JobSeekerVM {
+    func fetchedJobs() {
+        DispatchQueue.main.async {[weak self] in
+            self?.buttonTotalApplications.text = "\("total_applications".localized()) \(self?.viewModel.getCount() ?? 0)"
+            self?.reloadData()
+            
+            self?.schoolLocation.text = self?.viewModel.selectedSchool?.Location
+            self?.schoolProfilePercentage.text = "0% \("profile_completed".localized())"
+            guard let image = URL(string: self?.viewModel.selectedSchool?.ImageURL?.convertToHttps() ?? "") else { return }
+            self?.mainIconImage.contentMode = .scaleAspectFill
+            self?.mainIconImage.kf.setImage(with: image,
+                                    placeholder: UIImage(named: "studentplacehoder"))
+        }
+    }
+    
     func showLoader() {
         DispatchQueue.main.async {[weak self] in
             self?.showLoadingIndicator()
@@ -150,23 +183,6 @@ extension JobSeekerHomeViewController: SchoolHomeVM {
     func hideLoader() {
         DispatchQueue.main.async {[weak self] in
             self?.hideLoadingIndicator()
-        }
-    }
-    
-    func fetchedInstitutes() {
-        DispatchQueue.main.async {[weak self] in
-            self?.buttonTotalApplications.text = "\("total_applications".localized()) \(self?.viewModel.getCount() ?? 0)"
-            self?.reloadData()
-        }
-    }
-    func fetchedInstituteDetails() {
-        DispatchQueue.main.async {[weak self] in
-            self?.schoolLocation.text = self?.viewModel.selectedSchool?.Location
-            self?.schoolProfilePercentage.text = "0% \("profile_completed".localized())"
-            guard let image = URL(string: self?.viewModel.selectedSchool?.ImageURL?.convertToHttps() ?? "") else { return }
-            self?.mainIconImage.contentMode = .scaleAspectFill
-            self?.mainIconImage.kf.setImage(with: image,
-                                    placeholder: UIImage(named: "studentplacehoder"))
         }
     }
 }
@@ -214,7 +230,7 @@ extension JobSeekerHomeViewController {
     func createDataSource() {
         
         dataSource = UICollectionViewDiffableDataSource<PoitsSection,
-                                                        InstituteHomeModel>(collectionView: self.collectionView) { _, indexPath, app in
+                                                        CompanyModel>(collectionView: self.collectionView) { _, indexPath, app in
                                                             guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: JobSeekerCompanyCell.reuseIdentifier, for: indexPath) as? JobSeekerCompanyCell
                                                             else {
                                                                 return UICollectionViewCell()
@@ -224,9 +240,9 @@ extension JobSeekerHomeViewController {
         }
     }
     func reloadData() {
-        var snapshot = NSDiffableDataSourceSnapshot<PoitsSection, InstituteHomeModel>()
+        var snapshot = NSDiffableDataSourceSnapshot<PoitsSection, CompanyModel>()
         snapshot.appendSections([.all])
-        snapshot.appendItems(viewModel.getInstitutes(), toSection: .all)
+        snapshot.appendItems(viewModel.getJobs(), toSection: .all)
         dataSource?.apply(snapshot, animatingDifferences: false)
         
         constraintHeight.constant = collectionView.contentSize.height + 30
@@ -237,10 +253,10 @@ extension JobSeekerHomeViewController {
 extension JobSeekerHomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         DispatchQueue.main.async {[weak self] in
-//            let storyboard = getStoryBoard(.main)
-//            let view = storyboard.instantiateViewController(ofType: SchoolStudentDetailViewController.self)
-//            view.selectedStudent = self?.viewModel.getInstitutes()[indexPath.row]
-//            openModuleOnNavigation(from: self, controller: view)
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: JobSeekerDetailViewController.self)
+            view.dataJob = self?.viewModel.getJobs()[indexPath.row]
+            openModuleOnNavigation(from: self, controller: view)
         }
     }
 }
@@ -265,4 +281,3 @@ extension JobSeekerHomeViewController: FilterViewControllerDelegate {
         selectedFilterItems = selectedOptions
     }
 }
-

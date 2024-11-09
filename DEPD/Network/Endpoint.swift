@@ -63,6 +63,8 @@ enum Endpoint {
     case getDisstatList
     case getGenders
     case getDesignations
+    case getPreviousEducation
+    case getClasses
     
     case getSchoolList
     case applyForSchool(schoolID: Int)
@@ -118,8 +120,9 @@ enum Endpoint {
              .UpdateAdditionalInfo(let url, _),
              .InsertSocialMediaLink(let url, _),
              .InsertDisabilityStatus(let url, _): return url
-        case .getDistrict, .getDisstatList, .getGenders, .getDesignations, .getStudentAdmissions: return "/Api/General.ashx"
-        case .getSchoolList, .applyForSchool: return "/Api/school.ashx"
+        case .getDistrict, .getDisstatList, .getGenders, .getDesignations, .getStudentAdmissions,
+                .getClasses: return "/Api/General.ashx"
+        case .getSchoolList, .applyForSchool, .getPreviousEducation: return "/Api/school.ashx"
         case .getJobList: return "/Api/job.ashx"
         }
     }
@@ -134,20 +137,22 @@ enum Endpoint {
         case .getDisstatList: return [URLQueryItem(name: "method", value: "getdisstatlist")]
         case .getSchoolList: return [URLQueryItem(name: "method", value: "getSchoolList")]
         case .applyForSchool: return [URLQueryItem(name: "method", value: "applyForSchool")]
-        case .getStudentAdmissions(let schoolID): return [URLQueryItem(name: "method", value: "getStudentAdmissions")]
-        case .fetchPosts(url: let url): return []
-        case .fetchOnePost(url: let url, postId: let postId): return []
-        case .sendPost(url: let url, post: let post): return []
+        case .getStudentAdmissions: return [URLQueryItem(name: "method", value: "getStudentAdmissions")]
+        case .fetchPosts: return []
+        case .fetchOnePost: return []
+        case .sendPost: return []
         case .updatePersonalInfo: return [URLQueryItem(name: "method", value: "UpdatePersonalInformation")]
-        case .UpdateAboutYourSchool(url: let url, creds: let creds):
+        case .UpdateAboutYourSchool:
             return [URLQueryItem(name: "method", value: "UpdateAboutYourSchool")]
-        case .UpdateAdditionalInfo(url: let url, creds: let creds):
+        case .UpdateAdditionalInfo:
             return [URLQueryItem(name: "method", value: "UpdateAdditionalInfo")]
-        case .InsertSocialMediaLink(url: let url, creds: let creds):
+        case .InsertSocialMediaLink:
             return [URLQueryItem(name: "method", value: "InsertSocialMediaLink")]
-        case .InsertDisabilityStatus(url: let url, creds: let creds):
+        case .InsertDisabilityStatus:
             return [URLQueryItem(name: "method", value: "InsertDisabilityStatus")]
         case .getJobList: return [URLQueryItem(name: "method", value: "getJobList")]
+        case .getPreviousEducation: return [URLQueryItem(name: "method", value: "getpriviousList")]
+        case .getClasses: return [URLQueryItem(name: "method", value: "getclasses")]
         }
     }
     
@@ -157,7 +162,7 @@ enum Endpoint {
              .fetchOnePost,
              .getDistrict, .getDisstatList, .getGenders, .getDesignations,
              .getSchoolList,
-             .getJobList:
+             .getJobList, .getPreviousEducation, .getClasses:
             return HTTP.Method.get.rawValue
         case .sendPost, .login, .register,
             .applyForSchool,
@@ -175,7 +180,7 @@ enum Endpoint {
              .fetchOnePost,
              .getDistrict, .getDisstatList, .getGenders, .getDesignations,
              .getSchoolList,
-             .getJobList:
+             .getJobList, .getPreviousEducation,. getClasses:
             return nil
         case .register(_ ,let creds):
             let jsonPost = try? JSONEncoder().encode(creds)
@@ -225,7 +230,7 @@ extension URLRequest {
                 .updatePersonalInfo, .UpdateAboutYourSchool,
                 .UpdateAdditionalInfo, .InsertSocialMediaLink,
                 .InsertDisabilityStatus,
-                .getJobList:
+                .getJobList, .getPreviousEducation, .getClasses:
             self.setValue(
                 HTTP.Headers.Value.applicationJson.rawValue,
                 forHTTPHeaderField: HTTP.Headers.Key.contentType.rawValue

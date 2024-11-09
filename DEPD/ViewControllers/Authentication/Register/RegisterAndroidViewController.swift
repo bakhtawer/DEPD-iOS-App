@@ -28,8 +28,6 @@ class RegisterAndroidViewController: BaseViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-
-        
         viewBottom.setLanguage()
     }
     
@@ -41,7 +39,7 @@ class RegisterAndroidViewController: BaseViewController {
         
         tfCnic.keyboardType = .numberPad
         labelContactNo.keyboardType = .numberPad
-        tfEmail.keyboardType = .numberPad
+        tfEmail.keyboardType = .emailAddress
         tfPassword.isSecureTextEntry = true
         tfConfirmPassword.isSecureTextEntry = true
         
@@ -128,7 +126,7 @@ class RegisterAndroidViewController: BaseViewController {
 extension RegisterAndroidViewController {
     func setupNavigation() {
         self.setTitle("register_title".localized())
-        self.setNavBarColor(.appBG)
+//        self.setNavBarColor(.appBG)
         self.setBackButton(.darkText).addTapGestureRecognizer {[weak self] in
             self?.navigationController?.popViewController(animated: true)
         }

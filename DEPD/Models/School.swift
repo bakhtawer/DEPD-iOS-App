@@ -28,7 +28,7 @@ struct InstituteModel: Codable, Hashable {
     var HasTrainingMaterial: Bool?
     var LastUpdated: String?
     var FormattedLastUpdated: String?
-    var FreeOrPaid: Bool?
+    var FreeOrPaid: Int?
     var SchoolMultiMediaList: [SchoolMultiMedia]?
     var DisabilityStatusList: [Disability]?
     var SchoolDisabilityList: [SchoolDisability]?
@@ -84,7 +84,7 @@ struct InstituteModel: Codable, Hashable {
             HasTrainingMaterial = try values.decodeIfPresent(Bool.self, forKey: .HasTrainingMaterial) ?? false
             LastUpdated = try values.decodeIfPresent(String.self, forKey: .LastUpdated) ?? "N/A"
             FormattedLastUpdated = try values.decodeIfPresent(String.self, forKey: .FormattedLastUpdated) ?? "N/A"
-            FreeOrPaid = try values.decodeIfPresent(Bool.self, forKey: .FreeOrPaid) ?? false
+            FreeOrPaid = try values.decodeIfPresent(Int.self, forKey: .FreeOrPaid) ?? 0
             SchoolMultiMediaList = try values.decodeIfPresent([SchoolMultiMedia].self, forKey: .SchoolMultiMediaList) ?? []
             DisabilityStatusList = try values.decodeIfPresent([Disability].self, forKey: .DisabilityStatusList) ?? []
             SchoolDisabilityList = try values.decodeIfPresent([SchoolDisability].self, forKey: .SchoolDisabilityList) ?? []

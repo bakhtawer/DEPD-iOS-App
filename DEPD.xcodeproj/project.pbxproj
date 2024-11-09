@@ -44,6 +44,8 @@
 		CB43B3E12C04EE10009E990E /* RegisterAsSelectionOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3E02C04EE10009E990E /* RegisterAsSelectionOne.swift */; };
 		CB43B3E72C04F445009E990E /* BottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3E62C04F445009E990E /* BottomView.swift */; };
 		CB43B3E92C04F44E009E990E /* BottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB43B3E82C04F44E009E990E /* BottomView.xib */; };
+		CB4D65A32CD527E7007849A5 /* InclusiveScreenThreeButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4D65A22CD527DE007849A5 /* InclusiveScreenThreeButtons.swift */; };
+		CB73D46E2CDFB5B600E24FA2 /* DenialOfAdmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D46D2CDFB5A700E24FA2 /* DenialOfAdmission.swift */; };
 		CB7808342C05021900F3E785 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808222C05021800F3E785 /* Roboto-Italic.ttf */; };
 		CB7808352C05021900F3E785 /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */; };
 		CB7808362C05021900F3E785 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */; };
@@ -82,6 +84,7 @@
 		CB90B1D42CA865B10069EA2D /* FormBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB90B1D32CA865B10069EA2D /* FormBuilderView.swift */; };
 		CB948E0A2CD4272300A6960F /* JobSeekerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB948E092CD4271A00A6960F /* JobSeekerProfile.swift */; };
 		CB948E0C2CD4274500A6960F /* JobSeekerProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB948E0B2CD4273F00A6960F /* JobSeekerProfileModel.swift */; };
+		CB948E0E2CD4402B00A6960F /* JobSeekerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB948E0D2CD4402000A6960F /* JobSeekerDetailViewController.swift */; };
 		CBA06E282C9726B500BFC470 /* SchoolStudentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA06E272C9726B500BFC470 /* SchoolStudentDetailViewController.swift */; };
 		CBA06E2A2C9732A800BFC470 /* DEPDWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA06E292C9732A700BFC470 /* DEPDWebViewController.swift */; };
 		CBA118F62C7B81DE00F9D633 /* APPMetaDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */; };
@@ -184,7 +187,9 @@
 		CB43B3E02C04EE10009E990E /* RegisterAsSelectionOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAsSelectionOne.swift; sourceTree = "<group>"; };
 		CB43B3E62C04F445009E990E /* BottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomView.swift; sourceTree = "<group>"; };
 		CB43B3E82C04F44E009E990E /* BottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomView.xib; sourceTree = "<group>"; };
+		CB4D65A22CD527DE007849A5 /* InclusiveScreenThreeButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InclusiveScreenThreeButtons.swift; sourceTree = "<group>"; };
 		CB6C1C982C7BBADF007F2F74 /* Jameel-Noori-Nastaleeq-Kasheeda.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jameel-Noori-Nastaleeq-Kasheeda.ttf"; sourceTree = "<group>"; };
+		CB73D46D2CDFB5A700E24FA2 /* DenialOfAdmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenialOfAdmission.swift; sourceTree = "<group>"; };
 		CB7808222C05021800F3E785 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
 		CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -227,6 +232,7 @@
 		CB90B1D32CA865B10069EA2D /* FormBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormBuilderView.swift; sourceTree = "<group>"; };
 		CB948E092CD4271A00A6960F /* JobSeekerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeekerProfile.swift; sourceTree = "<group>"; };
 		CB948E0B2CD4273F00A6960F /* JobSeekerProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeekerProfileModel.swift; sourceTree = "<group>"; };
+		CB948E0D2CD4402000A6960F /* JobSeekerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeekerDetailViewController.swift; sourceTree = "<group>"; };
 		CBA06E272C9726B500BFC470 /* SchoolStudentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchoolStudentDetailViewController.swift; sourceTree = "<group>"; };
 		CBA06E292C9732A700BFC470 /* DEPDWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEPDWebViewController.swift; sourceTree = "<group>"; };
 		CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APPMetaDataHandler.swift; sourceTree = "<group>"; };
@@ -308,6 +314,7 @@
 		CB1CE0BD2CCD260900ABFAEA /* JobSeeker */ = {
 			isa = PBXGroup;
 			children = (
+				CB948E0D2CD4402000A6960F /* JobSeekerDetailViewController.swift */,
 				CB1CE0BE2CCD26C300ABFAEA /* JobSeekerHomeViewController.swift */,
 				CB1CE0C02CCD26CE00ABFAEA /* JobSeekerHomeViewModel.swift */,
 				CB1CE0C52CCD2D1500ABFAEA /* JobSeekerCompanyCell.swift */,
@@ -351,6 +358,7 @@
 		CB43B3CF2C03D3CA009E990E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB73D46D2CDFB5A700E24FA2 /* DenialOfAdmission.swift */,
 				CB948E0B2CD4273F00A6960F /* JobSeekerProfileModel.swift */,
 				CB08CEF32C39E8E6004E3DEC /* User.swift */,
 				CB08CEF52C39EB94004E3DEC /* ApiResponse.swift */,
@@ -387,6 +395,7 @@
 		CB43B3E42C04F187009E990E /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				CB4D65A22CD527DE007849A5 /* InclusiveScreenThreeButtons.swift */,
 				CB2B55E22C5596DB008A8B83 /* InclusiveScreen.swift */,
 				CB43B3BE2C03C110009E990E /* RegisterViewController.swift */,
 				CB43B3E02C04EE10009E990E /* RegisterAsSelectionOne.swift */,
@@ -851,6 +860,7 @@
 			files = (
 				CB43B3D42C03E7FC009E990E /* UserHomeViewModel.swift in Sources */,
 				CB43B3BF2C03C110009E990E /* RegisterViewController.swift in Sources */,
+				CB948E0E2CD4402B00A6960F /* JobSeekerDetailViewController.swift in Sources */,
 				CB2B55E32C5596DB008A8B83 /* InclusiveScreen.swift in Sources */,
 				CB90B1D42CA865B10069EA2D /* FormBuilderView.swift in Sources */,
 				CB43B3CA2C03D32F009E990E /* Endpoint.swift in Sources */,
@@ -883,6 +893,7 @@
 				CB358CBD2CBC12F000CD25A9 /* EmployerHomeViewController.swift in Sources */,
 				CBC032172BFE8F6200B45EEC /* UITextField+extention.swift in Sources */,
 				CBD17C412BFFEB74001C3980 /* BannerView.swift in Sources */,
+				CB73D46E2CDFB5B600E24FA2 /* DenialOfAdmission.swift in Sources */,
 				CB43B3E72C04F445009E990E /* BottomView.swift in Sources */,
 				CBC0320A2BFE78E100B45EEC /* UserDefaults+Extentions.swift in Sources */,
 				CB1AA5FB2C3AD6E300079270 /* SettingViewController.swift in Sources */,
@@ -911,6 +922,7 @@
 				CB7808492C15EE5600F3E785 /* RegisterAsSelectionTwo.swift in Sources */,
 				CBEAF57C2C9616E300153662 /* SchoolHomeViewModel.swift in Sources */,
 				CB948E0A2CD4272300A6960F /* JobSeekerProfile.swift in Sources */,
+				CB4D65A32CD527E7007849A5 /* InclusiveScreenThreeButtons.swift in Sources */,
 				CB08CEFA2C3AC752004E3DEC /* Student.swift in Sources */,
 				CB1CE0C12CCD26CE00ABFAEA /* JobSeekerHomeViewModel.swift in Sources */,
 				CBA06E282C9726B500BFC470 /* SchoolStudentDetailViewController.swift in Sources */,

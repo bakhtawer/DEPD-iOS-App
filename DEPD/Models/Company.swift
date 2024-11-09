@@ -63,7 +63,7 @@ struct CompanyModel: Codable, Hashable {
             RequiredExperience = try values.decodeIfPresent(Int.self, forKey: .RequiredExperience) ?? 0
             StatusId = try values.decodeIfPresent(Int.self, forKey: .StatusId) ?? -1
             StatusName = try values.decodeIfPresent(String.self, forKey: .StatusName) ?? ""
-            DescriptionText = try values.decodeIfPresent(String.self, forKey: .DescriptionText) ?? ""
+            DescriptionText = try values.decodeIfPresent(String.self, forKey: .DescriptionText) ?? "N/A"
             NoOfVaccancies = try values.decodeIfPresent(Int.self, forKey: .NoOfVaccancies) ?? 0
             Location = try values.decodeIfPresent(String.self, forKey: .Location) ?? ""
             ThumbnailImageURL = try values.decodeIfPresent(String.self, forKey: .ThumbnailImageURL) ?? ""

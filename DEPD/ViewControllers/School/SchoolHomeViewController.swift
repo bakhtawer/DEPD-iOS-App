@@ -12,7 +12,6 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
     
     @IBOutlet weak var mainIcon: UIView!
     @IBOutlet weak var mainIconImage: UIImageView!
-    @IBOutlet weak var buttonEdit: UIButton!
     @IBOutlet weak var viewTopBG: UIView!
     @IBOutlet weak var schoolName: UILabel!
     @IBOutlet weak var schoolLocation: UILabel!
@@ -36,6 +35,12 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
     @IBOutlet weak var buttonPendingStudents: UILabel!
     @IBOutlet weak var buttonRejectedStudents: UILabel!
     
+    
+    @IBOutlet weak var stackEdit: UIStackView!
+    @IBOutlet weak var buttonEdit: UIButton!
+    @IBOutlet weak var labelEdit: UILabel!
+    
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         viewBottom.setLanguage()
@@ -55,7 +60,7 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
         viewModel.delegate = self
         viewModel.fetchStudents()
         
-        buttonEdit.addTapGestureRecognizer {
+        stackEdit.addTapGestureRecognizer {
             DispatchQueue.main.async {[weak self] in
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: SchoolDetailsViewController.self)
@@ -70,6 +75,7 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
         setupNavigation()
         setView()
         
+        collectionView.setNeedsDisplay()
         collectionView.reloadData()
     }
     
@@ -78,14 +84,14 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
         mainIconImage.roundCorner(withRadis: mainIconImage.viewHeight.half)
         viewTopBG.applyShadow()
         
-        schoolName.makeItTheme(.bold, 16, .textDark)
-        schoolLocation.makeItTheme(.regular, 13, .textLightGray)
-        schoolProfilePercentage.makeItTheme(.regular, 13, .appBlue)
+        schoolName.makeItTheme(.bold, 20, .textDark)
+        schoolLocation.makeItTheme(.regular, 16, .textLightGray)
+        schoolProfilePercentage.makeItTheme(.regular, 16, .appBlue)
         
-        buttonTotalApplications.makeItTheme(.bold, 9, .appLight)
-        buttonRegisteredusers.makeItTheme(.bold, 9, .appLight)
-        buttonPendingStudents.makeItTheme(.bold, 9, .appLight)
-        buttonRejectedStudents.makeItTheme(.bold, 9, .appLight)
+        buttonTotalApplications.makeItTheme(.bold, 9, .appLight, .center)
+        buttonRegisteredusers.makeItTheme(.bold, 9, .appLight, .center)
+        buttonPendingStudents.makeItTheme(.bold, 9, .appLight, .center)
+        buttonRejectedStudents.makeItTheme(.bold, 9, .appLight, .center)
         
         buttonTotalApplications.text = "\("total_applications".localized()) \(viewModel.getCount())"
         buttonRegisteredusers.text = "\("registered_students".localized())"
@@ -93,6 +99,9 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
         buttonRejectedStudents.text = "\("rejected_students".localized())"
         
         schoolName.text = USM.shared.getUserFullName()
+        
+        labelEdit.makeItTheme(.regular, 16, .textDark)
+        labelEdit.text = "\("edit_profile".localized())"
     }
     
     private func setUpCollectionView() {
@@ -103,6 +112,14 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
         collectionView.backgroundColor = .appBG
         
         collectionView.register(UINib(nibName: "InstituteStudentCell", bundle: nil), forCellWithReuseIdentifier: InstituteStudentCell.reuseIdentifier)
+        
+        // Update the semantic content attribute based on the selected language
+        if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
+            collectionView.semanticContentAttribute = .forceRightToLeft
+        } else {
+            collectionView.semanticContentAttribute = .forceLeftToRight
+        }
+        
         
         createDataSource()
     }

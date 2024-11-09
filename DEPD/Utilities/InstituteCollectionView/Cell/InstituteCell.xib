@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,7 +32,7 @@
                                             <constraint firstAttribute="height" constant="85" id="qfN-TA-Riw"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Town, Karach" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXx-cb-ezT">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Town, Karach" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WXx-cb-ezT">
                                         <rect key="frame" x="117" y="21.333333333333336" width="97.666666666666686" height="19.333333333333336"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" name="AppBlue"/>
@@ -57,12 +57,14 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" name="AppBG"/>
+                                <color key="backgroundColor" name="AppLight"/>
                                 <constraints>
                                     <constraint firstItem="WXx-cb-ezT" firstAttribute="bottom" secondItem="8hC-d1-XWk" secondAttribute="centerY" multiplier="0.65" id="2SM-gU-S7m"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WXx-cb-ezT" secondAttribute="trailing" constant="6" id="3fv-Ao-bTT"/>
                                     <constraint firstAttribute="height" constant="122" id="5Ds-YA-jXM"/>
                                     <constraint firstItem="JDF-Ga-2cP" firstAttribute="width" secondItem="G9m-x4-fky" secondAttribute="width" multiplier="106/326" id="8PH-NB-PPZ"/>
                                     <constraint firstItem="JDF-Ga-2cP" firstAttribute="leading" secondItem="WXx-cb-ezT" secondAttribute="leading" id="JSe-XC-IJf"/>
+                                    <constraint firstItem="WXx-cb-ezT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="G9m-x4-fky" secondAttribute="top" constant="6" id="KEd-Zm-xDN"/>
                                     <constraint firstItem="8hC-d1-XWk" firstAttribute="leading" secondItem="G9m-x4-fky" secondAttribute="leading" constant="20" id="LpQ-GZ-9nK"/>
                                     <constraint firstItem="G5m-Nw-7n3" firstAttribute="top" secondItem="WXx-cb-ezT" secondAttribute="bottom" constant="6" id="QAE-hD-nRf"/>
                                     <constraint firstItem="JDF-Ga-2cP" firstAttribute="bottom" secondItem="8hC-d1-XWk" secondAttribute="bottom" id="Rpi-7r-OFH"/>
@@ -121,6 +123,9 @@
         </namedColor>
         <namedColor name="AppGrayLineBreak">
             <color red="0.60392156862745094" green="0.60392156862745094" blue="0.60392156862745094" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppLight">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ButtonBG">
             <color red="0.0" green="0.29019607843137257" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

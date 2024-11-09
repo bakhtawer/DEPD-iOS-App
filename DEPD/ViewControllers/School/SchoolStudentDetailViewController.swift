@@ -57,7 +57,7 @@ class SchoolStudentDetailViewController: BaseViewController {
         labelProfileComplete.makeItTheme(.regular, 12, .appBlue)
         
         labelPersonalDetails.makeItTheme(.bold, 16, .textDark)
-        labelDetails.makeItTheme(.regular, 14, .textDark, 20)
+        labelDetails.makeItTheme(.regular, 14, .textDark, nil, 20)
         
         viewDash.roundCorner(withRadis: viewDash.viewHeight.half)
         

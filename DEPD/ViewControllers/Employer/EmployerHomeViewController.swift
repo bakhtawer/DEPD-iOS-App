@@ -104,6 +104,7 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
         setupNavigation()
         setView()
         
+        collectionView.setNeedsDisplay()
         collectionView.reloadData()
     }
     
@@ -139,6 +140,14 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
         collectionView.register(UINib(nibName: "InstituteStudentCell", bundle: nil), forCellWithReuseIdentifier: InstituteStudentCell.reuseIdentifier)
         
         collectionView.register(UINib(nibName: "CompanyAdvertiseJobCell", bundle: nil), forCellWithReuseIdentifier: CompanyAdvertiseJobCell.reuseIdentifier)
+        
+        // Update the semantic content attribute based on the selected language
+        if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
+            collectionView.semanticContentAttribute = .forceRightToLeft
+        } else {
+            collectionView.semanticContentAttribute = .forceLeftToRight
+        }
+        
         
         createDataSource()
     }

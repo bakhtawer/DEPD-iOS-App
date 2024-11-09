@@ -18,6 +18,22 @@ extension UIView {
         self.layer.masksToBounds = true
     }
     
+    func makeItThemeHeight(height: CGFloat = 40) {
+        var height: CGFloat = height
+        switch UserDefaults.selectedAccessibility {
+        case 1:
+            height = height*1.2
+            self.heightAnchor.constraint(equalToConstant: height).isActive = true
+        case 2:
+            height = height*1.5
+            self.heightAnchor.constraint(equalToConstant: height).isActive = true
+        case 3:
+            height = height*1.6
+            self.heightAnchor.constraint(equalToConstant: height).isActive = true
+        default: break
+        }
+    }
+    
    func roundCorners(corners: UIRectCorner, radius: CGFloat) {
         let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()

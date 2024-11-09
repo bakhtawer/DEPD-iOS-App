@@ -30,6 +30,7 @@ class UserHomeViewModel {
         
         APPMetaDataHandler.shared.populateDistricts()
         APPMetaDataHandler.shared.populateDisabilities()
+        APPMetaDataHandler.shared.populatePreviousEducation()
     }
     
     deinit {

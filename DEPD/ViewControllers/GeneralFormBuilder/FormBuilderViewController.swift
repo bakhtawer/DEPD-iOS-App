@@ -17,6 +17,10 @@ enum FieldType {
     case email
     case dropdown(options: [String])
     case textLong
+    case recordYourMessage
+    case uploadFile
+    case checkbox
+    case gap
 }
 
 // Struct to represent each form field
@@ -30,6 +34,7 @@ struct FormField: Equatable {
     let name: String
     let value: String?
     let isRequired: Bool
+    var isEnabled: Bool = true
 }
 
 protocol FormBuilderProtocol: AnyObject {
@@ -38,6 +43,7 @@ protocol FormBuilderProtocol: AnyObject {
 
 class FormBuilderViewController: BaseViewController {
     
+    @IBOutlet weak var topTitleView: UIView!
     @IBOutlet weak var formBuilderView: UIView!
     @IBOutlet weak var labelTitle: UILabel!
     
@@ -50,7 +56,12 @@ class FormBuilderViewController: BaseViewController {
 //        case socialMediaLinks
 //        case socialMediaMedia
 //        case weCanEducate
+        case denialOfAdmission
+        case denialOfAdmissionComplainDetails
+        case denialOfAdmissionParentDetails
+        case denialOfJob
         case general
+        case studentProfile
     }
     
     var type: FormType = .general
@@ -59,7 +70,7 @@ class FormBuilderViewController: BaseViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        labelTitle.makeItTheme(.bold, 18)
+        labelTitle.makeItTheme(.bold, 16)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,12 +83,12 @@ class FormBuilderViewController: BaseViewController {
         super.viewDidLoad()
         setupNavigation()
         view.backgroundColor = .appBG
-        
-        APPMetaDataHandler.shared.populateDistricts()
     }
     
     private func setUpView() {
         let fields: [FormField]
+        
+        var buttonTitle = "register_submit".localized()
         
         switch type {
         case .schoolInfo:
@@ -105,9 +116,45 @@ class FormBuilderViewController: BaseViewController {
                           value: nil, isRequired: true),
                 FormField(fieldType: .text, placeholder: "Last Name", name: "lastName", value: nil, isRequired: false)
             ]
+            
+        case .denialOfAdmission:
+            self.setTitle("candidate_details".localized())
+            labelTitle.text = "" //"".localized()
+            topTitleView.isHidden = true
+            
+            buttonTitle = "next".localized()
+            
+            fields = populateCandidateDetails()
+            
+        case .denialOfAdmissionComplainDetails:
+            self.setTitle("complain_details".localized())
+            topTitleView.isHidden = true
+            
+            buttonTitle = "Submit".localized()
+            
+            fields = populateComplainDetailsAdmission()
+            
+        case .denialOfAdmissionParentDetails:
+            self.setTitle("parent_details".localized())
+            labelTitle.text = "if_the_complainant".localized()
+            
+            buttonTitle = "next".localized()
+            
+            fields = populateParentsDetails()
+        case .denialOfJob:
+            self.setTitle("candidate_details".localized())
+            labelTitle.text = "" //"".localized()
+            topTitleView.isHidden = true
+            buttonTitle = "next".localized()
+            fields = populateCandidateDetails()
+        case .studentProfile:
+            self.setTitle("update_profile".localized())
+            labelTitle.text = "personal_information".localized()
+            buttonTitle = "submit".localized()
+            fields = populateStudentProfile()
         }
         
-        let formBuilder = FormBuilderView(fields: fields)
+        let formBuilder = FormBuilderView(fields: fields, buttonTitle)
         formBuilder.backgroundColor = .appBG
         formBuilder.translatesAutoresizingMaskIntoConstraints = false
         formBuilder.delegate = self
@@ -127,25 +174,159 @@ class FormBuilderViewController: BaseViewController {
         ])
     }
     
+    private func populateComplainDetailsAdmission() -> [FormField] {
+        [
+            
+//            Institute Name
+//            Institute Email Address
+//            District
+//            select
+//            Reason of Denial of Addmission
+            
+            FormField(fieldType: .text, placeholder: "institute_name".localized(), name: "institute_name",
+                      value: nil, isRequired: false),
+            
+            FormField(fieldType: .text, placeholder: "institute_email".localized(), name: "institute_email",
+                      value: nil, isRequired: false),
+            
+            FormField(fieldType: .email, placeholder: "institute_contact_no".localized(), name: "institute_contact_no",
+                      value: nil, isRequired: false),
+            
+            FormField(fieldType: .text, placeholder: "present_address".localized(), name: "present_address_institute",
+                      value: nil, isRequired: false),
+            
+            
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
+                      placeholder: "district".localized(),
+                      name: "district_institute",
+                      value: nil,
+                      isRequired: false),
+            
+            FormField(fieldType: .textLong, placeholder: "reason_of_denial_of_admission".localized(), name: "reason_of_denial_of_admission", value: nil, isRequired: false),
+            
+            FormField(fieldType: .recordYourMessage, placeholder: "record_your_message".localized(), name: "record_your_message", value: nil, isRequired: false),
+            
+            FormField(fieldType: .uploadFile, placeholder: "upload_related_documents".localized(), name: "upload_related_documents_addmission", value: nil, isRequired: false),
+            
+            FormField(fieldType: .checkbox, placeholder: "i_herby_that".localized(), name: "checkbox", value: nil, isRequired: false),
+            
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+        ]
+    }
+    
+    private func populateComplainDetails() -> [FormField] {
+        [
+            
+            FormField(fieldType: .text, placeholder: "company_name".localized(), name: "company_name",
+                      value: nil, isRequired: false),
+            
+            FormField(fieldType: .text, placeholder: "company_contact_number".localized(), name: "company_contact_number",
+                      value: nil, isRequired: false),
+            
+            FormField(fieldType: .email, placeholder: "company_email_address".localized(), name: "company_email_address",
+                      value: nil, isRequired: false),
+            
+            FormField(fieldType: .text, placeholder: "present_address_company".localized(), name: "present_address_company",
+                      value: nil, isRequired: false),
+            
+            
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
+                      placeholder: "district".localized(),
+                      name: "district_company",
+                      value: nil,
+                      isRequired: false),
+            
+            
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+            
+            FormField(fieldType: .textLong, placeholder: "reason_of_denial_of_admission", name: "reason_of_denial_of_admission", value: nil, isRequired: false),
+            
+            FormField(fieldType: .recordYourMessage, placeholder: "record_your_message".localized(), name: "record_your_message", value: nil, isRequired: false),
+            
+            FormField(fieldType: .uploadFile, placeholder: "upload_file".localized(), name: "upload_file", value: nil, isRequired: false),
+            
+            FormField(fieldType: .checkbox, placeholder: "i_herby_that".localized(), name: "checkbox", value: nil, isRequired: false)
+        ]
+    }
+    
+    private func populateParentsDetails() -> [FormField] {
+        [
+            FormField(fieldType: .text, placeholder: "full_name".localized(), name: "full_name",
+                      value: nil, isRequired: false),
+            
+            FormField(fieldType: .number, placeholder: "cnic".localized(), name: "cnic", value: nil, isRequired: false),
+            
+            FormField(fieldType: .number, placeholder: "contact_no".localized(), name: "contact_no", value: nil, isRequired: false),
+            
+            FormField(fieldType: .email, placeholder: "email".localized(), name: "email", value: nil, isRequired: false),
+            
+            FormField(fieldType: .dropdown(options: ["Father", "Mother", "Guardian"]),
+                      placeholder: "relation_with_cadidate".localized(),
+                      name: "relation_with_cadidate",
+                      value: nil,
+                      isRequired: false),
+            
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false)
+        ]
+    }
+    
+    private func populateCandidateDetails() -> [FormField] {
+        [
+            FormField(fieldType: .text, placeholder: "full_name".localized(), name: "fullname",
+                      value: nil, isRequired: false),
+            
+            FormField(fieldType: .text, placeholder: "father_name".localized(), name: "father_name", value: nil, isRequired: false),
+            
+            FormField(fieldType: .dropdown(options: ["Male", "Female", "other"]),
+                      placeholder: "gender".localized(),
+                      name: "gender",
+                      value: nil,
+                      isRequired: false),
+            
+            FormField(fieldType: .date, placeholder: "dob".localized(), name: "dob", value: nil, isRequired: true),
+            
+            FormField(fieldType: .number, placeholder: "cnic".localized(), name: "cnic", value: nil, isRequired: false),
+            
+            FormField(fieldType: .number, placeholder: "contact_no".localized(), name: "contact_no", value: nil, isRequired: false),
+            
+            FormField(fieldType: .text, placeholder: "present_address".localized(), name: "present_address", value: nil, isRequired: false),
+            
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
+                      placeholder: "district".localized(),
+                      name: "district",
+                      value: nil,
+                      isRequired: false),
+            
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDisabilitiesNames()),
+                      placeholder: "disability".localized(),
+                      name: "disability",
+                      value: nil,
+                      isRequired: false),
+            
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false)
+        ]
+        
+    }
+    
     private func populateForAdditionalInfo() -> [FormField] {
         [
             FormField(fieldType: .number,
                       placeholder: "establish_year".localized(),
                       name: "establish_year",
                       value: "\(String(describing: selectedSchool?.EstablishedYear ?? 0))",
-                      isRequired: true),
+                      isRequired: false),
             
             FormField(fieldType: .text,
                       placeholder: "location".localized(),
                       name: "location",
                       value: selectedSchool?.Location,
-                      isRequired: true),
+                      isRequired: false),
             
             FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
                       placeholder: "district".localized(),
                       name: "district",
                       value: nil,
-                      isRequired: true),
+                      isRequired: false),
             
             FormField(fieldType: .number,
                       placeholder: "number_of_trained_teachers".localized(),
@@ -186,7 +367,7 @@ class FormBuilderViewController: BaseViewController {
             FormField(fieldType: .dropdown(options: ["Free", "Paid"]),
                       placeholder: "free_or_paid_education".localized(),
                       name: "free_or_paid_education",
-                      value: "\(String(describing: selectedSchool?.FreeOrPaid ?? false))",
+                      value: "\(String(describing: selectedSchool?.FreeOrPaid ?? 0))",
                       isRequired: false),
             
             FormField(fieldType: .number,
@@ -194,22 +375,31 @@ class FormBuilderViewController: BaseViewController {
                       name: "number_of_total_students",
                       value: "\(String(describing: selectedSchool?.NumberOfSeats ?? 0))",
                       isRequired: false),
+            
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false)
         ]
     }
+   let firstName =  FormField(fieldType: .text,
+                              placeholder: "first_name".localized(),
+                              name: "first_name",
+                              value: USM.shared.getUser().firstName,
+                              isRequired: true)
+    
+    let lastName =  FormField(fieldType: .text,
+                               placeholder: "last_name".localized(),
+                               name: "last_name",
+                              value: USM.shared.getUser().lastName,
+                               isRequired: true)
+    
+    let fatherName = FormField(fieldType: .text,
+                               placeholder: "father_name".localized(),
+                               name: "father_name", value: nil,
+                               isRequired: false)
     
     private func populateForSchoolInfo() -> [FormField] {
         [
-            FormField(fieldType: .text,
-                      placeholder: "first_name".localized(),
-                      name: "first_name",
-                      value: UserSessionManager.shared.getUser().firstName,
-                      isRequired: true),
-            
-            FormField(fieldType: .text,
-                      placeholder: "last_name".localized(),
-                      name: "last_name",
-                      value: UserSessionManager.shared.getUser().lastName,
-                      isRequired: true),
+            firstName,
+            lastName,
             
             FormField(fieldType: .text,
                       placeholder: "school_name".localized(),
@@ -246,6 +436,62 @@ class FormBuilderViewController: BaseViewController {
                       name: "designation",
                       value: selectedSchool?.Designation,
                       isRequired: true),
+            
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+        ]
+    }
+    
+    private func populateStudentProfile() -> [FormField] {
+        [
+            firstName,
+            lastName,
+            fatherName,
+            FormField(fieldType: .text,
+                      placeholder: "father_cnic".localized(),
+                      name: "father_cnic",
+                      value: nil,
+                      isRequired: true),
+            
+            FormField(fieldType: .text,
+                      placeholder: "email".localized(),
+                      name: "email",
+                      value: USM.shared.getUser().emailAddress,
+                      isRequired: true),
+            
+            FormField(fieldType: .dropdown(options: ["Male", "Female", "other"]),
+                      placeholder: "gender".localized(),
+                      name: "gender",
+                      value: nil,
+                      isRequired: false),
+            FormField(fieldType: .date, placeholder: "dob".localized(), name: "dob", value: nil, isRequired: true),
+            FormField(fieldType: .number, placeholder: "cnic".localized(), name: "cnic", value: USM.shared.getUser().cNIC, isRequired: false, isEnabled: false),
+            FormField(fieldType: .text, placeholder: "address".localized(), name: "address", value: nil, isRequired: false),
+            
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
+                      placeholder: "district".localized(),
+                      name: "district",
+                      value: nil,
+                      isRequired: false),
+            
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDisabilitiesNames()),
+                      placeholder: "disability".localized(),
+                      name: "disability",
+                      value: nil,
+                      isRequired: false),
+            
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getPreviousEducationName()),
+                      placeholder: "previous_education".localized(),
+                      name: "previous_education",
+                      value: nil,
+                      isRequired: false),
+            
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+            
+            FormField(fieldType: .uploadFile, placeholder: "upload_picture", name: "upload_picture", value: nil, isRequired: false),
+            FormField(fieldType: .uploadFile, placeholder: "disability_certificate", name: "disability_certificate", value: nil, isRequired: false),
+            FormField(fieldType: .uploadFile, placeholder: "upload_form_b_certi", name: "upload_form_b_certi", value: nil, isRequired: false),
+            
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
         ]
     }
 }
@@ -298,8 +544,44 @@ extension FormBuilderViewController: FormBuilderProtocol {
                                                                 AboutText: about))
         case .additionalInfo:
             break
+        case .denialOfAdmission:
+            guard let dob = data["dob"] as? String else {
+                SMM().showError(title: "Sorry", message: "Something Went Wrong")
+                return
+            }
+            let type: FormType
+            if dob.isAbove18() {
+                type = .denialOfAdmissionComplainDetails
+            } else {
+                type = .denialOfAdmissionParentDetails
+            }
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.type = type
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        case .denialOfAdmissionComplainDetails:
+            break
+        case .denialOfAdmissionParentDetails:
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.type = .denialOfAdmissionComplainDetails
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        case .denialOfJob:
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.type = .denialOfAdmissionComplainDetails
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        case .studentProfile:
+            break
         }
     }
+    
 }
 
 struct SchoolInfoCredentials: Codable {

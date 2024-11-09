@@ -28,16 +28,18 @@ class InstituteCell: UICollectionViewCell {
     
     func configure(with model: InstituteModel) {
         
-        btnViewInfo.makeItThemePrimary(13)
+        btnViewInfo.makeItThemePrimary(14)
         btnViewInfo.setTitle("view_info".localized(), for: .normal)
+        btnViewInfo.isUserInteractionEnabled = false
         
         labelDistrict.text = model.Location
         labelSeats.text = "\(model.NumberOfSeats ?? 0) seats available"
         
-        labelDistrict.makeItTheme(.medium, 12, .appBlue)
-        labelSeats.makeItTheme(.light, 8, .textDark)
-        
-        guard let image = URL(string: model.ImageURL ?? "") else { return }
+        labelDistrict.makeItTheme(.bold, 14, .appBlue)
+        labelSeats.makeItTheme(.medium, 10, .textDark)
+
+        guard let image = URL(string: model.ImageURL?.convertToHttps() ?? "") else { return }
+        imageSchool.contentMode = .scaleAspectFill
         imageSchool.kf.setImage(with: image)
     }
 }

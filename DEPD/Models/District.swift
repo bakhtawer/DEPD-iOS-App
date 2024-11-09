@@ -94,3 +94,47 @@ struct Designations: Codable {
         }
     }
 }
+
+struct PreviousEducation: Codable {
+    var peId : Int?
+    var name : String?
+    enum CodingKeys: String, CodingKey {
+        case peId = "Id"
+        case name = "DegreeName"
+    }
+    init(from decoder: Decoder) throws {
+        do {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            peId = try values.decodeIfPresent(Int.self, forKey: .peId) ?? -1
+            name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
+    }
+}
+
+struct Classes: Codable {
+    var peId : Int?
+    var name : String?
+    enum CodingKeys: String, CodingKey {
+        case peId = "Id"
+        case name = "ClassName"
+    }
+    init(from decoder: Decoder) throws {
+        do {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            peId = try values.decodeIfPresent(Int.self, forKey: .peId) ?? -1
+            name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
+    }
+}

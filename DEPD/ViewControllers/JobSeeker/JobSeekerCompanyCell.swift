@@ -27,14 +27,21 @@ class JobSeekerCompanyCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
-    func configure(with model: InstituteHomeModel) {
+    func configure(with model: CompanyModel) {
         
         viewBg.applyShadow()
         
-        guard let image = URL(string: model.ProfilePictureURL?.convertToHttps() ?? "") else { return }
+        companayPosting.makeItTheme(.bold, 16, .textDark)
+        companayname.makeItTheme(.regular, 14, .textLightGray)
+        companayJobsCoun.makeItTheme(.regular, 14, .textLightGray)
+        
+        companayPosting.text = model.PositionName
+        companayname.text = model.CompanyName
+        companayJobsCoun.text = "\(model.NoOfVaccancies ?? 0) \("jobs".localized())"
+        
+        guard let image = URL(string: model.CompanyImageURL?.convertToHttps() ?? "") else { return }
         imageCompany.contentMode = .scaleAspectFit
-        imageCompany.kf.setImage(with: image,
-                                placeholder: UIImage(named: "studentplacehoder"))
+        imageCompany.kf.setImage(with: image)
     }
     
 }

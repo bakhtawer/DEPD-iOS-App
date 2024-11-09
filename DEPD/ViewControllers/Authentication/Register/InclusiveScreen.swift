@@ -32,18 +32,6 @@ class InclusiveScreen: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.viewPlayer.frame.width, height: self.viewPlayer.frame.height))
-
-        viewPlayer.backgroundColor = .appDarkBG
-        // Add the WKWebView to the view
-        self.viewPlayer.addSubview(webView)
-//        &ab_channel=DEPDKarachiDEPDKarachi&
-        if let url = URL(string: "https://www.youtube.com/embed/R9m-2t0iKEE?playsinline=1&autoplay=1&modestbranding=1&showinfo=0&rel=0&controls=0") {
-           let request = URLRequest(url: url)
-            webView.load(request)
-        }
-        
         buttonOne.addTapGestureRecognizer {
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: RegisterAsSelectionTwo.self)
@@ -58,6 +46,7 @@ class InclusiveScreen: BaseViewController {
         }
 
         self.view.backgroundColor = .appBG
+        viewPlayer.backgroundColor = .appDarkBG
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -67,9 +56,20 @@ class InclusiveScreen: BaseViewController {
         view.layoutIfNeeded()
         view.setNeedsDisplay()
         
+        webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.viewPlayer.frame.width, height: self.viewPlayer.frame.height))
+        
+        
+        // Add the WKWebView to the view
+        self.viewPlayer.addSubview(webView)
+//        &ab_channel=DEPDKarachiDEPDKarachi&
+        if let url = URL(string: "https://www.youtube.com/embed/R9m-2t0iKEE?playsinline=1&autoplay=1&modestbranding=1&showinfo=0&rel=0&controls=0") {
+           let request = URLRequest(url: url)
+            webView.load(request)
+        }
+        
         // Localise here
         textTopDescription.text = "inclusive_screen_description".localized()
-        textTopDescription.makeItTheme(.regular, 11, .textDark, 16.0)
+        textTopDescription.makeItTheme(.regular, 11, .textDark, nil, 16.0)
         buttonOne.makeItTheme(text: "register_inclusive_education".localized(),
                               .bold, 24, .appLight, .appGreen)
         buttonTwo.makeItTheme(text: "register_inclusive_career".localized(),
