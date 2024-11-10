@@ -136,6 +136,13 @@ class FormBuilderView: UIView {
             dropdownIcon.contentMode = .scaleAspectFit
             dropdownIcon.tintColor = .textDark
             
+            let containerView = UIView(frame: CGRect(x: 0, y: 0, width: dropdownIcon.frame.width + 32, height: dropdownIcon.frame.height))
+            dropdownIcon.frame = CGRect(x: 16, y: 0, width: dropdownIcon.frame.width, height: dropdownIcon.frame.height)
+            containerView.addSubview(dropdownIcon)
+            
+            dateTF.rightView = containerView
+            dateTF.rightViewMode = .always
+            
             // Add a toolbar with a "Done" button to dismiss the picker
             let toolbar = UIToolbar()
             toolbar.sizeToFit()
@@ -225,7 +232,18 @@ class FormBuilderView: UIView {
             button.makeItTheme(text: field.placeholder, .bold, 18, .textLight, .appGreen)
             button.makeHight(height: 50)
             button.makeButtonIconRight(named: "square.and.arrow.up")
+            button.addTapGestureRecognizer {
+                self.delegate?.getImageFor(name: field.name)
+            }
             return button
+        case .uploadedFile:
+            let view = UploadedFileView(labelText: field.placeholder,
+                                        imageURL: field.value ?? "",
+                                        image: field.image)
+            view.onToggle = {
+                self.delegate?.getImageFor(name: field.name)
+            }
+            return view
         case .recordYourMessage:
             
             let textField = UITextField()
@@ -434,3 +452,109 @@ class CheckboxView: UIView {
         checkboxButton.tintColor = isChecked ? .systemBlue : .gray
     }
 }
+
+class UploadedFileView: UIView {
+
+    // MARK: - Properties
+    private let editButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "pencil.line"), for: .normal)
+        button.tintColor = .textDark
+        return button
+    }()
+
+    private let label: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.makeItTheme(.bold, 16, .appBlue)
+        return label
+    }()
+
+    private let lineView: UIView = {
+        let line = UIView()
+        line.backgroundColor = .appBlue
+        return line
+    }()
+
+    private let imageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+
+    // Closure to notify about changes
+    var onToggle: (() -> Void)?
+
+    // MARK: - Initializers
+    init(labelText: String, imageURL: String, image: UIImage?) {
+        super.init(frame: .zero)
+        label.text = labelText
+        setupViews()
+        setupConstraints()
+        
+        if let image = image {
+            imageView.image = image
+        }else {
+            // Load image from URL (using Kingfisher, URLSession, etc.)
+            guard let imageURL = URL(string: imageURL) else { return }
+            imageView.kf.setImage(with: imageURL)
+        }
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupViews()
+        setupConstraints()
+    }
+
+    // MARK: - Setup Methods
+    private func setupViews() {
+        addSubview(editButton)
+        addSubview(label)
+        addSubview(lineView)
+        addSubview(imageView)
+        
+        editButton.addTarget(self, action: #selector(didTapEditButton), for: .touchUpInside)
+    }
+
+    private func setupConstraints() {
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        lineView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            // Edit button constraints
+            editButton.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            editButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
+            editButton.widthAnchor.constraint(equalToConstant: 24),
+            editButton.heightAnchor.constraint(equalToConstant: 24),
+
+            // Label constraints
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 12),
+            label.trailingAnchor.constraint(equalTo: editButton.leadingAnchor, constant: -8),
+
+            // Line view constraints
+            lineView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 12),
+            lineView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            lineView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            lineView.heightAnchor.constraint(equalToConstant: 2),
+
+            // Image view constraints
+            imageView.topAnchor.constraint(equalTo: lineView.bottomAnchor, constant: 8),
+            imageView.leadingAnchor.constraint(equalTo: lineView.leadingAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 150),
+            imageView.widthAnchor.constraint(equalToConstant: 150),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+        ])
+    }
+
+    // MARK: - Checkbox Toggle
+    @objc private func didTapEditButton() {
+        onToggle?()
+    }
+}
+

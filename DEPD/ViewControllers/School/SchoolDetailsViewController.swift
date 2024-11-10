@@ -36,18 +36,14 @@ class SchoolDetailsViewController: BaseViewController {
         super.viewDidLoad()
         setupNavigation()
         setView()
-        guard let selectedSchool = selectedSchool else { return }
-        guard let image = URL(string: selectedSchool.ImageURL?.convertToHttps() ?? "") else { return }
-        imageSchool.contentMode = .scaleAspectFill
-        imageSchool.kf.setImage(with: image,
-                                placeholder: UIImage(named: "studentplacehoder"))
+        
+//        guard let selectedSchool = selectedSchool else { return }
         
         buttonEditSchoolInfo.addTapGestureRecognizer {
             DispatchQueue.main.async {[weak self] in
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
                 view.type = .schoolInfo
-                view.selectedSchool = selectedSchool
                 openModuleOnNavigation(from: self, controller: view)
             }
         }
@@ -57,7 +53,7 @@ class SchoolDetailsViewController: BaseViewController {
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
                 view.type = .aboutYourSchool
-                view.selectedSchool = selectedSchool
+//                view.selectedSchool = selectedSchool
                 openModuleOnNavigation(from: self, controller: view)
             }
         }
@@ -67,10 +63,16 @@ class SchoolDetailsViewController: BaseViewController {
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
                 view.type = .additionalInfo
-                view.selectedSchool = selectedSchool
+//                view.selectedSchool = selectedSchool
                 openModuleOnNavigation(from: self, controller: view)
             }
         }
+        
+        
+        guard let image = URL(string: USM.shared.getUser().schoolDetailInfo?.profileImageURL?.convertToHttps() ?? "") else { return }
+        imageSchool.contentMode = .scaleAspectFill
+        imageSchool.kf.setImage(with: image,
+                                placeholder: UIImage(named: "studentplacehoder"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,7 +88,7 @@ class SchoolDetailsViewController: BaseViewController {
         viewTop.applyShadow()
         
         labelSchoolName.makeItTheme(.bold, 16, .textDark)
-        labelSchoolLocation.makeItTheme(.regular, 13, .textLightGray)
+        labelSchoolLocation.makeItTheme(.regular, 14, .textLightGray)
         
         labelSchoolInfo.text = "school_information".localized()
         setMasterDetailsLabels(master: labelSchoolInfo, details: labelSchoolInfoDetails)
@@ -97,37 +99,41 @@ class SchoolDetailsViewController: BaseViewController {
         labelAddiotnalInfo.text = "additional_info".localized()
         setMasterDetailsLabels(master: labelAddiotnalInfo, details: labelAddiontalInfoDetails)
         
+        let school = USM.shared.getUser().schoolDetailInfo
         
-        guard let selectedSchool = selectedSchool else { return }
-        let fullName = (selectedSchool.SchoolName ?? "")
-        labelSchoolName.text = fullName
-        labelSchoolLocation.text = selectedSchool.Location
+        
+        labelSchoolName.text = school?.schoolName
+        labelSchoolLocation.text = school?.district
         
         let schoolInfo = """
-\("school_name".localized()): \(selectedSchool.SchoolName ?? "")
-\("email".localized()): \(selectedSchool.EmailAddress ?? "N/A")
-\("ntn_number".localized()): \(selectedSchool.NTNNUmber ?? "N/A")
-\("contact_number".localized()): \(selectedSchool.ContactNumber ?? "N/A")
+\("school_name".localized()): \(school?.schoolName ?? "")
+\("email".localized()): \(school?.emailAddress ?? "N/A")
+\("ntn_number".localized()): \(school?.ntnNumber ?? "N/A")
+\("contact_number".localized()): \(USM.shared.getUser().contactNo ?? "N/A")
 \("first_name".localized()): N/A
 \("last_name".localized()): N/A
-\("designation".localized()): \(selectedSchool.Designation ?? "N/A")
+\("designation".localized()): \(school?.designation ?? "N/A")
 """
         labelSchoolInfoDetails.text = schoolInfo
+        labelSchoolInfoDetails.makeItTheme(.regular, 14, .textDark, .left, 20)
         
-        labelAboutYourSchoolDetails.text = selectedSchool.AboutText ?? "N/A"
+        labelAboutYourSchoolDetails.text = school?.aboutText ?? "N/A"
+        labelAboutYourSchoolDetails.makeItTheme(.regular, 14, .textDark, .left, 20)
         
         let additionalInfo = """
-\("establish_year".localized()): \(selectedSchool.EstablishedYear ?? 0)
-\("location".localized()): \(selectedSchool.Location ?? "")
+\("establish_year".localized()): \(school?.establishedYear ?? 0)
+\("location".localized()): \(school?.location ?? "")
 \("district".localized()): N/A
-\("number_of_trained_teachers".localized()): \(selectedSchool.NumOfTrainedTeachers ?? 0)
+\("number_of_trained_teachers".localized()): \(school?.numberOfTrainedTeachers ?? 0)
 \("available_seats_pwd".localized()): N/A
-\("accessibility_material".localized()): \(selectedSchool.HasAccessibilityMaterial ?? false)
-\("trained_teachers's".localized()): \(selectedSchool.HasTrainingMaterial ?? false)
-\("free_or_paid_education".localized()): \(selectedSchool.FreeOrPaid ?? 0)
-\("number_of_total_students".localized()): \(selectedSchool.NumberOfSeats ?? 0)
+\("accessibility_material".localized()): \(school?.hasAccessibilityMaterial ?? false)
+\("trained_teachers's".localized()): \(school?.hasTrainingMaterial ?? false)
+\("free_or_paid_education".localized()): \(school?.freeOrPaid ?? 0)
+\("number_of_total_students".localized()): \(school?.availableSeats ?? 0)
 """
         labelAddiontalInfoDetails.text = additionalInfo
+        labelAddiontalInfoDetails.makeItTheme(.regular, 14, .textDark, .left, 20)
+
         
     }
     

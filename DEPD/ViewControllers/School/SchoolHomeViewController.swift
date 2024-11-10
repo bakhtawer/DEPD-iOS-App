@@ -68,6 +68,13 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
                 openModuleOnNavigation(from: self, controller: view)
             }
         }
+        
+        self.schoolLocation.text = "" //USM.shared.getUser().schoolDetailInfo?.district
+        self.schoolProfilePercentage.text = "0% \("profile_completed".localized())"
+        guard let image = URL(string: USM.shared.getUser().schoolDetailInfo?.profileImageURL?.convertToHttps() ?? "") else { return }
+        self.mainIconImage.contentMode = .scaleAspectFill
+        self.mainIconImage.kf.setImage(with: image,
+                                       placeholder: UIImage(named: "studentplacehoder"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -119,7 +126,6 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
         } else {
             collectionView.semanticContentAttribute = .forceLeftToRight
         }
-        
         
         createDataSource()
     }
@@ -187,14 +193,14 @@ extension SchoolHomeViewController { // Make Search Section
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
               widthDimension: .fractionalWidth(1),
-              heightDimension: .absolute(147)
+              heightDimension: .absolute(204)
             )
           )
           item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         
         // group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                       heightDimension: .absolute(140))
+                                                       heightDimension: .absolute(204))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
@@ -207,6 +213,32 @@ extension SchoolHomeViewController { // Make Search Section
     }
 }
 
+extension SchoolHomeViewController: InstituteStudentCellProtocol {
+    func viewProfile(id: InstituteHomeModel) {
+        DispatchQueue.main.async {[weak self] in
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: SchoolStudentDetailViewController.self)
+            view.selectedStudent = id
+            openModuleOnNavigation(from: self, controller: view)
+        }
+    }
+    func acceptAdmission(id: InstituteHomeModel) {
+        DispatchQueue.main.async {[weak self] in
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+            view.type = .acceptStudentAdmission
+            openModuleOnNavigation(from: self, controller: view)
+        }
+    }
+    func rejectAdmission(id: InstituteHomeModel) {
+        DispatchQueue.main.async {[weak self] in
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+            view.type = .rejectStudentAdmission
+            openModuleOnNavigation(from: self, controller: view)
+        }
+    }
+}
 extension SchoolHomeViewController {
     func createDataSource() {
         
@@ -217,6 +249,7 @@ extension SchoolHomeViewController {
                                                                 return UICollectionViewCell()
                                                             }
                 cell.configure(with: app)
+                                                            cell.delegate = self
             return cell
         }
     }
@@ -233,12 +266,7 @@ extension SchoolHomeViewController {
 
 extension SchoolHomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        DispatchQueue.main.async {[weak self] in
-            let storyboard = getStoryBoard(.main)
-            let view = storyboard.instantiateViewController(ofType: SchoolStudentDetailViewController.self)
-            view.selectedStudent = self?.viewModel.getInstitutes()[indexPath.row]
-            openModuleOnNavigation(from: self, controller: view)
-        }
+        
     }
 }
 

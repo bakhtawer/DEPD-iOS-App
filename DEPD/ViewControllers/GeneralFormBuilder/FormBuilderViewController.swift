@@ -21,6 +21,7 @@ enum FieldType {
     case uploadFile
     case checkbox
     case gap
+    case uploadedFile
 }
 
 // Struct to represent each form field
@@ -35,10 +36,12 @@ struct FormField: Equatable {
     let value: String?
     let isRequired: Bool
     var isEnabled: Bool = true
+    var image: UIImage?
 }
 
 protocol FormBuilderProtocol: AnyObject {
     func submitForm(data:  [String: Any])
+    func getImageFor(name: String)
 }
 
 class FormBuilderViewController: BaseViewController {
@@ -48,6 +51,8 @@ class FormBuilderViewController: BaseViewController {
     @IBOutlet weak var labelTitle: UILabel!
     
     let service = APIService()
+    
+    var selectImageName = ""
     
     enum FormType {
         case schoolInfo
@@ -63,6 +68,8 @@ class FormBuilderViewController: BaseViewController {
         case denialOfJobComplainDetails
         case general
         case studentProfile
+        case acceptStudentAdmission
+        case rejectStudentAdmission
     }
     
     var type: FormType = .general
@@ -71,6 +78,8 @@ class FormBuilderViewController: BaseViewController {
     
     var denialOfAdmission: DenialOfAdmission? = nil
     var denialOfJob: DenialOfJob? = nil
+    
+    var studentDetails: StudentDetails? = nil
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -161,6 +170,34 @@ class FormBuilderViewController: BaseViewController {
             topTitleView.isHidden = true
             buttonTitle = "Submit".localized()
             fields = populateComplainDetails()
+        case .acceptStudentAdmission:
+            self.setTitle("")
+            labelTitle.text = "student_admission".localized()
+            buttonTitle = "Submit".localized()
+            fields = [
+                FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getClassesName()),
+                          placeholder: "select_class".localized(),
+                          name: "select_class",
+                          value: nil,
+                          isRequired: true),
+                FormField(fieldType: .number, placeholder: "enter_fee".localized(), name: "enter_fee", value: nil, isRequired: true),
+                FormField(fieldType: .uploadFile, placeholder: "upload_slip".localized(), name: "upload_slip", value: nil, isRequired: false),
+                FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+                FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+                FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+                FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+            ]
+        case .rejectStudentAdmission:
+            self.setTitle("")
+            labelTitle.text = "student_admission".localized()
+            buttonTitle = "Submit".localized()
+            fields = [
+                FormField(fieldType: .textLong, placeholder: "enter_reason".localized(), name: "enter_reason", value: nil, isRequired: true),
+                FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+                FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+                FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+                FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+            ]
         }
         
         let formBuilder = FormBuilderView(fields: fields, buttonTitle)
@@ -246,14 +283,15 @@ class FormBuilderViewController: BaseViewController {
     }
     
     private func populateStudentProfile() -> [FormField] {
-        [
+        
+        var fields = [
             firstName,
             lastName,
             fatherName,
             FormField(fieldType: .text,
                       placeholder: "father_cnic".localized(),
                       name: "father_cnic",
-                      value: USM.shared.getUser().oStudentDetails?.fatherCnic,
+                      value: studentDetails?.fatherCnic,
                       isRequired: true),
             
             FormField(fieldType: .text,
@@ -290,13 +328,24 @@ class FormBuilderViewController: BaseViewController {
                       isRequired: false),
             
             FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
-            
-            FormField(fieldType: .uploadFile, placeholder: "upload_picture", name: "upload_picture", value: nil, isRequired: false),
-            FormField(fieldType: .uploadFile, placeholder: "disability_certificate", name: "disability_certificate", value: nil, isRequired: false),
-            FormField(fieldType: .uploadFile, placeholder: "upload_form_b_certi", name: "upload_form_b_certi", value: nil, isRequired: false),
-            
-            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
         ]
+        
+        if let profileUrl = USM.shared.getUser().oStudentDetails?.profilePictureURL, !profileUrl.isEmpty {
+            fields.append(FormField(fieldType: .uploadedFile, placeholder: "upload_profile_picture".localized(), name: "upload_profile_picture", value: profileUrl.convertToHttps(), isRequired: false))
+        }else {
+            fields.append(FormField(fieldType: .uploadFile, placeholder: "upload_profile_picture".localized(), name: "upload_profile_picture", value: nil, isRequired: false))
+        }
+        
+        fields.append(FormField(fieldType: .uploadFile, placeholder: "upload_form_b_cnic".localized(), name: "upload_form_b_cnic", value: nil, isRequired: false))
+        
+        if let disabilityCertificate = USM.shared.getUser().oStudentDetails?.disabilityCertificateURL, !disabilityCertificate.isEmpty {
+            fields.append(FormField(fieldType: .uploadedFile, placeholder: "upload_disability_certificate".localized(), name: "upload_disability_certificate", value: disabilityCertificate.convertToHttps(), isRequired: false))
+        }else {
+            fields.append(FormField(fieldType: .uploadFile, placeholder: "upload_disability_certificate".localized(), name: "upload_disability_certificate", value: nil, isRequired: false))
+        }
+        
+        fields.append(FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false))
+        return fields
     }
     
     private func populateForAdditionalInfo() -> [FormField] {
@@ -373,7 +422,6 @@ class FormBuilderViewController: BaseViewController {
 }
 
 extension FormBuilderViewController {
-    
     func setupNavigation() {
         self.navigationController?.navigationBar.isHidden = false
         self.setBackButton(.textDark).addTapGestureRecognizer {[weak self] in
@@ -383,6 +431,11 @@ extension FormBuilderViewController {
 }
 
 extension FormBuilderViewController: FormBuilderProtocol {
+    func getImageFor(name: String) {
+        selectImageName = name
+        presentActionSheet()
+    }
+    
     func submitForm(data: [String : Any]) {
         switch type {
         case .schoolInfo:
@@ -512,7 +565,33 @@ extension FormBuilderViewController: FormBuilderProtocol {
                 openModuleOnNavigation(from: self, controller: view)
             }
         case .studentProfile:
-            break
+//            studentDetails = data["first_name"] as? String
+//            studentDetails = data["last_name"] as? String
+            studentDetails?.fatherName = data["father_name"] as? String
+            studentDetails?.fatherCnic = data["father_cnic"] as? String
+            studentDetails?.emailAddress = data["email"] as? String
+            studentDetails?.gender = data["gender"] as? String
+            studentDetails?.dob = (data["dob"] as? String)?.toFormattedDate()
+            
+            studentDetails?.address = data["address"] as? String
+            studentDetails?.district = data["district"] as? String
+            let disability = (data["disability"] as? String) ?? ""
+            studentDetails?.disabilityStatusId = APPMetaDataHandler.shared.getDisabilities(byName: disability)?.disabilityId
+            studentDetails?.previousEducation = data["previous_education"] as? String
+//            studentDetails = data["upload_profile_picture"] as? String
+//            studentDetails = data["upload_form_b_cnic"] as? String
+//            studentDetails = data["upload_disability_certificate"] as? String
+            
+            self.showLoadingIndicator(withDimView: true)
+            USM.shared.update(student: studentDetails) { [weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    DispatchQueue.main.async {[weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
+            
         case .denialOfJobComplainDetails:
             
             guard let complainDetailsCheckBox = data["complainDetailsCheckBox"] as? String,
@@ -529,9 +608,6 @@ extension FormBuilderViewController: FormBuilderProtocol {
             denialOfJob?.complainDetailsPresentAddress = data["complainDetailsPresentAddress"] as? String
             denialOfJob?.complainDetailsDistrict = data["complainDetailsDistrict"] as? String
             denialOfJob?.complainDetailsCheckBox = complainDetailsCheckBox.makeItBool
-            
-            print(denialOfJob)
-            
             DispatchQueue.main.async {[weak self] in
                 let storyboard = getStoryBoard(.main)
                 let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
@@ -539,10 +615,84 @@ extension FormBuilderViewController: FormBuilderProtocol {
                 contentVC.moveThankYou = .splash
                 openModuleOverFullScreen(controller: contentVC)
             }
+        case .acceptStudentAdmission:
+            break
+        case .rejectStudentAdmission:
+            break
+        }
+    }
+}
+
+extension FormBuilderViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate {
+    private func presentActionSheet() {
+        let actionSheet = UIAlertController(title: "Select Option", message: nil, preferredStyle: .actionSheet)
+        
+        actionSheet.addAction(UIAlertAction(title: "Select Image", style: .default) { _ in
+            self.openImagePicker()
+        })
+        
+//        actionSheet.addAction(UIAlertAction(title: "Select Document", style: .default) { _ in
+//            self.openDocumentPicker()
+//        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func openImagePicker() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    private func openDocumentPicker() {
+        let documentPicker = UIDocumentPickerViewController(forOpeningContentTypes: [.pdf, .image])
+        documentPicker.delegate = self
+        self.present(documentPicker, animated: true, completion: nil)
+    }
+    
+    // UIImagePickerControllerDelegate method
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[.originalImage] as? UIImage {
+            //                imageView.image = image
+//            print(image)
+            switch type {
+            case .studentProfile:
+                if selectImageName == "upload_profile_picture" {
+                    studentDetails?.profilePictureString = imageToByteString(image: image)
+                    studentDetails?.profilePictureName = "\(UUID().uuidString).jpg"
+                    studentDetails?.hasPPUploaded = true
+                }
+                if selectImageName == "upload_disability_certificate" {
+                    studentDetails?.disabilityCertificateString = imageToByteString(image: image)
+                    studentDetails?.disabilityCertName = "\(UUID().uuidString).jpg"
+                    studentDetails?.hasDisCertUploaded = true
+                }
+            default: break
+            }
+            
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    // UIDocumentPickerDelegate method
+    func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
+        if let documentURL = urls.first {
+            print("Selected document URL: \(documentURL)")
         }
     }
     
+    func imageToByteString(image: UIImage) -> String? {
+        // Convert UIImage to Data (JPEG with 80% quality or PNG)
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return nil }
+        // Convert Data to Base64 encoded string
+        return imageData.base64EncodedString()
+    }
 }
+
 
 struct SchoolInfoCredentials: Codable {
     let SchoolId: Int

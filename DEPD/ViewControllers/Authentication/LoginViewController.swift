@@ -62,32 +62,6 @@ class LoginViewController: BaseViewController {
         labelLoginTitle.makeItTheme(.bold, 20, .appBlue, .center)
         labelLoginAsGust.makeItTheme(.bold, 14, .appGreen)
         
-        switch screenType {
-        case .student:
-#if DEBUG
-            tfUserName.text = "4111111111111"
-            tfPassword.text = "12345678"
-#endif
-            setUpStudent()
-        case .jobSeeker:
-#if DEBUG
-            tfUserName.text = "4333333333333"
-            tfPassword.text = "12345678"
-#endif
-            setUpJobSeeker()
-        case .companyHiring:
-#if DEBUG
-            tfUserName.text = "4444444444444"
-            tfPassword.text = "12345678"
-#endif
-            setUpCompanyHiring()
-        case .institute:
-#if DEBUG
-            tfUserName.text = "4222222222222"
-            tfPassword.text = "12345678"
-#endif
-            setUpInstitute()
-        }
         
         tfUserName.placeholder = "cnic".localized()
         tfPassword.placeholder = "login_password".localized()
@@ -108,6 +82,33 @@ class LoginViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        switch screenType {
+        case .student:
+#if DEBUG
+            tfUserName.text = "4111111111111"
+            tfPassword.text = "12345678"
+#endif
+            setUpStudent()
+        case .jobSeeker:
+#if DEBUG
+            tfUserName.text = "3"
+            tfPassword.text = "3"
+#endif
+            setUpJobSeeker()
+        case .companyHiring:
+#if DEBUG
+            tfUserName.text = "4444444444444"
+            tfPassword.text = "12345678"
+#endif
+            setUpCompanyHiring()
+        case .institute:
+#if DEBUG
+            tfUserName.text = "2" //"4222222222222"
+            tfPassword.text = "2" //"12345678"
+#endif
+            setUpInstitute()
+        }
         
         setView()
         
@@ -141,13 +142,13 @@ class LoginViewController: BaseViewController {
 
         buttonLogin.addTapGestureRecognizer {[weak self] in
             guard let cnic = self?.tfUserName.text, 
-                    cnic.count > 10
+                    cnic.count > 0
             else {
                 SMM().showError(title: "Wrong Info", message: "Please provide correct CNIC number")
                 return
             }
             guard let password = self?.tfPassword.text,
-                  password.count > 1
+                  password.count > 0
             else {
                 SMM().showError(title: "Wrong Info", message: "Please provide correct Password")
                 return
@@ -176,13 +177,13 @@ class LoginViewController: BaseViewController {
         buttonLogin.addTapGestureRecognizer {[weak self] in
             
             guard let cnic = self?.tfUserName.text,
-                    cnic.count > 10
+                    cnic.count > 0
             else {
                 SMM().showError(title: "Wrong Info", message: "Please provide correct CNIC number")
                 return
             }
             guard let password = self?.tfPassword.text,
-                  password.count > 1
+                  password.count > 0
             else {
                 SMM().showError(title: "Wrong Info", message: "Please provide correct Password")
                 return
@@ -199,13 +200,13 @@ class LoginViewController: BaseViewController {
         
         buttonLogin.addTapGestureRecognizer {[weak self] in
             guard let cnic = self?.tfUserName.text,
-                    cnic.count > 10
+                    cnic.count > 0
             else {
                 SMM().showError(title: "Wrong Info", message: "Please provide correct CNIC number")
                 return
             }
             guard let password = self?.tfPassword.text,
-                  password.count > 1
+                  password.count > 0
             else {
                 SMM().showError(title: "Wrong Info", message: "Please provide correct Password")
                 return
@@ -224,13 +225,13 @@ class LoginViewController: BaseViewController {
         
         buttonLogin.addTapGestureRecognizer {[weak self] in
             guard let cnic = self?.tfUserName.text,
-                    cnic.count > 10
+                    cnic.count > 0
             else {
                 SMM().showError(title: "Wrong Info", message: "Please provide correct CNIC number")
                 return
             }
             guard let password = self?.tfPassword.text,
-                  password.count > 1
+                  password.count > 0
             else {
                 SMM().showError(title: "Wrong Info", message: "Please provide correct Password")
                 return
@@ -282,6 +283,10 @@ extension LoginViewController {
             if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
             guard let user = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
             UserSessionManager.shared.setUser(user: user)
+            
+            KeychainManager.save(email, forKey: .cnic)
+            KeychainManager.save(Password, forKey: .password)
+            KeychainManager.save("\(APPMetaDataHandler.shared.userType.rawValue)", forKey: .userType)
             DispatchQueue.main.async { Bootstrapper.createHome()}
         }
     }
@@ -299,6 +304,10 @@ extension LoginViewController {
 extension LoginViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Combine the existing text with the new text
+        if string.isEmpty {
+        // Allow backspace
+            return true
+        }
         let currentText = textField.text ?? ""
         let prospectiveText = (currentText as NSString).replacingCharacters(in: range, with: string)
 

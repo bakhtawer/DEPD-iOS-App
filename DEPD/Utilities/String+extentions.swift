@@ -115,6 +115,8 @@ extension String {
         if self.hasPrefix("http://") {
             // Replace "http://" with "https://"
             return self.replacingOccurrences(of: "http://", with: "https://")
+        } else {
+            return "https://hub.depdportal.com/" + self
         }
         // Return the original string if no change is needed
         return self

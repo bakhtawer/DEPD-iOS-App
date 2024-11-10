@@ -8,6 +8,12 @@
 import UIKit
 import Kingfisher
 
+protocol InstituteStudentCellProtocol: NSObject {
+    func viewProfile(id: InstituteHomeModel)
+    func acceptAdmission(id: InstituteHomeModel)
+    func rejectAdmission(id: InstituteHomeModel)
+}
+
 class InstituteStudentCell: UICollectionViewCell {
     
     @IBOutlet weak var iconStudent: UIImageView!
@@ -17,11 +23,17 @@ class InstituteStudentCell: UICollectionViewCell {
     @IBOutlet weak var ageNGender: UILabel!
     @IBOutlet weak var location: UILabel!
     
-    @IBOutlet weak var viewProfile: UILabel!
-    
     @IBOutlet weak var viewBg: UIView!
     
     static let reuseIdentifier: String = "InstituteStudentCell"
+    
+    @IBOutlet weak var buttonAccept: DEPDButton!
+    @IBOutlet weak var ButtonReject: DEPDButton!
+    @IBOutlet weak var buttonViewProfile: DEPDButton!
+    
+    @IBOutlet weak var labelStatus: UILabel!
+    
+    weak var delegate: InstituteStudentCellProtocol?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,11 +46,11 @@ class InstituteStudentCell: UICollectionViewCell {
         
         studentname.text = (model.student?.FirstName ?? "") + " " + (model.student?.LastName ?? "")
         disablility.text = model.DisabilityName
-        ageNGender.text = "\(model.Gender ?? "") | \(model.Gender ?? "")"
+        ageNGender.text = "\(model.Gender ?? "")"
         location.text = model.District
         
-        viewProfile.makeItTheme(.bold, 13, .appBlue)
-        studentname.makeItTheme(.bold, 13, .textDark)
+        labelStatus.makeItTheme(.bold, 12, .appLight)
+        studentname.makeItTheme(.bold, 16, .textDark)
         disablility.makeItTheme(.regular, 12, .appBlue)
         ageNGender.makeItTheme(.regular, 12, .appBlue)
         location.makeItTheme(.regular, 12, .appBlue)
@@ -46,7 +58,47 @@ class InstituteStudentCell: UICollectionViewCell {
         viewBg.applyShadow()
         iconStudent.roundCorner(withRadis: iconStudent.viewWidth.half)
         
-        viewProfile.text = "view_profile".localized()
+        buttonAccept.makeItTheme(text: "accept".localized(), .bold, 14, .appLight, .appGreen)
+        buttonAccept.makeButtonIcon(named: "checkmark.circle")
+        buttonAccept.makeHight(height: 40, false, true)
+        
+        ButtonReject.makeItTheme(text: "reject".localized(), .bold, 14, .appLight, .orange)
+        ButtonReject.makeButtonIcon(named: "xmark.circle")
+        ButtonReject.makeHight(height: 40, false, true)
+        
+        buttonViewProfile.makeItTheme(text: "view_profile".localized(), .bold, 14, .appLight, .appBlue)
+        buttonViewProfile.makeHight(height: 40, false, true)
+        
+        buttonAccept.addTapGestureRecognizer {[weak self] in
+            self?.delegate?.acceptAdmission(id: model)
+        }
+        ButtonReject.addTapGestureRecognizer {[weak self] in
+            self?.delegate?.rejectAdmission(id: model)
+        }
+        buttonViewProfile.addTapGestureRecognizer {[weak self] in
+            self?.delegate?.viewProfile(id: model)
+        }
+        
+        labelStatus.text = " \("pending".localized()) "
+        labelStatus.backgroundColor = .appYellow
+        
+        let admissionStatusId = model.AdmissionStatusId
+        buttonAccept.isHidden = true
+        ButtonReject.isHidden = true
+        buttonViewProfile.isHidden = true
+        switch admissionStatusId {
+        case 0:
+            buttonAccept.isHidden = false
+            ButtonReject.isHidden = false
+            buttonViewProfile.isHidden = false
+        case 1:
+            buttonAccept.isHidden = false
+            ButtonReject.isHidden = false
+            buttonViewProfile.isHidden = false
+        case 2:
+            buttonViewProfile.isHidden = false
+        default: break
+        }
         
         guard let image = URL(string: model.ProfilePictureURL?.convertToHttps() ?? "") else { return }
         iconStudent.contentMode = .scaleAspectFill
@@ -61,7 +113,6 @@ class InstituteStudentCell: UICollectionViewCell {
         ageNGender.text = "\(jobSeeker.Age ?? "") | \(jobSeeker.Gender?.makeItGender() ?? "")"
         location.text = jobSeeker.District
         
-        viewProfile.makeItTheme(.bold, 13, .appBlue)
         studentname.makeItTheme(.bold, 13, .textDark)
         disablility.makeItTheme(.regular, 12, .appBlue)
         ageNGender.makeItTheme(.regular, 12, .appBlue)
@@ -70,7 +121,6 @@ class InstituteStudentCell: UICollectionViewCell {
         viewBg.applyShadow()
         iconStudent.roundCorner(withRadis: iconStudent.viewWidth.half)
         
-        viewProfile.text = "view_profile".localized()
         
         guard let image = URL(string: jobSeeker.ProfilePicture?.convertToHttps() ?? "") else { return }
         iconStudent.contentMode = .scaleAspectFit

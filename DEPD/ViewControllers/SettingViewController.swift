@@ -23,9 +23,15 @@ class SettingViewController: BaseViewController {
         
         labeluser.text = USM.shared.getUserFullName()
         
+        
         buttonLogout.addTapGestureRecognizer {
             UserSessionManager.shared.LogoutUser()
             Bootstrapper.createSplash()
         }
+        
+        guard let image = URL(string: USM.shared.getUserImage()) else { return }
+        imageuser.contentMode = .scaleAspectFill
+        imageuser.kf.setImage(with: image,
+                              placeholder: UIImage(named: "studentplacehoder"))
     }
 }

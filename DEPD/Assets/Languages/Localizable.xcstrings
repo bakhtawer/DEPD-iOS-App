@@ -47,6 +47,29 @@
         }
       }
     },
+    "accepted" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accepted"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قبول ڪيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قبول کر لیا"
+          }
+        }
+      }
+    },
     "accessibility" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -917,6 +940,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ای میل"
+          }
+        }
+      }
+    },
+    "enter_fee" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Fees"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فيس داخل ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فیس درج کریں۔"
+          }
+        }
+      }
+    },
+    "enter_reason" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Reason"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دليل داخل ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وجہ درج کریں۔"
           }
         }
       }
@@ -2853,6 +2922,29 @@
         }
       }
     },
+    "reject" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reject"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رد ڪرڻ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رد کرنا"
+          }
+        }
+      }
+    },
     "rejected_students" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3359,6 +3451,29 @@
         }
       }
     },
+    "student_admission" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Student Admission"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شاگردن جي داخلا"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "طالب علم کا داخلہ"
+          }
+        }
+      }
+    },
     "suggestion_complains" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3543,6 +3658,75 @@
         }
       }
     },
+    "upload_disability_certificate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload Disability Certificate"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپ لوڊ معذور سرٽيفڪيٽ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوری کا سرٹیفکیٹ اپ لوڈ کریں"
+          }
+        }
+      }
+    },
+    "upload_form_b_cnic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload form B / Cnic"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپ لوڊ فارم B / Cnic"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "B/Cnic فارم اپ لوڈ کریں۔"
+          }
+        }
+      }
+    },
+    "upload_profile_picture" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload Profile Picture"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پروفائل تصوير اپ لوڊ ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پروفائل تصویر اپ لوڈ کریں۔"
+          }
+        }
+      }
+    },
     "upload_related_documents" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3562,6 +3746,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "متعلقہ دستاویزات اپ لوڈ کریں۔"
+          }
+        }
+      }
+    },
+    "upload_slip" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload Slip"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپلوڊ سلپ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پرچی اپ لوڈ کریں۔"
           }
         }
       }

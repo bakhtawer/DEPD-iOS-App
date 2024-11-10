@@ -58,7 +58,7 @@ class SchoolHomeViewModel {
     
     func fetchStudents() {
         delegate?.showLoader()
-        let request = Endpoint.getStudentAdmissions(schoolID: schoolID).request!
+        let request = Endpoint.getStudentAdmissions(schoolID: schoolID, studentId: USM.shared.getUser().oStudentDetails?.id ?? -1).request!
         service.makeRequest(with: request, respModel: ApiResponse<[InstituteHomeModel]>.self) {[weak self] userResponse, error in
             if let error = error { print("DEBUG PRINT:", error); return }
             if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }

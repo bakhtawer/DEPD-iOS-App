@@ -42,6 +42,15 @@ final class APPMetaDataHandler {
     func getDisabilities(byID: Int) -> Disability? {
         (dataAllGeneralList?.DisabilityList ?? []).filter {$0.disabilityId == byID}.last ?? nil
     }
+    func getDisabilities(byName: String) -> Disability? {
+        let filteredList = (dataAllGeneralList?.DisabilityList ?? []).filter {
+            // Normalize and trim both the name and search string
+            let trimmedName = $0.name?.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\r\n", with: " ").replacingOccurrences(of: "\n", with: " ") ?? ""
+            let trimmedSearchTerm = byName.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\r\n", with: " ").replacingOccurrences(of: "\n", with: " ")
+            return trimmedName.contains(trimmedSearchTerm)
+        }
+        return filteredList.first
+    }
     
     // MARK: Gender
     func getGenders() -> [Gender] {

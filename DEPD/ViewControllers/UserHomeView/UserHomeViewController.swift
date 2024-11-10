@@ -110,12 +110,6 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         buttonLocation.addTapGestureRecognizer {[weak self] in
             self?.setUpPickerViewDistrict()
         }
-        
-        guard let image = URL(string: USM.shared.getUserImage()) else { return }
-        imageUser.contentMode = .scaleAspectFit
-        imageUser.kf.setImage(with: image,
-                              placeholder: UIImage(named: "studentplacehoder"))
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -126,6 +120,11 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         
         collectionView.setNeedsDisplay()
         collectionView.reloadData()
+        
+        guard let image = URL(string: USM.shared.getUserImage()) else { return }
+        imageUser.contentMode = .scaleAspectFill
+        imageUser.kf.setImage(with: image,
+                              placeholder: UIImage(named: "studentplacehoder"))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -156,6 +155,7 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
             view.type = .studentProfile
+            view.studentDetails = USM.shared.getUser().oStudentDetails
             openModuleOnNavigation(from: self, controller: view)
         }
     }

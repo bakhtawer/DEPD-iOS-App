@@ -48,6 +48,8 @@
 		CB73D46E2CDFB5B600E24FA2 /* DenialOfAdmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D46D2CDFB5A700E24FA2 /* DenialOfAdmission.swift */; };
 		CB73D4702CDFB95E00E24FA2 /* DenailOfForms.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D46F2CDFB94C00E24FA2 /* DenailOfForms.swift */; };
 		CB73D4722CE028FC00E24FA2 /* ImageGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D4712CE028F900E24FA2 /* ImageGalleryView.swift */; };
+		CB73D4762CE1088C00E24FA2 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D4752CE1088C00E24FA2 /* KeychainManager.swift */; };
+		CB73D47C2CE141ED00E24FA2 /* UpdateSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D47B2CE141E600E24FA2 /* UpdateSchool.swift */; };
 		CB7808342C05021900F3E785 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808222C05021800F3E785 /* Roboto-Italic.ttf */; };
 		CB7808352C05021900F3E785 /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */; };
 		CB7808362C05021900F3E785 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */; };
@@ -194,6 +196,8 @@
 		CB73D46D2CDFB5A700E24FA2 /* DenialOfAdmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenialOfAdmission.swift; sourceTree = "<group>"; };
 		CB73D46F2CDFB94C00E24FA2 /* DenailOfForms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenailOfForms.swift; sourceTree = "<group>"; };
 		CB73D4712CE028F900E24FA2 /* ImageGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryView.swift; sourceTree = "<group>"; };
+		CB73D4752CE1088C00E24FA2 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		CB73D47B2CE141E600E24FA2 /* UpdateSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSchool.swift; sourceTree = "<group>"; };
 		CB7808222C05021800F3E785 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
 		CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -362,6 +366,7 @@
 		CB43B3CF2C03D3CA009E990E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CB73D47B2CE141E600E24FA2 /* UpdateSchool.swift */,
 				CB73D46D2CDFB5A700E24FA2 /* DenialOfAdmission.swift */,
 				CB948E0B2CD4273F00A6960F /* JobSeekerProfileModel.swift */,
 				CB08CEF32C39E8E6004E3DEC /* User.swift */,
@@ -608,6 +613,7 @@
 		CBA118F42C7B81C700F9D633 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				CB73D4752CE1088C00E24FA2 /* KeychainManager.swift */,
 				CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */,
 			);
 			path = Managers;
@@ -877,8 +883,10 @@
 				CB08CEF82C3AC5D5004E3DEC /* UserSession.swift in Sources */,
 				CB1CE0BF2CCD26C300ABFAEA /* JobSeekerHomeViewController.swift in Sources */,
 				CB90B1D22CA860AC0069EA2D /* FormBuilderViewController.swift in Sources */,
+				CB73D4762CE1088C00E24FA2 /* KeychainManager.swift in Sources */,
 				CBD17C3F2BFFEB74001C3980 /* BannerCCell.swift in Sources */,
 				CBC032152BFE892A00B45EEC /* String+extentions.swift in Sources */,
+				CB73D47C2CE141ED00E24FA2 /* UpdateSchool.swift in Sources */,
 				CB89DFB52BFE6A7200F7458B /* AppDelegate.swift in Sources */,
 				CBA118FA2C7B924900F9D633 /* School.swift in Sources */,
 				CB43B3DB2C04D428009E990E /* FPEmailSentViewController.swift in Sources */,

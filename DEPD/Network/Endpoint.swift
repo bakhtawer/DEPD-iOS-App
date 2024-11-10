@@ -21,6 +21,7 @@ struct LoginCredentials: Codable {
 
 struct ApplySchool: Codable {
     let SchoolId: Int
+    let StudentId: Int
 }
 
 struct UpdateAboutYourSchoolCreds: Codable {
@@ -62,9 +63,9 @@ enum Endpoint {
     case allGeneralList
     
     case getSchoolList
-    case applyForSchool(schoolID: Int)
+    case applyForSchool(schoolID: Int, studentId: Int)
     
-    case getStudentAdmissions(schoolID: Int)
+    case getStudentAdmissions(schoolID: Int, studentId: Int)
     
     case updatePersonalInfo(url: String = "/api/School.ashx",
                                creds: SchoolInfoCredentials)
@@ -83,6 +84,10 @@ enum Endpoint {
     case fetchPosts(url: String = "/posts")
     case fetchOnePost(url: String = "/posts", postId: Int = 1)
     case sendPost(url: String = "/posts", post: Post)
+    
+    
+    case updateProfile(url: String = "/api/profile.ashx",
+                       creds: User)
     
     var request: URLRequest? {
         guard let url = self.url else { return nil }
@@ -118,6 +123,7 @@ enum Endpoint {
         case .getStudentAdmissions: return "/Api/General.ashx"
         case .getSchoolList, .applyForSchool, .allGeneralList: return "/Api/school.ashx"
         case .getJobList: return "/Api/job.ashx"
+        case .updateProfile: return "/Api/profile.ashx"
         }
     }
     
@@ -142,6 +148,7 @@ enum Endpoint {
         case .InsertDisabilityStatus:
             return [URLQueryItem(name: "method", value: "InsertDisabilityStatus")]
         case .getJobList: return [URLQueryItem(name: "method", value: "getJobList")]
+        case .updateProfile: return [URLQueryItem(name: "method", value: "updateprofile")]
         }
     }
     
@@ -156,7 +163,7 @@ enum Endpoint {
             .getStudentAdmissions,
             .updatePersonalInfo, .UpdateAboutYourSchool, 
             .UpdateAdditionalInfo, .InsertSocialMediaLink,
-            .InsertDisabilityStatus, .getJobList:
+            .InsertDisabilityStatus, .getJobList, .updateProfile:
             return HTTP.Method.post.rawValue
         }
     }
@@ -190,13 +197,16 @@ enum Endpoint {
             let login = LoginCredentials(CNIC: email, Password: password)
             let jsonPost = try? JSONEncoder().encode(login)
             return jsonPost
-        case .applyForSchool(let schoolID),
-             .getStudentAdmissions(let schoolID):
-            let creds = ApplySchool(SchoolId: schoolID)
+        case .applyForSchool(let schoolID, let studentID),
+             .getStudentAdmissions(let schoolID, let studentID):
+            let creds = ApplySchool(SchoolId: schoolID, StudentId: studentID)
             let jsonPost = try? JSONEncoder().encode(creds)
             return jsonPost
         case .sendPost(_, let post):
             let jsonPost = try? JSONEncoder().encode(post)
+            return jsonPost
+        case .updateProfile(_, let user):
+            let jsonPost = try? JSONEncoder().encode(user)
             return jsonPost
         }
     }
@@ -214,7 +224,8 @@ extension URLRequest {
                 .getSchoolList, .applyForSchool, .getStudentAdmissions,
                 .updatePersonalInfo, .UpdateAboutYourSchool,
                 .UpdateAdditionalInfo, .InsertSocialMediaLink,
-                .InsertDisabilityStatus, .allGeneralList, .getJobList:
+                .InsertDisabilityStatus, .allGeneralList, .getJobList,
+                .updateProfile:
             self.setValue(
                 HTTP.Headers.Value.applicationJson.rawValue,
                 forHTTPHeaderField: HTTP.Headers.Key.contentType.rawValue

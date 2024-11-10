@@ -39,8 +39,8 @@ class JobSeekerCompanyCell: UICollectionViewCell {
         companayname.text = model.CompanyName
         companayJobsCoun.text = "\(model.NoOfVaccancies ?? 0) \("jobs".localized())"
         
-        guard let image = URL(string: model.CompanyImageURL?.convertToHttps() ?? "") else { return }
-        imageCompany.contentMode = .scaleAspectFit
+        guard let image = URL(string: model.ThumbnailImageURL?.convertToHttps() ?? "") else { return }
+        imageCompany.contentMode = .scaleAspectFill
         imageCompany.kf.setImage(with: image)
     }
     

@@ -11,13 +11,11 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
     
     @IBOutlet weak var mainIcon: UIView!
     @IBOutlet weak var mainIconImage: UIImageView!
-    @IBOutlet weak var buttonEdit: UIButton!
     @IBOutlet weak var viewTopBG: UIView!
     @IBOutlet weak var schoolName: UILabel!
     @IBOutlet weak var schoolLocation: UILabel!
     @IBOutlet weak var schoolProfilePercentage: UILabel!
     
-    @IBOutlet weak var labelEditProfile: UILabel!
     @IBOutlet weak var tfSearchBar: UITextField!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -39,6 +37,11 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
     @IBOutlet weak var buttonNGO: UILabel!
     private var selectedFilterItems: [String : Any] = [:]
     
+    @IBOutlet weak var buttonFilter: DEPDButton!
+    
+    @IBOutlet weak var viewOldFilters: UIView!
+    @IBOutlet weak var viewTotalJobs: UIView!
+    @IBOutlet weak var labelTotalJobs: UILabel!
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         viewBottom.setLanguage()
@@ -61,27 +64,30 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         viewModel.delegate = self
         viewModel.fetchAllJobs()
         
-        buttonEdit.addTapGestureRecognizer {
+        buttonViewApplications.addTapGestureRecognizer {
             DispatchQueue.main.async {[weak self] in
-                
-//                let filterItems = [
-//                    FilterItem(type: .checkbox, title: "Registered User"),
-//                    FilterItem(type: .checkbox, title: "Pending User"),
-//                    FilterItem(type: .dropdown, title: "District", options: APPMetaDataHandler.shared.getDistrictsNames()),
-//                    FilterItem(type: .multiSelect, title: "Disability", options:APPMetaDataHandler.shared.getDisabilitiesNames())
-//                ]
-//
-//                let filterVC = FilterViewController()
-//                filterVC.filterItems = filterItems
-//                filterVC.selectedOptions = self?.selectedFilterItems ?? [:]
-//                filterVC.delegate = self
-//                openModulePopOver(controller: filterVC)
-                
-                
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: SchoolDetailsViewController.self)
                 view.selectedSchool = self?.viewModel.selectedSchool
                 openModuleOnNavigation(from: self, controller: view)
+            }
+        }
+        
+        viewOldFilters.isHidden = true
+        buttonFilter.addTapGestureRecognizer {
+            DispatchQueue.main.async {[weak self] in
+                let filterItems = [
+                    FilterItem(type: .checkbox, title: "job_title".localized()),
+                    FilterItem(type: .checkbox, title: "private".localized()),
+                    FilterItem(type: .checkbox, title: "ngo_welfare".localized()),
+                    FilterItem(type: .dropdown, title: "district".localized(), options: APPMetaDataHandler.shared.getDistrictsNames()),
+                    FilterItem(type: .multiSelect, title: "disability".localized(), options:APPMetaDataHandler.shared.getDisabilitiesNames())
+                ]
+                let filterVC = FilterViewController()
+                filterVC.filterItems = filterItems
+                filterVC.selectedOptions = self?.selectedFilterItems ?? [:]
+                filterVC.delegate = self
+                openModulePopOver(controller: filterVC)
             }
         }
     }
@@ -102,6 +108,9 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         mainIcon.roundCorner(withRadis: mainIcon.viewHeight.half)
         mainIconImage.roundCorner(withRadis: mainIconImage.viewHeight.half)
         
+        buttonFilter.makeItTheme(text: "", .bold, 12, .appLight, .appBlue)  //"filter".localized()
+        buttonFilter.makeButtonIconRight(imageNamed: "filter-icon")
+        
         schoolName.makeItTheme(.bold, 20, .textDark)
         schoolLocation.makeItTheme(.regular, 16, .textLightGray)
         schoolProfilePercentage.makeItTheme(.regular, 16, .appBlue)
@@ -112,18 +121,21 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         buttonRejectedStudents.makeItTheme(.bold, 9, .appLight, .center)
         buttonNGO.makeItTheme(.bold, 9, .appLight)
         
+        labelTotalJobs.makeItTheme(.bold, 12, .textDark)
+        labelTotalJobs.text = "\("total_jobs".localized()) \(viewModel.getCount())"
+        viewTotalJobs.roundCorner(withRadis: viewTotalJobs.viewHeight.half)
+        viewTotalJobs.setBorderColor(.appBlue, 1)
+        
         buttonTotalApplications.text = "\("total_jobs".localized()) \(viewModel.getCount())"
         buttonRegisteredusers.text = "\("district".localized())"
         buttonPendingStudents.text = "\("disablity".localized())"
         buttonRejectedStudents.text = "\("private".localized())"
         buttonNGO.text = "\("ngo_welfare".localized())"
-
-        labelEditProfile.text =  "\("edit_profile".localized())"
         
-        buttonViewApplications.setTitle("\("find_job".localized())", for: .normal)
+        buttonViewApplications.setTitle("\("edit_profile".localized())", for: .normal)
         buttonEditYourProfile.setTitle("\("my_applications".localized())", for: .normal)
-        buttonViewApplications.makeItThemeGreenPrimary(14)
-        buttonEditYourProfile.makeItThemePrimary(14)
+        buttonViewApplications.makeItThemePrimary(14)
+        buttonEditYourProfile.makeItThemeWhitePrimary(14)
         
         schoolName.text = USM.shared.getUserFullName()
     }

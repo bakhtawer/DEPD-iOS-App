@@ -23,6 +23,14 @@ extension UIButton {
         self.applyShadow()
     }
     
+    func makeItThemeWhitePrimary(_ fontSize: CGFloat = 18.0) {
+        self.setRoundBorderColor(.clear, 0.0, 5.0)
+        self.backgroundColor = .appLight
+        self.setBorderColor(.appBlue, 1)
+        styleButton(fontSize, .appBlue, .regular)
+        self.applyShadow()
+    }
+    
     func makeItThemeLargeWhite(_ fontSize: CGFloat = 24.0,
                                _ textColor: UIColor = .darkText) {
         self.setRoundBorderColor(.clear, 0.0, 11)

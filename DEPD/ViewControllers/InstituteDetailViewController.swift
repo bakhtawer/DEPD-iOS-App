@@ -64,7 +64,7 @@ class InstituteDetailViewController: BaseViewController {
                 SMM.shared.showError(title: "", message: "Please select class");
                 return
             }
-            let request = Endpoint.applyForSchool(schoolID: data.InstituteId ?? -1).request!
+            let request = Endpoint.applyForSchool(schoolID: data.InstituteId ?? -1, studentId: USM.shared.getUser().oStudentDetails?.id ?? -1).request!
             self?.service.makeRequest(with: request, respModel: ApiResponse<String>.self) { userResponse, error in
                 if let error = error { print("DEBUG PRINT:", error); return }
                 if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
@@ -72,7 +72,7 @@ class InstituteDetailViewController: BaseViewController {
                 DispatchQueue.main.async {
                     let storyboard = getStoryBoard(.main)
                     let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
-                    contentVC.messageThankYou = .yourSchoolHasBeen("hello")
+                    contentVC.messageThankYou = .yourSchoolHasBeen(self?.selectedInstitute?.SchoolName ?? "N/A")
                     contentVC.moveThankYou = .home
                     openModuleOverFullScreen(controller: contentVC)
                 }

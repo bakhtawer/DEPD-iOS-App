@@ -42,13 +42,16 @@ class DEPDButton: UIView {
     
     private var height: CGFloat = 40
     
-    func makeHight(height: CGFloat = 40,_ isPadded: Bool = false) {
+    func makeHight(height: CGFloat = 40,_ isPadded: Bool = false, _ isNotRounded: Bool = false) {
         self.height = height
         if !isPadded {
             paddingTop.constant = 0
             paddingBotom.constant = 0
             paddingLeft.constant = 0
             paddingRight.constant = 0
+        }
+        if isNotRounded {
+            viewBG.setRoundBorderColor(.clear, 0.0, 0.0)
         }
         refresh()
     }
@@ -76,6 +79,11 @@ class DEPDButton: UIView {
     
     func makeButtonIconRight(named: String = "square.and.arrow.up") {
         buttonRight.image = UIImage(systemName: named)
+        buttonRight.tintColor = .appLight
+    }
+    
+    func makeButtonIconRight(imageNamed: String = "square.and.arrow.up") {
+        buttonRight.image = UIImage(named: imageNamed)?.imageWithColor(color1: .appLight)
         buttonRight.tintColor = .appLight
     }
     
