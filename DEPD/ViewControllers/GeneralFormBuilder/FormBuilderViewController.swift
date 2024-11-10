@@ -60,6 +60,7 @@ class FormBuilderViewController: BaseViewController {
         case denialOfAdmissionComplainDetails
         case denialOfAdmissionParentDetails
         case denialOfJob
+        case denialOfJobComplainDetails
         case general
         case studentProfile
     }
@@ -67,6 +68,9 @@ class FormBuilderViewController: BaseViewController {
     var type: FormType = .general
     
     var selectedSchool: InstituteModel?
+    
+    var denialOfAdmission: DenialOfAdmission? = nil
+    var denialOfJob: DenialOfJob? = nil
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -146,12 +150,17 @@ class FormBuilderViewController: BaseViewController {
             labelTitle.text = "" //"".localized()
             topTitleView.isHidden = true
             buttonTitle = "next".localized()
-            fields = populateCandidateDetails()
+            fields = populateCandidateDetailsJob()
         case .studentProfile:
             self.setTitle("update_profile".localized())
-            labelTitle.text = "personal_information".localized()
+            labelTitle.text = "personal_details".localized()
             buttonTitle = "submit".localized()
             fields = populateStudentProfile()
+        case .denialOfJobComplainDetails:
+            self.setTitle("complain_details".localized())
+            topTitleView.isHidden = true
+            buttonTitle = "Submit".localized()
+            fields = populateComplainDetails()
         }
         
         let formBuilder = FormBuilderView(fields: fields, buttonTitle)
@@ -174,138 +183,120 @@ class FormBuilderViewController: BaseViewController {
         ])
     }
     
-    private func populateComplainDetailsAdmission() -> [FormField] {
+    let firstName =  FormField(fieldType: .text,
+                              placeholder: "first_name".localized(),
+                              name: "first_name",
+                              value: USM.shared.getUser().firstName,
+                              isRequired: true)
+    
+    let lastName =  FormField(fieldType: .text,
+                               placeholder: "last_name".localized(),
+                               name: "last_name",
+                              value: USM.shared.getUser().lastName,
+                               isRequired: true)
+    
+    let fatherName = FormField(fieldType: .text,
+                               placeholder: "father_name".localized(),
+                               name: "father_name", value: USM.shared.getUser().oStudentDetails?.fatherName,
+                               isRequired: false)
+    
+    private func populateForSchoolInfo() -> [FormField] {
         [
+            firstName,
+            lastName,
             
-//            Institute Name
-//            Institute Email Address
-//            District
-//            select
-//            Reason of Denial of Addmission
+            FormField(fieldType: .text,
+                      placeholder: "school_name".localized(),
+                      name: "school_name",
+                      value: selectedSchool?.SchoolName,
+                      isRequired: true),
             
-            FormField(fieldType: .text, placeholder: "institute_name".localized(), name: "institute_name",
-                      value: nil, isRequired: false),
+            FormField(fieldType: .email,
+                      placeholder: "email".localized(),
+                      name: "email",
+                      value: selectedSchool?.EmailAddress,
+                      isRequired: true),
             
-            FormField(fieldType: .text, placeholder: "institute_email".localized(), name: "institute_email",
-                      value: nil, isRequired: false),
+            FormField(fieldType: .text,
+                      placeholder: "ntn_number".localized(),
+                      name: "ntn_number",
+                      value: selectedSchool?.NTNNUmber,
+                      isRequired: true),
             
-            FormField(fieldType: .email, placeholder: "institute_contact_no".localized(), name: "institute_contact_no",
-                      value: nil, isRequired: false),
+            FormField(fieldType: .number,
+                      placeholder: "contact_number".localized(),
+                      name: "contact_number",
+                      value: selectedSchool?.ContactNumber,
+                      isRequired: true),
             
-            FormField(fieldType: .text, placeholder: "present_address".localized(), name: "present_address_institute",
-                      value: nil, isRequired: false),
+            FormField(fieldType: .text,
+                      placeholder: "cnic".localized(),
+                      name: "CNIC",
+                      value: UserSessionManager.shared.getUser().cnic,
+                      isRequired: true),
             
-            
-            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
-                      placeholder: "district".localized(),
-                      name: "district_institute",
-                      value: nil,
-                      isRequired: false),
-            
-            FormField(fieldType: .textLong, placeholder: "reason_of_denial_of_admission".localized(), name: "reason_of_denial_of_admission", value: nil, isRequired: false),
-            
-            FormField(fieldType: .recordYourMessage, placeholder: "record_your_message".localized(), name: "record_your_message", value: nil, isRequired: false),
-            
-            FormField(fieldType: .uploadFile, placeholder: "upload_related_documents".localized(), name: "upload_related_documents_addmission", value: nil, isRequired: false),
-            
-            FormField(fieldType: .checkbox, placeholder: "i_herby_that".localized(), name: "checkbox", value: nil, isRequired: false),
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDesignations()),
+                      placeholder: "designation".localized(),
+                      name: "designation",
+                      value: selectedSchool?.Designation,
+                      isRequired: true),
             
             FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
         ]
     }
     
-    private func populateComplainDetails() -> [FormField] {
+    private func populateStudentProfile() -> [FormField] {
         [
+            firstName,
+            lastName,
+            fatherName,
+            FormField(fieldType: .text,
+                      placeholder: "father_cnic".localized(),
+                      name: "father_cnic",
+                      value: USM.shared.getUser().oStudentDetails?.fatherCnic,
+                      isRequired: true),
             
-            FormField(fieldType: .text, placeholder: "company_name".localized(), name: "company_name",
-                      value: nil, isRequired: false),
-            
-            FormField(fieldType: .text, placeholder: "company_contact_number".localized(), name: "company_contact_number",
-                      value: nil, isRequired: false),
-            
-            FormField(fieldType: .email, placeholder: "company_email_address".localized(), name: "company_email_address",
-                      value: nil, isRequired: false),
-            
-            FormField(fieldType: .text, placeholder: "present_address_company".localized(), name: "present_address_company",
-                      value: nil, isRequired: false),
-            
-            
-            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
-                      placeholder: "district".localized(),
-                      name: "district_company",
-                      value: nil,
-                      isRequired: false),
-            
-            
-            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
-            
-            FormField(fieldType: .textLong, placeholder: "reason_of_denial_of_admission", name: "reason_of_denial_of_admission", value: nil, isRequired: false),
-            
-            FormField(fieldType: .recordYourMessage, placeholder: "record_your_message".localized(), name: "record_your_message", value: nil, isRequired: false),
-            
-            FormField(fieldType: .uploadFile, placeholder: "upload_file".localized(), name: "upload_file", value: nil, isRequired: false),
-            
-            FormField(fieldType: .checkbox, placeholder: "i_herby_that".localized(), name: "checkbox", value: nil, isRequired: false)
-        ]
-    }
-    
-    private func populateParentsDetails() -> [FormField] {
-        [
-            FormField(fieldType: .text, placeholder: "full_name".localized(), name: "full_name",
-                      value: nil, isRequired: false),
-            
-            FormField(fieldType: .number, placeholder: "cnic".localized(), name: "cnic", value: nil, isRequired: false),
-            
-            FormField(fieldType: .number, placeholder: "contact_no".localized(), name: "contact_no", value: nil, isRequired: false),
-            
-            FormField(fieldType: .email, placeholder: "email".localized(), name: "email", value: nil, isRequired: false),
-            
-            FormField(fieldType: .dropdown(options: ["Father", "Mother", "Guardian"]),
-                      placeholder: "relation_with_cadidate".localized(),
-                      name: "relation_with_cadidate",
-                      value: nil,
-                      isRequired: false),
-            
-            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false)
-        ]
-    }
-    
-    private func populateCandidateDetails() -> [FormField] {
-        [
-            FormField(fieldType: .text, placeholder: "full_name".localized(), name: "fullname",
-                      value: nil, isRequired: false),
-            
-            FormField(fieldType: .text, placeholder: "father_name".localized(), name: "father_name", value: nil, isRequired: false),
+            FormField(fieldType: .text,
+                      placeholder: "email".localized(),
+                      name: "email",
+                      value: USM.shared.getUser().oStudentDetails?.emailAddress,
+                      isRequired: true),
             
             FormField(fieldType: .dropdown(options: ["Male", "Female", "other"]),
                       placeholder: "gender".localized(),
                       name: "gender",
-                      value: nil,
+                      value: USM.shared.getUser().oStudentDetails?.gender,
                       isRequired: false),
-            
-            FormField(fieldType: .date, placeholder: "dob".localized(), name: "dob", value: nil, isRequired: true),
-            
-            FormField(fieldType: .number, placeholder: "cnic".localized(), name: "cnic", value: nil, isRequired: false),
-            
-            FormField(fieldType: .number, placeholder: "contact_no".localized(), name: "contact_no", value: nil, isRequired: false),
-            
-            FormField(fieldType: .text, placeholder: "present_address".localized(), name: "present_address", value: nil, isRequired: false),
+            FormField(fieldType: .date, placeholder: "dob".localized(), name: "dob", value: USM.shared.getUser().oStudentDetails?.formattedDOB, isRequired: true),
+            FormField(fieldType: .number, placeholder: "cnic".localized(), name: "cnic", value: USM.shared.getUser().cnic, isRequired: false, isEnabled: false),
+            FormField(fieldType: .text, placeholder: "address".localized(), name: "address", value: USM.shared.getUser().oStudentDetails?.address, isRequired: false),
             
             FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
                       placeholder: "district".localized(),
                       name: "district",
-                      value: nil,
+                      value: USM.shared.getUser().oStudentDetails?.district,
                       isRequired: false),
             
             FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDisabilitiesNames()),
                       placeholder: "disability".localized(),
                       name: "disability",
-                      value: nil,
+                      value: APPMetaDataHandler.shared.getDisabilities(byID: USM.shared.getUser().oStudentDetails?.disabilityStatusId ?? -1)?.name,
                       isRequired: false),
             
-            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false)
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getPreviousEducationName()),
+                      placeholder: "previous_education".localized(),
+                      name: "previous_education",
+                      value: USM.shared.getUser().oStudentDetails?.previousEducation,
+                      isRequired: false),
+            
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+            
+            FormField(fieldType: .uploadFile, placeholder: "upload_picture", name: "upload_picture", value: nil, isRequired: false),
+            FormField(fieldType: .uploadFile, placeholder: "disability_certificate", name: "disability_certificate", value: nil, isRequired: false),
+            FormField(fieldType: .uploadFile, placeholder: "upload_form_b_certi", name: "upload_form_b_certi", value: nil, isRequired: false),
+            
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
         ]
-        
     }
     
     private func populateForAdditionalInfo() -> [FormField] {
@@ -379,121 +370,6 @@ class FormBuilderViewController: BaseViewController {
             FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false)
         ]
     }
-   let firstName =  FormField(fieldType: .text,
-                              placeholder: "first_name".localized(),
-                              name: "first_name",
-                              value: USM.shared.getUser().firstName,
-                              isRequired: true)
-    
-    let lastName =  FormField(fieldType: .text,
-                               placeholder: "last_name".localized(),
-                               name: "last_name",
-                              value: USM.shared.getUser().lastName,
-                               isRequired: true)
-    
-    let fatherName = FormField(fieldType: .text,
-                               placeholder: "father_name".localized(),
-                               name: "father_name", value: nil,
-                               isRequired: false)
-    
-    private func populateForSchoolInfo() -> [FormField] {
-        [
-            firstName,
-            lastName,
-            
-            FormField(fieldType: .text,
-                      placeholder: "school_name".localized(),
-                      name: "school_name",
-                      value: selectedSchool?.SchoolName,
-                      isRequired: true),
-            
-            FormField(fieldType: .email,
-                      placeholder: "email".localized(),
-                      name: "email",
-                      value: selectedSchool?.EmailAddress,
-                      isRequired: true),
-            
-            FormField(fieldType: .text,
-                      placeholder: "ntn_number".localized(),
-                      name: "ntn_number",
-                      value: selectedSchool?.NTNNUmber,
-                      isRequired: true),
-            
-            FormField(fieldType: .number,
-                      placeholder: "contact_number".localized(),
-                      name: "contact_number",
-                      value: selectedSchool?.ContactNumber,
-                      isRequired: true),
-            
-            FormField(fieldType: .text,
-                      placeholder: "cnic".localized(),
-                      name: "CNIC",
-                      value: UserSessionManager.shared.getUser().cNIC,
-                      isRequired: true),
-            
-            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDesignations()),
-                      placeholder: "designation".localized(),
-                      name: "designation",
-                      value: selectedSchool?.Designation,
-                      isRequired: true),
-            
-            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
-        ]
-    }
-    
-    private func populateStudentProfile() -> [FormField] {
-        [
-            firstName,
-            lastName,
-            fatherName,
-            FormField(fieldType: .text,
-                      placeholder: "father_cnic".localized(),
-                      name: "father_cnic",
-                      value: nil,
-                      isRequired: true),
-            
-            FormField(fieldType: .text,
-                      placeholder: "email".localized(),
-                      name: "email",
-                      value: USM.shared.getUser().emailAddress,
-                      isRequired: true),
-            
-            FormField(fieldType: .dropdown(options: ["Male", "Female", "other"]),
-                      placeholder: "gender".localized(),
-                      name: "gender",
-                      value: nil,
-                      isRequired: false),
-            FormField(fieldType: .date, placeholder: "dob".localized(), name: "dob", value: nil, isRequired: true),
-            FormField(fieldType: .number, placeholder: "cnic".localized(), name: "cnic", value: USM.shared.getUser().cNIC, isRequired: false, isEnabled: false),
-            FormField(fieldType: .text, placeholder: "address".localized(), name: "address", value: nil, isRequired: false),
-            
-            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
-                      placeholder: "district".localized(),
-                      name: "district",
-                      value: nil,
-                      isRequired: false),
-            
-            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDisabilitiesNames()),
-                      placeholder: "disability".localized(),
-                      name: "disability",
-                      value: nil,
-                      isRequired: false),
-            
-            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getPreviousEducationName()),
-                      placeholder: "previous_education".localized(),
-                      name: "previous_education",
-                      value: nil,
-                      isRequired: false),
-            
-            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
-            
-            FormField(fieldType: .uploadFile, placeholder: "upload_picture", name: "upload_picture", value: nil, isRequired: false),
-            FormField(fieldType: .uploadFile, placeholder: "disability_certificate", name: "disability_certificate", value: nil, isRequired: false),
-            FormField(fieldType: .uploadFile, placeholder: "upload_form_b_certi", name: "upload_form_b_certi", value: nil, isRequired: false),
-            
-            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
-        ]
-    }
 }
 
 extension FormBuilderViewController {
@@ -524,7 +400,7 @@ extension FormBuilderViewController: FormBuilderProtocol {
             var user = User()
             user.firstName = firstName
             user.lastName = lastName
-            user.cNIC = cnic
+            user.cnic = cnic
             user.contactNo = contact
             let creds = SchoolInfoCredentials(SchoolId: schoolId,
                                               SchoolName: schoolName,
@@ -545,8 +421,8 @@ extension FormBuilderViewController: FormBuilderProtocol {
         case .additionalInfo:
             break
         case .denialOfAdmission:
-            guard let dob = data["dob"] as? String else {
-                SMM().showError(title: "Sorry", message: "Something Went Wrong")
+            guard let dob = data["cdDob"] as? String else {
+                SMM().showError(title: "Sorry", message: "Something Went Wrong with date of birth")
                 return
             }
             let type: FormType
@@ -555,30 +431,114 @@ extension FormBuilderViewController: FormBuilderProtocol {
             } else {
                 type = .denialOfAdmissionParentDetails
             }
+            //    Candidate Details
+            denialOfAdmission?.cdName = data["cdName"] as? String
+            denialOfAdmission?.cdGender = data["cdGender"] as? String
+            denialOfAdmission?.cdCNIC = data["cdCNIC"] as? String
+            denialOfAdmission?.cdDistrict = data["cdDistrict"] as? String
+            denialOfAdmission?.cdFatherName = data["cdFatherName"] as? String
+            denialOfAdmission?.cdDob = data["cdDob"] as? String
+            denialOfAdmission?.cdContactNo = data["cdContactNo"] as? String
+            denialOfAdmission?.cdDisability = data["cdDisability"] as? String
+            denialOfAdmission?.cdPresentAddress = data["cdPresentAddress"] as? String
+            
+            print(denialOfAdmission)
+            
             DispatchQueue.main.async {[weak self] in
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.denialOfAdmission = self?.denialOfAdmission
                 view.type = type
                 openModuleOnNavigation(from: self, controller: view)
             }
         case .denialOfAdmissionComplainDetails:
-            break
+            //    Complain Details
+            denialOfAdmission?.complainDetailsInstituteName = data["complainDetailsInstituteName"] as? String
+            denialOfAdmission?.complainDetailsInstituteEmailAddress = data["complainDetailsInstituteEmailAddress"] as? String
+            denialOfAdmission?.complainDetailsDistrict = data["complainDetailsDistrict"] as? String
+            denialOfAdmission?.complainDetailsReasonOfDenialOfAdmission = data["complainDetailsReasonOfDenialOfAdmission"] as? String
+            denialOfAdmission?.complainDetailsInstituteContactNumber = data["complainDetailsInstituteContactNumber"] as? String
+            denialOfAdmission?.complainDetailsInstituteAddress = data["complainDetailsInstituteAddress"] as? String
+            denialOfAdmission?.complainDetailsPresentAddress = data["complainDetailsPresentAddress"] as? String
+            denialOfAdmission?.complainDetailsCheckBox = data["complainDetailsCheckBox"] as? Bool
+            
+            print(denialOfAdmission)
+            guard let complainDetailsCheckBox = data["complainDetailsCheckBox"] as? String,
+                  complainDetailsCheckBox.makeItBool else {
+                SMM().showError(title: "Sorry", message: "Please select the checkbox")
+                return
+            }
+            
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
+                contentVC.messageThankYou = .denialOfAdmission
+                contentVC.moveThankYou = .splash
+                openModuleOverFullScreen(controller: contentVC)
+            }
         case .denialOfAdmissionParentDetails:
+            //    Parent/Guardian Details
+            denialOfAdmission?.pdName = data["pdName"] as? String
+            denialOfAdmission?.pdCNIC = data["pdCNIC"] as? String
+            denialOfAdmission?.pdEmail = data["pdEmail"] as? String
+            denialOfAdmission?.pdRelationWithCandidate = data["pdRelationWithCandidate"] as? String
+            denialOfAdmission?.pdContactNo = data["pdContactNo"] as? String
+            
             DispatchQueue.main.async {[weak self] in
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.denialOfAdmission = self?.denialOfAdmission
                 view.type = .denialOfAdmissionComplainDetails
                 openModuleOnNavigation(from: self, controller: view)
             }
         case .denialOfJob:
+            
+            let dob = data["cdDob"] as? String
+            denialOfJob?.cdName = data["cdName"] as? String
+            denialOfJob?.cdGender = data["cdGender"] as? String
+            denialOfJob?.cdCNIC = data["cdCNIC"] as? String
+            denialOfJob?.cdDistrict = data["cdDistrict"] as? String
+            denialOfJob?.cdFatherName = data["cdFatherName"] as? String
+            denialOfJob?.cdDob = dob?.toFormattedDate()
+            denialOfJob?.cdContactNo = data["cdContactNo"] as? String
+            denialOfJob?.cdDisability = data["cdDisability"] as? String
+            denialOfJob?.cdPresentAddress = data["cdPresentAddress"] as? String
+            
             DispatchQueue.main.async {[weak self] in
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
-                view.type = .denialOfAdmissionComplainDetails
+                view.denialOfJob = self?.denialOfJob
+                view.type = .denialOfJobComplainDetails
                 openModuleOnNavigation(from: self, controller: view)
             }
         case .studentProfile:
             break
+        case .denialOfJobComplainDetails:
+            
+            guard let complainDetailsCheckBox = data["complainDetailsCheckBox"] as? String,
+                  complainDetailsCheckBox.makeItBool else {
+                SMM().showError(title: "Sorry", message: "Please select the checkbox")
+                return
+            }
+            
+            denialOfJob?.complainDetailsCompanyName = data["complainDetailsCompanyName"] as? String
+            denialOfJob?.complainDetailsCompanyEmailAddress = data["complainDetailsCompanyEmailAddress"] as? String
+            denialOfJob?.complainDetailsCompanyString = data["complainDetailsCompanyString"] as? String
+            denialOfJob?.complainDetailsReasonOfDenialOfJob = data["complainDetailsReasonOfDenialOfJob"] as? String
+            denialOfJob?.complainDetailsCompanyContactNumber = data["complainDetailsCompanyContactNumber"] as? String
+            denialOfJob?.complainDetailsPresentAddress = data["complainDetailsPresentAddress"] as? String
+            denialOfJob?.complainDetailsDistrict = data["complainDetailsDistrict"] as? String
+            denialOfJob?.complainDetailsCheckBox = complainDetailsCheckBox.makeItBool
+            
+            print(denialOfJob)
+            
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
+                contentVC.messageThankYou = .denialOfJob
+                contentVC.moveThankYou = .splash
+                openModuleOverFullScreen(controller: contentVC)
+            }
         }
     }
     

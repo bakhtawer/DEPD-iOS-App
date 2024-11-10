@@ -95,12 +95,12 @@ struct Designations: Codable {
     }
 }
 
-struct PreviousEducation: Codable {
+struct Classes: Codable {
     var peId : Int?
     var name : String?
     enum CodingKeys: String, CodingKey {
         case peId = "Id"
-        case name = "DegreeName"
+        case name = "ClassName"
     }
     init(from decoder: Decoder) throws {
         do {
@@ -117,18 +117,175 @@ struct PreviousEducation: Codable {
     }
 }
 
-struct Classes: Codable {
-    var peId : Int?
-    var name : String?
+struct AllGeneralList: Codable {
+    var classList: [Classes]?
+    var accessibilityList: [AllListData]?
+    var trainingList: [AllListData]?
+    var GenderList: [Gender]?
+    var DesignationList: [Designations]?
+    var DisabilityList: [Disability]?
+    var DistrictList: [District]?
+    var DegreeProgram: [Degree]?
+    var TechnicalSkillList: [SkillSet]?
+    var userTypeList: [UserTypeList]?
+    var LanguageList: [District]?
+    var socialMediaList: [SocialMediaList]?
+    var isError: Bool?
+    var errorMessage: String?
+    
     enum CodingKeys: String, CodingKey {
-        case peId = "Id"
-        case name = "ClassName"
+        case classList = "oClassList"
+        case accessibilityList = "oAccebilityList"
+        case trainingList = "oTrainingList"
+        case GenderList = "oGenderList"
+        case DesignationList = "oDesignationList"
+        case DisabilityList = "oDisabilityList"
+        case DistrictList = "oDistrictList"
+        case DegreeProgram = "oDegreeProgram"
+        case TechnicalSkillList = "oTechnicalSkillList"
+        case userTypeList = "oUserTypeList"
+        case LanguageList = "oLanguageList"
+        case socialMediaList = "oSocialMediaList"
+        case isError = "IsError"
+        case errorMessage = "ErrorMessage"
     }
     init(from decoder: Decoder) throws {
         do {
             let values = try decoder.container(keyedBy: CodingKeys.self)
-            peId = try values.decodeIfPresent(Int.self, forKey: .peId) ?? -1
+            classList = try values.decodeIfPresent([Classes].self, forKey: .classList) ?? []
+            accessibilityList = try values.decodeIfPresent([AllListData].self, forKey: .accessibilityList) ?? []
+            trainingList = try values.decodeIfPresent([AllListData].self, forKey: .trainingList) ?? []
+            GenderList = try values.decodeIfPresent([Gender].self, forKey: .GenderList) ?? []
+            DesignationList = try values.decodeIfPresent([Designations].self, forKey: .DesignationList) ?? []
+            DisabilityList = try values.decodeIfPresent([Disability].self, forKey: .DisabilityList) ?? []
+            DistrictList = try values.decodeIfPresent([District].self, forKey: .DistrictList) ?? []
+            DegreeProgram = try values.decodeIfPresent([Degree].self, forKey: .DegreeProgram) ?? []
+            TechnicalSkillList = try values.decodeIfPresent([SkillSet].self, forKey: .TechnicalSkillList) ?? []
+            userTypeList = try values.decodeIfPresent([UserTypeList].self, forKey: .userTypeList) ?? []
+            LanguageList = try values.decodeIfPresent([District].self, forKey: .LanguageList) ?? []
+            socialMediaList = try values.decodeIfPresent([SocialMediaList].self, forKey: .socialMediaList) ?? []
+            isError = try values.decodeIfPresent(Bool.self, forKey: .isError) ?? false
+            errorMessage = try values.decodeIfPresent(String.self, forKey: .errorMessage) ?? ""
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
+    }
+}
+
+struct AllListData: Codable {
+    var mId: Int?
+    var schoolId: Int?
+    var materialId: Int?
+    var name: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case mId = "Id"
+        case schoolId = "SchoolId"
+        case materialId = "MaterialId"
+        case name = "MaterialName"
+    }
+    init(from decoder: Decoder) throws {
+        do {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            mId = try values.decodeIfPresent(Int.self, forKey: .mId) ?? -1
+            schoolId = try values.decodeIfPresent(Int.self, forKey: .schoolId) ?? -1
+            materialId = try values.decodeIfPresent(Int.self, forKey: .materialId) ?? -1
             name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
+    }
+}
+
+struct Degree: Codable {
+    var mId : Int?
+    var name : String?
+    enum CodingKeys: String, CodingKey {
+        case mId = "Id"
+        case name = "DegreeName"
+    }
+    init(from decoder: Decoder) throws {
+        do {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            mId = try values.decodeIfPresent(Int.self, forKey: .mId) ?? -1
+            name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
+    }
+}
+
+struct SkillSet: Codable {
+    var mId : Int?
+    var name : String?
+    enum CodingKeys: String, CodingKey {
+        case mId = "Id"
+        case name = "SkillName"
+    }
+    init(from decoder: Decoder) throws {
+        do {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            mId = try values.decodeIfPresent(Int.self, forKey: .mId) ?? -1
+            name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
+    }
+}
+
+struct UserTypeList: Codable {
+    var mId : Int?
+    var name : String?
+    enum CodingKeys: String, CodingKey {
+        case mId = "Id"
+        case name = "UserTypeName"
+    }
+    init(from decoder: Decoder) throws {
+        do {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            mId = try values.decodeIfPresent(Int.self, forKey: .mId) ?? -1
+            name = try values.decodeIfPresent(String.self, forKey: .name) ?? ""
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
+    }
+}
+
+struct SocialMediaList: Codable {
+    var mId : Int?
+    var accountType : String?
+    var link : String?
+    enum CodingKeys: String, CodingKey {
+        case mId = "Id"
+        case accountType = "AccountType"
+        case link = "Link"
+    }
+    init(from decoder: Decoder) throws {
+        do {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            mId = try values.decodeIfPresent(Int.self, forKey: .mId) ?? -1
+            accountType = try values.decodeIfPresent(String.self, forKey: .accountType) ?? ""
+            link = try values.decodeIfPresent(String.self, forKey: .link) ?? ""
         } catch let DecodingError.typeMismatch(type, context) {
             print("Type '\(type)' mismatch:", context.debugDescription)
             print("codingPath:", context.codingPath)

@@ -22,7 +22,7 @@ extension String {
         inputDateFormatter.dateFormat = "d MMM yyyy" // Matches "8 Nov 2022"
         
         let outputDateFormatter = DateFormatter()
-        outputDateFormatter.dateFormat = "dd/MM/yyyy" // Desired format
+        outputDateFormatter.dateFormat = "MM/dd/yyyy" // Desired format
         
         if let date = inputDateFormatter.date(from: self) {
             return outputDateFormatter.string(from: date)
@@ -31,10 +31,38 @@ extension String {
         return nil // Return nil if the date could not be parsed
     }
     
+    func toFormattedDateShow() -> String? {
+        let inputDateFormatter = DateFormatter()
+        inputDateFormatter.dateFormat = "MM/dd/yyyy"  // Matches "8 Nov 2022"
+        
+        let outputDateFormatter = DateFormatter()
+        outputDateFormatter.dateFormat = "d MMM yyyy" // Desired format
+        
+        if let date = inputDateFormatter.date(from: self) {
+            return outputDateFormatter.string(from: date)
+        }
+        
+        return nil // Return nil if the date could not be parsed
+    }
+    
+    func fromFormattedDate() -> Date? {
+        let inputDateFormatter = DateFormatter()
+        inputDateFormatter.dateFormat = "MM/dd/yyyy"  // Matches "8 Nov 2022"
+        
+        let outputDateFormatter = DateFormatter()
+        outputDateFormatter.dateFormat = "d MMM yyyy" // Desired format
+        
+        if let date = inputDateFormatter.date(from: self) {
+            return date
+        }
+        
+        return nil
+    }
+    
     /// Checks if the date string is at least 18 years from the current date.
     func isAbove18() -> Bool {
         let inputDateFormatter = DateFormatter()
-        inputDateFormatter.dateFormat = "d MMM yyyy"
+        inputDateFormatter.dateFormat = "MM/dd/yyyy"
         
         guard let dateOfBirth = inputDateFormatter.date(from: self) else {
             return false // Return false if the date string is invalid
@@ -47,7 +75,17 @@ extension String {
         
         return false
     }
-    
+}
+
+extension Date {
+    func toFormattedDate() -> String? {
+        let inputDateFormatter = DateFormatter()
+        inputDateFormatter.dateFormat = "d MMM yyyy" // Matches "8 Nov 2022"
+        let outputDateFormatter = DateFormatter()
+        outputDateFormatter.dateFormat = "MM/dd/yyyy" // Desired format
+        let dateString = outputDateFormatter.string(from: self)
+        return dateString
+    }
 }
 
 extension Bundle {

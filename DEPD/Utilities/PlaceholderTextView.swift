@@ -12,7 +12,6 @@ class PlaceholderTextView: UITextView {
     // Placeholder Label
     let placeholderLabel: UILabel = {
         let label = UILabel()
-        label.text = "Message"
         label.textColor = UIColor.lightGray
         label.font = UIFont.systemFont(ofSize: 16)
         return label
@@ -64,7 +63,7 @@ extension PlaceholderTextView: UITextViewDelegate {
     // When the user starts editing
     func textViewDidBeginEditing(_ textView: UITextView) {
         // Remove the placeholder and change text color
-        if textView.text == "Message" {
+        if textView.text == placeholderLabel.text {
             textView.text = ""
             textView.textColor = UIColor.textDark
         }
@@ -75,8 +74,8 @@ extension PlaceholderTextView: UITextViewDelegate {
     func textViewDidEndEditing(_ textView: UITextView) {
         // Show placeholder if the text view is empty
         if textView.text.isEmpty {
-            textView.text = "Message"
-            textView.textColor = UIColor.lightGray
+//            textView.text = placeholderLabel.text
+//            textView.textColor = UIColor.lightGray
             placeholderLabel.isHidden = false
         }
     }

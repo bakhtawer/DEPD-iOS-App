@@ -27,10 +27,6 @@ class UserHomeViewModel {
     
     init() {
         print("UserHomeViewModel- init")
-        
-        APPMetaDataHandler.shared.populateDistricts()
-        APPMetaDataHandler.shared.populateDisabilities()
-        APPMetaDataHandler.shared.populatePreviousEducation()
     }
     
     deinit {

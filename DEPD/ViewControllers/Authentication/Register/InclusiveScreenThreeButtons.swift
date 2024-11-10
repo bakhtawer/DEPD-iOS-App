@@ -33,9 +33,6 @@ class InclusiveScreenThreeButtons: BaseViewController {
         self.navigationController?.navigationBar.isHidden = false
         setView()
         
-        APPMetaDataHandler.shared.populateDistricts()
-        APPMetaDataHandler.shared.populateDisabilities()
-        
         viewButtonOne.addTapGestureRecognizer {[weak self] in
             if self?.screenType == .student {
                 Bootstrapper.createLogin(screenType: .student)
@@ -49,6 +46,10 @@ class InclusiveScreenThreeButtons: BaseViewController {
                 DispatchQueue.main.async {[weak self] in
                     let storyboard = getStoryBoard(.main)
                     let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                    view.denialOfAdmission = DenialOfAdmission()
+#if DEBUG
+                    view.denialOfAdmission?.makeTestValues()
+#endif
                     view.type = .denialOfAdmission
                     openModuleOnNavigation(from: self, controller: view)
                 }
@@ -56,6 +57,10 @@ class InclusiveScreenThreeButtons: BaseViewController {
                 DispatchQueue.main.async {[weak self] in
                     let storyboard = getStoryBoard(.main)
                     let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                    view.denialOfJob = DenialOfJob()
+#if DEBUG
+                    view.denialOfJob?.makeTestValues()
+#endif
                     view.type = .denialOfJob
                     openModuleOnNavigation(from: self, controller: view)
                 }

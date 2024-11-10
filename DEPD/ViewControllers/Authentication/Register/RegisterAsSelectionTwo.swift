@@ -19,7 +19,7 @@ class RegisterAsSelectionTwo: BaseViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
-        labelTitle.makeItTheme(.regular)
+        labelTitle.makeItTheme(.bold, 26, .textLightGray)
         
         buttonOne.makeItThemeLargeTransBlack()
         buttonTwo.makeItThemeLargeTransBlack()
@@ -43,7 +43,7 @@ class RegisterAsSelectionTwo: BaseViewController {
     
     private func setUpForStudent() {
         buttonOne.setTitle("register_student".localized(), for: .normal)
-        buttonTwo.setTitle("register_institute".localized(), for: .normal)
+        buttonTwo.setTitle("school_college".localized(), for: .normal)
         
         buttonOne.addTapGestureRecognizer {[weak self] in
             guard let self = self else {return}

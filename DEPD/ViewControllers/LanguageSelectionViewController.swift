@@ -91,7 +91,7 @@ class LanguageSelectionViewController: UIViewController {
                 UITextField.appearance().semanticContentAttribute = .forceLeftToRight
             }
             
-//            Bootstrapper.createInclusiveScreen()
+            UserDefaults.set(firstTimeUser: true)
             if self.isSelection {
                 self.navigationController?.dismiss(animated: true)
             }else {  

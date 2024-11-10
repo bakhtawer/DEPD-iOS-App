@@ -346,6 +346,75 @@
         }
       }
     },
+    "company_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Company Address"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪمپني ايڊريس"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کمپنی کا پتہ"
+          }
+        }
+      }
+    },
+    "company_contact_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Company Contact Number"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪمپني جو رابطو نمبر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کمپنی کا رابطہ نمبر"
+          }
+        }
+      }
+    },
+    "company_email_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Company Email Address"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪمپني جو اي ميل پتو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کمپنی کا ای میل پتہ"
+          }
+        }
+      }
+    },
     "company_hiring" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -365,6 +434,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "کمپنی کی خدمات حاصل کرنا"
+          }
+        }
+      }
+    },
+    "company_name" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Company Name"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪمپني جو نالو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کمپنی کا نام"
           }
         }
       }
@@ -2002,6 +2094,29 @@
         }
       }
     },
+    "nothing_to_show_in_the_gallery" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nothing to show in the gallery."
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "گيلري ۾ ڏيکارڻ لاءِ ڪجھ به نه."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "گیلری میں دکھانے کے لیے کچھ نہیں ہے۔"
+          }
+        }
+      }
+    },
     "ntn_number" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2228,6 +2343,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "لاگ ان دبائیں اور اگلی اسکرین پر جائیں۔"
+          }
+        }
+      }
+    },
+    "previous_education" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Previous Education"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اڳوڻي تعليم"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پچھلی تعلیم"
           }
         }
       }
@@ -2761,6 +2899,29 @@
         }
       }
     },
+    "school_college" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "School/College"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسڪول / ڪاليج"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سکول/کالج"
+          }
+        }
+      }
+    },
     "school_information" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3009,7 +3170,7 @@
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "یہاں اردو منتخب کریں۔"
+            "value" : "یہاں اردو منتخب کریں"
           }
         }
       }
@@ -3032,7 +3193,30 @@
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "یہاں اردو منتخب کریں۔"
+            "value" : "یہاں اردو منتخب کریں"
+          }
+        }
+      }
+    },
+    "select_class" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Class"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪلاس چونڊيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کلاس منتخب کریں"
           }
         }
       }

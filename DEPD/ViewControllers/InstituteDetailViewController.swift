@@ -36,7 +36,6 @@ class InstituteDetailViewController: BaseViewController {
     @IBOutlet weak var buttonAdmission: UIButton!
     @IBOutlet weak var buttonCancel: UILabel!
     
-    
     @IBOutlet weak var labelTrainedTeachers: UILabel!
     @IBOutlet weak var labelAccessibility: UILabel!
     @IBOutlet weak var labelAvailableSeats: UILabel!
@@ -45,12 +44,16 @@ class InstituteDetailViewController: BaseViewController {
     
     @IBOutlet weak var tfSelectClass: UITextField!
     
+    @IBOutlet weak var imageSchool: UIImageView!
+    
     private var selectedClasses: Classes? = nil
+    
+    @IBOutlet weak var imageGalleryView: ImageScrollView!
+    @IBOutlet weak var labelNoGallery: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
-        APPMetaDataHandler.shared.populateClasses()
         setView()
         guard let data = selectedInstitute else { return }
         buttonCancel.addTapGestureRecognizer {[weak self] in
@@ -77,6 +80,10 @@ class InstituteDetailViewController: BaseViewController {
         }
         
         setUpClass()
+        
+        guard let imageSchoolUrl = URL(string: selectedInstitute?.ImageURL?.convertToHttps() ?? "") else { return }
+        imageSchool.contentMode = .scaleAspectFill
+        imageSchool.kf.setImage(with: imageSchoolUrl)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -88,7 +95,7 @@ class InstituteDetailViewController: BaseViewController {
         guard let data = selectedInstitute else { return }
         
         labelName.text = USM.shared.getUserFullName()
-        labelTopLocation.text = ""
+        labelTopLocation.text = USM.shared.getUser().oStudentDetails?.district
         labelSchoolName.text = data.SchoolName
         labelSchoolLocation.text = data.Location
         
@@ -146,6 +153,21 @@ class InstituteDetailViewController: BaseViewController {
         
         labelGalery.makeItTheme(.bold, 16)
         
+        labelNoGallery.text = ""
+        labelNoGallery.makeItTheme(.regular, 16)
+        
+        let listOfImages = (selectedInstitute?.SchoolMultiMediaList ?? []).map {$0.FileURLWithBaseUrl?.convertToHttps() ?? ""}
+        imageGalleryView.imageURLs = listOfImages
+        if listOfImages.isEmpty {
+            labelNoGallery.text = "nothing_to_show_in_the_gallery".localized()
+        }
+        
+//        imageGalleryView.imageURLs = ["https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png", "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp", "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg",
+//        "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png", "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp", "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg",
+//                                      "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png", "https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp", "https://gratisography.com/wp-content/uploads/2024/10/gratisography-cool-cat-800x525.jpg"] // Add URLs
+        imageGalleryView.viewController = self
+        
+        imageAdmin.roundCorner(withRadis: imageAdmin.viewHeight.half)
         guard let image = URL(string: USM.shared.getUserImage()) else { return }
         imageAdmin.contentMode = .scaleAspectFit
         imageAdmin.kf.setImage(with: image,

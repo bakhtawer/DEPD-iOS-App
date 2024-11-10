@@ -49,7 +49,6 @@ class DenialOfAdmission {
     var cdDob:String?
     var cdContactNo:String?
     var cdDisability:String?
-    var cdAddress:String?
     var cdPresentAddress:String?
     
 //    Parent/Guardian Details
@@ -68,6 +67,33 @@ class DenialOfAdmission {
     var complainDetailsInstituteContactNumber:String?
     var complainDetailsInstituteAddress:String?
     var complainDetailsPresentAddress:String?
+    
+    var complainDetailsCheckBox:Bool?
+    
+    func makeTestValues() {
+        cdName = "cdName"
+        cdGender = "cdGender"
+        cdCNIC = "cdCNIC"
+        cdDistrict = "cdDistrict"
+        cdFatherName = "cdFatherName"
+        cdDob = "22/06/1992"
+        cdContactNo = "cdContactNo"
+        cdDisability = "cdDisability"
+        cdPresentAddress = "cdPresentAddress"
+        pdName = "pdName"
+        pdCNIC = "pdCNIC"
+        pdEmail = "pdEmail"
+        pdRelationWithCandidate = "pdRelationWithCandidate"
+        pdContactNo = "pdContactNo"
+        complainDetailsInstituteName = "complainDetailsInstituteName"
+        complainDetailsInstituteEmailAddress = "complainDetailsInstituteEmailAddress"
+        complainDetailsDistrict = "complainDetailsDistrict"
+        complainDetailsReasonOfDenialOfAdmission = "complainDetailsReasonOfDenialOfAdmission"
+        complainDetailsInstituteContactNumber = "complainDetailsInstituteContactNumber"
+        complainDetailsInstituteAddress = "complainDetailsInstituteAddress"
+        complainDetailsPresentAddress = "complainDetailsPresentAddress"
+        complainDetailsCheckBox = true
+    }
 }
 
 class DenialOfJob {
@@ -80,7 +106,6 @@ class DenialOfJob {
     var cdDob:String?
     var cdContactNo:String?
     var cdDisability:String?
-    var cdAddress:String?
     var cdPresentAddress:String?
     
 //    Complain Details
@@ -89,6 +114,27 @@ class DenialOfJob {
     var complainDetailsCompanyString:String?
     var complainDetailsReasonOfDenialOfJob:String?
     var complainDetailsCompanyContactNumber:String?
-    var complainDetailsCompanyAddress:String?
     var complainDetailsPresentAddress:String?
+    var complainDetailsDistrict:String?
+    var complainDetailsCheckBox:Bool?
+    
+    func makeTestValues() {
+        cdName = "cdName"
+        cdGender = "cdGender"
+        cdCNIC = "cdCNIC"
+        cdDistrict = "cdDistrict"
+        cdFatherName = "cdFatherName"
+        cdDob = "22/06/1992"
+        cdContactNo = "cdContactNo"
+        cdDisability = "cdDisability"
+        cdPresentAddress = "cdPresentAddress"
+        complainDetailsCompanyName = "complainDetailsCompanyName"
+        complainDetailsCompanyEmailAddress = "complainDetailsCompanyEmailAddress"
+        complainDetailsCompanyString = "complainDetailsCompanyString"
+        complainDetailsReasonOfDenialOfJob = "complainDetailsReasonOfDenialOfJob"
+        complainDetailsCompanyContactNumber = "complainDetailsCompanyContactNumber"
+        complainDetailsPresentAddress = "complainDetailsPresentAddress"
+        complainDetailsDistrict = "complainDetailsDistrict"
+        complainDetailsCheckBox = true
+    }
 }

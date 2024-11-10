@@ -120,6 +120,7 @@ extension UIView {
     }
     public func addTapGestureRecognizer(action: (() -> Void)?) {
         self.isUserInteractionEnabled = true
+        self.disableFor5Sec()
         self.tapGestureRecognizerAction = action
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
         self.addGestureRecognizer(tapGestureRecognizer)
@@ -129,6 +130,13 @@ extension UIView {
             action?()
         } else {
             print("no action")
+        }
+    }
+    
+    private func disableFor5Sec() {
+        self.isUserInteractionEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.isUserInteractionEnabled = true
         }
     }
 }

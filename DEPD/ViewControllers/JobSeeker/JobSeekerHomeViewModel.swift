@@ -30,8 +30,6 @@ class JobSeekerHomeViewModel {
     init() {
         print("JobSeekerHomeViewModel- init")
         self.schoolID = -1
-        APPMetaDataHandler.shared.populateDistricts()
-        APPMetaDataHandler.shared.populateDisabilities()
     }
     
     deinit {

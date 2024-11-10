@@ -18,12 +18,16 @@ class ThankYouViewController: BaseViewController {
         case registeredSuccess
         case yourSchoolHasBeen(_ school: String)
         case updateSchoolInfo
+        case denialOfAdmission
+        case denialOfJob
         var value: String {
             switch self {
             case .none: return ""
             case .registeredSuccess: return "register_success_message".localized()
             case .yourSchoolHasBeen(let school): return "Your Application has been submitted to \(school) school"
             case .updateSchoolInfo: return "\("school_information".localized()) Updated"
+            case .denialOfAdmission: return "Your Application has been submitted."
+            case .denialOfJob: return "Your Application has been submitted."
             }
         }
     }
@@ -31,6 +35,7 @@ class ThankYouViewController: BaseViewController {
     enum MoveThankYou {
         case home
         case stay
+        case splash
     }
     
     var messageThankYou: MessageThankYou = .none
@@ -61,6 +66,7 @@ class ThankYouViewController: BaseViewController {
             case .home: Bootstrapper.createHome()
             case .stay: self?.dismiss(animated: true)
             case .none: break
+            case .splash: Bootstrapper.createSplash()
             }
         }
     }

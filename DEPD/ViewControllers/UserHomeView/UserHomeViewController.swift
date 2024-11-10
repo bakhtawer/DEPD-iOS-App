@@ -121,7 +121,7 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         labelUserName.text = USM.shared.getUserFullName()
-        labelLocation.text = ""
+        labelLocation.text = USM.shared.getUser().oStudentDetails?.district
         setView()
         
         collectionView.setNeedsDisplay()

@@ -126,8 +126,12 @@ extension Bootstrapper {
     
     private func makeDecisonToOpenAppInState() {
         
-        Bootstrapper.createLanguageSelection()
+        if !UserDefaults.firstTimeUser {
+            Bootstrapper.createLanguageSelection()
+            return
+        }
         
+        Bootstrapper.createInclusiveScreen()
 
 //        let isLogin = UserDefaults.userLogin
 //        

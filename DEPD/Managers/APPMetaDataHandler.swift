@@ -25,112 +25,61 @@ final class APPMetaDataHandler {
     var userType: UserType = UserType.Student
     
     // MARK: District
-    private var districts = [District]()
-    func populateDistricts(){
-        let request = Endpoint.getDistrict.request!
-        service.makeRequest(with: request, respModel: ApiResponse<[District]>.self) {[weak self] userResponse, error in
-            if let error = error { print("DEBUG PRINT:", error); return }
-            print("DEBUG PRINT:", userResponse ?? "")
-            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
-            guard let districts = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
-            self?.districts = districts
-        }
-    }
     func getDistricts() -> [District] {
-        districts
+        dataAllGeneralList?.DistrictList ?? []
     }
     func getDistrictsNames() -> [String] {
-        districts.map {$0.name ?? ""}
+        (dataAllGeneralList?.DistrictList ?? []).map {$0.name ?? ""}
     }
     
     // MARK: Disability
-    private var disabilities = [Disability]()
-    func populateDisabilities(){
-        let request = Endpoint.getDisstatList.request!
-        
-        service.makeRequest(with: request, respModel: ApiResponse<[Disability]>.self) {[weak self] userResponse, error in
-            if let error = error { print("DEBUG PRINT:", error); return }
-            print("DEBUG PRINT:", userResponse ?? "")
-            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
-            guard let districts = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
-            self?.disabilities = districts
-        }
-    }
     func getDisabilities() -> [Disability] {
-        disabilities
+        dataAllGeneralList?.DisabilityList ?? []
     }
     func getDisabilitiesNames() -> [String] {
-        disabilities.map {$0.name ?? ""}
+        (dataAllGeneralList?.DisabilityList ?? []).map {$0.name ?? ""}
+    }
+    func getDisabilities(byID: Int) -> Disability? {
+        (dataAllGeneralList?.DisabilityList ?? []).filter {$0.disabilityId == byID}.last ?? nil
     }
     
     // MARK: Gender
-    private var genders = [Gender]()
-    func populateGenders(){
-        let request = Endpoint.getGenders.request!
-        
-        service.makeRequest(with: request, respModel: ApiResponse<[Gender]>.self) {[weak self] userResponse, error in
-            if let error = error { print("DEBUG PRINT:", error); return }
-            print("DEBUG PRINT:", userResponse ?? "")
-            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
-            guard let genders = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
-            self?.genders = genders
-        }
-    }
     func getGenders() -> [Gender] {
-        genders
+        dataAllGeneralList?.GenderList ?? []
     }
     
-    // MARK: Gender
-    private var designations = [Designations]()
-    func populateDesignations(){
-        let request = Endpoint.getDesignations.request!
-        service.makeRequest(with: request, respModel: ApiResponse<[Designations]>.self) {[weak self] userResponse, error in
-            if let error = error { print("DEBUG PRINT:", error); return }
-            print("DEBUG PRINT:", userResponse ?? "")
-            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
-            guard let designations = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
-            self?.designations = designations
-        }
-    }
+    // MARK: Designation
     func getDesignations() -> [String] {
-        designations.map {$0.name ?? ""}
+        (dataAllGeneralList?.DesignationList ?? []).map {$0.name ?? ""}
     }
     
     // MARK: Previous Education
-    private var previousEducation = [PreviousEducation]()
-    func populatePreviousEducation(){
-        let request = Endpoint.getPreviousEducation.request!
-        service.makeRequest(with: request, respModel: ApiResponse<[PreviousEducation]>.self) {[weak self] userResponse, error in
-            if let error = error { print("DEBUG PRINT:", error); return }
-            print("DEBUG PRINT:", userResponse ?? "")
-            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
-            guard let previousEducation = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
-            self?.previousEducation = previousEducation
-        }
-    }
-    func getPreviousEducation() -> [PreviousEducation] {
-        previousEducation
+    func getPreviousEducation() -> [Degree] {
+        dataAllGeneralList?.DegreeProgram ?? []
     }
     func getPreviousEducationName() -> [String] {
-        previousEducation.map {$0.name ?? ""}
+        (dataAllGeneralList?.DegreeProgram ?? []).map {$0.name ?? ""}
     }
     
     // MARK: Classes
-    private var classes = [Classes]()
-    func populateClasses(){
-        let request = Endpoint.getClasses.request!
-        service.makeRequest(with: request, respModel: ApiResponse<[Classes]>.self) {[weak self] userResponse, error in
+    func getPreviousClasses() -> [Classes] {
+        dataAllGeneralList?.classList ?? []
+    }
+    func getClassesName() -> [String] {
+        (dataAllGeneralList?.classList ?? []).map {$0.name ?? ""}
+    }
+    
+    
+    // MARK: All General List
+    private var dataAllGeneralList: AllGeneralList?
+    func populateAllGeneralList(){
+        let request = Endpoint.allGeneralList.request!
+        service.makeRequest(with: request, respModel: AllGeneralList.self) {[weak self] userResponse, error in
             if let error = error { print("DEBUG PRINT:", error); return }
             print("DEBUG PRINT:", userResponse ?? "")
             if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
-            guard let previousEducation = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
-            self?.classes = previousEducation
+            guard let allGeneralList = userResponse else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
+            self?.dataAllGeneralList = allGeneralList
         }
-    }
-    func getPreviousClasses() -> [Classes] {
-        classes
-    }
-    func getClassesName() -> [String] {
-        classes.map {$0.name ?? ""}
     }
 }

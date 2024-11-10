@@ -46,6 +46,8 @@
 		CB43B3E92C04F44E009E990E /* BottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB43B3E82C04F44E009E990E /* BottomView.xib */; };
 		CB4D65A32CD527E7007849A5 /* InclusiveScreenThreeButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB4D65A22CD527DE007849A5 /* InclusiveScreenThreeButtons.swift */; };
 		CB73D46E2CDFB5B600E24FA2 /* DenialOfAdmission.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D46D2CDFB5A700E24FA2 /* DenialOfAdmission.swift */; };
+		CB73D4702CDFB95E00E24FA2 /* DenailOfForms.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D46F2CDFB94C00E24FA2 /* DenailOfForms.swift */; };
+		CB73D4722CE028FC00E24FA2 /* ImageGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D4712CE028F900E24FA2 /* ImageGalleryView.swift */; };
 		CB7808342C05021900F3E785 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808222C05021800F3E785 /* Roboto-Italic.ttf */; };
 		CB7808352C05021900F3E785 /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */; };
 		CB7808362C05021900F3E785 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */; };
@@ -190,6 +192,8 @@
 		CB4D65A22CD527DE007849A5 /* InclusiveScreenThreeButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InclusiveScreenThreeButtons.swift; sourceTree = "<group>"; };
 		CB6C1C982C7BBADF007F2F74 /* Jameel-Noori-Nastaleeq-Kasheeda.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jameel-Noori-Nastaleeq-Kasheeda.ttf"; sourceTree = "<group>"; };
 		CB73D46D2CDFB5A700E24FA2 /* DenialOfAdmission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenialOfAdmission.swift; sourceTree = "<group>"; };
+		CB73D46F2CDFB94C00E24FA2 /* DenailOfForms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DenailOfForms.swift; sourceTree = "<group>"; };
+		CB73D4712CE028F900E24FA2 /* ImageGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryView.swift; sourceTree = "<group>"; };
 		CB7808222C05021800F3E785 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
 		CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -498,6 +502,7 @@
 		CB89DFED2BFE6B3400F7458B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				CB73D4712CE028F900E24FA2 /* ImageGalleryView.swift */,
 				CBBD16F62C7D131400171E4B /* DEPDButton */,
 				CB43B3E52C04F415009E990E /* BottomView */,
 				CBD17C472BFFF1FD001C3980 /* InstituteCollectionView */,
@@ -585,6 +590,7 @@
 		CB90B1D02CA8607E0069EA2D /* GeneralFormBuilder */ = {
 			isa = PBXGroup;
 			children = (
+				CB73D46F2CDFB94C00E24FA2 /* DenailOfForms.swift */,
 				CB90B1D12CA860AC0069EA2D /* FormBuilderViewController.swift */,
 				CB90B1D32CA865B10069EA2D /* FormBuilderView.swift */,
 			);
@@ -903,6 +909,7 @@
 				CB2B55E52C55A27F008A8B83 /* InstituteDetailViewController.swift in Sources */,
 				CB358CC52CBC1BE800CD25A9 /* CompanyJobCell.swift in Sources */,
 				CB43B3CC2C03D359009E990E /* APIService.swift in Sources */,
+				CB73D4722CE028FC00E24FA2 /* ImageGalleryView.swift in Sources */,
 				CBEAF5712C8B9E1E00153662 /* HelpViewController.swift in Sources */,
 				CBC032062BFE77E100B45EEC /* UIView+extention.swift in Sources */,
 				CBC032192BFE8FC400B45EEC /* UiColor+Extention.swift in Sources */,
@@ -933,6 +940,7 @@
 				CB43B3D92C04C5F0009E990E /* ForgotPasswordViewController.swift in Sources */,
 				CBD17C302BFFDBE2001C3980 /* InformativeAlertManager.swift in Sources */,
 				CBD17C382BFFE233001C3980 /* UIViewController+Extention.swift in Sources */,
+				CB73D4702CDFB95E00E24FA2 /* DenailOfForms.swift in Sources */,
 				CBD17C362BFFE1B3001C3980 /* ScrollView+Extention.swift in Sources */,
 				CBEAF57A2C9616C400153662 /* SchoolHomeViewController.swift in Sources */,
 				CBBD16FC2C7E4AD000171E4B /* RegisterAndroidViewController.swift in Sources */,

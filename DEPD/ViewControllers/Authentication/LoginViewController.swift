@@ -59,7 +59,7 @@ class LoginViewController: BaseViewController {
         buttonLogin.isAccessibilityElement = true
         buttonRegister.isAccessibilityElement = true
         
-        labelLoginTitle.makeItTheme(.medium, 20, .textDark, .center)
+        labelLoginTitle.makeItTheme(.bold, 20, .appBlue, .center)
         labelLoginAsGust.makeItTheme(.bold, 14, .appGreen)
         
         switch screenType {

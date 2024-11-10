@@ -33,7 +33,7 @@ class UserSessionManager: UserSession {
     }
     
     func getUserImage() -> String {
-        self.user.firstName?.convertToHttps() ?? ""
+        self.user.oStudentDetails?.profilePictureURL?.convertToHttps() ?? ""
     }
     
     

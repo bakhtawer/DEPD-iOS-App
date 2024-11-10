@@ -19,6 +19,8 @@ class FormBuilderView: UIView {
     
     private var dateTF: UITextField?
     
+    private var checkBoxValue: Bool = false
+    
     // Initialize the FormBuilderView with an array of fields
     init(fields: [FormField], _ buttonTitle: String = "register_submit".localized()) {
         self.formFields = fields
@@ -118,14 +120,21 @@ class FormBuilderView: UIView {
             dateTF.borderStyle = .roundedRect
             dateTF.tag = fieldIndex
             dateTF.makeItThemeTF()
-            dateTF.text = value
+            dateTF.text = value?.toFormattedDateShow()
             
             let datePicker = UIDatePicker()
             datePicker.datePickerMode = .date
             datePicker.preferredDatePickerStyle = .wheels
             datePicker.tag = fieldIndex
             datePicker.maximumDate = Date()
+            if let date = value?.fromFormattedDate(){
+                datePicker.date = date
+            }
             dateTF.inputView = datePicker
+            
+            let dropdownIcon = UIImageView(image: UIImage(systemName: "chevron.down"))
+            dropdownIcon.contentMode = .scaleAspectFit
+            dropdownIcon.tintColor = .textDark
             
             // Add a toolbar with a "Done" button to dismiss the picker
             let toolbar = UIToolbar()
@@ -156,6 +165,8 @@ class FormBuilderView: UIView {
             textField.tag = fieldIndex
             textField.makeItThemeTF() // Apply custom theme
             textField.heightAnchor.constraint(equalToConstant: tfHeight).isActive = true
+            
+            textField.text = value
             
             // Create the picker
             let pickerView = UIPickerView()
@@ -192,11 +203,22 @@ class FormBuilderView: UIView {
             placeholderTextView.backgroundColor = .appLight
             placeholderTextView.heightAnchor.constraint(equalToConstant: 150).isActive = true
             placeholderTextView.text = value
+            if value != nil, value != "" {
+                placeholderTextView.placeholderLabel.isHidden = true
+            }else {
+                placeholderTextView.placeholderLabel.isHidden = false
+            }
+            placeholderTextView.textColor = .textDark
             return placeholderTextView
             
         case .checkbox:
             let checkbox = CheckboxView(labelText: field.placeholder)
             checkbox.makeItThemeHeight(height: 100)
+            checkBoxValue = value?.makeItBool ?? false
+            checkbox.isChecked = value?.makeItBool ?? false
+            checkbox.onToggle = {
+                self.checkBoxValue.toggle()
+            }
             return checkbox
         case .uploadFile:
             let button = DEPDButton()
@@ -250,18 +272,24 @@ class FormBuilderView: UIView {
             if let inputView = stackView.arrangedSubviews[index] as? UITextField {
                 if field.isRequired && inputView.text?.isEmpty == true {
                     isValid = false
-                    SMM.shared.showWarning(title: "", message: "\(field.name) is required.")
+                    SMM.shared.showWarning(title: "", message: "\(field.placeholder) is required.")
                 }
                 formData[field.name] = inputView.text ?? ""
             } else if let datePicker = stackView.arrangedSubviews[index] as? UIDatePicker {
-                formData[field.name] = datePicker.date
+                formData[field.name] = datePicker.date.toFormattedDate()
                 
             } else if let inputView = stackView.arrangedSubviews[index] as? UITextView {
                 if field.isRequired && inputView.text?.isEmpty == true {
                     isValid = false
-                    SMM.shared.showWarning(title: "", message: "\(field.name) is required.")
+                    SMM.shared.showWarning(title: "", message: "\(field.placeholder) is required.")
                 }
                 formData[field.name] = inputView.text ?? ""
+            } else if let inputView = stackView.arrangedSubviews[index] as? CheckboxView {
+                if field.isRequired && inputView.isChecked == false {
+                    isValid = false
+                    SMM.shared.showWarning(title: "", message: "\(field.placeholder) is required.")
+                }
+                formData[field.name] = checkBoxValue.makeItString
             }
         }
         
