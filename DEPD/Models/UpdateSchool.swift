@@ -20,18 +20,18 @@
 //  "NTNNumber": "XXXX-XXXXXXX-X"
 //}
 
-struct UpdatePersonalInformation {
-    var SchoolId: Int?
-    var SchoolName: String?
-    var NTNNumber: String?
-    var oUser: oUser?
-    struct oUser {
-        var Id: Int?
-        var FirstName: String?
-        var LastName: String?
-        var CNIC: String?
-        var ContactNo: String?
-        var EmailAddress: String?
-        var Designation: String?
-    }
-}
+//struct UpdatePersonalInformation {
+//    var SchoolId: Int?
+//    var SchoolName: String?
+//    var NTNNumber: String?
+//    var oUser: oUser?
+//    struct oUser {
+//        var Id: Int?
+//        var FirstName: String?
+//        var LastName: String?
+//        var CNIC: String?
+//        var ContactNo: String?
+//        var EmailAddress: String?
+//        var Designation: String?
+//    }
+//}

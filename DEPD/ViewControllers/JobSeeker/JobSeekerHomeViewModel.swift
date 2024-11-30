@@ -25,8 +25,6 @@ class JobSeekerHomeViewModel {
     private var searchText: String?
     private var schoolID: Int
     
-    var selectedSchool: InstituteModel?
-    
     init() {
         print("JobSeekerHomeViewModel- init")
         self.schoolID = -1

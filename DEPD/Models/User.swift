@@ -23,6 +23,11 @@ struct User: Codable {
     var oStudentApplicationDetail: [StudentApplication]?
     var schoolSocialMediaInfo: SchoolSocialMediaInfo?
     var schoolDetailInfo: SchoolDetailInfo?
+    var schoolMultiMedia: SchoolMultiMedia?
+    var jobSeekerDetailInfo: JobSeekerDetailInfo?
+    var aboutInfo: AboutInfo?
+    var jobSeekerEducation: [JobSeekerEducation]?
+    var jobSeekerWorkExperience: [JobSeekerWorkExperience]?
     
     init() {}
     
@@ -40,11 +45,18 @@ struct User: Codable {
         case emailAddress = "EmailAddress"
         case oStudentDetails
         case oStudentApplicationDetail
-        case schoolSocialMediaInfo = "oSchoolSocialMediaInfo"
-        case schoolDetailInfo = "oSchoolDetailInfo"
+        case schoolSocialMediaInfo = "SchoolSocialMediaInfo"
+        case schoolDetailInfo = "SchoolDetailInfo"
+        case schoolMultiMedia = "SchoolMultiMedia"
+        case jobSeekerDetailInfo = "JobSeekerDetailInfo"
+        case aboutInfo = "aboutinfo"
+        case jobSeekerEducation = "JobSeekerEducation"
+        case jobSeekerWorkExperience = "JobSeekerWorkExperience"
     }
     
     init(from decoder: Decoder) throws {
+        
+        do {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
@@ -62,6 +74,18 @@ struct User: Codable {
         oStudentApplicationDetail = try container.decodeIfPresent([StudentApplication].self, forKey: .oStudentApplicationDetail)
         schoolSocialMediaInfo = try container.decodeIfPresent(SchoolSocialMediaInfo.self, forKey: .schoolSocialMediaInfo)
         schoolDetailInfo = try container.decodeIfPresent(SchoolDetailInfo.self, forKey: .schoolDetailInfo)
+        schoolMultiMedia = try container.decodeIfPresent(SchoolMultiMedia.self, forKey: .schoolMultiMedia)
+        jobSeekerDetailInfo = try container.decodeIfPresent(JobSeekerDetailInfo.self, forKey: .jobSeekerDetailInfo)
+        aboutInfo = try container.decodeIfPresent(AboutInfo.self, forKey: .aboutInfo)
+        jobSeekerEducation = try container.decodeIfPresent([JobSeekerEducation].self, forKey: .jobSeekerEducation)
+        jobSeekerWorkExperience = try container.decodeIfPresent([JobSeekerWorkExperience].self, forKey: .jobSeekerWorkExperience)
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -118,6 +142,7 @@ struct StudentDetails: Codable {
     }
     
     init(from decoder: Decoder) throws {
+        do {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
@@ -143,6 +168,13 @@ struct StudentDetails: Codable {
         disabilityCertificateString = try container.decodeIfPresent(String.self, forKey: .disabilityCertificateString)
         profilePictureName = try container.decodeIfPresent(String.self, forKey: .profilePictureName)
         disabilityCertName = try container.decodeIfPresent(String.self, forKey: .disabilityCertName)
+    } catch let DecodingError.typeMismatch(type, context) {
+        print("Type '\(type)' mismatch:", context.debugDescription)
+        print("codingPath:", context.codingPath)
+    } catch {
+        print(error)
+        print(error.localizedDescription)
+    }
     }
 }
 
@@ -162,6 +194,7 @@ struct StudentApplication: Codable {
     }
     
     init(from decoder: Decoder) throws {
+        do {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
@@ -169,6 +202,13 @@ struct StudentApplication: Codable {
         appliedOnDate = try container.decodeIfPresent(String.self, forKey: .appliedOnDate)
         className = try container.decodeIfPresent(String.self, forKey: .className) ?? ""
         admissionStatus = try container.decodeIfPresent(String.self, forKey: .admissionStatus) ?? "Pending"
+    } catch let DecodingError.typeMismatch(type, context) {
+        print("Type '\(type)' mismatch:", context.debugDescription)
+        print("codingPath:", context.codingPath)
+    } catch {
+        print(error)
+        print(error.localizedDescription)
+    }
     }
 }
 
@@ -186,12 +226,34 @@ struct SchoolSocialMediaInfo: Codable {
     }
     
     init(from decoder: Decoder) throws {
+        do {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
         AccountTypeID = try container.decodeIfPresent(Int.self, forKey: .AccountTypeID) ?? -1
         RelID = try container.decodeIfPresent(Int.self, forKey: .RelID) ?? -1
         SocialMediaLink = try container.decodeIfPresent(String.self, forKey: .SocialMediaLink) ?? ""
+    } catch let DecodingError.typeMismatch(type, context) {
+        print("Type '\(type)' mismatch:", context.debugDescription)
+        print("codingPath:", context.codingPath)
+    } catch {
+        print(error)
+        print(error.localizedDescription)
+    }
+    }
+    
+    func convertUrl() -> String {
+        switch self.AccountTypeID ?? 0 {
+        case 1: // facebook
+            return "https://cdn.pixabay.com/photo/2021/06/15/12/51/facebook-6338507_1280.png"
+        case 2: // Youtube
+            return "https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png"
+        case 3: // Instagram
+            return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNDSc2kBojlcAsXp4YYp4MJQHHizDnPuvP7g&s"
+        case 4: // X
+            return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmTwnA_cbtpvYtWYfPtisBpkedtXxX0Xy6fQ&s"
+        default: return ""
+        }
     }
 }
 
@@ -245,7 +307,6 @@ struct SchoolDetailInfo: Codable {
     }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        
         // Decoding and providing default values if key is missing or nil
         id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
         schoolId = try container.decodeIfPresent(Int.self, forKey: .schoolId) ?? -1
@@ -271,3 +332,4 @@ struct SchoolDetailInfo: Codable {
         district = try container.decodeIfPresent(String.self, forKey: .district) ?? ""
     }
 }
+

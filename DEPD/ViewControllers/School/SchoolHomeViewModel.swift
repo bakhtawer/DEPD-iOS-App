@@ -42,16 +42,10 @@ class SchoolHomeViewModel {
     
     func fetchALlSchoolsForDetailsStudents() {
         delegate?.showLoader()
-        let request = Endpoint.getSchoolList.request!
-        service.makeRequest(with: request, respModel: ApiResponse<[InstituteModel]>.self) {[weak self] userResponse, error in
-            if let error = error { print("DEBUG PRINT:", error); return }
-            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
-            guard let schools = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
-            self?.selectedSchool = schools.filter { $0.InstituteId == self?.schoolID }.last
-            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {[weak self] in
-                self?.delegate?.hideLoader()
-                self?.delegate?.fetchedInstituteDetails()
-            })
+        SchoolManager.shared.fetchAllSchoolsForSchool() { [weak self] status in
+            if status { self?.selectedSchool = SchoolManager.shared.selectedSchool }
+            self?.delegate?.hideLoader()
+            self?.delegate?.fetchedInstituteDetails()
         }
     }
     

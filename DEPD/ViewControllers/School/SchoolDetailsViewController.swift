@@ -31,6 +31,29 @@ class SchoolDetailsViewController: BaseViewController {
     private let service = APIService()
     var selectedSchool: InstituteModel?
     
+    @IBOutlet weak var labelTitleSocialMultiMedia: UILabel!
+    @IBOutlet weak var viewSocialMultiMedia: ImageScrollView!
+    @IBOutlet weak var labelEmptySocialMultiMedia: UILabel!
+    @IBOutlet weak var buttonEditSocialMultiMedia: UIButton!
+    
+    @IBOutlet weak var labelTitleSocialMediaLink: UILabel!
+    @IBOutlet weak var viewSocialMediaLink: ImageScrollView!
+    @IBOutlet weak var labelEmptySocialMediaLink: UILabel!
+    @IBOutlet weak var buttonEditSocialMediaLink: UIButton!
+    
+    @IBOutlet weak var labelTitleWeCanEducate: UILabel!
+    @IBOutlet weak var viewWeCanEducate: DisabilityListView!
+    @IBOutlet weak var labelEmptyWeCanEducate: UILabel!
+    @IBOutlet weak var buttonWeCanEducate: UIButton!
+    
+    
+    @IBOutlet weak var viewGapmultimedia: UIView!
+    @IBOutlet weak var viewMasterSocialMultiMedia: UIView!
+    @IBOutlet weak var viewGapSocialMedia: UIView!
+    @IBOutlet weak var viewMasterSocialMediaLinks: UIView!
+    @IBOutlet weak var viewGapWeCan: UIView!
+    @IBOutlet weak var viewMasterWeCanEducate: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,15 +81,49 @@ class SchoolDetailsViewController: BaseViewController {
             }
         }
         
+        guard let selectedSchool = selectedSchool else { return }
+        
         buttonEditAdtionalInfo.addTapGestureRecognizer {
             DispatchQueue.main.async {[weak self] in
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
                 view.type = .additionalInfo
-//                view.selectedSchool = selectedSchool
+                view.selectedSchool = selectedSchool
                 openModuleOnNavigation(from: self, controller: view)
             }
         }
+        
+        
+        buttonEditSocialMultiMedia.addTapGestureRecognizer {
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.type = .schoolSocialMultiMedia
+                view.selectedSchool = selectedSchool
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        }
+        
+        buttonEditSocialMediaLink.addTapGestureRecognizer {
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.type = .schoolSocialMedia
+                view.selectedSchool = selectedSchool
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        }
+        
+        buttonWeCanEducate.addTapGestureRecognizer {
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.type = .schoolWeCanEducate
+                view.selectedSchool = selectedSchool
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        }
+        
         
         
         guard let image = URL(string: USM.shared.getUser().schoolDetailInfo?.profileImageURL?.convertToHttps() ?? "") else { return }
@@ -103,15 +160,16 @@ class SchoolDetailsViewController: BaseViewController {
         
         
         labelSchoolName.text = school?.schoolName
-        labelSchoolLocation.text = school?.district
+        labelSchoolLocation.text = school?.location
         
         let schoolInfo = """
 \("school_name".localized()): \(school?.schoolName ?? "")
 \("email".localized()): \(school?.emailAddress ?? "N/A")
 \("ntn_number".localized()): \(school?.ntnNumber ?? "N/A")
 \("contact_number".localized()): \(USM.shared.getUser().contactNo ?? "N/A")
-\("first_name".localized()): N/A
-\("last_name".localized()): N/A
+\("cnic".localized()): \(USM.shared.getUser().cnic ?? "N/A")
+\("first_name".localized()): \(USM.shared.getUser().firstName ?? "N/A")
+\("last_name".localized()): \(USM.shared.getUser().lastName ?? "N/A")
 \("designation".localized()): \(school?.designation ?? "N/A")
 """
         labelSchoolInfoDetails.text = schoolInfo
@@ -123,18 +181,160 @@ class SchoolDetailsViewController: BaseViewController {
         let additionalInfo = """
 \("establish_year".localized()): \(school?.establishedYear ?? 0)
 \("location".localized()): \(school?.location ?? "")
-\("district".localized()): N/A
+\("district".localized()):\(USM.shared.getUser().schoolDetailInfo?.district ?? "")
 \("number_of_trained_teachers".localized()): \(school?.numberOfTrainedTeachers ?? 0)
 \("available_seats_pwd".localized()): N/A
 \("accessibility_material".localized()): \(school?.hasAccessibilityMaterial ?? false)
-\("trained_teachers's".localized()): \(school?.hasTrainingMaterial ?? false)
-\("free_or_paid_education".localized()): \(school?.freeOrPaid ?? 0)
+\("free_or_paid_education".localized()): \(APPMetaDataHandler.shared.getFreePaidFromInt(value: SchoolManager.shared.selectedSchool?.FreeOrPaid ?? 0))
 \("number_of_total_students".localized()): \(school?.availableSeats ?? 0)
 """
         labelAddiontalInfoDetails.text = additionalInfo
         labelAddiontalInfoDetails.makeItTheme(.regular, 14, .textDark, .left, 20)
-
         
+        labelTitleSocialMultiMedia.text = "school_multi_media".localized()
+        labelTitleSocialMultiMedia.makeItTheme(.bold, 14, .textDark)
+        labelEmptySocialMultiMedia.text = ""
+        labelEmptySocialMultiMedia.makeItTheme(.regular, 12, .textDark)
+        
+        
+        guard let selectedSchool = SchoolManager.shared.selectedSchool else {
+            //Hide here views
+            viewGapmultimedia.isHidden = true
+            viewMasterSocialMultiMedia.isHidden = true
+            viewGapSocialMedia.isHidden = true
+            viewMasterSocialMediaLinks.isHidden = true
+            viewGapWeCan.isHidden = true
+            viewMasterWeCanEducate.isHidden = true
+            return }
+        
+        
+        let listOfImages = (selectedSchool.SchoolMultiMediaList ?? []).map {$0.FileURLWithBaseUrl?.convertToHttps() ?? ""}
+        viewSocialMultiMedia.imageURLs = listOfImages
+        if listOfImages.isEmpty {
+            labelEmptySocialMultiMedia.text = "nothing_to_show_in_the_gallery".localized()
+        }
+        viewSocialMultiMedia.isEditable = true
+        viewSocialMultiMedia.viewController = self
+        viewSocialMultiMedia.onDeleteToggle = { index in
+            print("delete \(index) :\(selectedSchool.SchoolMultiMediaList?[index])")
+            guard let disabilityId = selectedSchool.SchoolMultiMediaList?[index].schoolMultiMediaID,
+                  disabilityId != -1,
+                  let userID = USM.shared.getUser().id
+            else {
+                SMM().showError(title: "Sorry", message: "Please select the Multi Media")
+                return
+            }
+            self.presentActionSheetDeleteMultimedia(data: DeleteById(Id: disabilityId, UserId: userID))
+        }
+        
+        
+        labelTitleSocialMediaLink.text = "socail_media_links".localized()
+        labelTitleSocialMediaLink.makeItTheme(.bold, 14, .textDark)
+        labelEmptySocialMediaLink.text = ""
+        labelEmptySocialMediaLink.makeItTheme(.regular, 12, .textDark)
+        
+        let listOflinks = (selectedSchool.schoolSocialMediaInfo ?? []).map { $0.SocialMediaLink?.convertToHttps() ?? ""}
+        let listOflinksImages = (selectedSchool.schoolSocialMediaInfo ?? []).map {$0.convertUrl()}
+        viewSocialMediaLink.imageURLs = listOflinksImages
+        viewSocialMediaLink.linksURLs = listOflinks
+        viewSocialMediaLink.isLink = true
+        viewSocialMediaLink.isEditable = true
+        if listOflinks.isEmpty {
+            labelEmptySocialMediaLink.text = "nothing_to_show_in_the_gallery".localized()
+        }
+        viewSocialMediaLink.viewController = self
+        
+        viewSocialMediaLink.onDeleteToggle = { index in
+            print("delete \(index) :\(selectedSchool.schoolSocialMediaInfo?[index])")
+            guard let disabilityId = selectedSchool.schoolSocialMediaInfo?[index].id,
+                  disabilityId != -1,
+                  let userID = USM.shared.getUser().id
+            else {
+                SMM().showError(title: "Sorry", message: "Please select the disability")
+                return
+            }
+            self.presentActionSheetDeleteLinks(data: DeleteById(Id: disabilityId, UserId: userID))
+        }
+        
+        
+        labelTitleWeCanEducate.text = "we_can_educate".localized()
+        labelTitleWeCanEducate.makeItTheme(.bold, 14, .textDark)
+        labelEmptyWeCanEducate.text = ""
+        labelEmptyWeCanEducate.makeItTheme(.regular, 12, .textDark)
+        
+        let listOfDisabilities = (selectedSchool.SchoolDisabilityList ?? []).map {$0.disabilityStatus?.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\r\n", with: "").replacingOccurrences(of: "\n", with: "") ?? ""}
+        viewWeCanEducate.disabilities = listOfDisabilities
+        if listOfDisabilities.isEmpty {
+            labelEmptyWeCanEducate.text = "nothing_to_show_in_the_gallery".localized()
+        }
+        viewWeCanEducate.onToggle = { index in
+            print("delete \(index) :\(selectedSchool.SchoolDisabilityList?[index])")
+            guard let disabilityId = selectedSchool.SchoolDisabilityList?[index].schoolDisabilityId,
+                  disabilityId != -1,
+                  let userID = USM.shared.getUser().id
+            else {
+                SMM().showError(title: "Sorry", message: "Please select the disability")
+                return
+            }
+            self.presentActionSheetDeleteDisability(data: DeleteById(Id: disabilityId, UserId: userID))
+        }
+        
+    }
+    
+    private func presentActionSheetDeleteDisability(data: DeleteById) {
+        let actionSheet = UIAlertController(title: "Are you sure you want to delete this record?", message: nil, preferredStyle: .alert)
+        
+        actionSheet.addAction(UIAlertAction(title: "Yes", style: .default) { _ in
+            self.showLoadingIndicator(withDimView: true)
+            SchoolManager.shared.deleteDisabilityStatus(data: data) {[weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    SchoolManager.shared.fetchAllSchoolsForSchool {[weak self] status in
+                        DispatchQueue.main.async {[weak self] in self?.setView() }
+                    }
+                }
+            }
+        })
+        
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func presentActionSheetDeleteLinks(data: DeleteById) {
+        let actionSheet = UIAlertController(title: "Are you sure you want to delete this record?", message: nil, preferredStyle: .alert)
+        
+        actionSheet.addAction(UIAlertAction(title: "Yes", style: .default) { _ in
+            self.showLoadingIndicator(withDimView: true)
+            SchoolManager.shared.deleteSocialMediaLink(data: data) {[weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    SchoolManager.shared.fetchAllSchoolsForSchool {[weak self] status in
+                        DispatchQueue.main.async {[weak self] in self?.setView() }
+                    }
+                }
+            }
+        })
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(actionSheet, animated: true, completion: nil)
+    }
+    
+    private func presentActionSheetDeleteMultimedia(data: DeleteById) {
+        let actionSheet = UIAlertController(title: "Are you sure you want to delete this record?", message: nil, preferredStyle: .alert)
+        
+        actionSheet.addAction(UIAlertAction(title: "Yes", style: .default) { _ in
+            self.showLoadingIndicator(withDimView: true)
+            SchoolManager.shared.deleteSocialMultiMediaLink(data: data) {[weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    SchoolManager.shared.fetchAllSchoolsForSchool { status in
+                        DispatchQueue.main.async {[weak self] in self?.setView() }
+                    }
+                }
+            }
+        })
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(actionSheet, animated: true, completion: nil)
     }
     
     private func setMasterDetailsLabels (master: UILabel, details: UILabel) {

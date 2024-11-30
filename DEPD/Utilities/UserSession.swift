@@ -47,7 +47,10 @@ extension UserSessionManager {
     func login(email: String, Password: String) {
         let request = Endpoint.login(email: email, password: Password).request!
         service.makeRequest(with: request, respModel: ApiResponse<User>.self) {userResponse, error in
-            if let error = error { print("DEBUG PRINT:", error); return }
+            if let error = error { print("DEBUG PRINT:", error);
+                KeychainManager.nuke()
+                DispatchQueue.main.async { Bootstrapper.createSplash()}
+                return }
             print("DEBUG PRINT:", userResponse ?? "")
             if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
                 KeychainManager.nuke()
@@ -60,6 +63,33 @@ extension UserSessionManager {
                 return}
             UserSessionManager.shared.setUser(user: user)
             DispatchQueue.main.async { Bootstrapper.createHome()}
+        }
+    }
+    
+    func updatedUser(completion: @escaping (Bool) -> Void) {
+        
+        if let cnic = KeychainManager.retrieve(forKey: .cnic),
+           let password = KeychainManager.retrieve(forKey: .password),
+           let userType = KeychainManager.retrieve(forKey: .userType) {
+           let request = Endpoint.login(email: cnic, password: password).request!
+            service.makeRequest(with: request, respModel: ApiResponse<User>.self) {userResponse, error in
+                func fail() {
+                    completion(false)
+                }
+                if let error = error { print("DEBUG PRINT:", error);
+                    fail()
+                    return }
+                print("DEBUG PRINT:", userResponse ?? "")
+                if let error = userResponse?.isError, error {
+                    SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                    fail()
+                    return }
+                guard let user = userResponse?.oData else {
+                    fail()
+                    return}
+                UserSessionManager.shared.setUser(user: user)
+                completion(true)
+            }
         }
     }
 }

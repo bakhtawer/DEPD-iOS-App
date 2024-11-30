@@ -135,9 +135,6 @@ extension Bootstrapper {
         if let cnic = KeychainManager.retrieve(forKey: .cnic),
            let password = KeychainManager.retrieve(forKey: .password),
            let userType = KeychainManager.retrieve(forKey: .userType), let utype = Int(userType) {
-            print("Retrieved value: \(cnic)")
-            print("Retrieved value: \(password)")
-            print("Retrieved value: \(userType)")
             APPMetaDataHandler.shared.userType = UserType(rawValue: utype) ?? .Student
             USM.shared.login(email: cnic, Password: password)
         }else {

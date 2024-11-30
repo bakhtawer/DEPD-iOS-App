@@ -19,6 +19,29 @@ extension String {
             return false
         }
     }
+    
+    var convertMicrosoftDateString: String? {
+        // Remove the "\/Date(" prefix and ")\/" suffix
+        let trimmedString = self
+            .replacingOccurrences(of: "\\/Date(", with: "")
+            .replacingOccurrences(of: ")\\/", with: "")
+        
+        // Convert to milliseconds
+        if let milliseconds = Int64(trimmedString) {
+            // Convert milliseconds to seconds and create a Date object
+            let date = Date(timeIntervalSince1970: TimeInterval(milliseconds / 1000))
+            
+            // Format the Date object
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+            
+            // Return the formatted date
+            return dateFormatter.string(from: date)
+        }
+        
+        // Return nil if parsing fails
+        return nil
+    }
 }
 
 extension Bool {
@@ -27,6 +50,14 @@ extension Bool {
             return "1"
         }else {
             return "0"
+        }
+    }
+    
+    var makeItInt: Int {
+        if self  {
+            return 1
+        }else {
+            return 0
         }
     }
 }

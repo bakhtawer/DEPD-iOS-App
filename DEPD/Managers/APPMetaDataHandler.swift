@@ -15,7 +15,7 @@ public enum UserType: Int {
     
     case StudentGuest = 5
 }
-
+typealias AMDH = APPMetaDataHandler
 final class APPMetaDataHandler {
     static let shared = APPMetaDataHandler()
     private init() {}
@@ -42,6 +42,7 @@ final class APPMetaDataHandler {
     func getDisabilities(byID: Int) -> Disability? {
         (dataAllGeneralList?.DisabilityList ?? []).filter {$0.disabilityId == byID}.last ?? nil
     }
+    
     func getDisabilities(byName: String) -> Disability? {
         let filteredList = (dataAllGeneralList?.DisabilityList ?? []).filter {
             // Normalize and trim both the name and search string
@@ -56,6 +57,13 @@ final class APPMetaDataHandler {
     func getGenders() -> [Gender] {
         dataAllGeneralList?.GenderList ?? []
     }
+    func getGenders(byID: Int) -> Gender? {
+        (dataAllGeneralList?.GenderList ?? []).filter {$0.genderId == byID}.last ?? nil
+    }
+    func getGenders(byName: String) -> Gender? {
+        (dataAllGeneralList?.GenderList ?? []).filter {$0.name == byName}.last ?? nil
+    }
+    
     
     // MARK: Designation
     func getDesignations() -> [String] {
@@ -78,6 +86,34 @@ final class APPMetaDataHandler {
         (dataAllGeneralList?.classList ?? []).map {$0.name ?? ""}
     }
     
+    // MARK: Genders
+    func getGendersName() -> [String] {
+        (dataAllGeneralList?.GenderList ?? []).map {$0.name ?? ""}
+    }
+    
+    // MARK: Languages
+    func getLanguagesName() -> [String] {
+        (dataAllGeneralList?.languageList ?? []).map {$0.name ?? ""}
+    }
+    
+    // MARK: Languages
+    func getTechnicalSkillListName() -> [String] {
+        (dataAllGeneralList?.TechnicalSkillList ?? []).map {$0.name ?? ""}
+    }
+    
+    // MARK: SocialMediaList
+    func getSocialMediaListName() -> [String] {
+        (dataAllGeneralList?.socialMediaList ?? []).map {$0.accountType ?? ""}
+    }
+    func getSocialMediaList(byName: String) -> SocialMediaList? {
+        let filteredList = (dataAllGeneralList?.socialMediaList ?? []).filter {
+            // Normalize and trim both the name and search string
+            let trimmedName = $0.accountType?.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\r\n", with: " ").replacingOccurrences(of: "\n", with: " ") ?? ""
+            let trimmedSearchTerm = byName.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\r\n", with: " ").replacingOccurrences(of: "\n", with: " ")
+            return trimmedName.contains(trimmedSearchTerm)
+        }
+        return filteredList.first
+    }
     
     // MARK: All General List
     private var dataAllGeneralList: AllGeneralList?
@@ -90,5 +126,14 @@ final class APPMetaDataHandler {
             guard let allGeneralList = userResponse else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
             self?.dataAllGeneralList = allGeneralList
         }
+    }
+    
+    
+    func getYesNoFromInt(value: Int) -> String {
+        return value == 1 ? "YES" : "NO"
+    }
+    
+    func getFreePaidFromInt(value: Int) -> String {
+        return value == 2 ? "Paid" : "Free"
     }
 }

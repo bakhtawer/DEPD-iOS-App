@@ -56,6 +56,28 @@ class JobSeekerDetailViewController: BaseViewController  {
         labelDescriptionTittle.makeItTheme(.bold, 16, .textDark)
         labelDescription.makeItTheme(.regular, 14, .textLightGray)
         buttonApply.makeItTheme(text: "apply".localized(), .bold, 18, .appLight, .buttonBG, .appLight)
+        
+        buttonApply.addTapGestureRecognizer {[weak self] in
+            guard let jobId = self?.dataJob?.idid,
+                  let statusID = self?.dataJob?.StatusId,
+                let userID = USM.shared.getUser().jobSeekerDetailInfo?.userID
+            else {return }
+            self?.showLoadingIndicator(withDimView: true)
+            let creds = ApplyForJobCreds(jobid:jobId, statusid: statusID, userid: userID)
+            JobManager.shared.applyForJob(data: creds) {[weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    SMM.shared.showStatusSuccess(message: "Job application submitted successfully")
+                    DispatchQueue.main.async {[weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
+        }
+        
+        guard let image = URL(string: dataJob?.ThumbnailImageURL?.convertToHttps() ?? "") else { return }
+        imageCompany.contentMode = .scaleAspectFill
+        imageCompany.kf.setImage(with: image)
     }
     
 }

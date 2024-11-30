@@ -164,7 +164,7 @@ extension SchoolHomeViewController: SchoolHomeVM {
     }
     func fetchedInstituteDetails() {
         DispatchQueue.main.async {[weak self] in
-            self?.schoolLocation.text = self?.viewModel.selectedSchool?.Location
+            self?.schoolLocation.text = ""//self?.viewModel.selectedSchool?.Location
             self?.schoolProfilePercentage.text = "0% \("profile_completed".localized())"
             guard let image = URL(string: self?.viewModel.selectedSchool?.ImageURL?.convertToHttps() ?? "") else { return }
             self?.mainIconImage.contentMode = .scaleAspectFill

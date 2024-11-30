@@ -67,8 +67,7 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         buttonViewApplications.addTapGestureRecognizer {
             DispatchQueue.main.async {[weak self] in
                 let storyboard = getStoryBoard(.main)
-                let view = storyboard.instantiateViewController(ofType: SchoolDetailsViewController.self)
-                view.selectedSchool = self?.viewModel.selectedSchool
+                let view = storyboard.instantiateViewController(ofType: JobSeekerProfileDetailsController.self)
                 openModuleOnNavigation(from: self, controller: view)
             }
         }
@@ -99,11 +98,19 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         
         collectionView.setNeedsDisplay()
         collectionView.reloadData()
+        
+        self.schoolLocation.text = USM.shared.getUser().jobSeekerDetailInfo?.district
+        self.schoolProfilePercentage.text = "0% \("profile_completed".localized())"
+        guard let image = URL(string: USM.shared.getUser().jobSeekerDetailInfo?.profilePicture?.convertToHttps() ?? "") else { return }
+        self.mainIconImage.contentMode = .scaleAspectFill
+        self.mainIconImage.kf.setImage(with: image,
+                                       placeholder: UIImage(named: "studentplacehoder"))
     }
     
     private func setView() {
         
         tfSearchBar.placeholder = "search_for_job".localized()
+        tfSearchBar.applyShadow()
         
         mainIcon.roundCorner(withRadis: mainIcon.viewHeight.half)
         mainIconImage.roundCorner(withRadis: mainIconImage.viewHeight.half)
@@ -176,13 +183,6 @@ extension JobSeekerHomeViewController: JobSeekerVM {
         DispatchQueue.main.async {[weak self] in
             self?.buttonTotalApplications.text = "\("total_applications".localized()) \(self?.viewModel.getCount() ?? 0)"
             self?.reloadData()
-            
-            self?.schoolLocation.text = self?.viewModel.selectedSchool?.Location
-            self?.schoolProfilePercentage.text = "0% \("profile_completed".localized())"
-            guard let image = URL(string: self?.viewModel.selectedSchool?.ImageURL?.convertToHttps() ?? "") else { return }
-            self?.mainIconImage.contentMode = .scaleAspectFill
-            self?.mainIconImage.kf.setImage(with: image,
-                                    placeholder: UIImage(named: "studentplacehoder"))
         }
     }
     

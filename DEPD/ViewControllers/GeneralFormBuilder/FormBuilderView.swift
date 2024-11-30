@@ -18,6 +18,8 @@ class FormBuilderView: UIView {
     private var buttonTitle: String = ""
     
     private var dateTF: UITextField?
+    private var dateFrom: UITextField?
+    private var dateTo: UITextField?
     
     private var checkBoxValue: Bool = false
     
@@ -273,11 +275,92 @@ class FormBuilderView: UIView {
             }
             
             return textField
-            
         case .gap:
             let gapView = UIView()
             gapView.heightAnchor.constraint(equalToConstant: 20).isActive = true
             return gapView
+        case .dateFrom:
+            dateFrom = UITextField()
+            guard let dateTF = dateFrom else { return UITextField() }
+            
+            dateTF.placeholder = field.placeholder
+            dateTF.keyboardType = .numberPad
+            dateTF.borderStyle = .roundedRect
+            dateTF.tag = fieldIndex
+            dateTF.makeItThemeTF()
+            dateTF.text = value?.toFormattedDateShow()
+            
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .date
+            datePicker.preferredDatePickerStyle = .wheels
+            datePicker.tag = fieldIndex
+            datePicker.maximumDate = Date()
+            if let date = value?.fromFormattedDate(){
+                datePicker.date = date
+            }
+            dateTF.inputView = datePicker
+            
+            let dropdownIcon = UIImageView(image: UIImage(systemName: "chevron.down"))
+            dropdownIcon.contentMode = .scaleAspectFit
+            dropdownIcon.tintColor = .textDark
+            
+            let containerView = UIView(frame: CGRect(x: 0, y: 0, width: dropdownIcon.frame.width + 32, height: dropdownIcon.frame.height))
+            dropdownIcon.frame = CGRect(x: 16, y: 0, width: dropdownIcon.frame.width, height: dropdownIcon.frame.height)
+            containerView.addSubview(dropdownIcon)
+            
+            dateTF.rightView = containerView
+            dateTF.rightViewMode = .always
+            
+            // Add a toolbar with a "Done" button to dismiss the picker
+            let toolbar = UIToolbar()
+            toolbar.sizeToFit()
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDateButtonTappedFrom))
+            toolbar.setItems([doneButton], animated: true)
+            dateTF.inputAccessoryView = toolbar
+            
+            dateTF.heightAnchor.constraint(equalToConstant: tfHeight).isActive = true
+            return dateTF
+        case .dateTo:
+            dateTo = UITextField()
+            guard let dateTF = dateTo else { return UITextField() }
+            
+            dateTF.placeholder = field.placeholder
+            dateTF.keyboardType = .numberPad
+            dateTF.borderStyle = .roundedRect
+            dateTF.tag = fieldIndex
+            dateTF.makeItThemeTF()
+            dateTF.text = value?.toFormattedDateShow()
+            
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .date
+            datePicker.preferredDatePickerStyle = .wheels
+            datePicker.tag = fieldIndex
+            datePicker.maximumDate = Date()
+            if let date = value?.fromFormattedDate(){
+                datePicker.date = date
+            }
+            dateTF.inputView = datePicker
+            
+            let dropdownIcon = UIImageView(image: UIImage(systemName: "chevron.down"))
+            dropdownIcon.contentMode = .scaleAspectFit
+            dropdownIcon.tintColor = .textDark
+            
+            let containerView = UIView(frame: CGRect(x: 0, y: 0, width: dropdownIcon.frame.width + 32, height: dropdownIcon.frame.height))
+            dropdownIcon.frame = CGRect(x: 16, y: 0, width: dropdownIcon.frame.width, height: dropdownIcon.frame.height)
+            containerView.addSubview(dropdownIcon)
+            
+            dateTF.rightView = containerView
+            dateTF.rightViewMode = .always
+            
+            // Add a toolbar with a "Done" button to dismiss the picker
+            let toolbar = UIToolbar()
+            toolbar.sizeToFit()
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDateButtonTappedTo))
+            toolbar.setItems([doneButton], animated: true)
+            dateTF.inputAccessoryView = toolbar
+            
+            dateTF.heightAnchor.constraint(equalToConstant: tfHeight).isActive = true
+            return dateTF
         }
     }
     
@@ -360,6 +443,22 @@ extension FormBuilderView: UIPickerViewDelegate, UIPickerViewDataSource {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .medium
             self.dateTF?.text = dateFormatter.string(from: datePicker.date)
+        }
+        UIViewController.top().view.endEditing(true)
+    }
+    @objc func doneDateButtonTappedFrom() {
+        if let datePicker = self.dateFrom?.inputView as? UIDatePicker {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy"
+            self.dateFrom?.text = dateFormatter.string(from: datePicker.date)
+        }
+        UIViewController.top().view.endEditing(true)
+    }
+    @objc func doneDateButtonTappedTo() {
+        if let datePicker = self.dateTo?.inputView as? UIDatePicker {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy"
+            self.dateTo?.text = dateFormatter.string(from: datePicker.date)
         }
         UIViewController.top().view.endEditing(true)
     }
@@ -557,4 +656,3 @@ class UploadedFileView: UIView {
         onToggle?()
     }
 }
-

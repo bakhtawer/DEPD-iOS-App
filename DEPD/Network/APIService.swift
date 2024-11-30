@@ -56,6 +56,7 @@ class APIService: Service {
                 
             } catch let err {
                 print(err)
+                SMM.shared.showError(title: "", message: "Something went wrong with server response")
                 completion(nil, .decodingError())
                 return
             }

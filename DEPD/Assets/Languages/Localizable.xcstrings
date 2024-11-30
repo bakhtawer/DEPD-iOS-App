@@ -1,6 +1,29 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "about_myself" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Myself"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منهنجي باري ۾"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپنے بارے میں"
+          }
+        }
+      }
+    },
     "about_your_school" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -319,6 +342,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "امیدوار کی تفصیلات"
+          }
+        }
+      }
+    },
+    "certification" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Certification"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سرٽيفڪيشن"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سرٹیفیکیشن"
           }
         }
       }
@@ -668,6 +714,29 @@
         }
       }
     },
+    "cv_file" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CV file"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "CV فائل"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سی وی فائل"
+          }
+        }
+      }
+    },
     "denial_of_admission" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -783,6 +852,29 @@
         }
       }
     },
+    "disability_certificate" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disability Certificate"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوري جي سرٽيفڪيٽ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معذوری کا سرٹیفکیٹ"
+          }
+        }
+      }
+    },
     "disability_status" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -875,6 +967,29 @@
         }
       }
     },
+    "documents" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Documents"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دستاويز"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دستاویزات"
+          }
+        }
+      }
+    },
     "download_disability_certificate" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -917,6 +1032,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "پروفائل میں ترمیم کریں۔"
+          }
+        }
+      }
+    },
+    "education" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Education"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تعليم"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تعلیم"
           }
         }
       }
@@ -1542,6 +1680,29 @@
         }
       }
     },
+    "inclusive_career_hub" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inclusive Career Hub"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شامل ڪيريئر حب"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جامع کیریئر کا مرکز"
+          }
+        }
+      }
+    },
     "inclusive_screen_description" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2048,6 +2209,29 @@
         }
       }
     },
+    "logout" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Logout"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لاگ آئوٽ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لاگ آؤٹ"
+          }
+        }
+      }
+    },
     "my_applications" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2366,6 +2550,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ذاتی تفصیلات"
+          }
+        }
+      }
+    },
+    "personal_information" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personal Information"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ذاتي معلومات"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ذاتی معلومات"
           }
         }
       }
@@ -3497,6 +3704,29 @@
         }
       }
     },
+    "technical_skills" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Technical Skills"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ٽيڪنيڪل صلاحيتن"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تکنیکی مہارت"
+          }
+        }
+      }
+    },
     "total_applications" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3654,6 +3884,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "امیدوار کے ساتھ تعلق"
+          }
+        }
+      }
+    },
+    "upload" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپ لوڊ ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپ لوڈ کریں۔"
           }
         }
       }
@@ -3884,6 +4137,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "آجر جي مرڪز ۾ ڀليڪار"
+          }
+        }
+      }
+    },
+    "work_experience" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Work Experience"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪم جو تجربو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کام کا تجربہ"
           }
         }
       }

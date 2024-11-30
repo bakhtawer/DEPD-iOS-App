@@ -17,6 +17,10 @@ class ImageScrollView: UIView {
             configureStackView()
         }
     }
+    var linksURLs: [String] = []
+    var isLink: Bool = false
+    
+    var isEditable: Bool = false
     
     var viewController: UIViewController? // Reference to the parent view controller
     
@@ -35,6 +39,8 @@ class ImageScrollView: UIView {
     private func setupScrollView() {
         addSubview(scrollView)
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.showsVerticalScrollIndicator = false
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -64,18 +70,51 @@ class ImageScrollView: UIView {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
         for (index, urlString) in imageURLs.enumerated() {
-            let imageView = createImageView()
-            if let url = URL(string: urlString) {
-                imageView.kf.setImage(with: url)
+            
+            if isEditable {
+                let container = UIView()
+                container.backgroundColor = .appLightBG
+                container.translatesAutoresizingMaskIntoConstraints = true
+                container.heightAnchor.constraint(equalToConstant: 80).isActive = true
+                container.widthAnchor.constraint(equalToConstant: 80).isActive = true
+                
+                let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
+                if let url = URL(string: urlString) {
+                    imageView.kf.setImage(with: url)
+                }
+                imageView.isUserInteractionEnabled = true
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
+                imageView.tag = index
+                imageView.backgroundColor = .appLightBG
+                imageView.addGestureRecognizer(tapGesture)
+                imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+                imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+                container.addSubview(imageView)
+                
+                let deleteImageView = UIImageView(frame: CGRect(x: 54, y: 6, width: 20, height: 20))
+                deleteImageView.isUserInteractionEnabled = true
+                deleteImageView.image = UIImage(systemName: "trash.fill")
+                let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(deleteImage(_:)))
+                deleteImageView.tag = index
+                deleteImageView.tintColor = .appOrange
+                deleteImageView.addGestureRecognizer(tapGesture2)
+                container.addSubview(deleteImageView)
+                
+                stackView.addArrangedSubview(container)
+            } else {
+                let imageView = createImageView()
+                if let url = URL(string: urlString) {
+                    imageView.kf.setImage(with: url)
+                }
+                imageView.isUserInteractionEnabled = true
+                let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
+                imageView.tag = index
+                imageView.backgroundColor = .appLightBG
+                imageView.addGestureRecognizer(tapGesture)
+                imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+                imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
+                stackView.addArrangedSubview(imageView)
             }
-            imageView.isUserInteractionEnabled = true
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
-            imageView.tag = index
-            imageView.backgroundColor = .appLightBG
-            imageView.addGestureRecognizer(tapGesture)
-            imageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
-            imageView.widthAnchor.constraint(equalToConstant: 80).isActive = true
-            stackView.addArrangedSubview(imageView)
         }
     }
     
@@ -83,11 +122,26 @@ class ImageScrollView: UIView {
     @objc private func imageTapped(_ sender: UITapGestureRecognizer) {
         guard let index = sender.view?.tag else { return }
         
+        if isLink {
+            guard let url = URL(string: linksURLs[index]) else {
+                return //be safe
+            }
+            UIApplication.shared.open(url)
+            return
+        }
+        
         // Present the image carousel on tap
         let carouselVC = ImageCarouselViewController()
         carouselVC.configure(with: imageURLs, startIndex: index)
         
         viewController?.present(carouselVC, animated: true, completion: nil)
+    }
+    
+    // Closure to notify about changes
+    var onDeleteToggle: ((Int) -> Void)?
+    @objc private func deleteImage(_ sender: UITapGestureRecognizer) {
+        guard let index = sender.view?.tag else { return }
+        onDeleteToggle?(index)
     }
     
     // Create and configure an image view

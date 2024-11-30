@@ -32,6 +32,7 @@ struct InstituteModel: Codable, Hashable {
     var SchoolMultiMediaList: [SchoolMultiMedia]?
     var DisabilityStatusList: [Disability]?
     var SchoolDisabilityList: [SchoolDisability]?
+    var schoolSocialMediaInfo: [SchoolSocialMediaInfo]?
     
     
     enum CodingKeys: String, CodingKey {
@@ -59,6 +60,7 @@ struct InstituteModel: Codable, Hashable {
         case SchoolMultiMediaList = "oSchoolMultiMediaList"
         case DisabilityStatusList = "oDisabilityStatusList"
         case SchoolDisabilityList = "oSchoolDisabilityList"
+        case schoolSocialMediaInfo = "oSchoolSocialMediaInfo"
     }
     
     init(from decoder: Decoder) throws {
@@ -88,6 +90,7 @@ struct InstituteModel: Codable, Hashable {
             SchoolMultiMediaList = try values.decodeIfPresent([SchoolMultiMedia].self, forKey: .SchoolMultiMediaList) ?? []
             DisabilityStatusList = try values.decodeIfPresent([Disability].self, forKey: .DisabilityStatusList) ?? []
             SchoolDisabilityList = try values.decodeIfPresent([SchoolDisability].self, forKey: .SchoolDisabilityList) ?? []
+            schoolSocialMediaInfo = try values.decodeIfPresent([SchoolSocialMediaInfo].self, forKey: .schoolSocialMediaInfo) ?? []
             
         } catch let DecodingError.typeMismatch(type, context) {
             print("Type '\(type)' mismatch:", context.debugDescription)
@@ -110,10 +113,12 @@ struct SchoolDisability: Codable {
     var schoolDisabilityId : Int?
     var userId : Int?
     var disabilityStatusId: Int?
+    var disabilityStatus: String?
     enum CodingKeys: String, CodingKey {
         case schoolDisabilityId = "Id"
         case userId = "userId"
         case disabilityStatusId = "disabilityStatusId"
+        case disabilityStatus = "disabilityStatus"
     }
     init(from decoder: Decoder) throws {
         do {
@@ -121,6 +126,7 @@ struct SchoolDisability: Codable {
             schoolDisabilityId = try values.decodeIfPresent(Int.self, forKey: .schoolDisabilityId) ?? -1
             userId = try values.decodeIfPresent(Int.self, forKey: .userId) ?? -1
             disabilityStatusId = try values.decodeIfPresent(Int.self, forKey: .disabilityStatusId) ?? -1
+            disabilityStatus = try values.decodeIfPresent(String.self, forKey: .disabilityStatus) ?? ""
         } catch let DecodingError.typeMismatch(type, context) {
             print("Type '\(type)' mismatch:", context.debugDescription)
             print("codingPath:", context.codingPath)

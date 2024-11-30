@@ -23,6 +23,8 @@ class SettingViewController: BaseViewController {
         
         labeluser.text = USM.shared.getUserFullName()
         
+        buttonLogout.setTitle("logout".localized(), for: .normal)
+        
         
         buttonLogout.addTapGestureRecognizer {
             UserSessionManager.shared.LogoutUser()

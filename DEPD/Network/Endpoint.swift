@@ -35,9 +35,9 @@ struct UpdateAdditionalInfoCreds: Codable {
     let Location: String
     let District: String
     let NumberOfTrainedTeachers: Int
-    let HasTrainingMaterial: Bool
+    let HasTrainingMaterial: Int
     let NumberOfTotalStudents: Int
-    let CanEducate: Bool
+    let CanEducate: Int
     let FreeOrPaid: Int
 }
 
@@ -79,7 +79,26 @@ enum Endpoint {
                                creds: InsertDisabilityStatusCreds)
     
     
+    // Job
     case getJobList
+    case applyForJob(creds: ApplyForJobCreds)
+    case updateOrInsertJobSeekerDetail(creds: UpdateOrInsertJobSeekerDetailCreds)
+    case insertJobSeekerAdditionalInfo(creds: InsertJobSeekerAdditionalInfoCreds)
+    case getJobSeekerCertifications(creds: GetJobSeekerCertificationsCreds)
+    case getJobSeekerTechnicalSkills(creds: GetJobSeekerTechnicalSkillsCreds)
+    case insertJobSeekerTechnicalSkills(creds: InsertJobSeekerTechnicalSkillsCreds)
+    case insertJobSeekerEducation(creds: InsertJobSeekerEducationCreds)
+    case insertJobSeekerWorkExperience(creds: InsertJobSeekerWorkExperienceCreds)
+    case updateJobSeekerCertifications(creds: UpdateJobSeekerCertificationsCreds)
+    case uploadJobSeekerProfileImage(creds: UploadJobSeekerProfileImageCreds)
+    case uploadJobSeekerCV(creds: UploadJobSeekerCVCreds)
+    case uploadDisabilityCertificate(creds: UploadDisabilityCertificateCreds)
+    case updatePersonalInformationJob(creds: UpdatePersonalInformationJobCreds)
+    case deleteJobSeekerEducationSkills(creds: DeleteJobSeekerCreds)
+    case deleteJobSeekerWorkExperience(creds: DeleteJobSeekerCreds)
+    case deleteJobSeekerCertification(creds: DeleteJobSeekerCreds)
+    case deleteJobSeekerTechnicalSkills(creds: DeleteJobSeekerCreds)
+    case deleteJobSeekerAdditionalInfo(creds: DeleteJobSeekerCreds)
     
     case fetchPosts(url: String = "/posts")
     case fetchOnePost(url: String = "/posts", postId: Int = 1)
@@ -88,6 +107,21 @@ enum Endpoint {
     
     case updateProfile(url: String = "/api/profile.ashx",
                        creds: User)
+    
+    
+
+    // School
+    case uploadSchoolProfile(cred: UploadSchoolProfile)
+    case updatePersonalInformation(cred: UpdatePersonalInformation)
+    case updateAboutYourSchool(cred: UpdateAboutYourSchool)
+    case updateAdditionalInfo(cred: UpdateAdditionalInfoCreds)
+    case insertSocialMediaLink(cred: InsertSocialMediaLink)
+    case deleteSocialMediaLink(cred: DeleteById)
+    case insertSocialMultiMedia(cred: InsertSocialMultiMedia)
+    case deleteSocialMultiMediaLink(cred: DeleteById)
+    case insertDisabilityStatus(cred: InsertDisabilityStatus)
+    case deleteDisabilityStatus(cred: DeleteById)
+    
     
     var request: URLRequest? {
         guard let url = self.url else { return nil }
@@ -122,8 +156,21 @@ enum Endpoint {
              .InsertDisabilityStatus(let url, _): return url
         case .getStudentAdmissions: return "/Api/General.ashx"
         case .getSchoolList, .applyForSchool, .allGeneralList: return "/Api/school.ashx"
-        case .getJobList: return "/Api/job.ashx"
         case .updateProfile: return "/Api/profile.ashx"
+        case .uploadSchoolProfile, .updatePersonalInformation, .updateAboutYourSchool,.updateAdditionalInfo,
+            .insertSocialMediaLink, .deleteSocialMediaLink, .insertSocialMultiMedia, .deleteSocialMultiMediaLink,
+            .insertDisabilityStatus, .deleteDisabilityStatus:
+            return "/Api/school.ashx"
+        case .getJobList, .applyForJob, .updateOrInsertJobSeekerDetail, .getJobSeekerCertifications,
+                .getJobSeekerTechnicalSkills, .insertJobSeekerTechnicalSkills,
+                .insertJobSeekerEducation, .insertJobSeekerWorkExperience, .updateJobSeekerCertifications,
+                .uploadJobSeekerProfileImage,.uploadJobSeekerCV, .uploadDisabilityCertificate,
+                .updatePersonalInformationJob, .insertJobSeekerAdditionalInfo:
+            return "/Api/job.ashx"
+        case .deleteJobSeekerEducationSkills, .deleteJobSeekerWorkExperience,
+                .deleteJobSeekerCertification, .deleteJobSeekerAdditionalInfo,
+                .deleteJobSeekerTechnicalSkills:
+            return "/Api/profile.ashx"
         }
     }
     
@@ -147,8 +194,55 @@ enum Endpoint {
             return [URLQueryItem(name: "method", value: "InsertSocialMediaLink")]
         case .InsertDisabilityStatus:
             return [URLQueryItem(name: "method", value: "InsertDisabilityStatus")]
-        case .getJobList: return [URLQueryItem(name: "method", value: "getJobList")]
+        
         case .updateProfile: return [URLQueryItem(name: "method", value: "updateprofile")]
+        case .uploadSchoolProfile: return [URLQueryItem(name: "method", value: "UploadSchoolProfile")]
+        case .updatePersonalInformation: return [URLQueryItem(name: "method", value: "UpdatePersonalInformation")]
+        case .updateAboutYourSchool: return [URLQueryItem(name: "method", value: "UpdateAboutYourSchool")]
+        case .updateAdditionalInfo: return [URLQueryItem(name: "method", value: "UpdateAdditionalInfo")]
+        case .insertSocialMediaLink: return [URLQueryItem(name: "method", value: "InsertSocialMediaLink")]
+        case .deleteSocialMediaLink: return [URLQueryItem(name: "method", value: "DeleteSocialMediaLink")]
+        case .insertSocialMultiMedia: return [URLQueryItem(name: "method", value: "InsertSocialMultiMedia")]
+        case .deleteSocialMultiMediaLink: return [URLQueryItem(name: "method", value: "DeleteSocialMultiMediaLink")]
+        case .insertDisabilityStatus: return [URLQueryItem(name: "method", value: "InsertDisabilityStatus")]
+        case .deleteDisabilityStatus: return [URLQueryItem(name: "method", value: "DeleteDisabilityStatus")]
+        // Job
+        case .getJobList: return [URLQueryItem(name: "method", value: "getJobList")]
+        case .applyForJob: return [URLQueryItem(name: "method", value: "applyForJob")]
+        case .updateOrInsertJobSeekerDetail:
+            return [URLQueryItem(name: "method", value: "updateOrInsertJobSeekerDetail")]
+        case .getJobSeekerCertifications:
+            return [URLQueryItem(name: "method", value: "getJobSeekerCertifications")]
+        case .getJobSeekerTechnicalSkills:
+            return [URLQueryItem(name: "method", value: "getJobSeekerTechnicalSkills")]
+        case .insertJobSeekerTechnicalSkills:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerTechnicalSkills")]
+        case .deleteJobSeekerTechnicalSkills:
+            return [URLQueryItem(name: "method", value: "deleteJobSeekerTechnicalSkills")]
+        case .insertJobSeekerEducation:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerEducation")]
+        case .insertJobSeekerWorkExperience:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerWorkExperience")]
+        case .updateJobSeekerCertifications:
+            return [URLQueryItem(name: "method", value: "updateJobSeekerCertifications")]
+        case .uploadJobSeekerProfileImage:
+            return [URLQueryItem(name: "method", value: "uploadJobSeekerProfileImage")]
+        case .uploadJobSeekerCV:
+            return [URLQueryItem(name: "method", value: "uploadJobSeekerCV")]
+        case .uploadDisabilityCertificate:
+            return [URLQueryItem(name: "method", value: "uploadDisabilityCertificate")]
+        case .updatePersonalInformationJob:
+            return [URLQueryItem(name: "method", value: "updatePersonalInfo")]
+        case .deleteJobSeekerEducationSkills:
+            return [URLQueryItem(name: "method", value: "deletejobSeekerEducationExperience")]
+        case .deleteJobSeekerWorkExperience:
+            return [URLQueryItem(name: "method", value: "deletejobSeekerWorkExperience")]
+        case .deleteJobSeekerCertification:
+            return [URLQueryItem(name: "method", value: "deleteJobSeekerCertifications")]
+        case .deleteJobSeekerAdditionalInfo:
+            return [URLQueryItem(name: "method", value: "deleteJobSeekerAdditionalInfo")]
+        case .insertJobSeekerAdditionalInfo:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
         }
     }
     
@@ -163,7 +257,12 @@ enum Endpoint {
             .getStudentAdmissions,
             .updatePersonalInfo, .UpdateAboutYourSchool, 
             .UpdateAdditionalInfo, .InsertSocialMediaLink,
-            .InsertDisabilityStatus, .getJobList, .updateProfile:
+            .InsertDisabilityStatus, .getJobList, .updateProfile,
+            .uploadSchoolProfile, .updatePersonalInformation, .updateAboutYourSchool,.updateAdditionalInfo,
+            .insertSocialMediaLink, .deleteSocialMediaLink, .insertSocialMultiMedia, .deleteSocialMultiMediaLink,
+            .insertDisabilityStatus, .deleteDisabilityStatus, .applyForJob, .deleteJobSeekerAdditionalInfo:
+            return HTTP.Method.post.rawValue
+        default:
             return HTTP.Method.post.rawValue
         }
     }
@@ -208,6 +307,82 @@ enum Endpoint {
         case .updateProfile(_, let user):
             let jsonPost = try? JSONEncoder().encode(user)
             return jsonPost
+        case .uploadSchoolProfile(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .updatePersonalInformation(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .updateAboutYourSchool(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .updateAdditionalInfo(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .insertSocialMediaLink(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .deleteSocialMediaLink(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .insertSocialMultiMedia(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .deleteSocialMultiMediaLink(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .insertDisabilityStatus(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .deleteDisabilityStatus(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .applyForJob(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .updateOrInsertJobSeekerDetail(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .getJobSeekerCertifications(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .getJobSeekerTechnicalSkills(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .insertJobSeekerTechnicalSkills(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .insertJobSeekerEducation(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .insertJobSeekerWorkExperience(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .updateJobSeekerCertifications(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .uploadJobSeekerProfileImage(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .uploadJobSeekerCV(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .uploadDisabilityCertificate(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .updatePersonalInformationJob(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .deleteJobSeekerEducationSkills(let cred),
+                .deleteJobSeekerWorkExperience(let cred),
+                .deleteJobSeekerCertification(let cred),
+                .deleteJobSeekerTechnicalSkills(let cred),
+                .deleteJobSeekerAdditionalInfo(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .insertJobSeekerAdditionalInfo(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
         }
     }
 }
@@ -225,7 +400,14 @@ extension URLRequest {
                 .updatePersonalInfo, .UpdateAboutYourSchool,
                 .UpdateAdditionalInfo, .InsertSocialMediaLink,
                 .InsertDisabilityStatus, .allGeneralList, .getJobList,
-                .updateProfile:
+                .updateProfile,.uploadSchoolProfile, .updatePersonalInformation, .updateAboutYourSchool,.updateAdditionalInfo,
+                .insertSocialMediaLink, .deleteSocialMediaLink, .insertSocialMultiMedia, .deleteSocialMultiMediaLink,
+                .insertDisabilityStatus, .deleteDisabilityStatus, .applyForJob:
+            self.setValue(
+                HTTP.Headers.Value.applicationJson.rawValue,
+                forHTTPHeaderField: HTTP.Headers.Key.contentType.rawValue
+            )
+        default:
             self.setValue(
                 HTTP.Headers.Value.applicationJson.rawValue,
                 forHTTPHeaderField: HTTP.Headers.Key.contentType.rawValue
