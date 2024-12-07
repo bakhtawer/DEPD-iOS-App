@@ -49,7 +49,7 @@ class UserHomeViewModel {
         }
     }
     
-    func getCount() -> Int { dataProds.count }
+    func getCount() -> Int { getInstitutes().count }
     
     func getInstitutes() -> [InstituteModel] {
         var institutes = dataProds
@@ -80,6 +80,14 @@ class UserHomeViewModel {
     
     func getDisabilityName() -> String {
         selectedDisability?.name ?? "select_disablility".localized()
+    }
+    
+    func isDistrictNameSet() -> Bool {
+        (selectedDistrict?.name != nil) ? true : false
+    }
+    
+    func isDisabilityNameSet() -> Bool {
+        (selectedDisability?.name != nil) ? true : false
     }
     
     func resetAll() {

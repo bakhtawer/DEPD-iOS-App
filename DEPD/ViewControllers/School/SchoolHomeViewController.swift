@@ -69,6 +69,18 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
             }
         }
         
+        buttonTotalApplications.addTapGestureRecognizer {[weak self] in
+            self?.viewModel.setType(by: .all)
+        }
+        buttonRegisteredusers.addTapGestureRecognizer{[weak self] in
+            self?.viewModel.setType(by: .Accepted)
+        }
+        buttonPendingStudents.addTapGestureRecognizer{[weak self] in
+            self?.viewModel.setType(by: .Pending)
+        }
+        buttonRejectedStudents.addTapGestureRecognizer{[weak self] in
+            self?.viewModel.setType(by: .Rejected)
+        }
         self.schoolLocation.text = "" //USM.shared.getUser().schoolDetailInfo?.district
         self.schoolProfilePercentage.text = "0% \("profile_completed".localized())"
         guard let image = URL(string: USM.shared.getUser().schoolDetailInfo?.profileImageURL?.convertToHttps() ?? "") else { return }
@@ -134,6 +146,7 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
 extension SchoolHomeViewController {
     func setupNavigation() {
         self.navigationController?.navigationBar.isHidden = false
+        self.setNavBarColor(.appBG)
         
         self.setMenuButton(.textDark).addTapGestureRecognizer {
             let storyboard = getStoryBoard(.main)
@@ -227,6 +240,7 @@ extension SchoolHomeViewController: InstituteStudentCellProtocol {
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
             view.type = .acceptStudentAdmission
+            view.studentAdmissionId = id.StudentId
             openModuleOnNavigation(from: self, controller: view)
         }
     }
@@ -235,6 +249,7 @@ extension SchoolHomeViewController: InstituteStudentCellProtocol {
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
             view.type = .rejectStudentAdmission
+            view.studentAdmissionId = id.StudentId
             openModuleOnNavigation(from: self, controller: view)
         }
     }

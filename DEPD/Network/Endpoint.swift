@@ -51,6 +51,10 @@ struct InsertDisabilityStatusCreds: Codable {
     let DisabilityStatusId: Int
     let UserId: Int
 }
+
+struct GetUserByID: Codable {
+    var Id: Int
+}
  
 enum Endpoint {
     
@@ -59,6 +63,8 @@ enum Endpoint {
                password: String)
     case register(url: String = "/api/auth.ashx",
                   creds: SignUpCredentials)
+    
+    case getUser(cred: GetUserByID)
     
     case allGeneralList
     
@@ -121,6 +127,18 @@ enum Endpoint {
     case deleteSocialMultiMediaLink(cred: DeleteById)
     case insertDisabilityStatus(cred: InsertDisabilityStatus)
     case deleteDisabilityStatus(cred: DeleteById)
+    case studentAdmissionUpdate(cred: StudentAdmissionUpdateCred)
+    
+    
+    // Employer
+    case uploadEmployerProfile(cred: UploadSchoolProfile)
+    case updateEmployerPersonalInformation(cred: UpdatePersonalInformation)
+    case insertEmployerSocialMediaLink(cred: InsertSocialMediaLink)
+    case deleteEmployerSocialMediaLink(cred: DeleteById)
+    case insertEmployerDisabilityStatus(cred: InsertDisabilityStatus)
+    case deleteEmployerDisabilityStatus(cred: DeleteById)
+    case insertEmployerAccessibilityStatus(cred: InsertDisabilityStatus)
+    case deleteEmployerAccessibilityStatus(cred: DeleteById)
     
     
     var request: URLRequest? {
@@ -159,7 +177,8 @@ enum Endpoint {
         case .updateProfile: return "/Api/profile.ashx"
         case .uploadSchoolProfile, .updatePersonalInformation, .updateAboutYourSchool,.updateAdditionalInfo,
             .insertSocialMediaLink, .deleteSocialMediaLink, .insertSocialMultiMedia, .deleteSocialMultiMediaLink,
-            .insertDisabilityStatus, .deleteDisabilityStatus:
+            .insertDisabilityStatus, .deleteDisabilityStatus,
+            .studentAdmissionUpdate:
             return "/Api/school.ashx"
         case .getJobList, .applyForJob, .updateOrInsertJobSeekerDetail, .getJobSeekerCertifications,
                 .getJobSeekerTechnicalSkills, .insertJobSeekerTechnicalSkills,
@@ -171,6 +190,14 @@ enum Endpoint {
                 .deleteJobSeekerCertification, .deleteJobSeekerAdditionalInfo,
                 .deleteJobSeekerTechnicalSkills:
             return "/Api/profile.ashx"
+        case .getUser:
+            return "/Api/auth.ashx"
+        case .uploadEmployerProfile, .updateEmployerPersonalInformation,
+                .insertEmployerSocialMediaLink, .deleteEmployerSocialMediaLink,
+                .insertEmployerDisabilityStatus, .deleteEmployerDisabilityStatus,
+                .insertEmployerAccessibilityStatus,
+                .deleteEmployerAccessibilityStatus:
+            return "/Api/Employer.ashx"
         }
     }
     
@@ -242,6 +269,26 @@ enum Endpoint {
         case .deleteJobSeekerAdditionalInfo:
             return [URLQueryItem(name: "method", value: "deleteJobSeekerAdditionalInfo")]
         case .insertJobSeekerAdditionalInfo:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
+        case .getUser:
+            return [URLQueryItem(name: "method", value: "GetUserProfile")]
+        case .studentAdmissionUpdate:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
+        case .uploadEmployerProfile:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
+        case .updateEmployerPersonalInformation:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
+        case .insertEmployerSocialMediaLink:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
+        case .deleteEmployerSocialMediaLink:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
+        case .insertEmployerDisabilityStatus:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
+        case .deleteEmployerDisabilityStatus:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
+        case .insertEmployerAccessibilityStatus:
+            return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
+        case .deleteEmployerAccessibilityStatus:
             return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
         }
     }
@@ -381,6 +428,36 @@ enum Endpoint {
             let jsonPost = try? JSONEncoder().encode(cred)
             return jsonPost
         case .insertJobSeekerAdditionalInfo(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .getUser(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .studentAdmissionUpdate(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .uploadEmployerProfile(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .updateEmployerPersonalInformation(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .insertEmployerSocialMediaLink(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .deleteEmployerSocialMediaLink(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .insertEmployerDisabilityStatus(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .deleteEmployerDisabilityStatus(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .insertEmployerAccessibilityStatus(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .deleteEmployerAccessibilityStatus(let cred):
             let jsonPost = try? JSONEncoder().encode(cred)
             return jsonPost
         }

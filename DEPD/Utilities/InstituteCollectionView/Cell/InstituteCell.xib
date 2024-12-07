@@ -107,6 +107,8 @@
                 <outlet property="imageSchool" destination="8hC-d1-XWk" id="PLg-mq-gKJ"/>
                 <outlet property="labelDistrict" destination="WXx-cb-ezT" id="S3p-GR-l0J"/>
                 <outlet property="labelSeats" destination="G5m-Nw-7n3" id="Bas-FR-blT"/>
+                <outlet property="viewBottomLine" destination="zL1-Yy-gcs" id="GUk-Jq-lpG"/>
+                <outlet property="viewMainBg" destination="G9m-x4-fky" id="OkD-f0-UbP"/>
             </connections>
             <point key="canvasLocation" x="224.42748091603053" y="31.690140845070424"/>
         </collectionViewCell>

@@ -35,7 +35,20 @@ class UserSessionManager: UserSession {
     }
     
     func getUserImage() -> String {
-        self.user.oStudentDetails?.profilePictureURL?.convertToHttps() ?? ""
+        switch AMDH.shared.userType {
+        case .Student:
+            self.user.oStudentDetails?.profilePictureURL?.convertToHttps() ?? ""
+        case .School:
+            self.user.schoolDetailInfo?.profileImageURL?.convertToHttps() ?? ""
+        case .JobSeeker:
+            self.user.jobSeekerDetailInfo?.profilePicture?.convertToHttps() ?? ""
+        case .Employer:
+            self.user.companyDetailInfo?.companyImageURL?.convertToHttps() ?? ""
+        case .StudentGuest:
+            ""
+        case .JobSeekerGuest:
+            ""
+        }
     }
     func LogoutUser(){
         KeychainManager.nuke()
@@ -95,8 +108,12 @@ extension UserSessionManager {
 }
 
 extension UserSessionManager {
-    func update(student: StudentDetails?, completion: @escaping (Bool) -> Void) {
+    func update(student: StudentDetails?,
+                firstName:String,
+                lastName:String, completion: @escaping (Bool) -> Void) {
         var user = USM.shared.user
+        user.firstName = firstName
+        user.lastName = lastName
         user.oStudentDetails = student
         print(user)
         let request = Endpoint.updateProfile(creds: user).request!

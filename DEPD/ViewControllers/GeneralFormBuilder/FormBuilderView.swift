@@ -67,7 +67,7 @@ class FormBuilderView: UIView {
         let submitButton = DEPDButton(frame: CGRect(x: 0, y: 0, width: self.viewWidth * 0.8, height: 100))
         submitButton.makeItTheme(text: buttonTitle,
                                  .bold, 16, .appLight)
-        submitButton.makeHight(height: 40, true)
+        submitButton.makeHight(height: 44, true)
         
         submitButton.addTapGestureRecognizer {[weak self] in
             self?.handleSubmit()
@@ -232,7 +232,7 @@ class FormBuilderView: UIView {
         case .uploadFile:
             let button = DEPDButton()
             button.makeItTheme(text: field.placeholder, .bold, 18, .textLight, .appGreen)
-            button.makeHight(height: 50)
+            button.makeHight(height: 40)
             button.makeButtonIconRight(named: "square.and.arrow.up")
             button.addTapGestureRecognizer {
                 self.delegate?.getImageFor(name: field.name)
@@ -278,6 +278,10 @@ class FormBuilderView: UIView {
         case .gap:
             let gapView = UIView()
             gapView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+            return gapView
+        case .gapTop:
+            let gapView = UIView()
+            gapView.heightAnchor.constraint(equalToConstant: 5).isActive = true
             return gapView
         case .dateFrom:
             dateFrom = UITextField()
@@ -369,11 +373,13 @@ class FormBuilderView: UIView {
         formData.removeAll()  // Clear previous data
         var isValid = true
         
+        var errorMessage = ""
+        
         for (index, field) in formFields.enumerated() {
             if let inputView = stackView.arrangedSubviews[index] as? UITextField {
                 if field.isRequired && inputView.text?.isEmpty == true {
                     isValid = false
-                    SMM.shared.showWarning(title: "", message: "\(field.placeholder) is required.")
+                    errorMessage += "\(field.placeholder) is required.\n"
                 }
                 formData[field.name] = inputView.text ?? ""
             } else if let datePicker = stackView.arrangedSubviews[index] as? UIDatePicker {
@@ -382,13 +388,13 @@ class FormBuilderView: UIView {
             } else if let inputView = stackView.arrangedSubviews[index] as? UITextView {
                 if field.isRequired && inputView.text?.isEmpty == true {
                     isValid = false
-                    SMM.shared.showWarning(title: "", message: "\(field.placeholder) is required.")
+                    errorMessage += "\(field.placeholder) is required.\n"
                 }
                 formData[field.name] = inputView.text ?? ""
             } else if let inputView = stackView.arrangedSubviews[index] as? CheckboxView {
                 if field.isRequired && inputView.isChecked == false {
                     isValid = false
-                    SMM.shared.showWarning(title: "", message: "\(field.placeholder) is required.")
+                    errorMessage += "\(field.placeholder) is required.\n"
                 }
                 formData[field.name] = checkBoxValue.makeItString
             }
@@ -398,8 +404,7 @@ class FormBuilderView: UIView {
             print("Form data: \(formData)")
             delegate?.submitForm(data: formData)
         } else {
-            SMM.shared.showWarning(title: "", message: "Validation failed.")
-            print()
+            SMM.shared.showWarning(title: "", message: errorMessage)
         }
     }
 }

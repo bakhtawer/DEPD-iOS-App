@@ -22,6 +22,7 @@ enum FieldType {
     case uploadedFile
     case dateFrom
     case dateTo
+    case gapTop
 }
 
 // Struct to represent each form field
@@ -83,6 +84,14 @@ class FormBuilderViewController: BaseViewController {
         case aboutMyself
         case jobAdditionalInfo
         case certification
+        
+        case acceptJobApplication
+        case rejectJobApplication
+        
+        case personalInformationEmployer
+        case socialMediaEmployer
+        case weProvideJobEmployer
+        case accessibilityMaterialEmployer
     }
     
     var type: FormType = .general
@@ -93,6 +102,8 @@ class FormBuilderViewController: BaseViewController {
     var denialOfJob: DenialOfJob? = nil
     
     var studentDetails: StudentDetails? = nil
+    
+    var studentAdmissionId: Int?
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -187,6 +198,7 @@ class FormBuilderViewController: BaseViewController {
             labelTitle.text = "student_admission".localized()
             buttonTitle = "Submit".localized()
             fields = [
+                FormField(fieldType: .gapTop, placeholder: "", name: "", value: nil, isRequired: false),
                 FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getClassesName()),
                           placeholder: "select_class".localized(),
                           name: "select_class",
@@ -211,7 +223,7 @@ class FormBuilderViewController: BaseViewController {
                 FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
             ]
         case .schoolSocialMultiMedia:
-            self.setTitle("")
+            self.setTitle("update_profile".localized())
             labelTitle.text = "school_multi_media".localized()
             buttonTitle = "Submit".localized()
             fields = [
@@ -222,11 +234,11 @@ class FormBuilderViewController: BaseViewController {
                 FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
             ]
         case .schoolSocialMedia:
-            self.setTitle("")
+            self.setTitle("update_profile".localized())
             labelTitle.text = "socail_media_links".localized()
             buttonTitle = "Submit".localized()
             fields = [
-                FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+                FormField(fieldType: .gapTop, placeholder: "", name: "", value: nil, isRequired: false),
                 FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getSocialMediaListName()),
                           placeholder: "account_type".localized(),
                           name: "account_type",
@@ -238,11 +250,11 @@ class FormBuilderViewController: BaseViewController {
                 FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
             ]
         case .schoolWeCanEducate:
-            self.setTitle("")
+            self.setTitle("update_profile".localized())
             labelTitle.text = "we_can_educate".localized()
             buttonTitle = "Submit".localized()
             fields = [
-                FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+                FormField(fieldType: .gapTop, placeholder: "", name: "", value: nil, isRequired: false),
                 FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDisabilitiesNames()),
                           placeholder: "disability".localized(),
                           name: "we_can_educate",
@@ -254,40 +266,70 @@ class FormBuilderViewController: BaseViewController {
                 FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
             ]
         case .personalInformation:
-            self.setTitle("")
+            self.setTitle("update_profile".localized())
             labelTitle.text = "personal_information".localized()
             buttonTitle = "Submit".localized()
             fields = populateJobSeekerPersonalInfo()
         case .education:
-            self.setTitle("")
+            self.setTitle("update_profile".localized())
             labelTitle.text = "education".localized()
             buttonTitle = "Submit".localized()
             fields = populateJobSeekerEducation()
         case .workExperience:
-            self.setTitle("")
+            self.setTitle("update_profile".localized())
             labelTitle.text = "work_experience".localized()
             buttonTitle = "Submit".localized()
             fields = populateJobSeekerWorkExperience()
         case .technicalSkills:
-            self.setTitle("")
+            self.setTitle("update_profile".localized())
             labelTitle.text = "technical_skills".localized()
             buttonTitle = "Submit".localized()
             fields = populateJobSeekerTechnicalSkills()
         case .aboutMyself:
-            self.setTitle("")
+            self.setTitle("update_profile".localized())
             labelTitle.text = "about_myself".localized()
             buttonTitle = "Submit".localized()
             fields = populateJobSeekerAboutMySelf()
         case .jobAdditionalInfo:
-            self.setTitle("")
-            labelTitle.text = "additional_information".localized()
+            self.setTitle("update_profile".localized())
+            labelTitle.text = "additional_info".localized()
             buttonTitle = "Submit".localized()
             fields = populateJobSeekerAdditionalInfo()
         case .certification:
-            self.setTitle("")
+            self.setTitle("update_profile".localized())
             labelTitle.text = "certification".localized()
             buttonTitle = "Submit".localized()
             fields = populateJobSeekerCertification()
+        case .acceptJobApplication:
+            self.setTitle("".localized())
+            labelTitle.text = "confirm_hiring".localized()
+            buttonTitle = "Submit".localized()
+            fields = populateJobAcceptApplication()
+        case .rejectJobApplication:
+            self.setTitle("".localized())
+            labelTitle.text = "confirm_hiring".localized()
+            buttonTitle = "Submit".localized()
+            fields = populateJobRejectApplication()
+        case .personalInformationEmployer:
+            self.setTitle("update_profile".localized())
+            labelTitle.text = "personal_information".localized()
+            buttonTitle = "Submit".localized()
+            fields = populatePersonalInformationEmployer()
+        case .socialMediaEmployer:
+            self.setTitle("update_profile".localized())
+            labelTitle.text = "social_media_info".localized()
+            buttonTitle = "Submit".localized()
+            fields = populateSocialMediaEmployer()
+        case .weProvideJobEmployer:
+            self.setTitle("update_profile".localized())
+            labelTitle.text = "we_provide_job".localized()
+            buttonTitle = "Submit".localized()
+            fields = populateWeProvideJobEmployer()
+        case .accessibilityMaterialEmployer:
+            self.setTitle("update_profile".localized())
+            labelTitle.text = "accessibility_material".localized()
+            buttonTitle = "Submit".localized()
+            fields = populateAccessibilityMaterialEmplor()
         }
         
         let formBuilder = FormBuilderView(fields: fields, buttonTitle)
@@ -393,7 +435,7 @@ class FormBuilderViewController: BaseViewController {
             FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getGendersName()),
                       placeholder: "gender".localized(),
                       name: "gender",
-                      value: USM.shared.getUser().oStudentDetails?.gender,
+                      value: "\(String(describing: AMDH.shared.getGenders(byID: USM.shared.getUser().oStudentDetails?.genderId ?? -1)?.name ?? ""))",
                       isRequired: false),
             FormField(fieldType: .date, placeholder: "dob".localized(), name: "dob", value: USM.shared.getUser().oStudentDetails?.formattedDOB, isRequired: true),
             FormField(fieldType: .number, placeholder: "cnic".localized(), name: "cnic", value: USM.shared.getUser().cnic, isRequired: false, isEnabled: false),
@@ -495,7 +537,8 @@ class FormBuilderViewController: BaseViewController {
 
 extension FormBuilderViewController {
     func setupNavigation() {
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.setNavBarColor(.appBG)
         self.setBackButton(.textDark).addTapGestureRecognizer {[weak self] in
             self?.navigationController?.popViewController(animated: true)
         }
@@ -681,6 +724,8 @@ extension FormBuilderViewController: FormBuilderProtocol {
                 openModuleOnNavigation(from: self, controller: view)
             }
         case .studentProfile:
+            let firstName = data["first_name"] as? String ?? ""
+            let lastName = data["last_name"] as? String ?? ""
 //            studentDetails = data["first_name"] as? String
 //            studentDetails = data["last_name"] as? String
             studentDetails?.fatherName = data["father_name"] as? String
@@ -699,7 +744,7 @@ extension FormBuilderViewController: FormBuilderProtocol {
 //            studentDetails = data["upload_disability_certificate"] as? String
             
             self.showLoadingIndicator(withDimView: true)
-            USM.shared.update(student: studentDetails) { [weak self] status in
+            USM.shared.update(student: studentDetails, firstName: firstName, lastName: lastName) { [weak self] status in
                 self?.hideLoadingIndicator()
                 if status {
                     DispatchQueue.main.async {[weak self] in
@@ -732,9 +777,42 @@ extension FormBuilderViewController: FormBuilderProtocol {
                 openModuleOverFullScreen(controller: contentVC)
             }
         case .acceptStudentAdmission:
-            break
+            guard let selectedClass = data["select_class"] as? String,
+                  let selectedFees = data["enter_fee"] as? String,
+                  let studentAdmissionId = studentAdmissionId
+            else { return }
+            let data = StudentAdmissionUpdateCred(Id: studentAdmissionId,
+                                                  AdmissionStatusId: 1,
+                                                  Class: selectedClass,
+                                                  Fees: selectedFees,
+                                                  Reason: nil,
+                                                  SlipByte: selectedImageString,
+                                                  SlipName: "\(UUID().uuidString).jpg")
+            self.showLoadingIndicator(withDimView: true)
+            SchoolManager.shared.studentAdmissionUpdate(data: data) {[weak self] status in
+                SchoolManager.shared.fetchAllSchoolsForSchool {[weak self] status in
+                    self?.hideLoadingIndicator()
+                    if status { DispatchQueue.main.async {[weak self] in self?.navigationController?.popViewController(animated: true) } }
+                }
+            }
         case .rejectStudentAdmission:
-            break
+            guard let reason = data["enter_reason"] as? String,
+                  let studentAdmissionId = studentAdmissionId
+            else { return }
+            let data = StudentAdmissionUpdateCred(Id: studentAdmissionId,
+                                                  AdmissionStatusId: 3,
+                                                  Class: nil,
+                                                  Fees: nil,
+                                                  Reason: reason,
+                                                  SlipByte: nil,
+                                                  SlipName: nil)
+            self.showLoadingIndicator(withDimView: true)
+            SchoolManager.shared.studentAdmissionUpdate(data: data) {[weak self] status in
+                SchoolManager.shared.fetchAllSchoolsForSchool {[weak self] status in
+                    self?.hideLoadingIndicator()
+                    if status { DispatchQueue.main.async {[weak self] in self?.navigationController?.popViewController(animated: true) } }
+                }
+            }
         case .schoolSocialMultiMedia:
             guard !selectedImageString.isEmpty,
                   let schoolID = SchoolManager.shared.selectedSchool?.InstituteId,
@@ -926,6 +1004,18 @@ extension FormBuilderViewController: FormBuilderProtocol {
                     }
                 }
             }
+        case .acceptJobApplication:
+            break
+        case .rejectJobApplication:
+            break
+        case .personalInformationEmployer:
+            break
+        case .socialMediaEmployer:
+            break
+        case .weProvideJobEmployer:
+            break
+        case .accessibilityMaterialEmployer:
+            break
         }
     }
     
@@ -988,7 +1078,7 @@ extension FormBuilderViewController : UIImagePickerControllerDelegate, UINavigat
                     studentDetails?.disabilityCertName = "\(UUID().uuidString).jpg"
                     studentDetails?.hasDisCertUploaded = true
                 }
-            case .schoolSocialMultiMedia:
+            case .schoolSocialMultiMedia, .acceptJobApplication:
                 selectedImageString = self.imageToByteString(image: image) ?? ""
             default: break
             }

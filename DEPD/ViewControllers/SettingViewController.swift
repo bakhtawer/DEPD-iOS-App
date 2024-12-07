@@ -31,6 +31,8 @@ class SettingViewController: BaseViewController {
             Bootstrapper.createSplash()
         }
         
+        imageuser.roundCorner(withRadis: imageuser.viewHeight.half)
+        imageuser.applyShadow()
         guard let image = URL(string: USM.shared.getUserImage()) else { return }
         imageuser.contentMode = .scaleAspectFill
         imageuser.kf.setImage(with: image,

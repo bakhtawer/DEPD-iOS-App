@@ -64,7 +64,7 @@ class InstituteDetailViewController: BaseViewController {
                 SMM.shared.showError(title: "", message: "Please select class");
                 return
             }
-            let request = Endpoint.applyForSchool(schoolID: data.InstituteId ?? -1, studentId: USM.shared.getUser().oStudentDetails?.id ?? -1).request!
+            let request = Endpoint.applyForSchool(schoolID: data.InstituteId ?? -1, studentId: USM.shared.getUser().oStudentDetails?.studentId ?? -1).request!
             self?.service.makeRequest(with: request, respModel: ApiResponse<String>.self) { userResponse, error in
                 if let error = error { print("DEBUG PRINT:", error); return }
                 if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
@@ -81,8 +81,11 @@ class InstituteDetailViewController: BaseViewController {
         
         setUpClass()
         
+        self.setTitle(selectedInstitute?.SchoolName ?? "")
+        
+        imageSchool.backgroundColor = .appBorder.withAlphaComponent(0.35)
         guard let imageSchoolUrl = URL(string: selectedInstitute?.ImageURL?.convertToHttps() ?? "") else { return }
-        imageSchool.contentMode = .scaleAspectFill
+        imageSchool.contentMode = .scaleAspectFit
         imageSchool.kf.setImage(with: imageSchoolUrl)
     }
     
@@ -136,6 +139,9 @@ class InstituteDetailViewController: BaseViewController {
         
         buttonAdmission.setTitle("send_addmission_request".localized(), for: .normal)
         buttonCancel.text = "cancel".localized()
+        
+        buttonAdmission.makeItThemePrimary(18)
+        buttonCancel.makeItTheme(.regular, 12, .textLightGray)
         
         labelName.makeItTheme(.bold, 22)
         
@@ -215,7 +221,8 @@ class InstituteDetailViewController: BaseViewController {
 extension InstituteDetailViewController {
     
     func setupNavigation() {
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        self.setNavBarColor(.appBG)
         self.setBackButton(.textDark).addTapGestureRecognizer {[weak self] in
             self?.navigationController?.popViewController(animated: true)
         }

@@ -218,3 +218,29 @@ extension SchoolManager {
         }
     }
 }
+
+//case studentAdmissionUpdate
+struct StudentAdmissionUpdateCred:Codable {
+    let Id: Int?
+    let AdmissionStatusId: Int?
+    let Class: String?
+    let Fees: String?
+    let Reason: String?
+    let SlipByte: String?
+    let SlipName: String?
+}
+extension SchoolManager {
+    // MARK: studentAdmissionUpdate
+    func studentAdmissionUpdate(data: StudentAdmissionUpdateCred, completion: @escaping (Bool) -> Void) {
+        let request = Endpoint.studentAdmissionUpdate(cred: data).request!
+        service.makeRequest(with: request, respModel: ApiResponse<String>.self) {userResponse, error in
+            if error != nil {
+                completion(false)
+                return }
+            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                completion(false)
+                return }
+            completion(true)
+        }
+    }
+}

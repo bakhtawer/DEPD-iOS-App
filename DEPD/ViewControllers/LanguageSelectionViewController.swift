@@ -17,6 +17,8 @@ class LanguageSelectionViewController: UIViewController {
     
     var isSelection: Bool = false
     
+    var previousLang = ""
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -55,6 +57,8 @@ class LanguageSelectionViewController: UIViewController {
         buttonSindhi.accessibilityLabel = "select sd here".localized()
         
         labelSelectLangauge.text = "select_language".localized()
+        
+        previousLang = UserDefaults.selectedLanguage
 
         buttonUrdu.addTapGestureRecognizer { [weak self] in
             UserDefaults.set(selectedLanguage: "ur")
@@ -93,7 +97,11 @@ class LanguageSelectionViewController: UIViewController {
             
             UserDefaults.set(firstTimeUser: true)
             if self.isSelection {
-                self.navigationController?.dismiss(animated: true)
+                if previousLang == UserDefaults.selectedLanguage {
+                    self.navigationController?.dismiss(animated: true)
+                    return
+                }
+                Bootstrapper.decideScreenToOpen()
             }else {  
                 Bootstrapper.createInclusiveScreen()
             }

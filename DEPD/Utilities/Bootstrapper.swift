@@ -151,7 +151,7 @@ extension Bootstrapper {
     
     private func showInclusiveScreen() {
         let storyboard = getStoryBoard(.main)
-        let view = storyboard.instantiateViewController(ofType: InclusiveScreen.self)
+        let view = storyboard.instantiateViewController(ofType: AppHomeViewContoller.self)
         let nav = UINavigationController(rootViewController: view)
         self.window.rootViewController = nav
     }
@@ -183,7 +183,7 @@ extension Bootstrapper {
                 let vc = SchoolHomeViewController(coder: coder, viewModel: viewModel)
                 return vc
             }
-        case .JobSeeker:
+        case .JobSeeker, .JobSeekerGuest:
             viewController = storyboard.instantiateViewController(identifier: "JobSeekerHomeViewController") { coder in
                 let viewModel = JobSeekerHomeViewModel()
                 let vc = JobSeekerHomeViewController(coder: coder, viewModel: viewModel)

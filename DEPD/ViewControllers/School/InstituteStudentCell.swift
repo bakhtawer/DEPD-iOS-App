@@ -14,6 +14,12 @@ protocol InstituteStudentCellProtocol: NSObject {
     func rejectAdmission(id: InstituteHomeModel)
 }
 
+protocol EmployerPortalCellProtocol: NSObject {
+    func viewProfile(id: Int)
+    func acceptAdmission(id: Int)
+    func rejectAdmission(id: Int)
+}
+
 class InstituteStudentCell: UICollectionViewCell {
     
     @IBOutlet weak var iconStudent: UIImageView!
@@ -34,6 +40,7 @@ class InstituteStudentCell: UICollectionViewCell {
     @IBOutlet weak var labelStatus: UILabel!
     
     weak var delegate: InstituteStudentCellProtocol?
+    weak var delegateEmployer: EmployerPortalCellProtocol?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -79,7 +86,7 @@ class InstituteStudentCell: UICollectionViewCell {
             self?.delegate?.viewProfile(id: model)
         }
         
-        labelStatus.text = " \("pending".localized()) "
+        labelStatus.text = " \(AMDH.shared.getAdmissionStatus(value: model.AdmissionStatusId ?? 0)) "
         labelStatus.backgroundColor = .appYellow
         
         let admissionStatusId = model.AdmissionStatusId
@@ -87,18 +94,20 @@ class InstituteStudentCell: UICollectionViewCell {
         ButtonReject.isHidden = true
         buttonViewProfile.isHidden = true
         switch admissionStatusId {
-        case 0:
-            buttonAccept.isHidden = false
-            ButtonReject.isHidden = false
-            buttonViewProfile.isHidden = false
         case 1:
             buttonAccept.isHidden = false
             ButtonReject.isHidden = false
             buttonViewProfile.isHidden = false
-        case 2:
+        default:
             buttonViewProfile.isHidden = false
-        default: break
         }
+        
+        //        public enum AdmissionStatus
+                //    {
+                //        Pending = 1,
+                //        Accepted = 2,
+                //        Rejected = 3
+                //    }
         
         guard let image = URL(string: model.ProfilePictureURL?.convertToHttps() ?? "") else { return }
         iconStudent.contentMode = .scaleAspectFill
@@ -120,6 +129,40 @@ class InstituteStudentCell: UICollectionViewCell {
         
         viewBg.applyShadow()
         iconStudent.roundCorner(withRadis: iconStudent.viewWidth.half)
+        
+        buttonAccept.makeItTheme(text: "accept".localized(), .bold, 14, .appLight, .appGreen)
+        buttonAccept.makeButtonIcon(named: "checkmark.circle")
+        buttonAccept.makeHight(height: 40, false, true)
+        
+        ButtonReject.makeItTheme(text: "reject".localized(), .bold, 14, .appLight, .orange)
+        ButtonReject.makeButtonIcon(named: "xmark.circle")
+        ButtonReject.makeHight(height: 40, false, true)
+        
+        buttonViewProfile.makeItTheme(text: "view_profile".localized(), .bold, 14, .appLight, .appBlue)
+        buttonViewProfile.makeHight(height: 40, false, true)
+        
+        let admissionStatusId = 1
+        buttonAccept.isHidden = true
+        ButtonReject.isHidden = true
+        buttonViewProfile.isHidden = true
+        switch admissionStatusId {
+        case 1:
+            buttonAccept.isHidden = false
+            ButtonReject.isHidden = false
+            buttonViewProfile.isHidden = false
+        default:
+            buttonViewProfile.isHidden = false
+        }
+        
+        buttonAccept.addTapGestureRecognizer {[weak self] in
+            self?.delegateEmployer?.acceptAdmission(id: model.employees?.jobID ?? -1)
+        }
+        ButtonReject.addTapGestureRecognizer {[weak self] in
+            self?.delegateEmployer?.rejectAdmission(id: model.employees?.jobID ?? -1)
+        }
+        buttonViewProfile.addTapGestureRecognizer {[weak self] in
+            self?.delegateEmployer?.viewProfile(id: model.employees?.jobID ?? -1)
+        }
         
         
         guard let image = URL(string: jobSeeker.ProfilePicture?.convertToHttps() ?? "") else { return }

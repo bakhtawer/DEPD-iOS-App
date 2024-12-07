@@ -1,13 +1,13 @@
 //
-//  JobSeekerProfileDetailsController.swift
+//  EmployerProfileDetailsController.swift
 //  DEPD
 //
-//  Created by Shahzaib I. Bhatti on 23/11/2024.
+//  Created by Shahzaib I. Bhatti on 13/10/2024.
 //
 
 import UIKit
 
-class JobSeekerProfileDetailsController: BaseViewController {
+class EmployerProfileDetailsController: BaseViewController {
     
     @IBOutlet weak var viewImage: UIView!
     @IBOutlet weak var imageSchool: UIImageView!
@@ -396,7 +396,7 @@ class JobSeekerProfileDetailsController: BaseViewController {
     }
 }
 
-extension JobSeekerProfileDetailsController {
+extension EmployerProfileDetailsController {
     func setupNavigation() {
         self.navigationController?.navigationBar.isHidden = false
         self.setBackButton(.textDark).addTapGestureRecognizer {[weak self] in
@@ -405,7 +405,7 @@ extension JobSeekerProfileDetailsController {
     }
 }
 
-extension JobSeekerProfileDetailsController : UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate {
+extension EmployerProfileDetailsController : UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIDocumentPickerDelegate {
     private func presentActionSheet() {
         let actionSheet = UIAlertController(title: "Select Option".localized(), message: nil, preferredStyle: .actionSheet)
         

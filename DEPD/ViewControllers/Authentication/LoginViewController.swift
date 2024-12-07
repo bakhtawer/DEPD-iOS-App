@@ -35,6 +35,9 @@ class LoginViewController: BaseViewController {
     
     private var userType: UserType = UserType.Student
     
+    @IBOutlet weak var imageEye: UIImageView!
+    var toggleEye: Bool = true
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -83,11 +86,20 @@ class LoginViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tfPassword.isSecureTextEntry = toggleEye
+        self.imageEye.image = UIImage(systemName: self.toggleEye ? "eye" : "eye.slash")
+        self.imageEye.tintColor = .appBorder
+        imageEye.addTapGestureRecognizer {
+            self.toggleEye = !self.toggleEye
+            self.tfPassword.isSecureTextEntry = self.toggleEye
+            self.imageEye.image = UIImage(systemName: self.toggleEye ? "eye" : "eye.slash")
+        }
+        
         switch screenType {
         case .student:
 #if DEBUG
-            tfUserName.text = "4111111111111"
-            tfPassword.text = "12345678"
+            tfUserName.text = "1"
+            tfPassword.text = "1"
 #endif
             setUpStudent()
         case .jobSeeker:
@@ -98,8 +110,8 @@ class LoginViewController: BaseViewController {
             setUpJobSeeker()
         case .companyHiring:
 #if DEBUG
-            tfUserName.text = "4444444444444"
-            tfPassword.text = "12345678"
+            tfUserName.text = "4"
+            tfPassword.text = "4"
 #endif
             setUpCompanyHiring()
         case .institute:
@@ -173,6 +185,11 @@ class LoginViewController: BaseViewController {
     private func setUpJobSeeker() {
         labelLoginTitle.text = "login_as_job_seeker".localized()
         buttonRegister.setTitle("register_as_job_seeker".localized(), for: .normal)
+        
+        labelLoginAsGust.addTapGestureRecognizer {
+            APPMetaDataHandler.shared.userType = .JobSeekerGuest
+            Bootstrapper.createHome(.JobSeekerGuest)
+        }
         
         buttonLogin.addTapGestureRecognizer {[weak self] in
             
@@ -295,6 +312,7 @@ extension LoginViewController {
 extension LoginViewController {
     func setupNavigation() {
         setLogo()
+        UIApplication.shared.statusBarView?.backgroundColor = .appBG
         self.setBackButton(.appBlue).addTapGestureRecognizer {
             Bootstrapper.createInclusiveScreen()
         }

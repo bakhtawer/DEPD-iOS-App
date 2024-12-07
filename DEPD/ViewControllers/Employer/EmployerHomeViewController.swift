@@ -19,7 +19,6 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
     
     @IBOutlet weak var mainIcon: UIView!
     @IBOutlet weak var mainIconImage: UIImageView!
-    @IBOutlet weak var buttonEdit: UIButton!
     @IBOutlet weak var viewTopBG: UIView!
     @IBOutlet weak var schoolName: UILabel!
     @IBOutlet weak var schoolLocation: UILabel!
@@ -43,7 +42,10 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
     @IBOutlet weak var buttonAdvertise: UILabel!
     @IBOutlet weak var buttonConfirmHiring: UILabel!
     
+    @IBOutlet weak var viewClickHired: UIView!
+    @IBOutlet weak var labelClickHired: UILabel!
     
+    @IBOutlet weak var labelTotalApplications: UILabel!
     private enum ScreenSelected{
         case employee
         case advertise
@@ -65,21 +67,10 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
         
         setUpCollectionView()
         
-        viewApplications.isHidden = true
-        
         tfSearchBar.delegate = self
         viewModel.delegate = self
         
         viewModel.fetchAllJobs()
-        
-        buttonEdit.addTapGestureRecognizer {
-//            DispatchQueue.main.async {[weak self] in
-//                let storyboard = getStoryBoard(.main)
-//                let view = storyboard.instantiateViewController(ofType: SchoolDetailsViewController.self)
-////                view.selectedSchool = self?.viewModel.selectedSchool
-//                openModuleOnNavigation(from: self, controller: view)
-//            }
-        }
         
         viewSearch.isHidden = true
         buttonFindEmployee.addTapGestureRecognizer {[weak self] in
@@ -97,6 +88,14 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
             self?.viewSearch.isHidden = false
             self?.fetchedDetails()
         }
+        
+        buttonViewApplications.addTapGestureRecognizer {
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: EmployerProfileDetailsController.self)
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,19 +110,39 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
     private func setView() {
         mainIcon.roundCorner(withRadis: mainIcon.viewHeight.half)
         mainIconImage.roundCorner(withRadis: mainIconImage.viewHeight.half)
-        viewTopBG.applyShadow()
+//        viewTopBG.backgroundColor = .appLight
+//        viewTopBG.applyShadow()
         
-        schoolName.makeItTheme(.bold, 16, .textDark)
-        schoolLocation.makeItTheme(.regular, 13, .textLightGray)
-        schoolProfilePercentage.makeItTheme(.regular, 13, .appBlue)
+        schoolName.makeItTheme(.bold, 16, .textDark, .center)
+        schoolLocation.makeItTheme(.regular, 13, .textLightGray, .center)
+        schoolProfilePercentage.makeItTheme(.regular, 13, .appBlue, .center)
         
-        buttonFindEmployee.makeItTheme(.bold, 9, .appLight)
-        buttonAdvertise.makeItTheme(.bold, 9, .appLight)
-        buttonConfirmHiring.makeItTheme(.bold, 9, .appLight)
+        buttonFindEmployee.makeItTheme(.bold, 9, .textDark, .center)
+        buttonAdvertise.makeItTheme(.bold, 9, .textDark, .center)
+        buttonConfirmHiring.makeItTheme(.bold, 9, .textDark, .center)
+        buttonFindEmployee.backgroundColor = .appBGDark
+        buttonAdvertise.backgroundColor = .appBGDark
+        buttonConfirmHiring.backgroundColor = .appBGDark
+        buttonFindEmployee.roundCorner(withRadis: 4)
+        buttonAdvertise.roundCorner(withRadis: 4)
+        buttonConfirmHiring.roundCorner(withRadis: 4)
         
         buttonFindEmployee.text = "\("find_an_employee".localized())"
+        buttonConfirmHiring.text = "\("find_an_employee".localized())"
         buttonAdvertise.text = "\("advertise_vacancies".localized())"
-        buttonConfirmHiring.text = "\("confirm_hiring".localized())"
+        
+        buttonViewApplications.setTitle("\("edit_profile".localized())", for: .normal)
+        buttonEditYourProfile.setTitle("\("my_applications".localized())", for: .normal)
+        buttonViewApplications.makeItThemePrimary(14)
+        buttonEditYourProfile.makeItThemeWhitePrimary(14)
+        
+        labelClickHired.makeItTheme(.bold, 12, .textDark)
+        labelClickHired.text = "  \("check_hired".localized())  "
+        viewClickHired.roundCorner(withRadis: viewClickHired.viewHeight.half)
+        viewClickHired.setBorderColor(.appBlue, 1)
+        
+        labelTotalApplications.makeItTheme(.regular, 12, .textDark)
+        labelTotalApplications.text = "10 Applications Available"
         
         schoolName.text = USM.shared.getUserFullName()
     }
@@ -157,6 +176,7 @@ extension EmployerHomeViewController {
     func setupNavigation() {
         self.navigationController?.navigationBar.isHidden = false
         self.setTitle("welcom_to_employer_hub".localized())
+        self.setNavBarColor(.appBG)
         self.setMenuButton(.textDark).addTapGestureRecognizer {
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: SettingViewController.self)
@@ -191,7 +211,7 @@ extension EmployerHomeViewController { // Create Compositional Layout
             switch self.screenSelected {
             case .employee, .hiring:
                 // Standard section with item height of 147
-                return self.createInstituteSection()
+                return self.createInstituteSection(itemHight: 204)
             case .advertise:
                 return self.createInstituteSection(itemHight: 244)
             }
@@ -248,6 +268,7 @@ extension EmployerHomeViewController {
                                                                     return UICollectionViewCell()
                                                                 }
                                                                 cell.configure(with: app)
+                                                                cell.delegateEmployer = self
                                                                 return cell
                                                                 
                                                             case .advertise:
@@ -293,49 +314,7 @@ extension EmployerHomeViewController {
 }
 
 extension EmployerHomeViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        DispatchQueue.main.async {[weak self] in
-////            let storyboard = getStoryBoard(.main)
-////            let view = storyboard.instantiateViewController(ofType: SchoolStudentDetailViewController.self)
-////            view.selectedStudent = self?.viewModel.getJobs()[indexPath.row]
-////            openModuleOnNavigation(from: self, controller: view)
-//        }
-        
-        if indexPath.section == 0 {
-            let userProfile = JobSeekerProfileModel(
-                name: "Salman Ibrahim",
-                location: "Punjab, Pakistan",
-                email: "salman.ibrahim@gmail.com",
-                cnic: "123-123456-9",
-                contactNumber: "0322-12345678",
-                education: [
-                    Education(institution: "Islamic Public Institute", degree: "Diploma in Graphic Design", years: "2013-2015"),
-                    Education(institution: "Karachi University", degree: "Bachelor's Degree", years: "2010-2012")
-                ],
-                technicalSkills: ["Graphics Designing", "MS Word", "MS Excel", "Illustrations"],
-                certifications: [
-                    Certification(institution: "Islamic Public Institute", title: "Diploma in Graphic Design", years: "2013-2015"),
-                    Certification(institution: "Karachi University", title: "Bachelor's Degree", years: "2010-2012")
-                ],
-                languages: ["Sindhi", "English", "Urdu"],
-                disabilityCertificate: "None",
-                disabilityStatus: "None",
-                profileImage: "https://example.com/path/to/profile-image.jpg"
-            )
-            
-//            // Use the userProfile instance to initialize UserProfileView in your SwiftUI view hierarchy
-//            let profileView = UserProfileView(userProfile: userProfile)
-            
-            // Create a UIHostingController with the UserProfileView
-            let profileView = JobSeekerProfile(userProfile: userProfile)
-            let hostingController = UIHostingController(rootView: profileView)
-            
-            // Present the UIHostingController
-            openModuleOnNavigation(from: self, controller: hostingController)
-
-        }
-        
-    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {}
 }
 
 extension EmployerHomeViewController: UITextFieldDelegate {
@@ -349,5 +328,33 @@ extension EmployerHomeViewController: UITextFieldDelegate {
             viewModel.search(text: updatedText)
         }
         return true
+    }
+}
+extension EmployerHomeViewController: EmployerPortalCellProtocol {
+    func viewProfile(id: Int) {
+        DispatchQueue.main.async {[weak self] in
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: JobSeekerProfileDetailsController.self)
+//            view.selectedStudent = id
+            openModuleOnNavigation(from: self, controller: view)
+        }
+    }
+    
+    func acceptAdmission(id: Int) {
+        DispatchQueue.main.async {[weak self] in
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+            view.type = .acceptJobApplication
+            openModuleOnNavigation(from: self, controller: view)
+        }
+    }
+    
+    func rejectAdmission(id: Int) {
+        DispatchQueue.main.async {[weak self] in
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+            view.type = .rejectJobApplication
+            openModuleOnNavigation(from: self, controller: view)
+        }
     }
 }

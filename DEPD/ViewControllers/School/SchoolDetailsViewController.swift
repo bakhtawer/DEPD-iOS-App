@@ -173,10 +173,10 @@ class SchoolDetailsViewController: BaseViewController {
 \("designation".localized()): \(school?.designation ?? "N/A")
 """
         labelSchoolInfoDetails.text = schoolInfo
-        labelSchoolInfoDetails.makeItTheme(.regular, 14, .textDark, .left, 20)
+        labelSchoolInfoDetails.makeItTheme(.regular, 14, .textDark, nil, 20)
         
         labelAboutYourSchoolDetails.text = school?.aboutText ?? "N/A"
-        labelAboutYourSchoolDetails.makeItTheme(.regular, 14, .textDark, .left, 20)
+        labelAboutYourSchoolDetails.makeItTheme(.regular, 14, .textDark, nil, 20)
         
         let additionalInfo = """
 \("establish_year".localized()): \(school?.establishedYear ?? 0)
@@ -189,7 +189,7 @@ class SchoolDetailsViewController: BaseViewController {
 \("number_of_total_students".localized()): \(school?.availableSeats ?? 0)
 """
         labelAddiontalInfoDetails.text = additionalInfo
-        labelAddiontalInfoDetails.makeItTheme(.regular, 14, .textDark, .left, 20)
+        labelAddiontalInfoDetails.makeItTheme(.regular, 14, .textDark, nil, 20)
         
         labelTitleSocialMultiMedia.text = "school_multi_media".localized()
         labelTitleSocialMultiMedia.makeItTheme(.bold, 14, .textDark)

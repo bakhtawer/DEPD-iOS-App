@@ -78,7 +78,6 @@ class EmployerHomeViewModel {
          EmployerHomeViewModelData(advertise: JobSeekerModel()),
          EmployerHomeViewModelData(advertise: JobSeekerModel())]
     }
-    
     func getJobs() -> [EmployerHomeViewModelData] {
         var jobs = dataProds
 //        // Check if search text is provided

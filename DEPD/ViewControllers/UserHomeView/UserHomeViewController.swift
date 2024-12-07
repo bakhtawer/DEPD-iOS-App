@@ -42,6 +42,8 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         setView()
     }
     
+    @IBOutlet weak var viewComplains: UIView!
+    
     private func setView() {
         imageUser.roundCorner(withRadis: imageUser.viewHeight.half)
         
@@ -80,6 +82,8 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         viewModel.delegate = self
         viewModel.fetchInstitutes()
         
+        viewComplains.isHidden = true
+        
         setUpCollectionView()
         
         
@@ -117,6 +121,7 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         labelUserName.text = USM.shared.getUserFullName()
         labelLocation.text = USM.shared.getUser().oStudentDetails?.district
         setView()
+        setupNavigation()
         
         collectionView.setNeedsDisplay()
         collectionView.reloadData()
@@ -185,7 +190,7 @@ extension UserHomeViewController {
     func setupNavigation() {
 //        self.setLogo()
 //        self.setNavBarColor(.appBlue)
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 }
 
@@ -211,6 +216,10 @@ extension UserHomeViewController {
                 return UICollectionViewCell()
             }
             cell.configure(with: app)
+                                                            cell.viewBottomLine.isHidden = false
+                                                            if indexPath.row == self.viewModel.getCount() - 1 {
+                                                                cell.viewBottomLine.isHidden = true
+                                                            }
             return cell
         }
     }

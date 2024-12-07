@@ -47,6 +47,7 @@ class JobSeekerDetailViewController: BaseViewController  {
         labelDescriptionTittle.text = "description".localized()
         labelDescription.text = dataJob?.DescriptionText
         
+        self.setTitle(dataJob?.CompanyName ?? "")
         
         viewDetailsBG.applyShadow()
 //        imageCompany
@@ -85,12 +86,6 @@ class JobSeekerDetailViewController: BaseViewController  {
 extension JobSeekerDetailViewController {
     func setupNavigation() {
         self.navigationController?.navigationBar.isHidden = false
-        
-        self.setMenuButton(.textDark).addTapGestureRecognizer {
-            let storyboard = getStoryBoard(.main)
-            let view = storyboard.instantiateViewController(ofType: SettingViewController.self)
-            openModulePopOver(controller: view)
-        }
         
         self.setBackButton(.appBackButton).addTapGestureRecognizer {[weak self] in
             self?.navigationController?.popViewController(animated: true)

@@ -109,12 +109,6 @@ class RegisterAndroidViewController: BaseViewController {
                                       Email: tempEmail ?? "",
                                       UserTypeId: userType.rawValue)
         register(creds: creds)
-        
-        let storyboard = getStoryBoard(.main)
-        let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
-        contentVC.messageThankYou = .registeredSuccess
-        contentVC.moveThankYou = .home
-        openModuleOverFullScreen(controller: contentVC)
     }
     
     override func viewDidAppear(_ animated: Bool) {

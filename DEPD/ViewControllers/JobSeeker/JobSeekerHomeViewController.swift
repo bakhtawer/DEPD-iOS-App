@@ -36,6 +36,13 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
     
     @IBOutlet weak var buttonNGO: UILabel!
     private var selectedFilterItems: [String : Any] = [:]
+    private var filterItems: [FilterItem] = [
+        FilterItem(type: .checkbox, title: "job_title".localized(), name: "job_title"),
+        FilterItem(type: .checkbox, title: "private".localized(), name: "private"),
+        FilterItem(type: .checkbox, title: "ngo_welfare".localized(), name: "ngo_welfare"),
+        FilterItem(type: .dropdown, title: "district".localized(), name: "district", options: APPMetaDataHandler.shared.getDistrictsNames()),
+        FilterItem(type: .multiSelect, title: "disability".localized(), name: "disability", options:APPMetaDataHandler.shared.getDisabilitiesNames())
+    ]
     
     @IBOutlet weak var buttonFilter: DEPDButton!
     
@@ -65,6 +72,11 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         viewModel.fetchAllJobs()
         
         buttonViewApplications.addTapGestureRecognizer {
+            if APPMetaDataHandler.shared.userType == .JobSeekerGuest {
+                Bootstrapper.showLoginAlert()
+                return
+            }
+            
             DispatchQueue.main.async {[weak self] in
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: JobSeekerProfileDetailsController.self)
@@ -75,15 +87,8 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         viewOldFilters.isHidden = true
         buttonFilter.addTapGestureRecognizer {
             DispatchQueue.main.async {[weak self] in
-                let filterItems = [
-                    FilterItem(type: .checkbox, title: "job_title".localized()),
-                    FilterItem(type: .checkbox, title: "private".localized()),
-                    FilterItem(type: .checkbox, title: "ngo_welfare".localized()),
-                    FilterItem(type: .dropdown, title: "district".localized(), options: APPMetaDataHandler.shared.getDistrictsNames()),
-                    FilterItem(type: .multiSelect, title: "disability".localized(), options:APPMetaDataHandler.shared.getDisabilitiesNames())
-                ]
                 let filterVC = FilterViewController()
-                filterVC.filterItems = filterItems
+                filterVC.filterItems = self?.filterItems ?? []
                 filterVC.selectedOptions = self?.selectedFilterItems ?? [:]
                 filterVC.delegate = self
                 openModulePopOver(controller: filterVC)
@@ -170,6 +175,7 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
 extension JobSeekerHomeViewController {
     func setupNavigation() {
         self.setTitle("inclusive_career_hub".localized())
+        self.setNavBarColor(.appBG)
         self.setMenuButton(.textDark).addTapGestureRecognizer {
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: SettingViewController.self)
@@ -264,6 +270,10 @@ extension JobSeekerHomeViewController {
 
 extension JobSeekerHomeViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if APPMetaDataHandler.shared.userType == .JobSeekerGuest {
+            Bootstrapper.showLoginAlert()
+            return
+        }
         DispatchQueue.main.async {[weak self] in
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: JobSeekerDetailViewController.self)
@@ -291,5 +301,6 @@ extension JobSeekerHomeViewController: UITextFieldDelegate {
 extension JobSeekerHomeViewController: FilterViewControllerDelegate {
     func didApplyFilters(selectedOptions: [String : Any]) {
         selectedFilterItems = selectedOptions
+        
     }
 }

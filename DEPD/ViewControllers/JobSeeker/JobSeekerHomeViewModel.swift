@@ -53,6 +53,27 @@ class JobSeekerHomeViewModel {
     
     func getJobs() -> [CompanyModel] {
         var jobs = dataProds
+        
+        if let isJobTitle = appliedFilters["job_title"] as? Bool, isJobTitle {
+            jobs = dataProds
+        }
+        
+        if let isPrivate = appliedFilters["private"] as? Bool, isPrivate {
+            jobs = dataProds
+        }
+        if let isNgoWelfare = appliedFilters["ngo_welfare"] as? Bool, isNgoWelfare {
+//            jobs = dataProds.filter {$0.}
+        }
+        
+        if let disability = appliedFilters["disability"] as? [String] {
+            
+        }
+        
+        if let district = appliedFilters["district"] as? String {
+            
+        }
+        
+        
 //        // Check if search text is provided
         guard var searchText = searchText, !searchText.isEmpty else { return dataProds }
         searchText = searchText.lowercased()
@@ -67,9 +88,14 @@ class JobSeekerHomeViewModel {
         delegate?.fetchedJobs()
     }
     
-    
     func search(text: String?) {
         searchText = text
+        delegate?.fetchedJobs()
+    }
+    
+    var appliedFilters: [String : Any] = [:]
+    func setAppliedFilters(filters: [String : Any]) {
+        appliedFilters = filters
         delegate?.fetchedJobs()
     }
 }

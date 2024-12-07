@@ -18,14 +18,16 @@ enum FilterType {
 class FilterItem {
     let type: FilterType
     let title: String
+    let name: String
     var value: Any?  // Selected value(s)
     let options: [String]
     
-    init(type: FilterType, title: String, options: [String] = [], defaultValue: Any? = nil) {
+    init(type: FilterType, title: String, name: String, options: [String] = [], defaultValue: Any? = nil) {
         self.type = type
         self.title = title
         self.options = options
         self.value = defaultValue
+        self.name = name
     }
 }
 
@@ -47,6 +49,11 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         title = "Filter"
         view.backgroundColor = .white
+        if !selectedOptions.isEmpty {
+            for item in filterItems {
+                item.value = selectedOptions[item.name]
+            }
+        }
         setupTableView()
         setupNavigationBar()
     }
@@ -74,7 +81,7 @@ class FilterViewController: UIViewController, UITableViewDataSource, UITableView
     @objc private func doneButtonTapped() {
         // Confirm all values in filterItems to selectedOptions dictionary
         for item in filterItems {
-            selectedOptions[item.title] = item.value
+            selectedOptions[item.name] = item.value
         }
         print("Selected Options:", selectedOptions)  // Print selected options dictionary
         delegate?.didApplyFilters(selectedOptions: selectedOptions)

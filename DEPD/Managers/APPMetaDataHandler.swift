@@ -14,6 +14,7 @@ public enum UserType: Int {
     case Employer = 4
     
     case StudentGuest = 5
+    case JobSeekerGuest = 6
 }
 typealias AMDH = APPMetaDataHandler
 final class APPMetaDataHandler {
@@ -135,5 +136,14 @@ final class APPMetaDataHandler {
     
     func getFreePaidFromInt(value: Int) -> String {
         return value == 2 ? "Paid" : "Free"
+    }
+    
+    func getAdmissionStatus(value: Int) -> String {
+        switch value {
+        case 1: return "pending".localized()
+        case 2: return "accepted".localized()
+        case 3: return "rejected".localized()
+        default: return ""
+        }
     }
 }

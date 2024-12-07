@@ -87,6 +87,16 @@ extension UIViewController {
         navigationController.navigationBar.isTranslucent = false
         
         UIApplication.shared.statusBarView?.backgroundColor = color
+        
+        addShadowToBar()
+    }
+    
+    func addShadowToBar() {
+        self.navigationController?.navigationBar.layer.masksToBounds = false
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor.appBorder.cgColor
+        self.navigationController?.navigationBar.layer.shadowOpacity = 0.2
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+        self.navigationController?.navigationBar.layer.shadowRadius = 2
     }
     
     func setBackButton(_ tint: UIColor = .clear) -> UIButton {

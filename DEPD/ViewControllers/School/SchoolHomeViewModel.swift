@@ -28,6 +28,13 @@ class SchoolHomeViewModel {
     
     var selectedSchool: InstituteModel?
     
+    enum AdmissionStatus {
+        case Pending
+        case Accepted
+        case Rejected
+        case all
+    }
+    
     init() {
         print("SchoolHomeViewModel- init")
         self.schoolID = -1
@@ -49,7 +56,6 @@ class SchoolHomeViewModel {
         }
     }
     
-    
     func fetchStudents() {
         delegate?.showLoader()
         let request = Endpoint.getStudentAdmissions(schoolID: schoolID, studentId: USM.shared.getUser().oStudentDetails?.id ?? -1).request!
@@ -70,8 +76,19 @@ class SchoolHomeViewModel {
     
     func getInstitutes() -> [InstituteHomeModel] {
         var students = dataProds
+        switch admissionStatus {
+        case .Pending:
+            students = students.filter {$0.AdmissionStatusId == 1}
+        case .Accepted:
+            students = students.filter {$0.AdmissionStatusId == 2}
+        case .Rejected:
+            students = students.filter {$0.AdmissionStatusId == 3}
+        case .all:
+            students = dataProds
+        }
+        
         // Check if search text is provided
-        guard var searchText = searchText, !searchText.isEmpty else { return dataProds }
+        guard var searchText = searchText, !searchText.isEmpty else { return students }
         searchText = searchText.lowercased()
         // Filter based on student properties as well as Gender and District
         students = students.filter { institute in
@@ -90,10 +107,14 @@ class SchoolHomeViewModel {
     func resetAll() {
         delegate?.fetchedInstitutes()
     }
-    
-    
+
     func search(text: String?) {
         searchText = text
+        delegate?.fetchedInstitutes()
+    }
+    var admissionStatus: AdmissionStatus = .all
+    func setType(by: AdmissionStatus) {
+        admissionStatus = by
         delegate?.fetchedInstitutes()
     }
 }

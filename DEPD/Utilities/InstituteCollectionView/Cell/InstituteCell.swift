@@ -19,6 +19,7 @@ class InstituteCell: UICollectionViewCell {
     
     @IBOutlet weak var imageSchool: UIImageView!
     
+    @IBOutlet weak var viewMainBg: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -26,13 +27,17 @@ class InstituteCell: UICollectionViewCell {
         super.layoutSubviews()
     }
     
+    @IBOutlet weak var viewBottomLine: UIView!
     func configure(with model: InstituteModel) {
         
         btnViewInfo.makeItThemePrimary(14)
         btnViewInfo.setTitle("view_info".localized(), for: .normal)
         btnViewInfo.isUserInteractionEnabled = false
         
-        labelDistrict.text = model.Location
+        viewMainBg.layer.cornerRadius = 6.0
+        viewMainBg.applyShadow()
+        
+        labelDistrict.text = model.SchoolName
         labelSeats.text = "\(model.NumberOfSeats ?? 0) seats available"
         
         labelDistrict.makeItTheme(.bold, 14, .appBlue)
