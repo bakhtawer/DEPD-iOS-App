@@ -15,6 +15,7 @@ class KeychainManager {
         case cnic
         case password
         case userType
+        case userID
     }
     
     // MARK: - Save to Keychain
@@ -72,5 +73,6 @@ class KeychainManager {
         delete(forKey: .cnic)
         delete(forKey: .password)
         delete(forKey: .userType)
+        delete(forKey: .userID)
     }
 }

@@ -24,6 +24,29 @@
         }
       }
     },
+    "about_your_company" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Your Company"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "توهان جي ڪمپني جي باري ۾"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آپ کی کمپنی کے بارے میں"
+          }
+        }
+      }
+    },
     "about_your_school" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -254,6 +277,29 @@
         }
       }
     },
+    "all_application" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "All Application"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سڀ ايپليڪيشن"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تمام درخواست"
+          }
+        }
+      }
+    },
     "applicant_profile" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -277,6 +323,29 @@
         }
       }
     },
+    "applications_available" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Applicaitons Available"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ايپليڪيشنون دستياب آهن"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "درخواستیں دستیاب ہیں۔"
+          }
+        }
+      }
+    },
     "apply" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -296,6 +365,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "لاگو کریں"
+          }
+        }
+      }
+    },
+    "apply_now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apply Now"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هاڻي لاڳو ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ابھی اپلائی کریں۔"
           }
         }
       }
@@ -369,6 +461,29 @@
         }
       }
     },
+    "availbale_seats_for_pwds" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Available Seats for PWD'S"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PWD'S لاءِ دستياب سيٽون"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PWD'S کے لیے دستیاب نشستیں"
+          }
+        }
+      }
+    },
     "cancel" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -434,6 +549,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "سرٹیفیکیشن"
+          }
+        }
+      }
+    },
+    "check_application" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check Application"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپليڪيشن چيڪ ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "درخواست چیک کریں۔"
+          }
+        }
+      }
+    },
+    "check_hired" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check Hired"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "چيڪ ڪريو ملازم"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "چیک کرائے پر"
           }
         }
       }
@@ -829,6 +990,29 @@
         }
       }
     },
+    "date_of_joining" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date of Joining"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شامل ٿيڻ جي تاريخ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شمولیت کی تاریخ"
+          }
+        }
+      }
+    },
     "denial_of_admission" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1193,29 +1377,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "فیس درج کریں۔"
-          }
-        }
-      }
-    },
-    "enter_reason" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enter Reason"
-          }
-        },
-        "sd" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "دليل داخل ڪريو"
-          }
-        },
-        "ur" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "وجہ درج کریں۔"
           }
         }
       }
@@ -2232,6 +2393,29 @@
         }
       }
     },
+    "login_as_company_hiring" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login as Company Hiring"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪمپني جي ملازمت جي طور تي لاگ ان ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کمپنی ہائرنگ کے طور پر لاگ ان کریں۔"
+          }
+        }
+      }
+    },
     "login_as_company_hiring_manager" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2297,6 +2481,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ملازمت کے متلاشی کے طور پر لاگ ان کریں۔"
+          }
+        }
+      }
+    },
+    "login_as_school_institute" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login as School/Institue"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسڪول / انسٽيٽيوٽ طور لاگ ان ٿيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسکول/انسٹی ٹیو کے طور پر لاگ ان کریں۔"
           }
         }
       }
@@ -2600,6 +2807,29 @@
         }
       }
     },
+    "no_record_found" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No Record Found"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪوبه رڪارڊ نه مليو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کوئی ریکارڈ نہیں ملا"
+          }
+        }
+      }
+    },
     "nothing_to_show_in_the_gallery" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2746,6 +2976,18 @@
             "state" : "translated",
             "value" : "Pending"
           }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "باقي رهيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "زیر التواء"
+          }
         }
       }
     },
@@ -2768,6 +3010,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "زیر التواء طلباء"
+          }
+        }
+      }
+    },
+    "people_hired" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "People hired"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ماڻهو ڀرتي ٿيل"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لوگوں کی خدمات حاصل کیں۔"
           }
         }
       }
@@ -2814,6 +3079,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ذاتی معلومات"
+          }
+        }
+      }
+    },
+    "phone_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phone Number"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فون نمبر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فون نمبر"
           }
         }
       }
@@ -3002,6 +3290,29 @@
         }
       }
     },
+    "register_as_company_hiring" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register as Company Hiring"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪمپني جي ملازمت جي طور تي رجسٽر ٿيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کمپنی کی خدمات حاصل کرنے کے طور پر رجسٹر کریں۔"
+          }
+        }
+      }
+    },
     "register_as_company_hiring_manager" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3067,6 +3378,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ملازمت کے متلاشی کے طور پر رجسٹر ہوں۔"
+          }
+        }
+      }
+    },
+    "register_as_school" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Register as School"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسڪول طور رجسٽر ٿيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسکول کے طور پر رجسٹر کریں۔"
           }
         }
       }
@@ -3370,6 +3704,29 @@
         }
       }
     },
+    "registration_number" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registration Number"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رجسٽريشن نمبر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رجسٹریشن نمبر"
+          }
+        }
+      }
+    },
     "reject" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3649,6 +4006,12 @@
     "Select Document" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Document"
+          }
+        },
         "sd" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3689,6 +4052,12 @@
     "Select Image" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Image"
+          }
+        },
         "sd" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3950,6 +4319,29 @@
         }
       }
     },
+    "social_media_links" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Social Media Links"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سوشل ميڊيا لنڪس"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سوشل میڈیا لنکس"
+          }
+        }
+      }
+    },
     "SPDP" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4130,6 +4522,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "آج تک"
+          }
+        }
+      }
+    },
+    "total_application" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total Application"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مجموعي درخواست"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کل درخواست"
           }
         }
       }
@@ -4364,6 +4779,29 @@
         }
       }
     },
+    "upload_document" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload Document"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپ لوڊ ڪريو دستاويز"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دستاویز اپ لوڈ کریں۔"
+          }
+        }
+      }
+    },
     "upload_form_b_cnic" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4590,6 +5028,52 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ہم تعلیم دے سکتے ہیں۔"
+          }
+        }
+      }
+    },
+    "we_provide_job_for" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We Provide Job For"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسان لاء نوڪري فراهم ڪندا آهيون"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ہم کے لیے ملازمت فراہم کرتے ہیں۔"
+          }
+        }
+      }
+    },
+    "website" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Website"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ويب سائيٽ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ویب سائٹ"
           }
         }
       }

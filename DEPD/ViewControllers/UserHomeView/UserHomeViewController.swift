@@ -29,9 +29,6 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
     @IBOutlet weak var buttonSelectDisability: UIButton!
     @IBOutlet weak var buttonLocation: UIButton!
     
-    @IBOutlet weak var iconEditProifile: UIButton!
-    @IBOutlet weak var labelEditProfile: UILabel!
-    
     private var tempDistrict: District? = nil
     private var tempDisability: Disability? = nil
     
@@ -44,11 +41,15 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
     
     @IBOutlet weak var viewComplains: UIView!
     
+    @IBOutlet weak var labelNoRecord: UILabel!
+    
     private func setView() {
         imageUser.roundCorner(withRadis: imageUser.viewHeight.half)
         
-        buttonMyComplaints.makeItThemeRegular(14.0, .appLight, .appGreen)
-        labelMyApplications.makeItThemeRegular(14.0, .appLight, .appGreen)
+        buttonMyComplaints.setTitle("\("edit_profile".localized())", for: .normal)
+        labelMyApplications.setTitle("\("my_applications".localized())", for: .normal)
+        buttonMyComplaints.makeItThemePrimary(14)
+        labelMyApplications.makeItThemeWhitePrimary(14)
         
         buttonTotalSchool.makeItThemeRegular(10.0, .textDark, .appBGDark)
         buttonSelectDisability.makeItThemeRegular(10.0, .textDark, .appBGDark)
@@ -59,10 +60,10 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         buttonMyComplaints.setTitle("my_complains".localized(), for: .normal)
         labelMyApplications.setTitle("my_applications".localized(), for: .normal)
         
-        labelEditProfile.makeItTheme(.regular, 16, .textDark)
-        labelEditProfile.text = "\("edit_profile".localized())"
-        
         buttonTotalSchool.setTitle("total_school".localized(), for: .normal)
+        
+        labelNoRecord.text = "no_record_found".localized()
+        labelNoRecord.makeItTheme(.regular, 16, .textLightGray)
         
         if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
             buttonTotalSchool.semanticContentAttribute = .forceLeftToRight
@@ -82,10 +83,7 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
         viewModel.delegate = self
         viewModel.fetchInstitutes()
         
-        viewComplains.isHidden = true
-        
         setUpCollectionView()
-        
         
         buttonSetting.addTapGestureRecognizer {
             if APPMetaDataHandler.shared.userType == .StudentGuest {
@@ -98,10 +96,7 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
             openModulePopOver(controller: view)
         }
         
-        labelEditProfile.addTapGestureRecognizer {[weak self] in
-            self?.gotoEditProfile()
-        }
-        iconEditProifile.addTapGestureRecognizer {[weak self] in
+        buttonMyComplaints.addTapGestureRecognizer {[weak self] in
             self?.gotoEditProfile()
         }
         
@@ -226,9 +221,10 @@ extension UserHomeViewController {
     func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<PoitsSection, InstituteModel>()
         snapshot.appendSections([.all])
-        snapshot.appendItems(viewModel.getInstitutes(), toSection: .all)
+        let data = viewModel.getInstitutes()
+        snapshot.appendItems(data, toSection: .all)
         dataSource?.apply(snapshot, animatingDifferences: false)
-        
+        labelNoRecord.isHidden = !data.isEmpty
         constraintHeight.constant = collectionView.contentSize.height + 30
         collectionView.layoutIfNeeded()
     }

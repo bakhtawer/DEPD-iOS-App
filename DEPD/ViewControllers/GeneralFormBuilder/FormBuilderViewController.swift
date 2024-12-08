@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 // Enum to represent field types
 enum FieldType {
@@ -104,6 +105,9 @@ class FormBuilderViewController: BaseViewController {
     var studentDetails: StudentDetails? = nil
     
     var studentAdmissionId: Int?
+    
+    var studentPP = ""
+    var disabilityCer = ""
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -317,12 +321,12 @@ class FormBuilderViewController: BaseViewController {
             fields = populatePersonalInformationEmployer()
         case .socialMediaEmployer:
             self.setTitle("update_profile".localized())
-            labelTitle.text = "social_media_info".localized()
+            labelTitle.text = "social_media_links".localized()
             buttonTitle = "Submit".localized()
             fields = populateSocialMediaEmployer()
         case .weProvideJobEmployer:
             self.setTitle("update_profile".localized())
-            labelTitle.text = "we_provide_job".localized()
+            labelTitle.text = "we_provide_job_for".localized()
             buttonTitle = "Submit".localized()
             fields = populateWeProvideJobEmployer()
         case .accessibilityMaterialEmployer:
@@ -464,14 +468,34 @@ class FormBuilderViewController: BaseViewController {
         
         if let profileUrl = USM.shared.getUser().oStudentDetails?.profilePictureURL, !profileUrl.isEmpty {
             fields.append(FormField(fieldType: .uploadedFile, placeholder: "upload_profile_picture".localized(), name: "upload_profile_picture", value: profileUrl.convertToHttps(), isRequired: false))
+            let imageView = UIImageView()
+            imageView.kf.setImage(with: URL(string: profileUrl.convertToHttps())) {[weak self] result in
+               switch result {
+               case .success(let value):
+                   self?.studentPP = self?.imageToByteString(image: value.image, true) ?? ""
+                   print("profile_picture Image: \(value.image). Got from: \(value.cacheType)")
+               case .failure(let error):
+                   print("Error: \(error)")
+               }
+             }
         }else {
             fields.append(FormField(fieldType: .uploadFile, placeholder: "upload_profile_picture".localized(), name: "upload_profile_picture", value: nil, isRequired: false))
         }
         
-        fields.append(FormField(fieldType: .uploadFile, placeholder: "upload_form_b_cnic".localized(), name: "upload_form_b_cnic", value: nil, isRequired: false))
+//        fields.append(FormField(fieldType: .uploadFile, placeholder: "upload_form_b_cnic".localized(), name: "upload_form_b_cnic", value: nil, isRequired: false))
         
         if let disabilityCertificate = USM.shared.getUser().oStudentDetails?.disabilityCertificateURL, !disabilityCertificate.isEmpty {
             fields.append(FormField(fieldType: .uploadedFile, placeholder: "upload_disability_certificate".localized(), name: "upload_disability_certificate", value: disabilityCertificate.convertToHttps(), isRequired: false))
+            let imageView = UIImageView()
+            imageView.kf.setImage(with: URL(string: disabilityCertificate.convertToHttps())) {[weak self] result in
+               switch result {
+               case .success(let value):
+                   self?.disabilityCer = self?.imageToByteString(image: value.image, true) ?? ""
+                   print("disabilityCer Image: \(value.image). Got from: \(value.cacheType)")
+               case .failure(let error):
+                   print("Error: \(error)")
+               }
+             }
         }else {
             fields.append(FormField(fieldType: .uploadFile, placeholder: "upload_disability_certificate".localized(), name: "upload_disability_certificate", value: nil, isRequired: false))
         }
@@ -739,12 +763,42 @@ extension FormBuilderViewController: FormBuilderProtocol {
             let disability = (data["disability"] as? String) ?? ""
             studentDetails?.disabilityStatusId = APPMetaDataHandler.shared.getDisabilities(byName: disability)?.disabilityId
             studentDetails?.previousEducation = data["previous_education"] as? String
-//            studentDetails = data["upload_profile_picture"] as? String
-//            studentDetails = data["upload_form_b_cnic"] as? String
-//            studentDetails = data["upload_disability_certificate"] as? String
             
+            let genderID = APPMetaDataHandler.shared.getGenders(byName: studentDetails?.gender ?? "")?.genderId
+            
+            if let hasPPUploaded = studentDetails?.hasPPUploaded, !hasPPUploaded, !studentPP.isEmpty {
+                studentDetails?.profilePictureString = studentPP
+                studentDetails?.profilePictureName = "\(UUID().uuidString).jpg"
+                studentDetails?.hasPPUploaded = true
+            }
+            
+            if let hasDisCertUploaded = studentDetails?.hasDisCertUploaded, !hasDisCertUploaded, !disabilityCer.isEmpty {
+                studentDetails?.disabilityCertificateString = disabilityCer
+                studentDetails?.disabilityCertName = "\(UUID().uuidString).jpg"
+                studentDetails?.hasDisCertUploaded = true
+            }
+            
+            let student = StudentUpdateDetails(Id: USM.shared.getUser().oStudentDetails?.studentId ?? -1,
+                                               FirstName: firstName,
+                                               LastName: lastName,
+                                               ContactNo: USM.shared.getUser().contactNo,
+                                               oStudentDetails: StudentUpdateDetails.StudentDetails(
+                                                FatherName: studentDetails?.fatherName,
+                                                FatherCNIC: studentDetails?.fatherCnic,
+                                                DisabilityStatusId: studentDetails?.disabilityStatusId,
+                                                ProfilePictureURL: studentDetails?.profilePictureURL,
+                                                DisabilityCertificateURL: studentDetails?.disabilityCertificateURL,
+                                                ProfilePictureBytesString: studentDetails?.profilePictureString,
+                                                ProfilePictureName: studentDetails?.profilePictureName,
+                                                DisabilityCertBytesString: studentDetails?.disabilityCertificateString,
+                                                DisabilityCertName: studentDetails?.disabilityCertName,
+                                                Address: studentDetails?.address,
+                                                District: studentDetails?.district,
+                                                DOB: studentDetails?.dob,
+                                                PreviousEducation: studentDetails?.previousEducation,
+                                                GenderId: genderID))
             self.showLoadingIndicator(withDimView: true)
-            USM.shared.update(student: studentDetails, firstName: firstName, lastName: lastName) { [weak self] status in
+            USM.shared.update(student: student) { [weak self] status in
                 self?.hideLoadingIndicator()
                 if status {
                     DispatchQueue.main.async {[weak self] in
@@ -1094,9 +1148,9 @@ extension FormBuilderViewController : UIImagePickerControllerDelegate, UINavigat
         }
     }
     
-    func imageToByteString(image: UIImage) -> String? {
+    func imageToByteString(image: UIImage,_ isFromURL: Bool = false) -> String? {
         // Convert UIImage to Data (JPEG with 80% quality or PNG)
-        guard let imageData = image.jpegData(compressionQuality: 0.5) else { return nil }
+        guard let imageData = image.jpegData(compressionQuality: isFromURL ? 1.0 : 0.5) else { return nil }
         // Convert Data to Base64 encoded string
         return imageData.base64EncodedString()
     }

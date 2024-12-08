@@ -138,8 +138,27 @@ extension RegisterAndroidViewController {
             print("DEBUG PRINT:", userResponse ?? "")
             if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
             guard let user = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
-            UserSessionManager.shared.setUser(user: user)
-            DispatchQueue.main.async {Bootstrapper.createHome()}
+            let storyboard = getStoryBoard(.main)
+            let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
+            contentVC.messageThankYou = .registeredSuccess
+            guard let self = self else {return}
+            switch self.userType {
+            case .Student:
+                contentVC.moveThankYou = .login(type: .student)
+            case .School:
+                contentVC.moveThankYou = .login(type: .institute)
+            case .JobSeeker:
+                contentVC.moveThankYou = .login(type: .jobSeeker)
+            case .Employer:
+                contentVC.moveThankYou = .login(type: .companyHiring)
+            case .StudentGuest:
+                contentVC.moveThankYou = .login(type: .student)
+            case .JobSeekerGuest:
+                contentVC.moveThankYou = .login(type: .jobSeeker)
+            }
+            DispatchQueue.main.async {
+                openModuleOverFullScreen(controller: contentVC)
+            }
         }
     }
 }

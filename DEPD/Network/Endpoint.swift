@@ -112,7 +112,7 @@ enum Endpoint {
     
     
     case updateProfile(url: String = "/api/profile.ashx",
-                       creds: User)
+                       creds: StudentUpdateDetails)
     
     
 

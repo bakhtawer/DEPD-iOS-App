@@ -38,6 +38,8 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var imageEye: UIImageView!
     var toggleEye: Bool = true
     
+    var isFromBootstrap = false
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -172,6 +174,7 @@ class LoginViewController: BaseViewController {
         
         buttonRegister.addTapGestureRecognizer {[weak self] in
             let storyboard = getStoryBoard(.main)
+            APPMetaDataHandler.shared.userType = .Student
             let view = storyboard.instantiateViewController(ofType: RegisterAndroidViewController.self)
             view.userType = .Student
             openModuleOnNavigation(from: self, controller: view)
@@ -189,6 +192,14 @@ class LoginViewController: BaseViewController {
         labelLoginAsGust.addTapGestureRecognizer {
             APPMetaDataHandler.shared.userType = .JobSeekerGuest
             Bootstrapper.createHome(.JobSeekerGuest)
+        }
+        
+        buttonRegister.addTapGestureRecognizer {[weak self] in
+            APPMetaDataHandler.shared.userType = .JobSeeker
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: RegisterAndroidViewController.self)
+            view.userType = .JobSeeker
+            openModuleOnNavigation(from: self, controller: view)
         }
         
         buttonLogin.addTapGestureRecognizer {[weak self] in
@@ -211,10 +222,10 @@ class LoginViewController: BaseViewController {
         }
     }
     private func setUpCompanyHiring() {
-        labelLoginTitle.text = "login_as_company_hiring_manager".localized()
-        buttonRegister.setTitle("register_as_company_hiring_manager".localized(), for: .normal)
+        labelLoginTitle.text = "login_as_company_hiring".localized()
+        buttonRegister.setTitle("register_as_company_hiring".localized(), for: .normal)
         labelLoginAsGust.isHidden = true
-        
+    
         buttonLogin.addTapGestureRecognizer {[weak self] in
             guard let cnic = self?.tfUserName.text,
                     cnic.count > 0
@@ -233,10 +244,18 @@ class LoginViewController: BaseViewController {
                         Password:password)
         }
         
+        buttonRegister.addTapGestureRecognizer {[weak self] in
+            APPMetaDataHandler.shared.userType = .Employer
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: RegisterAndroidViewController.self)
+            view.userType = .Employer
+            openModuleOnNavigation(from: self, controller: view)
+        }
+        
     }
     private func setUpInstitute() {
-        labelLoginTitle.text = "login_as_institute".localized()
-        buttonRegister.setTitle("register_as_institute".localized(), for: .normal)
+        labelLoginTitle.text = "login_as_school_institute".localized()
+        buttonRegister.setTitle("register_as_school".localized(), for: .normal)
         labelLoginAsGust.isHidden = true
         
         
@@ -259,10 +278,11 @@ class LoginViewController: BaseViewController {
         }
         
         buttonRegister.addTapGestureRecognizer {[weak self] in
+            APPMetaDataHandler.shared.userType = .School
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: RegisterAndroidViewController.self)
-            view.userType = .Student
-            APPMetaDataHandler.shared.userType = .StudentGuest
+            view.userType = .School
+            APPMetaDataHandler.shared.userType = .School
             openModuleOnNavigation(from: self, controller: view)
         }
         
@@ -304,6 +324,7 @@ extension LoginViewController {
             KeychainManager.save(email, forKey: .cnic)
             KeychainManager.save(Password, forKey: .password)
             KeychainManager.save("\(APPMetaDataHandler.shared.userType.rawValue)", forKey: .userType)
+            KeychainManager.save("\(user.id ?? -1)", forKey: .userID)
             DispatchQueue.main.async { Bootstrapper.createHome()}
         }
     }
@@ -312,9 +333,15 @@ extension LoginViewController {
 extension LoginViewController {
     func setupNavigation() {
         setLogo()
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         UIApplication.shared.statusBarView?.backgroundColor = .appBG
-        self.setBackButton(.appBlue).addTapGestureRecognizer {
-            Bootstrapper.createInclusiveScreen()
+        self.setBackButton(.appBlue).addTapGestureRecognizer { [weak self] in
+            guard let self = self else {return}
+            if self.isFromBootstrap {
+                Bootstrapper.createInclusiveScreen()
+            }else {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 }

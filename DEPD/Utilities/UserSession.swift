@@ -79,6 +79,24 @@ extension UserSessionManager {
         }
     }
     
+    func getUserProfile() {
+        if let userID = Int(KeychainManager.retrieve(forKey: .userID) ?? "-1"), userID != -1 {
+        let request = Endpoint.getUser(cred: GetUserByID(Id: userID)).request!
+            service.makeRequest(with: request, respModel: ApiResponse<User>.self) {userResponse, error in
+                if let error = error { print("DEBUG PRINT:", error);
+                    return }
+                print("DEBUG PRINT:", userResponse ?? "")
+                if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                    return }
+                guard let user = userResponse?.oData else {
+                    SMM.shared.showError(title: "", message: "Error parsing server response.");
+                    DispatchQueue.main.async { Bootstrapper.createSplash()}
+                    return}
+//                UserSessionManager.shared.setUser(user: user)
+            }
+        }
+    }
+    
     func updatedUser(completion: @escaping (Bool) -> Void) {
         
         if let cnic = KeychainManager.retrieve(forKey: .cnic),
@@ -108,15 +126,8 @@ extension UserSessionManager {
 }
 
 extension UserSessionManager {
-    func update(student: StudentDetails?,
-                firstName:String,
-                lastName:String, completion: @escaping (Bool) -> Void) {
-        var user = USM.shared.user
-        user.firstName = firstName
-        user.lastName = lastName
-        user.oStudentDetails = student
-        print(user)
-        let request = Endpoint.updateProfile(creds: user).request!
+    func update(student: StudentUpdateDetails, completion: @escaping (Bool) -> Void) {
+        let request = Endpoint.updateProfile(creds: student).request!
         service.makeRequest(with: request, respModel: ApiResponse<User>.self) {userResponse, error in
             if let error = error {
                 print("DEBUG PRINT:", error);

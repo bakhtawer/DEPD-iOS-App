@@ -36,6 +36,7 @@ class ThankYouViewController: BaseViewController {
         case home
         case stay
         case splash
+        case login(type: LoginScreenType)
     }
     
     var messageThankYou: MessageThankYou = .none
@@ -63,10 +64,11 @@ class ThankYouViewController: BaseViewController {
     func canGoForword() {
         DispatchQueue.main.async {[weak self] in
             switch self?.moveThankYou {
-            case .home: Bootstrapper.createHome()
+            case .home: Bootstrapper.decideScreenToOpen()
             case .stay: self?.dismiss(animated: true)
             case .none: break
             case .splash: Bootstrapper.createSplash()
+            case .login(let type): Bootstrapper.createLogin(screenType: type)
             }
         }
     }

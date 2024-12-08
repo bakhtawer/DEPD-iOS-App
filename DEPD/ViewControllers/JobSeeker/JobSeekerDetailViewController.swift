@@ -55,8 +55,8 @@ class JobSeekerDetailViewController: BaseViewController  {
         labelPostingDate.makeItTheme(.bold, 16, .textDark)
         lableCompanayName.makeItTheme(.bold, 16, .textDark)
         labelDescriptionTittle.makeItTheme(.bold, 16, .textDark)
-        labelDescription.makeItTheme(.regular, 14, .textLightGray)
-        buttonApply.makeItTheme(text: "apply".localized(), .bold, 18, .appLight, .buttonBG, .appLight)
+        labelDescription.makeItTheme(.regular, 14, .textDark)
+        buttonApply.makeItTheme(text: "apply_now".localized(), .bold, 18, .appLight, .buttonBG, .appLight)
         
         buttonApply.addTapGestureRecognizer {[weak self] in
             guard let jobId = self?.dataJob?.idid,

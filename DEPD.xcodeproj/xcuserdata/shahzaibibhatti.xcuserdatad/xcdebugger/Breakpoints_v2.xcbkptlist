@@ -60,40 +60,10 @@
             filePath = "DEPD/ViewControllers/GeneralFormBuilder/FormBuilderViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "657"
-            endingLineNumber = "657"
+            startingLineNumber = "681"
+            endingLineNumber = "681"
             landmarkName = "submitForm(data:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "937F1892-C50A-4663-9F68-2556F890DBC3 - a6fd75485db62f80"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DEPD.FormBuilderViewController.submitForm(data: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
-                  moduleName = "DEPD.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shahzaibibhatti/Projects/DEPD-iOS-App/DEPD/ViewControllers/GeneralFormBuilder/FormBuilderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "657"
-                  endingLineNumber = "657">
-               </Location>
-               <Location
-                  uuid = "937F1892-C50A-4663-9F68-2556F890DBC3 - 6b9046f2dca76d31"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #2 @Swift.MainActor () -&gt; () in DEPD.FormBuilderViewController.submitForm(data: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
-                  moduleName = "DEPD.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shahzaibibhatti/Projects/DEPD-iOS-App/DEPD/ViewControllers/GeneralFormBuilder/FormBuilderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "657"
-                  endingLineNumber = "657">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,40 +76,10 @@
             filePath = "DEPD/ViewControllers/GeneralFormBuilder/FormBuilderViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "677"
-            endingLineNumber = "677"
+            startingLineNumber = "701"
+            endingLineNumber = "701"
             landmarkName = "submitForm(data:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "96A1B470-3D5E-4C73-926E-50F2FFFE8FAD - a6fd75485db62d14"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DEPD.FormBuilderViewController.submitForm(data: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
-                  moduleName = "DEPD.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shahzaibibhatti/Projects/DEPD-iOS-App/DEPD/ViewControllers/GeneralFormBuilder/FormBuilderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "677"
-                  endingLineNumber = "677">
-               </Location>
-               <Location
-                  uuid = "96A1B470-3D5E-4C73-926E-50F2FFFE8FAD - a6fd75485db62d14"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DEPD.FormBuilderViewController.submitForm(data: Swift.Dictionary&lt;Swift.String, Any&gt;) -&gt; ()"
-                  moduleName = "DEPD.debug.dylib"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/shahzaibibhatti/Projects/DEPD-iOS-App/DEPD/ViewControllers/GeneralFormBuilder/FormBuilderViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "677"
-                  endingLineNumber = "677">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -152,8 +92,8 @@
             filePath = "DEPD/ViewControllers/GeneralFormBuilder/FormBuilderViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "679"
-            endingLineNumber = "679"
+            startingLineNumber = "703"
+            endingLineNumber = "703"
             landmarkName = "submitForm(data:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,8 +108,8 @@
             filePath = "DEPD/ViewControllers/GeneralFormBuilder/FormBuilderViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "675"
-            endingLineNumber = "675"
+            startingLineNumber = "699"
+            endingLineNumber = "699"
             landmarkName = "submitForm(data:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -187,22 +127,6 @@
             startingLineNumber = "23"
             endingLineNumber = "23"
             landmarkName = "init(from:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B0050F02-3548-4BEB-A966-CE603FC60E5D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DEPD/ViewControllers/Authentication/Register/RegisterAndroidViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "signUp()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

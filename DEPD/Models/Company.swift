@@ -26,6 +26,9 @@ struct CompanyModel: Codable, Hashable {
     var NoOfVaccancies: Int?
     var Location: String?
     var ThumbnailImageURL: String?
+    var subTypeId: String?
+    var disabilityStatusId: String?
+    var distict: String?
     
     enum CodingKeys: String, CodingKey {
         case idMain
@@ -45,6 +48,9 @@ struct CompanyModel: Codable, Hashable {
         case NoOfVaccancies = "NoOfVaccancies"
         case Location = "Location"
         case ThumbnailImageURL = "ThumbnailImageURL"
+        case subTypeId = "SubTypeId"
+        case disabilityStatusId = "DisabilityStatusId"
+        case distict = "Distict"
     }
     
     init(from decoder: Decoder) throws {
@@ -67,6 +73,9 @@ struct CompanyModel: Codable, Hashable {
             NoOfVaccancies = try values.decodeIfPresent(Int.self, forKey: .NoOfVaccancies) ?? 0
             Location = try values.decodeIfPresent(String.self, forKey: .Location) ?? ""
             ThumbnailImageURL = try values.decodeIfPresent(String.self, forKey: .ThumbnailImageURL) ?? ""
+            distict = try values.decodeIfPresent(String.self, forKey: .distict) ?? ""
+            subTypeId = try values.decodeIfPresent(String.self, forKey: .subTypeId) ?? "-1"
+            disabilityStatusId = try values.decodeIfPresent(String.self, forKey: .disabilityStatusId) ?? "-1"
         } catch let DecodingError.typeMismatch(type, context) {
             print("Type '\(type)' mismatch:", context.debugDescription)
             print("codingPath:", context.codingPath)

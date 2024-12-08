@@ -137,6 +137,8 @@ extension Bootstrapper {
            let userType = KeychainManager.retrieve(forKey: .userType), let utype = Int(userType) {
             APPMetaDataHandler.shared.userType = UserType(rawValue: utype) ?? .Student
             USM.shared.login(email: cnic, Password: password)
+            
+            USM.shared.getUserProfile()
         }else {
             Bootstrapper.createInclusiveScreen()
         }
@@ -214,6 +216,7 @@ extension Bootstrapper {
         let storyboard = getStoryBoard(.main)
         let view = storyboard.instantiateViewController(ofType: LoginViewController.self)
         view.screenType = screenType
+        view.isFromBootstrap = true
         let nav = UINavigationController(rootViewController: view)
         self.window.rootViewController = nav
     }

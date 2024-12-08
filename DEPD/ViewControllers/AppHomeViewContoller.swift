@@ -42,7 +42,6 @@ class AppHomeViewContoller: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
-        self.navigationController?.navigationBar.isHidden = true
         setView()
         
         viewStudent.addTapGestureRecognizer {
@@ -58,10 +57,16 @@ class AppHomeViewContoller: BaseViewController {
             openModuleOnNavigation(from: self, controller: view)
         }
         viewForEducationalInstitutes.addTapGestureRecognizer {
-            Bootstrapper.createLogin(screenType: .institute)
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: LoginViewController.self)
+            view.screenType = .institute
+            openModuleOnNavigation(from: self, controller: view)
         }
         viewForEmployerCompanies.addTapGestureRecognizer {
-            Bootstrapper.createLogin(screenType: .companyHiring)
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: LoginViewController.self)
+            view.screenType = .companyHiring
+            openModuleOnNavigation(from: self, controller: view)
         }
         viewKnowYourRights.addTapGestureRecognizer {}
         
@@ -108,7 +113,7 @@ class AppHomeViewContoller: BaseViewController {
 extension AppHomeViewContoller {
     
     func setupNavigation() {
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.shared.statusBarView?.backgroundColor = .appBGDark
     }
 }

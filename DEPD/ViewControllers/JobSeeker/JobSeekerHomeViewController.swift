@@ -49,6 +49,11 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
     @IBOutlet weak var viewOldFilters: UIView!
     @IBOutlet weak var viewTotalJobs: UIView!
     @IBOutlet weak var labelTotalJobs: UILabel!
+    
+    
+    @IBOutlet weak var labelNoRecord: UILabel!
+    
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         viewBottom.setLanguage()
@@ -105,7 +110,7 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         collectionView.reloadData()
         
         self.schoolLocation.text = USM.shared.getUser().jobSeekerDetailInfo?.district
-        self.schoolProfilePercentage.text = "0% \("profile_completed".localized())"
+        self.schoolProfilePercentage.text = "\(USM.shared.getUser().percentage ?? 0)% \("profile_completed".localized())"
         guard let image = URL(string: USM.shared.getUser().jobSeekerDetailInfo?.profilePicture?.convertToHttps() ?? "") else { return }
         self.mainIconImage.contentMode = .scaleAspectFill
         self.mainIconImage.kf.setImage(with: image,
@@ -148,6 +153,9 @@ class JobSeekerHomeViewController: MVVMViewController<JobSeekerHomeViewModel>  {
         buttonEditYourProfile.setTitle("\("my_applications".localized())", for: .normal)
         buttonViewApplications.makeItThemePrimary(14)
         buttonEditYourProfile.makeItThemeWhitePrimary(14)
+        
+        labelNoRecord.text = "no_record_found".localized()
+        labelNoRecord.makeItTheme(.regular, 16, .textLightGray)
         
         schoolName.text = USM.shared.getUserFullName()
     }
@@ -260,9 +268,10 @@ extension JobSeekerHomeViewController {
     func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<PoitsSection, CompanyModel>()
         snapshot.appendSections([.all])
-        snapshot.appendItems(viewModel.getJobs(), toSection: .all)
+        let data = viewModel.getJobs()
+        snapshot.appendItems(data, toSection: .all)
         dataSource?.apply(snapshot, animatingDifferences: false)
-        
+        labelNoRecord.isHidden = !data.isEmpty
         constraintHeight.constant = collectionView.contentSize.height + 30
         collectionView.layoutIfNeeded()
     }
@@ -301,6 +310,6 @@ extension JobSeekerHomeViewController: UITextFieldDelegate {
 extension JobSeekerHomeViewController: FilterViewControllerDelegate {
     func didApplyFilters(selectedOptions: [String : Any]) {
         selectedFilterItems = selectedOptions
-        
+        viewModel.setAppliedFilters(filters: selectedOptions)
     }
 }

@@ -54,28 +54,42 @@ class JobSeekerHomeViewModel {
     func getJobs() -> [CompanyModel] {
         var jobs = dataProds
         
+//        SubTypeID = {1, 2, 3}
+//
+//        1.⁠ ⁠Gov
+//        2.⁠ ⁠Private
+//        3.⁠ ⁠NGO/Welfare
+//
+//        FreeOrPaid = {1,2}
+//
+//        1.⁠ ⁠Free
+//        2.⁠ ⁠Paid
+        
         if let isJobTitle = appliedFilters["job_title"] as? Bool, isJobTitle {
             jobs = dataProds
         }
         
         if let isPrivate = appliedFilters["private"] as? Bool, isPrivate {
-            jobs = dataProds
+            jobs = jobs.filter { $0.subTypeId == "2" }
         }
         if let isNgoWelfare = appliedFilters["ngo_welfare"] as? Bool, isNgoWelfare {
-//            jobs = dataProds.filter {$0.}
+            jobs = jobs.filter { $0.subTypeId == "3" }
         }
         
         if let disability = appliedFilters["disability"] as? [String] {
-            
+            disability.forEach {
+                if let id = APPMetaDataHandler.shared.getDisabilities(byName: $0)?.disabilityId, id != -1 {
+                    jobs = jobs.filter{ $0.disabilityStatusId == "\(id)" }
+                }
+            }
         }
         
         if let district = appliedFilters["district"] as? String {
-            
+            jobs = jobs.filter{ $0.distict == district}
         }
         
-        
 //        // Check if search text is provided
-        guard var searchText = searchText, !searchText.isEmpty else { return dataProds }
+        guard var searchText = searchText, !searchText.isEmpty else { return jobs }
         searchText = searchText.lowercased()
         jobs = jobs.filter { job in
             return (job.CompanyName?.lowercased().contains(searchText) ?? false) ||

@@ -19,6 +19,7 @@ struct User: Codable {
     var isVerified: Bool?
     var language: String?
     var emailAddress: String?
+    var percentage: Int?
     var oStudentDetails: StudentDetails?
     var oStudentApplicationDetail: [StudentApplication]?
     var schoolSocialMediaInfo: SchoolSocialMediaInfo?
@@ -55,6 +56,7 @@ struct User: Codable {
         case jobSeekerEducation = "JobSeekerEducation"
         case jobSeekerWorkExperience = "JobSeekerWorkExperience"
         case companyDetailInfo = "CompanyDetailInfo"
+        case percentage = "Percentage"
     }
     
     init(from decoder: Decoder) throws {
@@ -83,6 +85,7 @@ struct User: Codable {
             jobSeekerEducation = try container.decodeIfPresent([JobSeekerEducation].self, forKey: .jobSeekerEducation)
             jobSeekerWorkExperience = try container.decodeIfPresent([JobSeekerWorkExperience].self, forKey: .jobSeekerWorkExperience)
             companyDetailInfo = try container.decodeIfPresent(CompanyDetail.self, forKey: .companyDetailInfo)
+            percentage = try container.decodeIfPresent(Int.self, forKey: .percentage) ?? 0
             
         } catch let DecodingError.typeMismatch(type, context) {
             print("Type '\(type)' mismatch:", context.debugDescription)
@@ -446,5 +449,29 @@ struct DisabilityStatusCompany: Codable {
             print(error)
             print(error.localizedDescription)
         }
+    }
+}
+
+struct StudentUpdateDetails: Codable {
+    let Id: Int?
+    let FirstName: String?
+    let LastName: String?
+    let ContactNo: String?
+    let oStudentDetails: StudentDetails?
+    struct StudentDetails: Codable {
+        let FatherName: String?
+        let FatherCNIC: String?
+        let DisabilityStatusId: Int?
+        let ProfilePictureURL: String?
+        let DisabilityCertificateURL: String?
+        let ProfilePictureBytesString: String?
+        let ProfilePictureName: String?
+        let DisabilityCertBytesString: String?
+        let DisabilityCertName: String?
+        let Address: String?
+        let District: String?
+        let DOB: String?
+        let PreviousEducation: String?
+        let GenderId: Int?
     }
 }

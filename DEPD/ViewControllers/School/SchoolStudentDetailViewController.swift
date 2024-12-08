@@ -72,7 +72,7 @@ class SchoolStudentDetailViewController: BaseViewController {
         let fullName = (selectedStudent.student?.FirstName ?? "") + " " + (selectedStudent.student?.LastName ?? "")
         labelName.text = fullName
         labelLocation.text = selectedStudent.District
-        labelProfileComplete.text = "\(Int(selectedStudent.ProfileCompletion?.rounded() ?? 0))% \("profile_completed".localized())"
+        labelProfileComplete.text = "\(USM.shared.getUser().percentage ?? 0)% \("profile_completed".localized())"
         let name = "\("name".localized()): \(fullName)\n"
         let cnic = "\("cnic".localized()): \(selectedStudent.student?.CNIC ?? "N/A")\n"
         let contactNumber = "\("contact_number".localized()): \(selectedStudent.student?.ContactNo ?? "N/A")\n"

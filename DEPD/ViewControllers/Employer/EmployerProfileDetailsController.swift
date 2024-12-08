@@ -140,7 +140,7 @@ class EmployerProfileDetailsController: BaseViewController {
 \("ntn_number".localized()): \(employer.companyDetailInfo?.nTNNumber ?? "N/A")
 \("designation".localized()): \(employer.companyDetailInfo?.designation ?? "N/A")
 \("registration_number".localized()): \(employer.companyDetailInfo?.registirationNumber ?? "N/A")
-\("available_seats_for_pwds".localized()): \(employer.companyDetailInfo?.availableQuotaForPWDs ?? "N/A")
+\("availbale_seats_for_pwds".localized()): \(employer.companyDetailInfo?.availableQuotaForPWDs ?? "N/A")
 \("website".localized()): \(employer.companyDetailInfo?.website ?? "N/A")
 """
         labelEmployerInfoDetails.text = personinfo
@@ -153,7 +153,7 @@ class EmployerProfileDetailsController: BaseViewController {
             labelAboutYourSelfDetails.text = aboutEmployer
         }
         
-        labelTitleSocailMediaLinks.text = "social_medail_links".localized()
+        labelTitleSocailMediaLinks.text = "social_media_links".localized()
         labelTitleSocailMediaLinks.makeItTheme(.bold, 14, .textDark)
         labelEmptySocailMediaLinks.text = ""
         labelEmptySocailMediaLinks.makeItTheme(.regular, 12, .textDark)

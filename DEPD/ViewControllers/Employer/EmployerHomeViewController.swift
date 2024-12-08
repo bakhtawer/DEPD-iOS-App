@@ -54,6 +54,8 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
     
     private var screenSelected = ScreenSelected.employee
     
+    @IBOutlet weak var labelNoRecord: UILabel!
+    
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         viewBottom.setLanguage()
@@ -127,9 +129,11 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
         buttonAdvertise.roundCorner(withRadis: 4)
         buttonConfirmHiring.roundCorner(withRadis: 4)
         
-        buttonFindEmployee.text = "\("find_an_employee".localized())"
+        buttonFindEmployee.text = "\("all_application".localized())"
         buttonConfirmHiring.text = "\("find_an_employee".localized())"
         buttonAdvertise.text = "\("advertise_vacancies".localized())"
+        
+        schoolProfilePercentage.text = "\(USM.shared.getUser().percentage ?? 0)% \("profile_completed".localized())"
         
         buttonViewApplications.setTitle("\("edit_profile".localized())", for: .normal)
         buttonEditYourProfile.setTitle("\("my_applications".localized())", for: .normal)
@@ -143,6 +147,10 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
         
         labelTotalApplications.makeItTheme(.regular, 12, .textDark)
         labelTotalApplications.text = "10 Applications Available"
+        
+        
+        labelNoRecord.text = "no_record_found".localized()
+        labelNoRecord.makeItTheme(.regular, 16, .textLightGray)
         
         schoolName.text = USM.shared.getUserFullName()
     }
@@ -298,14 +306,20 @@ extension EmployerHomeViewController {
         var snapshot = NSDiffableDataSourceSnapshot<EmployerSection, EmployerHomeViewModelData>()
         switch screenSelected {
         case .employee:
+            let data = viewModel.getEmployees()
             snapshot.appendSections([.employee])
-            snapshot.appendItems(viewModel.getEmployees(), toSection: .employee)
+            snapshot.appendItems(data, toSection: .employee)
+            labelNoRecord.isHidden = !data.isEmpty
         case .advertise:
             snapshot.appendSections([.advertise])
-            snapshot.appendItems(viewModel.getAdvertise(), toSection: .advertise)
+            let data = viewModel.getEmployees()
+            snapshot.appendItems(data, toSection: .advertise)
+            labelNoRecord.isHidden = !data.isEmpty
         case .hiring:
             snapshot.appendSections([.hiring])
-            snapshot.appendItems(viewModel.getJobs(), toSection: .hiring)
+            let data = viewModel.getJobs()
+            snapshot.appendItems(data, toSection: .hiring)
+            labelNoRecord.isHidden = !data.isEmpty
         }
         dataSource?.apply(snapshot, animatingDifferences: false)
         constraintHeight.constant = collectionView.contentSize.height + 30

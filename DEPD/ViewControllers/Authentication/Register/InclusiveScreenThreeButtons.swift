@@ -35,9 +35,15 @@ class InclusiveScreenThreeButtons: BaseViewController {
         
         viewButtonOne.addTapGestureRecognizer {[weak self] in
             if self?.screenType == .student {
-                Bootstrapper.createLogin(screenType: .student)
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: LoginViewController.self)
+                view.screenType = .student
+                openModuleOnNavigation(from: self, controller: view)
             } else {
-                Bootstrapper.createLogin(screenType: .jobSeeker)
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: LoginViewController.self)
+                view.screenType = .jobSeeker
+                openModuleOnNavigation(from: self, controller: view)
             }
         }
         
@@ -120,6 +126,7 @@ extension InclusiveScreenThreeButtons {
     
     func setupNavigation() {
         self.setLogo()
+        UIApplication.shared.statusBarView?.backgroundColor = .appBGDark
         self.setBackButton(.appBackButton).addTapGestureRecognizer {[weak self] in
             self?.navigationController?.popViewController(animated: true)
         }

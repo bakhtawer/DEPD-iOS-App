@@ -234,7 +234,7 @@ extension UIViewController {
     func setLogo(_ tint: UIColor = .clear) {
         let logoContainer = UIView(frame: CGRect(x: 0, y: 10, width: 135, height: 40))
         let imageView = UIImageView(frame: CGRect(x: 0, y: 10, width: 135, height: 40))
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         let image = UIImage(named: "icon_nav_dark")?.withRenderingMode(.alwaysOriginal)
         imageView.image = image
         logoContainer.addSubview(imageView)

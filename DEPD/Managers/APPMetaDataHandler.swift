@@ -122,13 +122,11 @@ final class APPMetaDataHandler {
         let request = Endpoint.allGeneralList.request!
         service.makeRequest(with: request, respModel: AllGeneralList.self) {[weak self] userResponse, error in
             if let error = error { print("DEBUG PRINT:", error); return }
-            print("DEBUG PRINT:", userResponse ?? "")
             if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
             guard let allGeneralList = userResponse else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
             self?.dataAllGeneralList = allGeneralList
         }
     }
-    
     
     func getYesNoFromInt(value: Int) -> String {
         return value == 1 ? "YES" : "NO"

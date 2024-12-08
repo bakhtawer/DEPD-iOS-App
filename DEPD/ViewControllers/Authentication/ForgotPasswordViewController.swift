@@ -34,7 +34,7 @@ class ForgotPasswordViewController: BaseViewController {
         tfRecoveryEmail.addTarget(self, action: #selector(textFieldDidChange(_:)),
                                   for: .editingChanged)
         
-        tfRecoveryEmail.text = previousEmail
+//        tfRecoveryEmail.text = previousEmail
         
         checkButton()
         

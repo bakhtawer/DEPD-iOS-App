@@ -86,9 +86,15 @@ class RegisterAsSelectionTwo: BaseViewController {
             view.screenType = .jobSeeker
             openModuleOnNavigation(from: self, controller: view)
         case .companyHiring:
-            Bootstrapper.createLogin(screenType: .companyHiring)
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: LoginViewController.self)
+            view.screenType = .companyHiring
+            openModuleOnNavigation(from: self, controller: view)
         case .institute:
-            Bootstrapper.createLogin(screenType: .institute)
+            let storyboard = getStoryBoard(.main)
+            let view = storyboard.instantiateViewController(ofType: LoginViewController.self)
+            view.screenType = .institute
+            openModuleOnNavigation(from: self, controller: view)
         }
     }
     

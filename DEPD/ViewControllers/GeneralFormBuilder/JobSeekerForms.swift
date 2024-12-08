@@ -266,8 +266,8 @@ extension FormBuilderViewController {
                       isRequired: false),
             
             FormField(fieldType: .number,
-                      placeholder: "available_quata_for_pwds".localized(),
-                      name: "available_quata_for_pwds",
+                      placeholder: "availbale_seats_for_pwds".localized(),
+                      name: "availbale_seats_for_pwds",
                       value: USM.shared.getUser().companyDetailInfo?.availableQuotaForPWDs,
                       isRequired: true),
             

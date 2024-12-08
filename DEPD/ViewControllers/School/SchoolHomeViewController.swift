@@ -40,6 +40,7 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
     @IBOutlet weak var buttonEdit: UIButton!
     @IBOutlet weak var labelEdit: UILabel!
     
+    @IBOutlet weak var labelNoRecordFound: UILabel!
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -82,7 +83,7 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
             self?.viewModel.setType(by: .Rejected)
         }
         self.schoolLocation.text = "" //USM.shared.getUser().schoolDetailInfo?.district
-        self.schoolProfilePercentage.text = "0% \("profile_completed".localized())"
+        self.schoolProfilePercentage.text = "\(USM.shared.getUser().percentage ?? 0)% \("profile_completed".localized())"
         guard let image = URL(string: USM.shared.getUser().schoolDetailInfo?.profileImageURL?.convertToHttps() ?? "") else { return }
         self.mainIconImage.contentMode = .scaleAspectFill
         self.mainIconImage.kf.setImage(with: image,
@@ -118,6 +119,9 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
         buttonRejectedStudents.text = "\("rejected_students".localized())"
         
         schoolName.text = USM.shared.getUserFullName()
+        
+        labelNoRecordFound.text = "no_record_found".localized()
+        labelNoRecordFound.makeItTheme(.regular, 16, .textLightGray)
         
         labelEdit.makeItTheme(.regular, 16, .textDark)
         labelEdit.text = "\("edit_profile".localized())"
@@ -178,7 +182,7 @@ extension SchoolHomeViewController: SchoolHomeVM {
     func fetchedInstituteDetails() {
         DispatchQueue.main.async {[weak self] in
             self?.schoolLocation.text = ""//self?.viewModel.selectedSchool?.Location
-            self?.schoolProfilePercentage.text = "0% \("profile_completed".localized())"
+            self?.schoolProfilePercentage.text = "\(USM.shared.getUser().percentage ?? 0)% \("profile_completed".localized())"
             guard let image = URL(string: self?.viewModel.selectedSchool?.ImageURL?.convertToHttps() ?? "") else { return }
             self?.mainIconImage.contentMode = .scaleAspectFill
             self?.mainIconImage.kf.setImage(with: image,
@@ -271,9 +275,10 @@ extension SchoolHomeViewController {
     func reloadData() {
         var snapshot = NSDiffableDataSourceSnapshot<PoitsSection, InstituteHomeModel>()
         snapshot.appendSections([.all])
-        snapshot.appendItems(viewModel.getInstitutes(), toSection: .all)
+        let data = viewModel.getInstitutes()
+        snapshot.appendItems(data, toSection: .all)
         dataSource?.apply(snapshot, animatingDifferences: false)
-        
+        labelNoRecordFound.isHidden = !data.isEmpty
         constraintHeight.constant = collectionView.contentSize.height + 30
         collectionView.layoutIfNeeded()
     }
