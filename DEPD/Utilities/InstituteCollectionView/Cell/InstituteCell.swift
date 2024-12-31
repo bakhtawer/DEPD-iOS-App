@@ -28,6 +28,11 @@ class InstituteCell: UICollectionViewCell {
     }
     
     @IBOutlet weak var viewBottomLine: UIView!
+    
+    
+    @IBOutlet weak var viewPaid: UIView!
+    @IBOutlet weak var labelpaidFree: UILabel!
+    
     func configure(with model: InstituteModel) {
         
         btnViewInfo.makeItThemePrimary(14)
@@ -42,6 +47,20 @@ class InstituteCell: UICollectionViewCell {
         
         labelDistrict.makeItTheme(.bold, 14, .appBlue)
         labelSeats.makeItTheme(.medium, 10, .textDark)
+        
+        viewPaid.roundCorner(withRadis: viewPaid.viewHeight.half)
+        labelpaidFree.makeItTheme(.medium, 10, .textLight)
+        
+        //        FreeOrPaid = {1,2}
+        //
+        //        1.⁠ ⁠Free
+        //        2.⁠ ⁠Paid
+        switch model.FreeOrPaid {
+        case 2: labelpaidFree.text = "Paid".localized()
+        case 1: labelpaidFree.text = "Free".localized()
+        default:
+            viewPaid.isHidden = true
+        }
 
         guard let image = URL(string: model.ImageURL?.convertToHttps() ?? "") else { return }
         imageSchool.contentMode = .scaleAspectFill

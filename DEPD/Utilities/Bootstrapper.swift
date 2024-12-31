@@ -137,8 +137,6 @@ extension Bootstrapper {
            let userType = KeychainManager.retrieve(forKey: .userType), let utype = Int(userType) {
             APPMetaDataHandler.shared.userType = UserType(rawValue: utype) ?? .Student
             USM.shared.login(email: cnic, Password: password)
-            
-            USM.shared.getUserProfile()
         }else {
             Bootstrapper.createInclusiveScreen()
         }
@@ -192,9 +190,9 @@ extension Bootstrapper {
                 return vc
             }
         case .Employer:
-            viewController = storyboard.instantiateViewController(identifier: "EmployerHomeViewController") { coder in
+            viewController = storyboard.instantiateViewController(identifier: "EmployerHubViewController") { coder in
                 let viewModel = EmployerHomeViewModel()
-                let vc = EmployerHomeViewController(coder: coder, viewModel: viewModel)
+                let vc = EmployerHubViewController(coder: coder, viewModel: viewModel)
                 return vc
             }
         }

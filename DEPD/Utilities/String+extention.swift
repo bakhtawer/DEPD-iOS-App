@@ -21,26 +21,37 @@ extension String {
     }
     
     var convertMicrosoftDateString: String? {
-        // Remove the "\/Date(" prefix and ")\/" suffix
-        let trimmedString = self
-            .replacingOccurrences(of: "\\/Date(", with: "")
-            .replacingOccurrences(of: ")\\/", with: "")
-        
-        // Convert to milliseconds
-        if let milliseconds = Int64(trimmedString) {
-            // Convert milliseconds to seconds and create a Date object
-            let date = Date(timeIntervalSince1970: TimeInterval(milliseconds / 1000))
-            
-            // Format the Date object
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd/MM/yyyy"
-            
-            // Return the formatted date
-            return dateFormatter.string(from: date)
+        // Define the updated pattern
+        let pattern = #"/Date\((\d+)\)/"#
+        guard let regex = try? NSRegularExpression(pattern: pattern, options: []) else {
+            print("Regex creation failed")
+            return nil
         }
         
-        // Return nil if parsing fails
-        return nil
+        // Match the regex
+        guard let match = regex.firstMatch(in: self, range: NSRange(self.startIndex..., in: self)),
+              let range = Range(match.range(at: 1), in: self) else {
+            print("No match found in: \(self)")
+            return nil
+        }
+        
+        // Extract milliseconds
+        let millisecondsString = self[range]
+        print("Extracted milliseconds: \(millisecondsString)")
+        
+        guard let milliseconds = Double(millisecondsString) else {
+            print("Failed to convert milliseconds to Double")
+            return nil
+        }
+        
+        // Convert to Date
+        let date = Date(timeIntervalSince1970: milliseconds / 1000)
+        print("Converted Date: \(date)")
+        
+        // Format the date
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/yyyy"
+        return formatter.string(from: date)
     }
 }
 

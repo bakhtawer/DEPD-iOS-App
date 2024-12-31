@@ -1,6 +1,23 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "About Us" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسان جي باري ۾"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ہمارے بارے میں"
+          }
+        }
+      }
+    },
     "about_myself" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -898,6 +915,23 @@
         }
       }
     },
+    "Contact Us" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسان سان رابطو ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ہم سے رابطہ کریں۔"
+          }
+        }
+      }
+    },
     "contact_no" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1381,6 +1415,29 @@
         }
       }
     },
+    "enter_reason" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Reason"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "دليل داخل ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وجہ درج کریں۔"
+          }
+        }
+      }
+    },
     "establish_year" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1400,6 +1457,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "سال قائم کریں۔"
+          }
+        }
+      }
+    },
+    "FAQ's" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سوالن جا"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اکثر پوچھے گئے سوالات"
           }
         }
       }
@@ -1680,6 +1754,29 @@
         }
       }
     },
+    "Free" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Free"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ادا"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مفت"
+          }
+        }
+      }
+    },
     "free_or_paid_education" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1906,6 +2003,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ویڈیو دیکھیں"
+          }
+        }
+      }
+    },
+    "Help/Complain" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Help/Complain"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مدد / شڪايت"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مدد/شکایت"
           }
         }
       }
@@ -2491,7 +2611,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Login as School/Institue"
+            "value" : "Login as School/Institute"
           }
         },
         "sd" : {
@@ -2922,6 +3042,29 @@
         }
       }
     },
+    "Paid" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paid"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "واندو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ادا کیا"
+          }
+        }
+      }
+    },
     "parent_details" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2968,7 +3111,7 @@
         }
       }
     },
-    "Pending" : {
+    "pending" : {
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -3171,6 +3314,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "پچھلی تعلیم"
+          }
+        }
+      }
+    },
+    "Privacy Policy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رازداري پاليسي"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رازداری کی پالیسی"
           }
         }
       }
@@ -3750,6 +3910,29 @@
         }
       }
     },
+    "rejected" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rejected"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رد ٿيل"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مسترد شدہ"
+          }
+        }
+      }
+    },
     "rejected_students" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3888,6 +4071,29 @@
         }
       }
     },
+    "School/Institute" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "School/Institute"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسڪول / انسٽيٽيوٽ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اسکول/انسٹی ٹیو"
+          }
+        }
+      }
+    },
     "schoool_college_maddarsa" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3907,6 +4113,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "سکول/کالج/مدرسہ"
+          }
+        }
+      }
+    },
+    "search" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Search"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تلاش"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تلاش"
           }
         }
       }
@@ -3992,13 +4221,36 @@
         "sd" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "طلباء تلاش کریں۔"
+            "value" : "شاگردن جي ڳولا ڪريو"
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "شاگردن جي ڳولا ڪريو"
+            "value" : "طلباء تلاش کریں۔"
+          }
+        }
+      }
+    },
+    "see_all" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "See All"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سڀ ڏسو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سب دیکھیں"
           }
         }
       }
@@ -4098,6 +4350,12 @@
     "Select Option" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select Option"
+          }
+        },
         "sd" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4480,6 +4738,29 @@
         }
       }
     },
+    "supported_disabilities" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supported Disabilities"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سپورٽ معذور"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "معاون معذوری۔"
+          }
+        }
+      }
+    },
     "technical_skills" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4499,6 +4780,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "تکنیکی مہارت"
+          }
+        }
+      }
+    },
+    "Terms & Conditions" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شرط ۽ ضابطا"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شرائط و ضوابط"
           }
         }
       }

@@ -65,6 +65,8 @@ enum Endpoint {
                   creds: SignUpCredentials)
     
     case getUser(cred: GetUserByID)
+    case getApplications(cred: GetUserByID)
+    case getAuth(cred: GetUserByID, method: String)
     
     case allGeneralList
     
@@ -115,7 +117,6 @@ enum Endpoint {
                        creds: StudentUpdateDetails)
     
     
-
     // School
     case uploadSchoolProfile(cred: UploadSchoolProfile)
     case updatePersonalInformation(cred: UpdatePersonalInformation)
@@ -140,6 +141,10 @@ enum Endpoint {
     case insertEmployerAccessibilityStatus(cred: InsertDisabilityStatus)
     case deleteEmployerAccessibilityStatus(cred: DeleteById)
     
+    
+    // Company
+    case company(id: CompanyById, method: String)
+    case companyJobSeeker(cred: JobSeekerFilterCreds, method: String)
     
     var request: URLRequest? {
         guard let url = self.url else { return nil }
@@ -190,7 +195,7 @@ enum Endpoint {
                 .deleteJobSeekerCertification, .deleteJobSeekerAdditionalInfo,
                 .deleteJobSeekerTechnicalSkills:
             return "/Api/profile.ashx"
-        case .getUser:
+        case .getUser, .getApplications, .getAuth:
             return "/Api/auth.ashx"
         case .uploadEmployerProfile, .updateEmployerPersonalInformation,
                 .insertEmployerSocialMediaLink, .deleteEmployerSocialMediaLink,
@@ -198,6 +203,8 @@ enum Endpoint {
                 .insertEmployerAccessibilityStatus,
                 .deleteEmployerAccessibilityStatus:
             return "/Api/Employer.ashx"
+        case .company, .companyJobSeeker:
+            return "/Api/company.ashx"
         }
     }
     
@@ -290,6 +297,11 @@ enum Endpoint {
             return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
         case .deleteEmployerAccessibilityStatus:
             return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
+        case .company(_ , let method), .companyJobSeeker(_ , let method):
+            return [URLQueryItem(name: "method", value: method)]
+        case .getApplications: return [URLQueryItem(name: "method", value: "ApplicationsList")]
+        case .getAuth(_, let method):
+                return [URLQueryItem(name: "method", value: method)]
         }
     }
     
@@ -430,7 +442,7 @@ enum Endpoint {
         case .insertJobSeekerAdditionalInfo(let cred):
             let jsonPost = try? JSONEncoder().encode(cred)
             return jsonPost
-        case .getUser(let cred):
+        case .getUser(let cred), .getApplications(let cred):
             let jsonPost = try? JSONEncoder().encode(cred)
             return jsonPost
         case .studentAdmissionUpdate(let cred):
@@ -458,6 +470,15 @@ enum Endpoint {
             let jsonPost = try? JSONEncoder().encode(cred)
             return jsonPost
         case .deleteEmployerAccessibilityStatus(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .company(let cred, _):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .companyJobSeeker(let cred, _):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .getAuth( let cred, _):
             let jsonPost = try? JSONEncoder().encode(cred)
             return jsonPost
         }

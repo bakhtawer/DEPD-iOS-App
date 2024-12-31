@@ -56,10 +56,30 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                     </button>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VNs-dr-yRg">
+                                        <rect key="frame" x="6" y="6" width="36.666666666666664" height="20"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Paid" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ort-lB-h2U">
+                                                <rect key="frame" x="6.0000000000000018" y="2" width="24.666666666666671" height="16"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" name="AppLight"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" name="AppYellow"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="9e2-4I-pFP"/>
+                                            <constraint firstAttribute="trailing" secondItem="ort-lB-h2U" secondAttribute="trailing" constant="6" id="Gfp-rf-OUh"/>
+                                            <constraint firstAttribute="bottom" secondItem="ort-lB-h2U" secondAttribute="bottom" constant="2" id="TMC-qp-mXB"/>
+                                            <constraint firstItem="ort-lB-h2U" firstAttribute="leading" secondItem="VNs-dr-yRg" secondAttribute="leading" constant="6" id="U37-23-6iu"/>
+                                            <constraint firstItem="ort-lB-h2U" firstAttribute="top" secondItem="VNs-dr-yRg" secondAttribute="top" constant="2" id="gYX-eR-zi6"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" name="AppLight"/>
                                 <constraints>
                                     <constraint firstItem="WXx-cb-ezT" firstAttribute="bottom" secondItem="8hC-d1-XWk" secondAttribute="centerY" multiplier="0.65" id="2SM-gU-S7m"/>
+                                    <constraint firstItem="VNs-dr-yRg" firstAttribute="leading" secondItem="G9m-x4-fky" secondAttribute="leading" constant="6" id="2Zi-2I-u3j"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WXx-cb-ezT" secondAttribute="trailing" constant="6" id="3fv-Ao-bTT"/>
                                     <constraint firstAttribute="height" constant="122" id="5Ds-YA-jXM"/>
                                     <constraint firstItem="JDF-Ga-2cP" firstAttribute="width" secondItem="G9m-x4-fky" secondAttribute="width" multiplier="106/326" id="8PH-NB-PPZ"/>
@@ -71,6 +91,7 @@
                                     <constraint firstItem="G5m-Nw-7n3" firstAttribute="leading" secondItem="WXx-cb-ezT" secondAttribute="leading" id="SlV-yi-hto"/>
                                     <constraint firstItem="WXx-cb-ezT" firstAttribute="leading" secondItem="8hC-d1-XWk" secondAttribute="trailing" constant="12" id="jOO-Jz-YOf"/>
                                     <constraint firstItem="8hC-d1-XWk" firstAttribute="top" secondItem="G9m-x4-fky" secondAttribute="top" constant="20" id="mF6-KF-dxp"/>
+                                    <constraint firstItem="VNs-dr-yRg" firstAttribute="top" secondItem="G9m-x4-fky" secondAttribute="top" constant="6" id="tbM-8X-Awn"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zL1-Yy-gcs">
@@ -107,8 +128,10 @@
                 <outlet property="imageSchool" destination="8hC-d1-XWk" id="PLg-mq-gKJ"/>
                 <outlet property="labelDistrict" destination="WXx-cb-ezT" id="S3p-GR-l0J"/>
                 <outlet property="labelSeats" destination="G5m-Nw-7n3" id="Bas-FR-blT"/>
+                <outlet property="labelpaidFree" destination="ort-lB-h2U" id="Api-ps-x69"/>
                 <outlet property="viewBottomLine" destination="zL1-Yy-gcs" id="GUk-Jq-lpG"/>
                 <outlet property="viewMainBg" destination="G9m-x4-fky" id="OkD-f0-UbP"/>
+                <outlet property="viewPaid" destination="VNs-dr-yRg" id="Qac-pQ-Se6"/>
             </connections>
             <point key="canvasLocation" x="224.42748091603053" y="31.690140845070424"/>
         </collectionViewCell>
@@ -128,6 +151,9 @@
         </namedColor>
         <namedColor name="AppLight">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="AppYellow">
+            <color red="1" green="0.75686274509803919" blue="0.027450980392156862" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="ButtonBG">
             <color red="0.0" green="0.29019607843137257" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

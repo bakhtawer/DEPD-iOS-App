@@ -149,6 +149,7 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
 
 extension SchoolHomeViewController {
     func setupNavigation() {
+        self.setTitle("School/Institute".localized())
         self.navigationController?.navigationBar.isHidden = false
         self.setNavBarColor(.appBG)
         

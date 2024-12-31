@@ -93,6 +93,8 @@ class FormBuilderViewController: BaseViewController {
         case socialMediaEmployer
         case weProvideJobEmployer
         case accessibilityMaterialEmployer
+        
+        case postJob
     }
     
     var type: FormType = .general
@@ -334,6 +336,12 @@ class FormBuilderViewController: BaseViewController {
             labelTitle.text = "accessibility_material".localized()
             buttonTitle = "Submit".localized()
             fields = populateAccessibilityMaterialEmplor()
+            
+        case .postJob:
+            self.setTitle("")
+            labelTitle.text = "post_job".localized()
+            buttonTitle = "Submit".localized()
+            fields = populatePostJob()
         }
         
         let formBuilder = FormBuilderView(fields: fields, buttonTitle)
@@ -441,7 +449,7 @@ class FormBuilderViewController: BaseViewController {
                       name: "gender",
                       value: "\(String(describing: AMDH.shared.getGenders(byID: USM.shared.getUser().oStudentDetails?.genderId ?? -1)?.name ?? ""))",
                       isRequired: false),
-            FormField(fieldType: .date, placeholder: "dob".localized(), name: "dob", value: USM.shared.getUser().oStudentDetails?.formattedDOB, isRequired: true),
+            FormField(fieldType: .date, placeholder: "dob".localized(), name: "dob", value: USM.shared.getUser().oStudentDetails?.dob?.convertMicrosoftDateString, isRequired: true),
             FormField(fieldType: .number, placeholder: "cnic".localized(), name: "cnic", value: USM.shared.getUser().cnic, isRequired: false, isEnabled: false),
             FormField(fieldType: .text, placeholder: "address".localized(), name: "address", value: USM.shared.getUser().oStudentDetails?.address, isRequired: false),
             
@@ -555,6 +563,34 @@ class FormBuilderViewController: BaseViewController {
                       isRequired: false),
             
             FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false)
+        ]
+    }
+    
+    
+    func populatePostJob() -> [FormField] {
+        [
+            FormField(fieldType: .text, placeholder: "enter_position".localized(), name: "enter_position".localized(), value: nil, isRequired: false),
+            
+            FormField(fieldType: .text, placeholder: "enter_required_experince".localized(), name: "enter_required_experince".localized(), value: nil, isRequired: false),
+            
+            FormField(fieldType: .number, placeholder: "enter_salary".localized(), name: "enter_salary".localized(), value: nil, isRequired: false),
+            
+            FormField(fieldType: .text, placeholder: "enter_address".localized(), name: "enter_address".localized(), value: nil, isRequired: false),
+            
+            FormField(fieldType: .number, placeholder: "enter_no_vacancies".localized(), name: "enter_no_vacancies".localized(), value: nil, isRequired: false),
+            
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
+                      placeholder: "district".localized(),
+                      name: "district",
+                      value: nil,
+                      isRequired: false),
+            
+            FormField(fieldType: .textLong, placeholder: "enter_job_description".localized(), name: "enter_job_description".localized(), value: nil, isRequired: false),
+            
+            FormField(fieldType: .uploadFile, placeholder: "upload_job_poster".localized(), name: "upload_job_poster".localized(), value: nil, isRequired: false),
+            
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
         ]
     }
 }
@@ -796,7 +832,9 @@ extension FormBuilderViewController: FormBuilderProtocol {
                                                 District: studentDetails?.district,
                                                 DOB: studentDetails?.dob,
                                                 PreviousEducation: studentDetails?.previousEducation,
-                                                GenderId: genderID))
+                                                GenderId: genderID,
+                                                EmailAddress: studentDetails?.emailAddress
+                                               ))
             self.showLoadingIndicator(withDimView: true)
             USM.shared.update(student: student) { [weak self] status in
                 self?.hideLoadingIndicator()
@@ -955,7 +993,7 @@ extension FormBuilderViewController: FormBuilderProtocol {
             JobManager.shared.updatePersonalInformationJob(data: data) {[weak self] status in
                 self?.hideLoadingIndicator()
                 if status {
-                    USM.shared.updatedUser {_ in
+                    USM.shared.getUserProfile {_ in
                         SMM.shared.showStatusSuccess(message: "Profile Updated")
                         DispatchQueue.main.async {[weak self] in
                             self?.navigationController?.popViewController(animated: true)
@@ -976,7 +1014,7 @@ extension FormBuilderViewController: FormBuilderProtocol {
             JobManager.shared.insertJobSeekerEducation(data: data) {[weak self] status in
                 self?.hideLoadingIndicator()
                 if status {
-                    USM.shared.updatedUser {_ in
+                    USM.shared.getUserProfile {_ in
                         SMM.shared.showStatusSuccess(message: "Education Updated")
                         DispatchQueue.main.async {[weak self] in
                             self?.navigationController?.popViewController(animated: true)
@@ -996,7 +1034,7 @@ extension FormBuilderViewController: FormBuilderProtocol {
             JobManager.shared.insertJobSeekerWorkExperience(data: data) {[weak self] status in
                 self?.hideLoadingIndicator()
                 if status {
-                    USM.shared.updatedUser {_ in
+                    USM.shared.getUserProfile {_ in
                         SMM.shared.showStatusSuccess(message: "Work Experience Updated")
                         DispatchQueue.main.async {[weak self] in
                             self?.navigationController?.popViewController(animated: true)
@@ -1012,7 +1050,7 @@ extension FormBuilderViewController: FormBuilderProtocol {
             JobManager.shared.insertJobSeekerTechnicalSkills(data: data) {[weak self] status in
                 self?.hideLoadingIndicator()
                 if status {
-                    USM.shared.updatedUser {_ in
+                    USM.shared.getUserProfile {_ in
                         SMM.shared.showStatusSuccess(message: "Work Experience Updated")
                         DispatchQueue.main.async {[weak self] in
                             self?.navigationController?.popViewController(animated: true)
@@ -1030,7 +1068,7 @@ extension FormBuilderViewController: FormBuilderProtocol {
             JobManager.shared.insertJobSeekerAdditionalInfo(data: data) {[weak self] status in
                 self?.hideLoadingIndicator()
                 if status {
-                    USM.shared.updatedUser {_ in
+                    USM.shared.getUserProfile {_ in
                         SMM.shared.showStatusSuccess(message: "Additional Info Updated")
                         DispatchQueue.main.async {[weak self] in
                             self?.navigationController?.popViewController(animated: true)
@@ -1050,7 +1088,7 @@ extension FormBuilderViewController: FormBuilderProtocol {
             JobManager.shared.updateJobSeekerCertifications(data: data) {[weak self] status in
                 self?.hideLoadingIndicator()
                 if status {
-                    USM.shared.updatedUser {_ in
+                    USM.shared.getUserProfile {_ in
                         SMM.shared.showStatusSuccess(message: "Certification Updated")
                         DispatchQueue.main.async {[weak self] in
                             self?.navigationController?.popViewController(animated: true)
@@ -1070,6 +1108,8 @@ extension FormBuilderViewController: FormBuilderProtocol {
             break
         case .accessibilityMaterialEmployer:
             break
+        case .postJob:
+            break
         }
     }
     
@@ -1078,7 +1118,12 @@ extension FormBuilderViewController: FormBuilderProtocol {
             let storyboard = getStoryBoard(.main)
             let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
             contentVC.messageThankYou = .updateSchoolInfo
-            contentVC.moveThankYou = .stay
+            contentVC.moveThankYou = .goBack
+            contentVC.onGoBack = {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            }
             openModuleOverFullScreen(controller: contentVC)
         }
     }
@@ -1181,7 +1226,12 @@ extension FormBuilderViewController {
                 let storyboard = getStoryBoard(.main)
                 let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
                 contentVC.messageThankYou = .updateSchoolInfo
-                contentVC.moveThankYou = .stay
+                contentVC.moveThankYou = .goBack
+                contentVC.onGoBack = {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
                 openModuleOverFullScreen(controller: contentVC)
             }
         }
@@ -1202,7 +1252,12 @@ extension FormBuilderViewController {
                 let storyboard = getStoryBoard(.main)
                 let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
                 contentVC.messageThankYou = .updateSchoolInfo
-                contentVC.moveThankYou = .stay
+                contentVC.moveThankYou = .goBack
+                contentVC.onGoBack = {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {[weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
                 openModuleOverFullScreen(controller: contentVC)
             }
         }

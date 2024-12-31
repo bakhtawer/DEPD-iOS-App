@@ -95,9 +95,22 @@ class UserHomeViewController: MVVMViewController<UserHomeViewModel> {
             let view = storyboard.instantiateViewController(ofType: SettingViewController.self)
             openModulePopOver(controller: view)
         }
-        
+
         buttonMyComplaints.addTapGestureRecognizer {[weak self] in
             self?.gotoEditProfile()
+        }
+        
+        labelMyApplications.addTapGestureRecognizer {
+            if APPMetaDataHandler.shared.userType == .StudentGuest {
+                Bootstrapper.showLoginAlert()
+                return
+            }
+            
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: MyApplicationsViewController.self)
+                openModuleOnNavigation(from: self, controller: view)
+            }
         }
         
         buttonTotalSchool.addTapGestureRecognizer {[weak self] in

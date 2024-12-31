@@ -22,9 +22,9 @@ class CompanyAdvertiseJobCell: UICollectionViewCell {
     }
     
     func configure(with model: EmployerHomeViewModelData) {
-        guard let company = model.company else { return }
+        guard let company = model.advertise else { return }
         
-        guard let image = URL(string: company.CompanyImageURL?.convertToHttps() ?? "") else { return }
+        guard let image = URL(string: company.ThumbnailImageURL?.convertToHttps() ?? "") else { return }
         iconAd.contentMode = .scaleAspectFill
         iconAd.kf.setImage(with: image,
                                 placeholder: UIImage(named: "studentplacehoder"))

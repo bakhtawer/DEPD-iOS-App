@@ -92,3 +92,167 @@ struct CompanyModel: Codable, Hashable {
         hasher.combine(idMain)
     }
 }
+
+struct CompanyJobModel: Codable, Hashable {
+    var idMain = UUID()
+    var Id: Int?
+    var FirstName: String?
+    var LastName: String?
+    var StatusName: String?
+    var Address: String?
+    var Age: Int?
+    var StatusId: Int?
+    var dob: String?
+    var ContactNo: String?
+    var profilePicture: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case idMain
+        case Id = "Id"
+        case FirstName = "FirstName"
+        case LastName = "LastName"
+        case StatusName = "StatusName"
+        case Address = "Address"
+        case Age = "Age"
+        case StatusId = "StatusId"
+        case dob = "DateofBirth"
+        case ContactNo = "ContactNo"
+        case profilePicture = "profilePicture"
+    }
+    
+    init(from decoder: Decoder) throws {
+        do {
+            idMain = UUID()
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            Id = try values.decodeIfPresent(Int.self, forKey: .Id) ?? -1
+            FirstName = try values.decodeIfPresent(String.self, forKey: .FirstName) ?? ""
+            LastName = try values.decodeIfPresent(String.self, forKey: .LastName) ?? ""
+            StatusName = try values.decodeIfPresent(String.self, forKey: .StatusName) ?? ""
+            Address = try values.decodeIfPresent(String.self, forKey: .Address) ?? ""
+            Age = try values.decodeIfPresent(Int.self, forKey: .Age) ?? 0
+            StatusId = try values.decodeIfPresent(Int.self, forKey: .StatusId) ?? -1
+            dob = try values.decodeIfPresent(String.self, forKey: .dob) ?? ""
+            ContactNo = try values.decodeIfPresent(String.self, forKey: .ContactNo) ?? ""
+            profilePicture = try values.decodeIfPresent(String.self, forKey: .profilePicture) ?? ""
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
+    }
+    
+    static func == (lhs: CompanyJobModel, rhs: CompanyJobModel) -> Bool {
+        return  lhs.idMain == rhs.idMain
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(idMain)
+    }
+}
+
+
+struct CompanyVacancyModel: Codable, Hashable {
+    var idMain = UUID()
+    var CompanyId: Int?
+    var CompanyName: String?
+    var Description: String?
+    var ThumbnailImageURL: String?
+    var NumOfVaccancies: String?
+    var Position: String?
+    var PostedOnDate: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case idMain
+        case CompanyId
+        case CompanyName
+        case Description
+        case ThumbnailImageURL
+        case NumOfVaccancies
+        case Position
+        case PostedOnDate
+    }
+    
+    init(from decoder: Decoder) throws {
+        do {
+            idMain = UUID()
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            CompanyId = try values.decodeIfPresent(Int.self, forKey: .CompanyId) ?? -1
+            CompanyName = try values.decodeIfPresent(String.self, forKey: .CompanyName) ?? ""
+            Description = try values.decodeIfPresent(String.self, forKey: .Description) ?? ""
+            ThumbnailImageURL = try values.decodeIfPresent(String.self, forKey: .ThumbnailImageURL) ?? ""
+            NumOfVaccancies = try values.decodeIfPresent(String.self, forKey: .NumOfVaccancies) ?? ""
+            Position = try values.decodeIfPresent(String.self, forKey: .Position) ?? ""
+            PostedOnDate = try values.decodeIfPresent(String.self, forKey: .PostedOnDate) ?? ""
+            
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
+    }
+    
+    static func == (lhs: CompanyVacancyModel, rhs: CompanyVacancyModel) -> Bool {
+        return  lhs.idMain == rhs.idMain
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(idMain)
+    }
+}
+
+struct CompanyEmployeeModel: Codable, Hashable {
+    var ID:Int?
+    var UserID:Int?
+    var Name:String?
+    var Address:String?
+    var Age:Int?
+    var DisabilityId:Int?
+    var DisabilityName:String?
+    var EmailAddress:String?
+    var ProfilePicture:String?
+    var idMain = UUID()
+    
+    enum CodingKeys: String, CodingKey {
+        case idMain
+        case ID = "ID"
+        case UserID = "UserID"
+        case Name = "Name"
+        case Address = "Address"
+        case Age = "Age"
+        case DisabilityId = "DisabilityId"
+        case DisabilityName = "DisabilityName"
+        case EmailAddress = "EmailAddress"
+        case ProfilePicture = "ProfilePicture"
+    }
+    
+    init(from decoder: Decoder) throws {
+        do {
+            idMain = UUID()
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+            ID = try values.decodeIfPresent(Int.self, forKey: .ID) ?? -1
+            UserID = try values.decodeIfPresent(Int.self, forKey: .UserID) ?? 0
+            Name = try values.decodeIfPresent(String.self, forKey: .Name) ?? ""
+            Address = try values.decodeIfPresent(String.self, forKey: .Address) ?? ""
+            Age = try values.decodeIfPresent(Int.self, forKey: .Age) ?? 0
+            DisabilityId = try values.decodeIfPresent(Int.self, forKey: .DisabilityId) ?? 0
+            DisabilityName = try values.decodeIfPresent(String.self, forKey: .DisabilityName) ?? ""
+            EmailAddress = try values.decodeIfPresent(String.self, forKey: .EmailAddress) ?? ""
+            ProfilePicture = try values.decodeIfPresent(String.self, forKey: .ProfilePicture) ?? ""
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
+    }
+    
+    static func == (lhs: CompanyEmployeeModel, rhs: CompanyEmployeeModel) -> Bool {
+        return  lhs.idMain == rhs.idMain
+    }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(idMain)
+    }
+}

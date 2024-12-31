@@ -103,11 +103,11 @@ class InstituteStudentCell: UICollectionViewCell {
         }
         
         //        public enum AdmissionStatus
-                //    {
-                //        Pending = 1,
-                //        Accepted = 2,
-                //        Rejected = 3
-                //    }
+        //    {
+        //        Pending = 1,
+        //        Accepted = 2,
+        //        Rejected = 3
+        //    }
         
         guard let image = URL(string: model.ProfilePictureURL?.convertToHttps() ?? "") else { return }
         iconStudent.contentMode = .scaleAspectFill
@@ -115,13 +115,36 @@ class InstituteStudentCell: UICollectionViewCell {
                                 placeholder: UIImage(named: "studentplacehoder"))
     }
     
-    func configure(with model: EmployerHomeViewModelData) {
-        guard let jobSeeker = model.employees else { return }
-        studentname.text = (jobSeeker.jobseeker?.FirstName ?? "Ali Rehman") + " " + (jobSeeker.jobseeker?.LastName ?? "")
-        disablility.text = jobSeeker.DisabilityName
-        ageNGender.text = "\(jobSeeker.Age ?? "") | \(jobSeeker.Gender?.makeItGender() ?? "")"
-        location.text = jobSeeker.District
+    func configure(with model: EmployerHomeViewModelData, hideButtons: Bool = false) {
         
+        if let jobSeeker = model.jobApplications {
+            studentname.text = (jobSeeker.FirstName ?? "Ali Rehman") + " " + (jobSeeker.LastName ?? "")
+            disablility.text = "\("disability".localized()): \(jobSeeker.StatusName ?? "")"
+            ageNGender.text = "\(jobSeeker.Age ?? 0) years"
+            location.text = jobSeeker.Address
+            labelStatus.text = " \(AMDH.shared.getAdmissionStatus(value: jobSeeker.StatusId ?? 0)) "
+            
+            guard let image = URL(string: jobSeeker.profilePicture?.convertToHttps() ?? "") else { return }
+            iconStudent.contentMode = .scaleAspectFit
+            iconStudent.kf.setImage(with: image,
+                                    placeholder: UIImage(named: "studentplacehoder"))
+        }
+        if let employee = model.employees {
+            studentname.text = (employee.Name ?? "")
+            disablility.text = "\("disability".localized()): \(employee.DisabilityName ?? "")"
+            ageNGender.text = "\(employee.Age ?? 0) years"
+            location.text = employee.Address
+            labelStatus.text = ""
+            labelStatus.isHidden = true
+            guard let image = URL(string: employee.ProfilePicture?.convertToHttps() ?? "") else { return }
+            iconStudent.contentMode = .scaleAspectFit
+            iconStudent.kf.setImage(with: image,
+                                    placeholder: UIImage(named: "studentplacehoder"))
+        }
+        
+        labelStatus.backgroundColor = .appYellow
+        
+        labelStatus.makeItTheme(.bold, 12, .appLight)
         studentname.makeItTheme(.bold, 13, .textDark)
         disablility.makeItTheme(.regular, 12, .appBlue)
         ageNGender.makeItTheme(.regular, 12, .appBlue)
@@ -141,34 +164,19 @@ class InstituteStudentCell: UICollectionViewCell {
         buttonViewProfile.makeItTheme(text: "view_profile".localized(), .bold, 14, .appLight, .appBlue)
         buttonViewProfile.makeHight(height: 40, false, true)
         
-        let admissionStatusId = 1
         buttonAccept.isHidden = true
         ButtonReject.isHidden = true
-        buttonViewProfile.isHidden = true
-        switch admissionStatusId {
-        case 1:
-            buttonAccept.isHidden = false
-            ButtonReject.isHidden = false
-            buttonViewProfile.isHidden = false
-        default:
-            buttonViewProfile.isHidden = false
-        }
+        buttonViewProfile.isHidden = hideButtons
         
         buttonAccept.addTapGestureRecognizer {[weak self] in
-            self?.delegateEmployer?.acceptAdmission(id: model.employees?.jobID ?? -1)
+            self?.delegateEmployer?.acceptAdmission(id: model.jobApplications?.Id ?? -1)
         }
         ButtonReject.addTapGestureRecognizer {[weak self] in
-            self?.delegateEmployer?.rejectAdmission(id: model.employees?.jobID ?? -1)
+            self?.delegateEmployer?.rejectAdmission(id: model.jobApplications?.Id ?? -1)
         }
         buttonViewProfile.addTapGestureRecognizer {[weak self] in
-            self?.delegateEmployer?.viewProfile(id: model.employees?.jobID ?? -1)
+            self?.delegateEmployer?.viewProfile(id: model.jobApplications?.Id ?? -1)
         }
-        
-        
-        guard let image = URL(string: jobSeeker.ProfilePicture?.convertToHttps() ?? "") else { return }
-        iconStudent.contentMode = .scaleAspectFit
-        iconStudent.kf.setImage(with: image,
-                                placeholder: UIImage(named: "studentplacehoder"))
     }
 }
 

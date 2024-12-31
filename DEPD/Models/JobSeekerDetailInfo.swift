@@ -28,6 +28,7 @@ struct JobSeekerDetailInfo: Codable {
     var cvFileUploadByteString: String?
     var disabilityCertificateName: String?
     var disabilityCertificateByteString: String?
+    var cvFileURL: String?
     
     var aboutInfo: AboutInfo?
     var jobSeekerEducationInfo: [JobSeekerEducation]?
@@ -57,6 +58,7 @@ struct JobSeekerDetailInfo: Codable {
         case cvFileUploadByteString = "CVFileUploadByteString"
         case disabilityCertificateName = "DisabilityCertificateName"
         case disabilityCertificateByteString = "DisabilityCertificateByteString"
+        case cvFileURL = "CVFileURL"
         
         case aboutInfo = "aboutinfo"
         case jobSeekerEducationInfo = "jobSeekerEducationInfo"

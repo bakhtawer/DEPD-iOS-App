@@ -218,7 +218,7 @@ class EmployerProfileDetailsController: BaseViewController {
             func success(status: Bool) {
                 DispatchQueue.main.async {[weak self] in self?.hideLoadingIndicator() }
                 if status {
-                    USM.shared.updatedUser {[weak self] status in
+                    USM.shared.getUserProfile {[weak self] status in
                         DispatchQueue.main.async {[weak self] in self?.setView() }
                     }
                 }
@@ -351,7 +351,7 @@ extension EmployerProfileDetailsController : UIImagePickerControllerDelegate, UI
         let data = UploadJobSeekerProfileImageCreds(profileImageName: imageString, ProfileImageByteString:"\(UUID().uuidString).jpg", UserID: USM.shared.getUser().jobSeekerDetailInfo?.userID ?? 0)
         JobManager.shared.uploadJobSeekerProfileImage(data: data) {[weak self] status in
             self?.hideLoadingIndicator()
-            USM.shared.updatedUser {[weak self] status in
+            USM.shared.getUserProfile {[weak self] status in
                 DispatchQueue.main.async {[weak self] in self?.setView() }
             }
         }
@@ -361,7 +361,7 @@ extension EmployerProfileDetailsController : UIImagePickerControllerDelegate, UI
         let data = UploadJobSeekerCVCreds(CVFileUploadName:"\(UUID().uuidString)", CVFileUploadByteString: imageString, UserID: USM.shared.getUser().jobSeekerDetailInfo?.userID ?? 0)
         JobManager.shared.uploadJobSeekerCV(data: data) {[weak self] status in
             self?.hideLoadingIndicator()
-            USM.shared.updatedUser {[weak self] status in
+            USM.shared.getUserProfile {[weak self] status in
                 DispatchQueue.main.async {[weak self] in self?.setView() }
             }
         }
@@ -371,7 +371,7 @@ extension EmployerProfileDetailsController : UIImagePickerControllerDelegate, UI
         let data = UploadDisabilityCertificateCreds(DisabilityCertificateName: "\(UUID().uuidString)", DisabilityCertificateByteString: imageString, UserID: USM.shared.getUser().jobSeekerDetailInfo?.userID ?? 0)
         JobManager.shared.uploadDisabilityCertificate(data: data) {[weak self] status in
             self?.hideLoadingIndicator()
-            USM.shared.updatedUser {[weak self] status in
+            USM.shared.getUserProfile {[weak self] status in
                 DispatchQueue.main.async {[weak self] in self?.setView() }
             }
         }

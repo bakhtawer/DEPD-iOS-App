@@ -1,27 +1,22 @@
 //
-//  EmployerHomeViewController.swift
+//  EmployerListViewController.swift
 //  DEPD
 //
-//  Created by Shahzaib I. Bhatti on 13/10/2024.
+//  Created by Shahzaib I. Bhatti on 29/12/2024.
 //
 
 import UIKit
 import SwiftUI
 
-enum EmployerSection: CaseIterable {
-   case employee
-   case advertise
-   case hiring
+enum EmployerListScreenType {
+    case totalApplications
+    case hiredPerson
+    case findEmployee
+    case confirmHiring
+    case advertiseVacancy
 }
 
-class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
-    
-    @IBOutlet weak var mainIcon: UIView!
-    @IBOutlet weak var mainIconImage: UIImageView!
-    @IBOutlet weak var viewTopBG: UIView!
-    @IBOutlet weak var schoolName: UILabel!
-    @IBOutlet weak var schoolLocation: UILabel!
-    @IBOutlet weak var schoolProfilePercentage: UILabel!
+class EmployerListViewController: MVVMViewController<EmployerHomeViewModel> {
     
     @IBOutlet weak var viewSearch: UIView!
     @IBOutlet weak var tfSearchBar: UITextField!
@@ -33,28 +28,40 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
     
     @IBOutlet weak var viewBottom: BottomView!
     
-    @IBOutlet weak var viewApplications: UIView!
-    @IBOutlet weak var buttonViewApplications: UIButton!
-    @IBOutlet weak var buttonEditYourProfile: UIButton!
-    
     @IBOutlet weak var buttonFindEmployee: UILabel!
     @IBOutlet weak var buttonAdvertise: UILabel!
     @IBOutlet weak var buttonConfirmHiring: UILabel!
     
-    @IBOutlet weak var viewClickHired: UIView!
-    @IBOutlet weak var labelClickHired: UILabel!
-    
     @IBOutlet weak var labelTotalApplications: UILabel!
+    
     private enum ScreenSelected {
-        case employee
+        case jobApplications
         case advertise
-        case hiring
+        case employees
     }
     
-    private var screenSelected = ScreenSelected.employee
+    private var screenSelected = ScreenSelected.jobApplications
+    
+    var screenType: EmployerListScreenType = .totalApplications
     
     @IBOutlet weak var labelNoRecord: UILabel!
     
+    @IBOutlet weak var viewTopButtons: UIView!
+    
+    @IBOutlet weak var viewTotlaCounts: UIView!
+    private var peopleApplications = ""
+    
+    
+    private var selectedFilterItems: [String : Any] = [:]
+    private var filterItems: [FilterItem] = [
+        FilterItem(type: .checkbox, title: "job_title".localized(), name: "job_title"),
+        FilterItem(type: .checkbox, title: "private".localized(), name: "private"),
+        FilterItem(type: .checkbox, title: "ngo_welfare".localized(), name: "ngo_welfare"),
+        FilterItem(type: .dropdown, title: "district".localized(), name: "district", options: APPMetaDataHandler.shared.getDistrictsNames()),
+        FilterItem(type: .multiSelect, title: "disability".localized(), name: "disability", options:APPMetaDataHandler.shared.getDisabilitiesNames())
+    ]
+    
+    @IBOutlet weak var buttonFIlter: DEPDButton!
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         viewBottom.setLanguage()
@@ -70,30 +77,56 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
         
         tfSearchBar.delegate = self
         viewModel.delegate = self
-        
-        
+        tfSearchBar.placeholder = "search".localized()
+        viewTopButtons.isHidden = true
         viewSearch.isHidden = true
-        buttonFindEmployee.addTapGestureRecognizer {[weak self] in
-            self?.screenSelected = .employee
-            self?.viewSearch.isHidden = true
-            self?.fetchedDetails()
+        viewTotlaCounts.isHidden = true
+        buttonFIlter.isHidden  = true
+        
+        
+        switch screenType {
+        case .totalApplications:
+            screenSelected = .jobApplications
+            viewSearch.isHidden = false
+            viewTopButtons.isHidden = false
+            viewTotlaCounts.isHidden = false
+            peopleApplications = "applications_available".localized()
+            viewModel.getTotaljobApplications()
+        case .hiredPerson:
+            screenSelected = .jobApplications
+            viewSearch.isHidden = false
+            viewTotlaCounts.isHidden = false
+            peopleApplications = "people_hired".localized()
+            viewModel.getHiredPerson()
+        case .findEmployee:
+            screenSelected = .employees
+            viewSearch.isHidden = false
+            buttonFIlter.isHidden = false
+            viewModel.getJobSeekerFilter(data: JobSeekerFilterCreds())
+        case .confirmHiring:
+            break
+        case .advertiseVacancy:
+            screenSelected = .advertise
+            viewModel.getVacancy()
         }
-        buttonAdvertise.addTapGestureRecognizer {[weak self] in
-            self?.screenSelected = .advertise
-            self?.viewSearch.isHidden = true
-            self?.fetchedDetails()
+        
+        buttonFindEmployee.addTapGestureRecognizer {[weak self] in
+            self?.viewModel.selectedStatus(status: 1)
         }
         buttonConfirmHiring.addTapGestureRecognizer {[weak self] in
-            self?.screenSelected = .hiring
-            self?.viewSearch.isHidden = false
-            self?.fetchedDetails()
+            self?.viewModel.selectedStatus(status: 2)
+        }
+        buttonAdvertise.addTapGestureRecognizer {[weak self] in
+            self?.viewModel.selectedStatus(status: 3)
         }
         
-        buttonViewApplications.addTapGestureRecognizer {
+        buttonFIlter.addTapGestureRecognizer {
             DispatchQueue.main.async {[weak self] in
-                let storyboard = getStoryBoard(.main)
-                let view = storyboard.instantiateViewController(ofType: EmployerProfileDetailsController.self)
-                openModuleOnNavigation(from: self, controller: view)
+                let filterVC = FilterViewController()
+                filterVC.filterItems = self?.filterItems ?? []
+                filterVC.selectedOptions = self?.selectedFilterItems ?? [:]
+                filterVC.delegate = self
+                openModulePopOver(controller: filterVC)
             }
         }
     }
@@ -108,15 +141,6 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
     }
     
     private func setView() {
-        mainIcon.roundCorner(withRadis: mainIcon.viewHeight.half)
-        mainIconImage.roundCorner(withRadis: mainIconImage.viewHeight.half)
-//        viewTopBG.backgroundColor = .appLight
-//        viewTopBG.applyShadow()
-        
-        schoolName.makeItTheme(.bold, 16, .textDark, .center)
-        schoolLocation.makeItTheme(.regular, 13, .textLightGray, .center)
-        schoolProfilePercentage.makeItTheme(.regular, 13, .appBlue, .center)
-        
         buttonFindEmployee.makeItTheme(.bold, 9, .textDark, .center)
         buttonAdvertise.makeItTheme(.bold, 9, .textDark, .center)
         buttonConfirmHiring.makeItTheme(.bold, 9, .textDark, .center)
@@ -127,30 +151,17 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
         buttonAdvertise.roundCorner(withRadis: 4)
         buttonConfirmHiring.roundCorner(withRadis: 4)
         
-        buttonFindEmployee.text = "\("all_application".localized())"
-        buttonConfirmHiring.text = "\("find_an_employee".localized())"
-        buttonAdvertise.text = "\("advertise_vacancies".localized())"
-        
-        schoolProfilePercentage.text = "\(USM.shared.getUser().percentage ?? 0)% \("profile_completed".localized())"
-        
-        buttonViewApplications.setTitle("\("edit_profile".localized())", for: .normal)
-        buttonEditYourProfile.setTitle("\("my_applications".localized())", for: .normal)
-        buttonViewApplications.makeItThemePrimary(14)
-        buttonEditYourProfile.makeItThemeWhitePrimary(14)
-        
-        labelClickHired.makeItTheme(.bold, 12, .textDark)
-        labelClickHired.text = "  \("check_hired".localized())  "
-        viewClickHired.roundCorner(withRadis: viewClickHired.viewHeight.half)
-        viewClickHired.setBorderColor(.appBlue, 1)
+        buttonFindEmployee.text = "\("pending".localized())"
+        buttonConfirmHiring.text = "\("accepted".localized())"
+        buttonAdvertise.text = "\("rejected".localized())"
         
         labelTotalApplications.makeItTheme(.regular, 12, .textDark)
-        labelTotalApplications.text = "10 Applications Available"
-        
         
         labelNoRecord.text = "no_record_found".localized()
         labelNoRecord.makeItTheme(.regular, 16, .textLightGray)
         
-        schoolName.text = USM.shared.getUserFullName()
+        buttonFIlter.makeItTheme(text: "", .bold, 12, .appLight, .appBlue)  //"filter".localized()
+        buttonFIlter.makeButtonIconRight(imageNamed: "filter-icon")
     }
     
     private func setUpCollectionView() {
@@ -173,15 +184,25 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
             collectionView.semanticContentAttribute = .forceLeftToRight
         }
         
-        
         createDataSource()
     }
 }
 
-extension EmployerHomeViewController {
+extension EmployerListViewController {
     func setupNavigation() {
         self.navigationController?.navigationBar.isHidden = false
-//        self.setTitle("welcom_to_employer_hub".localized())
+        switch screenType {
+        case .totalApplications:
+            self.setTitle("total_applications".localized())
+        case .hiredPerson:
+            self.setTitle("hired_person".localized())
+        case .findEmployee:
+            self.setTitle("find_employee".localized())
+        case .confirmHiring:
+            self.setTitle("confirm_hiring".localized())
+        case .advertiseVacancy:
+            self.setTitle("advertise_vacancy".localized())
+        }
         self.setNavBarColor(.appBG)
         self.setBackButton(.textDark).addTapGestureRecognizer {[weak self] in
             self?.navigationController?.popViewController(animated: true)
@@ -189,7 +210,7 @@ extension EmployerHomeViewController {
     }
 }
 
-extension EmployerHomeViewController: EmployerHomeVM {
+extension EmployerListViewController: EmployerHomeVM {
     func showLoader() {
         DispatchQueue.main.async {[weak self] in
             self?.showLoadingIndicator()
@@ -209,13 +230,16 @@ extension EmployerHomeViewController: EmployerHomeVM {
     }
 }
 
-extension EmployerHomeViewController { // Create Compositional Layout
+extension EmployerListViewController { // Create Compositional Layout
     func createCompositionalLayout() -> UICollectionViewLayout {
         let layout = UICollectionViewCompositionalLayout { (sectionIndex, environment) -> NSCollectionLayoutSection? in
             switch self.screenSelected {
-            case .employee, .hiring:
+            case .jobApplications:
                 // Standard section with item height of 147
                 return self.createInstituteSection(itemHight: 204)
+            case .employees:
+                // Standard section with item height of 147
+                return self.createInstituteSection(itemHight: 147)
             case .advertise:
                 return self.createInstituteSection(itemHight: 244)
             }
@@ -228,7 +252,7 @@ extension EmployerHomeViewController { // Create Compositional Layout
         return layout
     }
 }
-extension EmployerHomeViewController { // Make Search Section
+extension EmployerListViewController { // Make Search Section
     func createInstituteSection(itemHight: CGFloat = 147) -> NSCollectionLayoutSection {
         
         let item = NSCollectionLayoutItem(
@@ -254,7 +278,7 @@ extension EmployerHomeViewController { // Make Search Section
     }
 }
 
-extension EmployerHomeViewController {
+extension EmployerListViewController {
     func createDataSource() {
         dataSource = UICollectionViewDiffableDataSource<EmployerSection,
                                                         EmployerHomeViewModelData>(collectionView: self.collectionView) { _, indexPath, app in
@@ -286,12 +310,12 @@ extension EmployerHomeViewController {
                                                                 return cell
                                                             case .hiring:
                                                                 guard let cell = self.collectionView.dequeueReusableCell(
-                                                                    withReuseIdentifier: CompanyJobCell.reuseIdentifier,
+                                                                    withReuseIdentifier: InstituteStudentCell.reuseIdentifier,
                                                                     for: indexPath
-                                                                ) as? CompanyJobCell else {
+                                                                ) as? InstituteStudentCell else {
                                                                     return UICollectionViewCell()
                                                                 }
-                                                                cell.configure(with: app)
+                                                                cell.configure(with: app, hideButtons: true)
                                                                 return cell
                                                             }
                                                         }
@@ -299,35 +323,37 @@ extension EmployerHomeViewController {
     }
     
     func reloadData() {
-//        var snapshot = NSDiffableDataSourceSnapshot<EmployerSection, EmployerHomeViewModelData>()
-//        switch screenSelected {
-//        case .employee:
-//            let data = viewModel.getEmployees()
-//            snapshot.appendSections([.employee])
-//            snapshot.appendItems(data, toSection: .employee)
-//            labelNoRecord.isHidden = !data.isEmpty
-//        case .advertise:
-//            snapshot.appendSections([.advertise])
-//            let data = viewModel.getEmployees()
-//            snapshot.appendItems(data, toSection: .advertise)
-//            labelNoRecord.isHidden = !data.isEmpty
-//        case .hiring:
-//            snapshot.appendSections([.hiring])
-//            let data = viewModel.getJobs()
-//            snapshot.appendItems(data, toSection: .hiring)
-//            labelNoRecord.isHidden = !data.isEmpty
-//        }
-//        dataSource?.apply(snapshot, animatingDifferences: false)
-//        constraintHeight.constant = collectionView.contentSize.height + 30
-//        collectionView.layoutIfNeeded()
+        var snapshot = NSDiffableDataSourceSnapshot<EmployerSection, EmployerHomeViewModelData>()
+        switch screenSelected {
+        case .jobApplications:
+            let data = viewModel.getJobApplications()
+            snapshot.appendSections([.employee])
+            snapshot.appendItems(data, toSection: .employee)
+            labelNoRecord.isHidden = !data.isEmpty
+            labelTotalApplications.text = "\(data.count) \(peopleApplications)"
+        case .advertise:
+            snapshot.appendSections([.advertise])
+            let data = viewModel.getAdvertise()
+            snapshot.appendItems(data, toSection: .advertise)
+            labelNoRecord.isHidden = !data.isEmpty
+        case .employees:
+            let data = viewModel.getFindEmployee()
+            snapshot.appendSections([.hiring])
+            snapshot.appendItems(data, toSection: .hiring)
+            labelNoRecord.isHidden = !data.isEmpty
+        }
+        
+        dataSource?.apply(snapshot, animatingDifferences: false)
+        constraintHeight.constant = collectionView.contentSize.height + 30
+        collectionView.layoutIfNeeded()
     }
 }
 
-extension EmployerHomeViewController: UICollectionViewDelegate {
+extension EmployerListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {}
 }
 
-extension EmployerHomeViewController: UITextFieldDelegate {
+extension EmployerListViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // Get the current text
         let currentText = textField.text ?? ""
@@ -340,12 +366,14 @@ extension EmployerHomeViewController: UITextFieldDelegate {
         return true
     }
 }
-extension EmployerHomeViewController: EmployerPortalCellProtocol {
+extension EmployerListViewController: EmployerPortalCellProtocol {
     func viewProfile(id: Int) {
         DispatchQueue.main.async {[weak self] in
+            guard let index = self?.viewModel.getJobApplications().firstIndex(where:  {$0.jobApplications?.Id == id})
+            else { return }
             let storyboard = getStoryBoard(.main)
-            let view = storyboard.instantiateViewController(ofType: JobSeekerProfileDetailsController.self)
-//            view.selectedStudent = id
+            let view = storyboard.instantiateViewController(ofType: ApplicantProfileViewController.self)
+            view.selectedJobEmployee = self?.viewModel.getJobApplications()[index].jobApplications
             openModuleOnNavigation(from: self, controller: view)
         }
     }
@@ -366,5 +394,12 @@ extension EmployerHomeViewController: EmployerPortalCellProtocol {
             view.type = .rejectJobApplication
             openModuleOnNavigation(from: self, controller: view)
         }
+    }
+}
+
+extension EmployerListViewController: FilterViewControllerDelegate {
+    func didApplyFilters(selectedOptions: [String : Any]) {
+        selectedFilterItems = selectedOptions
+        viewModel.setAppliedFilters(filters: selectedOptions)
     }
 }

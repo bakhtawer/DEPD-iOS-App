@@ -212,6 +212,7 @@ class FormBuilderView: UIView {
             placeholderTextView.backgroundColor = .appLight
             placeholderTextView.heightAnchor.constraint(equalToConstant: 150).isActive = true
             placeholderTextView.text = value
+            placeholderTextView.clipsToBounds = true
             if value != nil, value != "" {
                 placeholderTextView.placeholderLabel.isHidden = true
             }else {

@@ -31,27 +31,27 @@ class CompanyJobCell: UICollectionViewCell {
     }
     
     func configure(with model: EmployerHomeViewModelData) {
-        guard let company = model.company else { return }
-        studentname.text = (company.CompanyName ?? "")
-        disablility.text = company.PositionName
-        ageNGender.text = company.Salary
-        location.text = company.Location
-        
-        viewProfile.makeItTheme(.bold, 13, .appBlue)
-        studentname.makeItTheme(.bold, 13, .textDark)
-        disablility.makeItTheme(.regular, 12, .appBlue)
-        ageNGender.makeItTheme(.regular, 12, .appBlue)
-        location.makeItTheme(.regular, 12, .appBlue)
-        
-        viewBg.applyShadow()
-        iconStudent.roundCorner(withRadis: iconStudent.viewWidth.half)
-        
-        viewProfile.text = "view_profile".localized()
-        
-        guard let image = URL(string: company.CompanyImageURL?.convertToHttps() ?? "") else { return }
-        iconStudent.contentMode = .scaleAspectFill
-        iconStudent.kf.setImage(with: image,
-                                placeholder: UIImage(named: "studentplacehoder"))
+//        guard let company = model.jobApplications else { return }
+//        studentname.text = (company.CompanyName ?? "")
+//        disablility.text = company.PositionName
+//        ageNGender.text = company.Salary
+//        location.text = company.Location
+//        
+//        viewProfile.makeItTheme(.bold, 13, .appBlue)
+//        studentname.makeItTheme(.bold, 13, .textDark)
+//        disablility.makeItTheme(.regular, 12, .appBlue)
+//        ageNGender.makeItTheme(.regular, 12, .appBlue)
+//        location.makeItTheme(.regular, 12, .appBlue)
+//        
+//        viewBg.applyShadow()
+//        iconStudent.roundCorner(withRadis: iconStudent.viewWidth.half)
+//        
+//        viewProfile.text = "view_profile".localized()
+//        
+//        guard let image = URL(string: company.CompanyImageURL?.convertToHttps() ?? "") else { return }
+//        iconStudent.contentMode = .scaleAspectFill
+//        iconStudent.kf.setImage(with: image,
+//                                placeholder: UIImage(named: "studentplacehoder"))
     }
 }
 

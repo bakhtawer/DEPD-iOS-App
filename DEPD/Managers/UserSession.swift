@@ -79,30 +79,9 @@ extension UserSessionManager {
         }
     }
     
-    func getUserProfile() {
+    func getUserProfile(completion: @escaping (Bool) -> Void) {
         if let userID = Int(KeychainManager.retrieve(forKey: .userID) ?? "-1"), userID != -1 {
         let request = Endpoint.getUser(cred: GetUserByID(Id: userID)).request!
-            service.makeRequest(with: request, respModel: ApiResponse<User>.self) {userResponse, error in
-                if let error = error { print("DEBUG PRINT:", error);
-                    return }
-                print("DEBUG PRINT:", userResponse ?? "")
-                if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
-                    return }
-                guard let user = userResponse?.oData else {
-                    SMM.shared.showError(title: "", message: "Error parsing server response.");
-                    DispatchQueue.main.async { Bootstrapper.createSplash()}
-                    return}
-//                UserSessionManager.shared.setUser(user: user)
-            }
-        }
-    }
-    
-    func updatedUser(completion: @escaping (Bool) -> Void) {
-        
-        if let cnic = KeychainManager.retrieve(forKey: .cnic),
-           let password = KeychainManager.retrieve(forKey: .password),
-           let userType = KeychainManager.retrieve(forKey: .userType) {
-           let request = Endpoint.login(email: cnic, password: password).request!
             service.makeRequest(with: request, respModel: ApiResponse<User>.self) {userResponse, error in
                 func fail() {
                     completion(false)
@@ -145,5 +124,53 @@ extension UserSessionManager {
             SMM.shared.showStatusSuccess(message: "Profile Updated")
             UserSessionManager.shared.setUser(user: user)
         }
+    }
+}
+
+extension UserSessionManager {
+    func getApplications(completion: @escaping ([MyApplicationsModel]) -> Void) {
+        if let userID = Int(KeychainManager.retrieve(forKey: .userID) ?? "-1"), userID != -1 {
+        let request = Endpoint.getApplications(cred: GetUserByID(Id: userID)).request!
+            service.makeRequest(with: request, respModel: ApiResponse<[MyApplicationsModel]>.self) {userResponse, error in
+                func fail() {
+                    completion([])
+                }
+                if let error = error { print("DEBUG PRINT:", error);
+                    fail()
+                    return }
+                print("DEBUG PRINT:", userResponse ?? "")
+                if let error = userResponse?.isError, error {
+                    SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                    fail()
+                    return }
+                guard let data = userResponse?.oData else {
+                    fail()
+                    return}
+                completion(data)
+            }
+        }
+    }
+}
+
+extension UserSessionManager {
+    func getJobSeeker(userID: Int, completion: @escaping (User?) -> Void) {
+            let request = Endpoint.getAuth(cred: GetUserByID(Id: userID), method: "getJobSeeker").request!
+            service.makeRequest(with: request, respModel: ApiResponse<User>.self) {userResponse, error in
+                func fail() {
+                    completion(nil)
+                }
+                if let error = error { print("DEBUG PRINT:", error);
+                    fail()
+                    return }
+                print("DEBUG PRINT:", userResponse ?? "")
+                if let error = userResponse?.isError, error {
+                    SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                    fail()
+                    return }
+                guard let data = userResponse?.oData else {
+                    fail()
+                    return}
+                completion(data)
+            }
     }
 }

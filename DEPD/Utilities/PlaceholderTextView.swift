@@ -6,82 +6,65 @@
 //
 
 import UIKit
-
 class PlaceholderTextView: UITextView {
-    
-    // Placeholder Label
     let placeholderLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.lightGray
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         return label
     }()
-    
-    // Initializer
+
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         setupView()
     }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
         setupView()
     }
-    
+
     private func setupView() {
-        // Set default text color
         self.textColor = UIColor.lightGray
         self.font = UIFont.systemFont(ofSize: 16)
-        
-        // Add placeholder label to UITextView
         addSubview(placeholderLabel)
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Constraints for placeholder label
-        self.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        placeholderLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 16).isActive = true
-        placeholderLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 16).isActive = true
-        placeholderLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -16).isActive = true
-               
-        
-        // Set delegate to handle text changes
+
+        // Constraints for placeholder respecting insets
+        placeholderLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: textContainerInset.top).isActive = true
+        placeholderLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: textContainerInset.left + 5).isActive = true
+        placeholderLabel.trailingAnchor.constraint(lessThanOrEqualTo: self.trailingAnchor, constant: -textContainerInset.right).isActive = true
+
         self.delegate = self
-        
-        // Show placeholder initially if no text
         placeholderLabel.isHidden = !self.text.isEmpty
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.layer.masksToBounds = false
-        self.layer.applySketchShadow()
+        self.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        self.clipsToBounds = true
     }
 }
 
 extension PlaceholderTextView: UITextViewDelegate {
-    
-    // When the user starts editing
     func textViewDidBeginEditing(_ textView: UITextView) {
-        // Remove the placeholder and change text color
         if textView.text == placeholderLabel.text {
             textView.text = ""
-            textView.textColor = UIColor.textDark
+            textView.textColor = UIColor.black
         }
         placeholderLabel.isHidden = true
     }
-    
-    // When the user finishes editing
+
     func textViewDidEndEditing(_ textView: UITextView) {
-        // Show placeholder if the text view is empty
         if textView.text.isEmpty {
-//            textView.text = placeholderLabel.text
-//            textView.textColor = UIColor.lightGray
             placeholderLabel.isHidden = false
         }
     }
-    
-    // Hide placeholder while typing
+
     func textViewDidChange(_ textView: UITextView) {
         placeholderLabel.isHidden = !textView.text.isEmpty
     }
 }
+

@@ -134,8 +134,12 @@ class SchoolDetailsViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setView()
-        setupNavigation()
+        USM.shared.getUserProfile() {_ in 
+            DispatchQueue.main.async {[weak self] in
+                self?.setView()
+                self?.setupNavigation()
+            }
+        }
     }
     
     private func setView() {
@@ -208,7 +212,7 @@ class SchoolDetailsViewController: BaseViewController {
             return }
         
         
-        let listOfImages = (selectedSchool.SchoolMultiMediaList ?? []).map {$0.FileURLWithBaseUrl?.convertToHttps() ?? ""}
+        let listOfImages = (selectedSchool.SchoolMultiMediaList ?? []).map {$0.FileURL?.convertToHttps() ?? ""}
         viewSocialMultiMedia.imageURLs = listOfImages
         if listOfImages.isEmpty {
             labelEmptySocialMultiMedia.text = "nothing_to_show_in_the_gallery".localized()
@@ -226,7 +230,6 @@ class SchoolDetailsViewController: BaseViewController {
             }
             self.presentActionSheetDeleteMultimedia(data: DeleteById(Id: disabilityId, UserId: userID))
         }
-        
         
         labelTitleSocialMediaLink.text = "socail_media_links".localized()
         labelTitleSocialMediaLink.makeItTheme(.bold, 14, .textDark)

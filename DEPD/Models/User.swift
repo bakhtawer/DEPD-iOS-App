@@ -212,7 +212,7 @@ struct StudentApplication: Codable {
             schoolName = try container.decodeIfPresent(String.self, forKey: .schoolName) ?? ""
             appliedOnDate = try container.decodeIfPresent(String.self, forKey: .appliedOnDate)
             className = try container.decodeIfPresent(String.self, forKey: .className) ?? ""
-            admissionStatus = try container.decodeIfPresent(String.self, forKey: .admissionStatus) ?? "Pending"
+            admissionStatus = try container.decodeIfPresent(String.self, forKey: .admissionStatus) ?? "pending".localized()
         } catch let DecodingError.typeMismatch(type, context) {
             print("Type '\(type)' mismatch:", context.debugDescription)
             print("codingPath:", context.codingPath)
@@ -254,17 +254,28 @@ struct SchoolSocialMediaInfo: Codable {
     }
     
     func convertUrl() -> String {
-        switch self.AccountTypeID ?? 0 {
-//        case 1: // facebook
-//            return "https://cdn.pixabay.com/photo/2021/06/15/12/51/facebook-6338507_1280.png"
-//        case 2: // Youtube
-//            return "https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png"
-//        case 3: // Instagram
-//            return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNDSc2kBojlcAsXp4YYp4MJQHHizDnPuvP7g&s"
-//        case 4: // X
-//            return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmTwnA_cbtpvYtWYfPtisBpkedtXxX0Xy6fQ&s"
-        default: return ""
+        let link = self.SocialMediaLink ?? ""
+        if link.contains("facebook") {
+            return "https://cdn.pixabay.com/photo/2021/06/15/12/51/facebook-6338507_1280.png"
         }
+        
+        if link.contains("youtube") {
+            return "https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png"
+        }
+        
+        if link.contains("instagram") {
+            return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNDSc2kBojlcAsXp4YYp4MJQHHizDnPuvP7g&s"
+        }
+        
+        if link.contains("x") || link.contains("twiter") {
+            return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmTwnA_cbtpvYtWYfPtisBpkedtXxX0Xy6fQ&s"
+        }
+        
+        if link.contains("linkdin") {
+            return "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Flinkedin_174857&psig=AOvVaw1VKZHV-49H9ei-shW-3ygs&ust=1733855840833000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLjVw72qm4oDFQAAAAAdAAAAABAE"
+        }
+        
+        return ""
     }
 }
 
@@ -346,27 +357,27 @@ struct SchoolDetailInfo: Codable {
 
 
 struct CompanyDetail: Codable {
-    let id:Int?
-    let companyId:Int?
-    let companyName:String?
-    let companyImageURL:String?
-    let emailAdress:String?
-    let nTNNumber:String?
-    let contactNumber:String?
-    let designation:String?
-    let registirationNumber:String?
-    let location:String?
-    let lastUpdated:String?
-    let firstName:String?
-    let lastName:String?
-    let cNIC:String?
-    let aboutDescription:String?
-    let availableQuotaForPWDs:String?
-    let website:String?
-    let district:String?
-    let socialMedia: [SchoolSocialMediaInfo]?
-    let schoolAndCompanyDisabilityStatusInfo: [DisabilityStatusCompany]?
-    let accessibilityMaterialListInfo: String?
+    var id:Int?
+    var companyId:Int?
+    var companyName:String?
+    var companyImageURL:String?
+    var emailAdress:String?
+    var nTNNumber:String?
+    var contactNumber:String?
+    var designation:String?
+    var registirationNumber:String?
+    var location:String?
+    var lastUpdated:String?
+    var firstName:String?
+    var lastName:String?
+    var cNIC:String?
+    var aboutDescription:String?
+    var availableQuotaForPWDs:String?
+    var website:String?
+    var district:String?
+    var socialMedia: [SchoolSocialMediaInfo]?
+    var schoolAndCompanyDisabilityStatusInfo: [DisabilityStatusCompany]?
+    var accessibilityMaterialListInfo: [AllListData]?
     
     
     enum CodingKeys: String, CodingKey {
@@ -395,7 +406,7 @@ struct CompanyDetail: Codable {
     
     init
     (from decoder: Decoder) throws {
-        
+        do {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         // Decoding and providing default values if key is missing or nil
@@ -419,7 +430,14 @@ struct CompanyDetail: Codable {
         district = try container.decodeIfPresent(String.self, forKey: .district) ?? ""
         socialMedia = try container.decodeIfPresent([SchoolSocialMediaInfo].self, forKey: .socialMedia) ??  []
         schoolAndCompanyDisabilityStatusInfo = try container.decodeIfPresent([DisabilityStatusCompany].self, forKey: .schoolAndCompanyDisabilityStatusInfo) ?? []
-        accessibilityMaterialListInfo = try container.decodeIfPresent(String.self, forKey: .accessibilityMaterialListInfo) ?? ""
+        accessibilityMaterialListInfo = try container.decodeIfPresent([AllListData].self, forKey: .accessibilityMaterialListInfo) ?? []
+        } catch let DecodingError.typeMismatch(type, context) {
+            print("Type '\(type)' mismatch:", context.debugDescription)
+            print("codingPath:", context.codingPath)
+        } catch {
+            print(error)
+            print(error.localizedDescription)
+        }
     }
 }
 
@@ -473,5 +491,6 @@ struct StudentUpdateDetails: Codable {
         let DOB: String?
         let PreviousEducation: String?
         let GenderId: Int?
+        let EmailAddress:String?
     }
 }

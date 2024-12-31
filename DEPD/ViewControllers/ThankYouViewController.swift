@@ -12,6 +12,7 @@ class ThankYouViewController: BaseViewController {
     @IBOutlet weak var viewBG: UIView!
     @IBOutlet weak var imageThankyou: UIImageView!
     @IBOutlet weak var labelThankYouMessage: UILabel!
+    var onGoBack: (() -> Void)?
     
     enum MessageThankYou {
         case none
@@ -37,6 +38,7 @@ class ThankYouViewController: BaseViewController {
         case stay
         case splash
         case login(type: LoginScreenType)
+        case goBack
     }
     
     var messageThankYou: MessageThankYou = .none
@@ -69,6 +71,9 @@ class ThankYouViewController: BaseViewController {
             case .none: break
             case .splash: Bootstrapper.createSplash()
             case .login(let type): Bootstrapper.createLogin(screenType: type)
+            case .goBack:
+                self?.dismiss(animated: true)
+                self?.onGoBack?()
             }
         }
     }

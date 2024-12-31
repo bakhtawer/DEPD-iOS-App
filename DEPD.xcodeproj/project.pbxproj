@@ -88,6 +88,9 @@
 		CB89DFF32BFE6B9400F7458B /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFF22BFE6B9400F7458B /* SplashViewController.swift */; };
 		CB89DFF92BFE6DE000F7458B /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CB89DFF82BFE6DE000F7458B /* Colors.xcassets */; };
 		CB89DFFB2BFE6F1700F7458B /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */; };
+		CB8CF78F2D21B5E000A8ACD6 /* EmployerHubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8CF78E2D21B5E000A8ACD6 /* EmployerHubViewController.swift */; };
+		CB8CF7912D21C3E600A8ACD6 /* EmployerListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8CF7902D21C3E600A8ACD6 /* EmployerListViewController.swift */; };
+		CB8CF7932D21D0F700A8ACD6 /* MyApplicationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8CF7922D21D0F700A8ACD6 /* MyApplicationsViewController.swift */; };
 		CB90B1D22CA860AC0069EA2D /* FormBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB90B1D12CA860AC0069EA2D /* FormBuilderViewController.swift */; };
 		CB90B1D42CA865B10069EA2D /* FormBuilderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB90B1D32CA865B10069EA2D /* FormBuilderView.swift */; };
 		CB948E0A2CD4272300A6960F /* JobSeekerProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB948E092CD4271A00A6960F /* JobSeekerProfile.swift */; };
@@ -116,6 +119,9 @@
 		CBC51B052CF2371500AA55C8 /* ThreeLabelListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC51B042CF2371500AA55C8 /* ThreeLabelListView.swift */; };
 		CBC51B072CF23FCB00AA55C8 /* ThreeLableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC51B062CF23FCB00AA55C8 /* ThreeLableView.swift */; };
 		CBC51B092CF23FD600AA55C8 /* ThreeLableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBC51B082CF23FD600AA55C8 /* ThreeLableView.xib */; };
+		CBCF54FF2D232596004AA1CF /* CompanyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCF54FE2D23258E004AA1CF /* CompanyManager.swift */; };
+		CBCF55012D232F6B004AA1CF /* MyApplicationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCF55002D232F6B004AA1CF /* MyApplicationsModel.swift */; };
+		CBCF55052D2351A1004AA1CF /* ApplicantProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCF55042D2351A1004AA1CF /* ApplicantProfileViewController.swift */; };
 		CBD17C2D2BFFB92B001C3980 /* UiButton+extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD17C2C2BFFB92B001C3980 /* UiButton+extention.swift */; };
 		CBD17C302BFFDBE2001C3980 /* InformativeAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD17C2F2BFFDBE2001C3980 /* InformativeAlertManager.swift */; };
 		CBD17C322BFFE106001C3980 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD17C312BFFE106001C3980 /* HomeViewController.swift */; };
@@ -251,6 +257,9 @@
 		CB89DFF22BFE6B9400F7458B /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		CB89DFF82BFE6DE000F7458B /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		CB89DFFA2BFE6F1700F7458B /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
+		CB8CF78E2D21B5E000A8ACD6 /* EmployerHubViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerHubViewController.swift; sourceTree = "<group>"; };
+		CB8CF7902D21C3E600A8ACD6 /* EmployerListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployerListViewController.swift; sourceTree = "<group>"; };
+		CB8CF7922D21D0F700A8ACD6 /* MyApplicationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyApplicationsViewController.swift; sourceTree = "<group>"; };
 		CB90B1D12CA860AC0069EA2D /* FormBuilderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormBuilderViewController.swift; sourceTree = "<group>"; };
 		CB90B1D32CA865B10069EA2D /* FormBuilderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormBuilderView.swift; sourceTree = "<group>"; };
 		CB948E092CD4271A00A6960F /* JobSeekerProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeekerProfile.swift; sourceTree = "<group>"; };
@@ -282,6 +291,9 @@
 		CBC51B042CF2371500AA55C8 /* ThreeLabelListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeLabelListView.swift; sourceTree = "<group>"; };
 		CBC51B062CF23FCB00AA55C8 /* ThreeLableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeLableView.swift; sourceTree = "<group>"; };
 		CBC51B082CF23FD600AA55C8 /* ThreeLableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreeLableView.xib; sourceTree = "<group>"; };
+		CBCF54FE2D23258E004AA1CF /* CompanyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyManager.swift; sourceTree = "<group>"; };
+		CBCF55002D232F6B004AA1CF /* MyApplicationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyApplicationsModel.swift; sourceTree = "<group>"; };
+		CBCF55042D2351A1004AA1CF /* ApplicantProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantProfileViewController.swift; sourceTree = "<group>"; };
 		CBD17C2C2BFFB92B001C3980 /* UiButton+extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UiButton+extention.swift"; sourceTree = "<group>"; };
 		CBD17C2F2BFFDBE2001C3980 /* InformativeAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformativeAlertManager.swift; sourceTree = "<group>"; };
 		CBD17C312BFFE106001C3980 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -372,6 +384,9 @@
 				CB358CC32CBC1BE800CD25A9 /* CompanyJobCell.xib */,
 				CB358CC82CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift */,
 				CB358CC92CBC34A000CD25A9 /* CompanyAdvertiseJobCell.xib */,
+				CB8CF78E2D21B5E000A8ACD6 /* EmployerHubViewController.swift */,
+				CB8CF7902D21C3E600A8ACD6 /* EmployerListViewController.swift */,
+				CBCF55042D2351A1004AA1CF /* ApplicantProfileViewController.swift */,
 			);
 			path = Employer;
 			sourceTree = "<group>";
@@ -402,6 +417,7 @@
 				CBEAF57D2C96252200153662 /* InstituteHomeModel.swift */,
 				CB358CC02CBC178700CD25A9 /* Company.swift */,
 				CB358CC62CBC27E200CD25A9 /* JobSeeker.swift */,
+				CBCF55002D232F6B004AA1CF /* MyApplicationsModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -549,14 +565,12 @@
 				CBC032162BFE8F6200B45EEC /* UITextField+extention.swift */,
 				CBC032182BFE8FC400B45EEC /* UiColor+Extention.swift */,
 				CBD17C2C2BFFB92B001C3980 /* UiButton+extention.swift */,
-				CBD17C2F2BFFDBE2001C3980 /* InformativeAlertManager.swift */,
 				CBD17C332BFFE128001C3980 /* BaseViewController.swift */,
 				CBD17C352BFFE1B3001C3980 /* ScrollView+Extention.swift */,
 				CBD17C372BFFE233001C3980 /* UIViewController+Extention.swift */,
 				CBD17C452BFFF1B1001C3980 /* UIStackView+Extention.swift */,
 				CB43B3DC2C04D772009E990E /* String+extention.swift */,
 				CB7808462C05039A00F3E785 /* UILabel+Extention.swift */,
-				CB08CEF72C3AC5D5004E3DEC /* UserSession.swift */,
 				CBBD16F42C7CEB8B00171E4B /* ResizeableButton.swift */,
 				CBEAF5742C8BAB9B00153662 /* PlaceholderTextView.swift */,
 				CBC51B0A2CF241B000AA55C8 /* ThreeLabel */,
@@ -605,6 +619,7 @@
 				CBEAF5762C8BBB0E00153662 /* WatchVideoViewController.swift */,
 				CBA06E292C9732A700BFC470 /* DEPDWebViewController.swift */,
 				CB4EB56F2CFBD56C0031E911 /* AppHomeViewContoller.swift */,
+				CB8CF7922D21D0F700A8ACD6 /* MyApplicationsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -642,10 +657,13 @@
 		CBA118F42C7B81C700F9D633 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				CBCF54FE2D23258E004AA1CF /* CompanyManager.swift */,
 				CBE5B8AA2CFB66B90086E779 /* JobManager.swift */,
 				CB0C1F352CE2C43C00BDAF9F /* SchoolManager.swift */,
 				CB73D4752CE1088C00E24FA2 /* KeychainManager.swift */,
 				CBA118F52C7B81DE00F9D633 /* APPMetaDataHandler.swift */,
+				CBD17C2F2BFFDBE2001C3980 /* InformativeAlertManager.swift */,
+				CB08CEF72C3AC5D5004E3DEC /* UserSession.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -913,6 +931,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBC51B072CF23FCB00AA55C8 /* ThreeLableView.swift in Sources */,
+				CB8CF78F2D21B5E000A8ACD6 /* EmployerHubViewController.swift in Sources */,
 				CB43B3D42C03E7FC009E990E /* UserHomeViewModel.swift in Sources */,
 				CB43B3BF2C03C110009E990E /* RegisterViewController.swift in Sources */,
 				CB948E0E2CD4402B00A6960F /* JobSeekerDetailViewController.swift in Sources */,
@@ -933,6 +952,7 @@
 				CB73D47C2CE141ED00E24FA2 /* UpdateSchool.swift in Sources */,
 				CB89DFB52BFE6A7200F7458B /* AppDelegate.swift in Sources */,
 				CBA118FA2C7B924900F9D633 /* School.swift in Sources */,
+				CBCF55012D232F6B004AA1CF /* MyApplicationsModel.swift in Sources */,
 				CB43B3DB2C04D428009E990E /* FPEmailSentViewController.swift in Sources */,
 				CB358CCB2CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift in Sources */,
 				CBD17C322BFFE106001C3980 /* HomeViewController.swift in Sources */,
@@ -950,6 +970,7 @@
 				CBBD16F82C7D135100171E4B /* DEPDButton.swift in Sources */,
 				CBEAF5732C8BA60B00153662 /* GenericFormBuilderViewController.swift in Sources */,
 				CBD17C342BFFE128001C3980 /* BaseViewController.swift in Sources */,
+				CBCF54FF2D232596004AA1CF /* CompanyManager.swift in Sources */,
 				CB358CBD2CBC12F000CD25A9 /* EmployerHomeViewController.swift in Sources */,
 				CBC032172BFE8F6200B45EEC /* UITextField+extention.swift in Sources */,
 				CB0C1F362CE2C44200BDAF9F /* SchoolManager.swift in Sources */,
@@ -965,6 +986,7 @@
 				CB2B55E52C55A27F008A8B83 /* InstituteDetailViewController.swift in Sources */,
 				CB358CC52CBC1BE800CD25A9 /* CompanyJobCell.swift in Sources */,
 				CB43B3CC2C03D359009E990E /* APIService.swift in Sources */,
+				CB8CF7912D21C3E600A8ACD6 /* EmployerListViewController.swift in Sources */,
 				CB73D4722CE028FC00E24FA2 /* ImageGalleryView.swift in Sources */,
 				CBEAF5712C8B9E1E00153662 /* HelpViewController.swift in Sources */,
 				CBC032062BFE77E100B45EEC /* UIView+extention.swift in Sources */,
@@ -983,6 +1005,7 @@
 				CB358CC12CBC178700CD25A9 /* Company.swift in Sources */,
 				CBBD16F32C7BBE3200171E4B /* AccessibilityViewController.swift in Sources */,
 				CB7808472C05039A00F3E785 /* UILabel+Extention.swift in Sources */,
+				CBCF55052D2351A1004AA1CF /* ApplicantProfileViewController.swift in Sources */,
 				CBA06E2A2C9732A800BFC470 /* DEPDWebViewController.swift in Sources */,
 				CBD17C2D2BFFB92B001C3980 /* UiButton+extention.swift in Sources */,
 				CB7808492C15EE5600F3E785 /* RegisterAsSelectionTwo.swift in Sources */,
@@ -997,6 +1020,7 @@
 				CBD17C442BFFF030001C3980 /* ListTes.swift in Sources */,
 				CBC032132BFE820600B45EEC /* LoginViewController.swift in Sources */,
 				CB43B3D92C04C5F0009E990E /* ForgotPasswordViewController.swift in Sources */,
+				CB8CF7932D21D0F700A8ACD6 /* MyApplicationsViewController.swift in Sources */,
 				CBD17C302BFFDBE2001C3980 /* InformativeAlertManager.swift in Sources */,
 				CBE5B8AB2CFB66B90086E779 /* JobManager.swift in Sources */,
 				CBD17C382BFFE233001C3980 /* UIViewController+Extention.swift in Sources */,

@@ -16,9 +16,9 @@ struct EmployerHomeViewModelData: Codable, Hashable {
         hasher.combine(id)
     }
     var id = UUID()
-    var employees: JobSeekerModel?
-    var company: CompanyModel?
-    var advertise: JobSeekerModel?
+    var employees: CompanyEmployeeModel?
+    var jobApplications: CompanyJobModel?
+    var advertise: CompanyVacancyModel?
 }
 
 protocol EmployerHomeVM: AnyObject {
@@ -32,13 +32,17 @@ class EmployerHomeViewModel {
     
     private var dataProds = [EmployerHomeViewModelData]()
     
-    private var dataEmployees = [EmployerHomeViewModelData]()
+    private var dataJobApplications = [EmployerHomeViewModelData]()
+    private var dataFindEmployees = [EmployerHomeViewModelData]()
+    private var dataVacancies = [EmployerHomeViewModelData]()
     
     weak var delegate: (EmployerHomeVM)?
     
     private let service = APIService()
     
     private var searchText: String?
+    
+    private var selectedStatusID: Int?
     
     init() {
         print("EmployerHomeViewModel- init")
@@ -48,50 +52,20 @@ class EmployerHomeViewModel {
         print("EmployerHomeViewModel- deinit")
     }
     
-    func fetchAllJobs() {
+    
+    func getVacancy() {
         delegate?.showLoader()
-        let request = Endpoint.getJobList.request!
-        service.makeRequest(with: request, respModel: ApiResponse<[CompanyModel]>.self) {[weak self] userResponse, error in
-            if let error = error { print("DEBUG PRINT:", error); return }
-            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong"); return }
-            guard let jobs = userResponse?.oData else { SMM.shared.showError(title: "", message: "Error parsing server response.");  return}
-            let data = jobs.map {
-                EmployerHomeViewModelData(company: $0)
+        CompanyManager.shared.getVacancy {[weak self] data in
+            self?.delegate?.hideLoader()
+            self?.dataVacancies.removeAll()
+            data?.forEach {
+                self?.dataVacancies.append(EmployerHomeViewModelData(advertise: $0))
             }
-            self?.dataProds = data
-            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {[weak self] in
-                self?.delegate?.hideLoader()
-                self?.delegate?.fetchedDetails()
-            })
+            self?.delegate?.fetchedDetails()
         }
     }
-
-    func getCount() -> Int { dataProds.count }
-    
-    func getEmployees() -> [EmployerHomeViewModelData] {
-        [EmployerHomeViewModelData(employees: JobSeekerModel()),
-         EmployerHomeViewModelData(employees: JobSeekerModel()),
-         EmployerHomeViewModelData(employees: JobSeekerModel())]
-    }
     func getAdvertise() -> [EmployerHomeViewModelData] {
-        [EmployerHomeViewModelData(advertise: JobSeekerModel()),
-         EmployerHomeViewModelData(advertise: JobSeekerModel()),
-         EmployerHomeViewModelData(advertise: JobSeekerModel())]
-    }
-    func getJobs() -> [EmployerHomeViewModelData] {
-        var jobs = dataProds
-//        // Check if search text is provided
-//        guard var searchText = searchText, !searchText.isEmpty else { return dataProds }
-//        searchText = searchText.lowercased()
-//        // Filter based on student properties as well as Gender and District
-//        jobs = jobs.filter { all in
-//            return (all .CompanyName?.lowercased().contains(searchText) ?? false) ||
-//            ($0.PositionName?.lowercased().contains(searchText) ?? false) ||
-//            ($0.Salary?.lowercased().contains(searchText) ?? false) ||
-//            ($0.DescriptionText?.lowercased().contains(searchText) ?? false) ||
-//            ($0.Location?.lowercased().contains(searchText) ?? false)
-//        }
-        return jobs
+        dataVacancies
     }
     
     func resetAll() {
@@ -102,4 +76,86 @@ class EmployerHomeViewModel {
         searchText = text
         delegate?.fetchedDetails()
     }
+    
+    func getTotaljobApplications() {
+        delegate?.showLoader()
+        CompanyManager.shared.getTotaljobApplications {[weak self] data in
+            self?.delegate?.hideLoader()
+            self?.dataJobApplications.removeAll()
+            data?.forEach {
+                self?.dataJobApplications.append(EmployerHomeViewModelData(jobApplications: $0))
+            }
+            self?.delegate?.fetchedDetails()
+        }
+    }
+    
+    func getHiredPerson() {
+        delegate?.showLoader()
+        CompanyManager.shared.getHiredPerson {[weak self] data in
+            self?.delegate?.hideLoader()
+            self?.dataJobApplications.removeAll()
+            data?.forEach {
+                self?.dataJobApplications.append(EmployerHomeViewModelData(jobApplications: $0))
+            }
+            self?.delegate?.fetchedDetails()
+        }
+    }
+    
+    func selectedStatus(status: Int) {
+        self.selectedStatusID = status
+        self.delegate?.fetchedDetails()
+    }
+    
+    func getJobApplications() -> [EmployerHomeViewModelData] {
+        var data = dataJobApplications
+        if let status = selectedStatusID {
+            data = data.filter {$0.jobApplications?.StatusId == status}
+        }
+        guard var searchText = searchText, !searchText.isEmpty else { return data }
+        searchText = searchText.lowercased()
+        data = data.filter { all in
+            return (all.jobApplications?.FirstName?.lowercased().contains(searchText) ?? false) ||
+            (all.jobApplications?.LastName?.lowercased().contains(searchText) ?? false) ||
+            (all.jobApplications?.Address?.lowercased().contains(searchText) ?? false) ||
+            (all.jobApplications?.dob?.lowercased().contains(searchText) ?? false) ||
+            (all.jobApplications?.StatusName?.lowercased().contains(searchText) ?? false) ||
+            (all.jobApplications?.ContactNo?.lowercased().contains(searchText) ?? false)
+        }
+        return data
+    }
+    
+    
+    // FIND EMPLOYEES
+    var appliedFilters: [String : Any] = [:]
+    func setAppliedFilters(filters: [String : Any]) {
+        appliedFilters = filters
+        getJobSeekerFilter(data: JobSeekerFilterCreds())
+    }
+    
+    func getFindEmployee() -> [EmployerHomeViewModelData] {
+        var data = dataFindEmployees
+        guard var searchText = searchText, !searchText.isEmpty else { return data }
+        searchText = searchText.lowercased()
+        data = data.filter { all in
+            return (all.employees?.Address?.lowercased().contains(searchText) ?? false) ||
+            (all.employees?.Name?.lowercased().contains(searchText) ?? false) ||
+            (all.employees?.DisabilityName?.lowercased().contains(searchText) ?? false) ||
+            (all.employees?.Address?.lowercased().contains(searchText) ?? false) ||
+            (all.employees?.EmailAddress?.lowercased().contains(searchText) ?? false)
+        }
+        return data
+    }
+    
+    func getJobSeekerFilter(data: JobSeekerFilterCreds) {
+        delegate?.showLoader()
+        CompanyManager.shared.getJobSeekerFilter(data: data) {[weak self] data in
+            self?.delegate?.hideLoader()
+            self?.dataFindEmployees.removeAll()
+            data?.forEach {
+                self?.dataFindEmployees.append(EmployerHomeViewModelData(employees: $0))
+            }
+            self?.delegate?.fetchedDetails()
+        }
+    }
 }
+font
