@@ -44,6 +44,8 @@ class AppHomeViewContoller: BaseViewController {
         setupNavigation()
         setView()
         
+        viewKnowYourRights.isHidden = true
+        
         viewStudent.addTapGestureRecognizer {
             let storyboard = getStoryBoard(.main)
             let view = storyboard.instantiateViewController(ofType: InclusiveScreenThreeButtons.self)
@@ -115,5 +117,6 @@ extension AppHomeViewContoller {
     func setupNavigation() {
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         UIApplication.shared.statusBarView?.backgroundColor = .appBGDark
+        self.setNavigationTransparent()
     }
 }

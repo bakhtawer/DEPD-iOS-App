@@ -11,11 +11,13 @@ public class ApiResponse<T>: Codable where T: Codable {
     var oData: T?
     var isError: Bool?
     var errorMessage: String?
+    var errorMessage2: String?
     
     enum CodingKeys: String, CodingKey {
         case oData = "oData"
         case isError = "IsError"
         case errorMessage = "ErrorMessage"
+        case errorMessage2 = "Message"
     }
     
     required public init(from decoder: Decoder) throws {
@@ -24,6 +26,7 @@ public class ApiResponse<T>: Codable where T: Codable {
             oData = try values.decodeIfPresent(T.self, forKey: .oData)
             isError = try values.decodeIfPresent(Bool.self, forKey: .isError)
             errorMessage = try values.decodeIfPresent(String.self, forKey: .errorMessage)
+            errorMessage2 = try values.decodeIfPresent(String.self, forKey: .errorMessage2)
         } catch let DecodingError.typeMismatch(type, context) {
             print("Type '\(type)' mismatch:", context.debugDescription)
             print("codingPath:", context.codingPath)

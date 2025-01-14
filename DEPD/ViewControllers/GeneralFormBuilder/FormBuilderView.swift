@@ -20,6 +20,7 @@ class FormBuilderView: UIView {
     private var dateTF: UITextField?
     private var dateFrom: UITextField?
     private var dateTo: UITextField?
+    private var dateJoining: UITextField?
     
     private var checkBoxValue: Bool = false
     
@@ -207,7 +208,7 @@ class FormBuilderView: UIView {
             return textField
         case .textLong:
             let placeholderTextView = PlaceholderTextView()
-            placeholderTextView.placeholderLabel.text = field.placeholder
+            placeholderTextView.placeholderLabel.text = " \(field.placeholder)"
             placeholderTextView.tag = fieldIndex
             placeholderTextView.backgroundColor = .appLight
             placeholderTextView.heightAnchor.constraint(equalToConstant: 150).isActive = true
@@ -340,7 +341,6 @@ class FormBuilderView: UIView {
             datePicker.datePickerMode = .date
             datePicker.preferredDatePickerStyle = .wheels
             datePicker.tag = fieldIndex
-            datePicker.maximumDate = Date()
             if let date = value?.fromFormattedDate(){
                 datePicker.date = date
             }
@@ -361,6 +361,46 @@ class FormBuilderView: UIView {
             let toolbar = UIToolbar()
             toolbar.sizeToFit()
             let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDateButtonTappedTo))
+            toolbar.setItems([doneButton], animated: true)
+            dateTF.inputAccessoryView = toolbar
+            
+            dateTF.heightAnchor.constraint(equalToConstant: tfHeight).isActive = true
+            return dateTF
+        case .dateJoning:
+            dateJoining = UITextField()
+            guard let dateTF = dateJoining else { return UITextField() }
+            
+            dateTF.placeholder = field.placeholder
+            dateTF.keyboardType = .numberPad
+            dateTF.borderStyle = .roundedRect
+            dateTF.tag = fieldIndex
+            dateTF.makeItThemeTF()
+            dateTF.text = value?.toFormattedDateShow()
+            
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .date
+            datePicker.preferredDatePickerStyle = .wheels
+            datePicker.tag = fieldIndex
+            if let date = value?.fromFormattedDate(){
+                datePicker.date = date
+            }
+            dateTF.inputView = datePicker
+            
+            let dropdownIcon = UIImageView(image: UIImage(systemName: "chevron.down"))
+            dropdownIcon.contentMode = .scaleAspectFit
+            dropdownIcon.tintColor = .textDark
+            
+            let containerView = UIView(frame: CGRect(x: 0, y: 0, width: dropdownIcon.frame.width + 32, height: dropdownIcon.frame.height))
+            dropdownIcon.frame = CGRect(x: 16, y: 0, width: dropdownIcon.frame.width, height: dropdownIcon.frame.height)
+            containerView.addSubview(dropdownIcon)
+            
+            dateTF.rightView = containerView
+            dateTF.rightViewMode = .always
+            
+            // Add a toolbar with a "Done" button to dismiss the picker
+            let toolbar = UIToolbar()
+            toolbar.sizeToFit()
+            let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneDateButtonTappedJoining))
             toolbar.setItems([doneButton], animated: true)
             dateTF.inputAccessoryView = toolbar
             
@@ -465,6 +505,14 @@ extension FormBuilderView: UIPickerViewDelegate, UIPickerViewDataSource {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy"
             self.dateTo?.text = dateFormatter.string(from: datePicker.date)
+        }
+        UIViewController.top().view.endEditing(true)
+    }
+    @objc func doneDateButtonTappedJoining() {
+        if let datePicker = self.dateJoining?.inputView as? UIDatePicker {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .medium
+            self.dateJoining?.text = dateFormatter.string(from: datePicker.date)
         }
         UIViewController.top().view.endEditing(true)
     }

@@ -217,6 +217,33 @@ extension SchoolManager {
             completion(true)
         }
     }
+    
+    func deleteAccebilityMaterial(data: DeleteById, completion: @escaping (Bool) -> Void) {
+        let request = Endpoint.deleteAccebilityMaterial(cred: data).request!
+        service.makeRequest(with: request, respModel: ApiResponse<String>.self) {userResponse, error in
+            if error != nil {
+                completion(false)
+                return }
+            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                completion(false)
+                return }
+            completion(true)
+        }
+    }
+    
+    func deleteWeCanEducate(data: DeleteById, completion: @escaping (Bool) -> Void) {
+        let request = Endpoint.deleteWeCanEducate(cred: data).request!
+        service.makeRequest(with: request, respModel: ApiResponse<String>.self) {userResponse, error in
+            if error != nil {
+                completion(false)
+                return }
+            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                completion(false)
+                return }
+            completion(true)
+        }
+    }
+    
 }
 
 //case studentAdmissionUpdate

@@ -30,8 +30,6 @@
 		CB358CC42CBC1BE800CD25A9 /* CompanyJobCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB358CC32CBC1BE800CD25A9 /* CompanyJobCell.xib */; };
 		CB358CC52CBC1BE800CD25A9 /* CompanyJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB358CC22CBC1BE800CD25A9 /* CompanyJobCell.swift */; };
 		CB358CC72CBC27E200CD25A9 /* JobSeeker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB358CC62CBC27E200CD25A9 /* JobSeeker.swift */; };
-		CB358CCA2CBC34A000CD25A9 /* CompanyAdvertiseJobCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB358CC92CBC34A000CD25A9 /* CompanyAdvertiseJobCell.xib */; };
-		CB358CCB2CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB358CC82CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift */; };
 		CB43B3BF2C03C110009E990E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3BE2C03C110009E990E /* RegisterViewController.swift */; };
 		CB43B3C52C03D1C3009E990E /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CB43B3C42C03D1C3009E990E /* IQKeyboardManagerSwift */; };
 		CB43B3C82C03D30C009E990E /* HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB43B3C72C03D30C009E990E /* HTTP.swift */; };
@@ -54,6 +52,8 @@
 		CB73D4722CE028FC00E24FA2 /* ImageGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D4712CE028F900E24FA2 /* ImageGalleryView.swift */; };
 		CB73D4762CE1088C00E24FA2 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D4752CE1088C00E24FA2 /* KeychainManager.swift */; };
 		CB73D47C2CE141ED00E24FA2 /* UpdateSchool.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB73D47B2CE141E600E24FA2 /* UpdateSchool.swift */; };
+		CB7725F22D36DF7A006C159D /* ForgotPOTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7725F12D36DF7A006C159D /* ForgotPOTPViewController.swift */; };
+		CB7725F42D36DF8C006C159D /* ForgotPEnterPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7725F32D36DF8C006C159D /* ForgotPEnterPViewController.swift */; };
 		CB7808342C05021900F3E785 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808222C05021800F3E785 /* Roboto-Italic.ttf */; };
 		CB7808352C05021900F3E785 /* RobotoCondensed-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */; };
 		CB7808362C05021900F3E785 /* RobotoCondensed-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */; };
@@ -74,6 +74,8 @@
 		CB7808452C05021900F3E785 /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CB7808332C05021900F3E785 /* Roboto-Thin.ttf */; };
 		CB7808472C05039A00F3E785 /* UILabel+Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7808462C05039A00F3E785 /* UILabel+Extention.swift */; };
 		CB7808492C15EE5600F3E785 /* RegisterAsSelectionTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB7808482C15EE5600F3E785 /* RegisterAsSelectionTwo.swift */; };
+		CB84AD322D249AB100B77053 /* MyApplicationsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB84AD312D249AB100B77053 /* MyApplicationsCell.xib */; };
+		CB84AD332D249AB100B77053 /* MyApplicationsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB84AD302D249AB100B77053 /* MyApplicationsCell.swift */; };
 		CB89DFB52BFE6A7200F7458B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFB42BFE6A7200F7458B /* AppDelegate.swift */; };
 		CB89DFB72BFE6A7200F7458B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB89DFB62BFE6A7200F7458B /* SceneDelegate.swift */; };
 		CB89DFBC2BFE6A7200F7458B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = CB89DFBB2BFE6A7200F7458B /* Base */; };
@@ -140,6 +142,7 @@
 		CBD6E3F32CF398BB0060F009 /* JobSeekerForms.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD6E3F22CF398BB0060F009 /* JobSeekerForms.swift */; };
 		CBDB23A12BFFF52800AEA1E7 /* InstituteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBDB239F2BFFF52800AEA1E7 /* InstituteCell.swift */; };
 		CBDB23A22BFFF52800AEA1E7 /* InstituteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBDB23A02BFFF52800AEA1E7 /* InstituteCell.xib */; };
+		CBDD4BCD2D2884F00011110F /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = CBDD4BCC2D2884F00011110F /* PrivacyInfo.xcprivacy */; };
 		CBE5B8AB2CFB66B90086E779 /* JobManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBE5B8AA2CFB66B90086E779 /* JobManager.swift */; };
 		CBEAF5712C8B9E1E00153662 /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAF5702C8B9E1E00153662 /* HelpViewController.swift */; };
 		CBEAF5732C8BA60B00153662 /* GenericFormBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBEAF5722C8BA60B00153662 /* GenericFormBuilderViewController.swift */; };
@@ -195,8 +198,6 @@
 		CB358CC22CBC1BE800CD25A9 /* CompanyJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyJobCell.swift; sourceTree = "<group>"; };
 		CB358CC32CBC1BE800CD25A9 /* CompanyJobCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyJobCell.xib; sourceTree = "<group>"; };
 		CB358CC62CBC27E200CD25A9 /* JobSeeker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeeker.swift; sourceTree = "<group>"; };
-		CB358CC82CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyAdvertiseJobCell.swift; sourceTree = "<group>"; };
-		CB358CC92CBC34A000CD25A9 /* CompanyAdvertiseJobCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CompanyAdvertiseJobCell.xib; sourceTree = "<group>"; };
 		CB43B3BE2C03C110009E990E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		CB43B3C72C03D30C009E990E /* HTTP.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTP.swift; sourceTree = "<group>"; };
 		CB43B3C92C03D32F009E990E /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
@@ -219,6 +220,8 @@
 		CB73D4712CE028F900E24FA2 /* ImageGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageGalleryView.swift; sourceTree = "<group>"; };
 		CB73D4752CE1088C00E24FA2 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		CB73D47B2CE141E600E24FA2 /* UpdateSchool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateSchool.swift; sourceTree = "<group>"; };
+		CB7725F12D36DF7A006C159D /* ForgotPOTPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPOTPViewController.swift; sourceTree = "<group>"; };
+		CB7725F32D36DF8C006C159D /* ForgotPEnterPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPEnterPViewController.swift; sourceTree = "<group>"; };
 		CB7808222C05021800F3E785 /* Roboto-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Italic.ttf"; sourceTree = "<group>"; };
 		CB7808232C05021800F3E785 /* RobotoCondensed-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-Italic.ttf"; sourceTree = "<group>"; };
 		CB7808242C05021800F3E785 /* RobotoCondensed-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoCondensed-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -239,6 +242,8 @@
 		CB7808332C05021900F3E785 /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
 		CB7808462C05039A00F3E785 /* UILabel+Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extention.swift"; sourceTree = "<group>"; };
 		CB7808482C15EE5600F3E785 /* RegisterAsSelectionTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterAsSelectionTwo.swift; sourceTree = "<group>"; };
+		CB84AD302D249AB100B77053 /* MyApplicationsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyApplicationsCell.swift; sourceTree = "<group>"; };
+		CB84AD312D249AB100B77053 /* MyApplicationsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyApplicationsCell.xib; sourceTree = "<group>"; };
 		CB89DFB12BFE6A7200F7458B /* DEPD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DEPD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB89DFB42BFE6A7200F7458B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CB89DFB62BFE6A7200F7458B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -312,6 +317,7 @@
 		CBD6E3F22CF398BB0060F009 /* JobSeekerForms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobSeekerForms.swift; sourceTree = "<group>"; };
 		CBDB239F2BFFF52800AEA1E7 /* InstituteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstituteCell.swift; sourceTree = "<group>"; };
 		CBDB23A02BFFF52800AEA1E7 /* InstituteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InstituteCell.xib; sourceTree = "<group>"; };
+		CBDD4BCC2D2884F00011110F /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		CBE5B8AA2CFB66B90086E779 /* JobManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobManager.swift; sourceTree = "<group>"; };
 		CBEAF5702C8B9E1E00153662 /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		CBEAF5722C8BA60B00153662 /* GenericFormBuilderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericFormBuilderViewController.swift; sourceTree = "<group>"; };
@@ -382,8 +388,6 @@
 				CB358CBE2CBC130000CD25A9 /* EmployerHomeViewModel.swift */,
 				CB358CC22CBC1BE800CD25A9 /* CompanyJobCell.swift */,
 				CB358CC32CBC1BE800CD25A9 /* CompanyJobCell.xib */,
-				CB358CC82CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift */,
-				CB358CC92CBC34A000CD25A9 /* CompanyAdvertiseJobCell.xib */,
 				CB8CF78E2D21B5E000A8ACD6 /* EmployerHubViewController.swift */,
 				CB8CF7902D21C3E600A8ACD6 /* EmployerListViewController.swift */,
 				CBCF55042D2351A1004AA1CF /* ApplicantProfileViewController.swift */,
@@ -437,8 +441,7 @@
 			children = (
 				CBC032122BFE820600B45EEC /* LoginViewController.swift */,
 				CB43B3E42C04F187009E990E /* Register */,
-				CB43B3D82C04C5F0009E990E /* ForgotPasswordViewController.swift */,
-				CB43B3DA2C04D428009E990E /* FPEmailSentViewController.swift */,
+				CB7725F52D36E110006C159D /* ForgotPassworrd */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -466,6 +469,17 @@
 			path = BottomView;
 			sourceTree = "<group>";
 		};
+		CB7725F52D36E110006C159D /* ForgotPassworrd */ = {
+			isa = PBXGroup;
+			children = (
+				CB7725F32D36DF8C006C159D /* ForgotPEnterPViewController.swift */,
+				CB7725F12D36DF7A006C159D /* ForgotPOTPViewController.swift */,
+				CB43B3D82C04C5F0009E990E /* ForgotPasswordViewController.swift */,
+				CB43B3DA2C04D428009E990E /* FPEmailSentViewController.swift */,
+			);
+			path = ForgotPassworrd;
+			sourceTree = "<group>";
+		};
 		CB7807FD2C04FF7A00F3E785 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,6 +504,16 @@
 				CB78082A2C05021900F3E785 /* RobotoCondensed-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CB84AD2F2D249A2700B77053 /* MyApplications */ = {
+			isa = PBXGroup;
+			children = (
+				CB8CF7922D21D0F700A8ACD6 /* MyApplicationsViewController.swift */,
+				CB84AD302D249AB100B77053 /* MyApplicationsCell.swift */,
+				CB84AD312D249AB100B77053 /* MyApplicationsCell.xib */,
+			);
+			path = MyApplications;
 			sourceTree = "<group>";
 		};
 		CB89DFA82BFE6A7200F7458B = {
@@ -582,6 +606,7 @@
 			isa = PBXGroup;
 			children = (
 				CB89DFB42BFE6A7200F7458B /* AppDelegate.swift */,
+				CBDD4BCC2D2884F00011110F /* PrivacyInfo.xcprivacy */,
 				CB89DFB62BFE6A7200F7458B /* SceneDelegate.swift */,
 			);
 			path = Appdelegate;
@@ -619,7 +644,7 @@
 				CBEAF5762C8BBB0E00153662 /* WatchVideoViewController.swift */,
 				CBA06E292C9732A700BFC470 /* DEPDWebViewController.swift */,
 				CB4EB56F2CFBD56C0031E911 /* AppHomeViewContoller.swift */,
-				CB8CF7922D21D0F700A8ACD6 /* MyApplicationsViewController.swift */,
+				CB84AD2F2D249A2700B77053 /* MyApplications */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -877,14 +902,15 @@
 				CB78083A2C05021900F3E785 /* RobotoCondensed-Light.ttf in Resources */,
 				CB7808372C05021900F3E785 /* Roboto-Bold.ttf in Resources */,
 				CB7808382C05021900F3E785 /* Roboto-MediumItalic.ttf in Resources */,
-				CB358CCA2CBC34A000CD25A9 /* CompanyAdvertiseJobCell.xib in Resources */,
 				CB7808432C05021900F3E785 /* Roboto-BoldItalic.ttf in Resources */,
 				CBBD16FA2C7D13C900171E4B /* DEPDButton.xib in Resources */,
 				CBEAF5832C962BCD00153662 /* InstituteStudentCell.xib in Resources */,
+				CBDD4BCD2D2884F00011110F /* PrivacyInfo.xcprivacy in Resources */,
 				CBD17C422BFFEB74001C3980 /* BannerView.xib in Resources */,
 				CB89DFBE2BFE6A7400F7458B /* Assets.xcassets in Resources */,
 				CB358CC42CBC1BE800CD25A9 /* CompanyJobCell.xib in Resources */,
 				CB78083B2C05021900F3E785 /* RobotoBlack.ttf in Resources */,
+				CB84AD322D249AB100B77053 /* MyApplicationsCell.xib in Resources */,
 				CB7808412C05021900F3E785 /* Roboto-BlackItalic.ttf in Resources */,
 				CBC032112BFE819200B45EEC /* Localizable.xcstrings in Resources */,
 				CB89DFF92BFE6DE000F7458B /* Colors.xcassets in Resources */,
@@ -931,6 +957,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBC51B072CF23FCB00AA55C8 /* ThreeLableView.swift in Sources */,
+				CB7725F22D36DF7A006C159D /* ForgotPOTPViewController.swift in Sources */,
 				CB8CF78F2D21B5E000A8ACD6 /* EmployerHubViewController.swift in Sources */,
 				CB43B3D42C03E7FC009E990E /* UserHomeViewModel.swift in Sources */,
 				CB43B3BF2C03C110009E990E /* RegisterViewController.swift in Sources */,
@@ -946,15 +973,16 @@
 				CB08CEF82C3AC5D5004E3DEC /* UserSession.swift in Sources */,
 				CB1CE0BF2CCD26C300ABFAEA /* JobSeekerHomeViewController.swift in Sources */,
 				CB90B1D22CA860AC0069EA2D /* FormBuilderViewController.swift in Sources */,
+				CB84AD332D249AB100B77053 /* MyApplicationsCell.swift in Sources */,
 				CB73D4762CE1088C00E24FA2 /* KeychainManager.swift in Sources */,
 				CBD17C3F2BFFEB74001C3980 /* BannerCCell.swift in Sources */,
 				CBC032152BFE892A00B45EEC /* String+extentions.swift in Sources */,
 				CB73D47C2CE141ED00E24FA2 /* UpdateSchool.swift in Sources */,
+				CB7725F42D36DF8C006C159D /* ForgotPEnterPViewController.swift in Sources */,
 				CB89DFB52BFE6A7200F7458B /* AppDelegate.swift in Sources */,
 				CBA118FA2C7B924900F9D633 /* School.swift in Sources */,
 				CBCF55012D232F6B004AA1CF /* MyApplicationsModel.swift in Sources */,
 				CB43B3DB2C04D428009E990E /* FPEmailSentViewController.swift in Sources */,
-				CB358CCB2CBC34A000CD25A9 /* CompanyAdvertiseJobCell.swift in Sources */,
 				CBD17C322BFFE106001C3980 /* HomeViewController.swift in Sources */,
 				CB0C1F342CE2934400BDAF9F /* DisabilityListView.swift in Sources */,
 				CBC032082BFE784100B45EEC /* CALayer+Extention.swift in Sources */,

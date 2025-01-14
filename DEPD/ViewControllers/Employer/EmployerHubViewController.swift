@@ -59,6 +59,20 @@ class EmployerHubViewController: MVVMViewController<EmployerHomeViewModel> {
                 openModuleOnNavigation(from: self, controller: view)
             }
         }
+        buttonEditYourProfile.addTapGestureRecognizer {
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(identifier: "EmployerListViewController") { coder in
+                    let viewModel = EmployerHomeViewModel()
+                    let vc = EmployerListViewController(coder: coder, viewModel: viewModel)
+                    return vc
+                }
+                if let view = view as? EmployerListViewController {
+                    view.screenType = .totalApplications
+                    openModuleOnNavigation(from: self, controller: view)
+                }
+            }
+        }
         
         viewTotalApplications.addTapGestureRecognizer {
             DispatchQueue.main.async {[weak self] in
@@ -174,7 +188,7 @@ class EmployerHubViewController: MVVMViewController<EmployerHomeViewModel> {
         
 
         buttonViewApplications.setTitle("\("edit_profile".localized())", for: .normal)
-        buttonEditYourProfile.setTitle("\("my_applications".localized())", for: .normal)
+        buttonEditYourProfile.setTitle("\("my_applicants".localized())", for: .normal)
         buttonViewApplications.makeItThemePrimary(14)
         buttonEditYourProfile.makeItThemeWhitePrimary(14)
 

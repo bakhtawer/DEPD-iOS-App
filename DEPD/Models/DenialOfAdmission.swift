@@ -138,3 +138,96 @@ class DenialOfJob {
         complainDetailsCheckBox = true
     }
 }
+
+class DenialOfAdmissionCreds: Codable {
+    var AudioFileName: String?
+    var cdINstituteAddress: String?
+    var cdINstituteContactNumber: String?
+    var cdINstituteDistrictId: Int?
+    var cdINstituteEmailAddress: String?
+    var cdINstituteName: String?
+    var cdIReason: String?
+    var cdtAddress: String?
+    var cdtCNIC: String?
+    var cdtContactNo: String?
+    var cdtDateOfBirth: String?
+    var cdtDisablityId: Int?
+    var cdtDistrictId: Int?
+    var cdtFatherName: String?
+    var cdtGender: Int?
+    var cdtName: String?
+    var DocFileName: String?
+    var prCNIC: String?
+    var prContactNo: String?
+    var prEmail: String?
+    var prName: String?
+    var prRelationwithCandidate: Int?
+    var DocFileByteString: String?
+    var cdReason: String?
+    var cdCompanyAddress: String?
+    var cdCompanyContactNumber: String?
+    var cdCompanyDistrictId: Int?
+    var cdCompanyEmailAddress: String?
+    var cdCompanyName: String?
+    
+    init(AudioFileName: String?,
+         cdINstituteAddress: String?,
+         cdINstituteContactNumber: String?,
+         cdINstituteDistrictId: Int?,
+         cdINstituteEmailAddress: String?,
+         cdINstituteName: String?,
+         cdIReason: String?,
+         cdtAddress: String?,
+         cdtCNIC: String?,
+         cdtContactNo: String?,
+         cdtDateOfBirth: String?,
+         cdtDisablityId: Int?,
+         cdtDistrictId: Int?,
+         cdtFatherName: String?,
+         cdtGender: Int?,
+         cdtName: String?,
+         DocFileName: String?,
+         prCNIC: String?,
+         prContactNo: String?,
+         prEmail: String?,
+         prName: String?,
+         prRelationwithCandidate: Int?,
+         DocFileByteString: String?,
+         cdReason: String?,
+         cdCompanyAddress: String?,
+         cdCompanyContactNumber: String?,
+         cdCompanyDistrictId: Int?,
+         cdCompanyEmailAddress: String?,
+         cdCompanyName: String?
+    ) {
+        self.AudioFileName = AudioFileName
+        self.cdINstituteAddress = cdINstituteAddress
+        self.cdINstituteContactNumber = cdINstituteContactNumber
+        self.cdINstituteDistrictId = cdINstituteDistrictId
+        self.cdINstituteEmailAddress = cdINstituteEmailAddress
+        self.cdINstituteName = cdINstituteName
+        self.cdIReason = cdIReason
+        self.cdtAddress = cdtAddress
+        self.cdtCNIC = cdtCNIC
+        self.cdtContactNo = cdtContactNo
+        self.cdtDateOfBirth = cdtDateOfBirth
+        self.cdtDisablityId = cdtDisablityId
+        self.cdtDistrictId = cdtDistrictId
+        self.cdtFatherName = cdtFatherName
+        self.cdtGender = cdtGender
+        self.cdtName = cdtName
+        self.DocFileName = DocFileName
+        self.prCNIC = prCNIC
+        self.prContactNo = prContactNo
+        self.prEmail = prEmail
+        self.prName = prName
+        self.prRelationwithCandidate = prRelationwithCandidate
+        self.DocFileByteString = DocFileByteString
+        self.cdCompanyAddress = cdCompanyAddress
+        self.cdCompanyContactNumber = cdCompanyContactNumber
+        self.cdCompanyDistrictId = cdCompanyDistrictId
+        self.cdCompanyEmailAddress = cdCompanyEmailAddress
+        self.cdCompanyName = cdCompanyName
+        self.cdReason = cdReason
+    }
+}

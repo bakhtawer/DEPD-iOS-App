@@ -186,6 +186,16 @@ class ImageCarouselViewController: UIViewController {
         ])
         
         carouselView.configure(with: imageURLs, startIndex: selectedIndex)
+        
+        let button = UIButton(frame: CGRect(x: 20, y: 6, width: 44, height: 44))
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "xmark.circle"), for: .normal)
+        button.addTapGestureRecognizer {[weak self] in
+            self?.dismiss(animated: true)
+        }
+        button.tintColor = .appLight
+        
+        view.addSubview(button)
     }
 }
 
@@ -291,8 +301,27 @@ private class ImageCarouselCell: UICollectionViewCell {
     }
     
     func configure(with urlString: String) {
-        if let url = URL(string: urlString) {
+        
+        if let url = URL(string: ensureImageExtension(urlString: urlString)) {
             imageView.kf.setImage(with: url)
         }
+    }
+    
+    private func ensureImageExtension(urlString: String) -> String {
+        // Define a list of common image extensions
+        let imageExtensions = [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".webp", ".heic", ".heif"]
+        
+        // Trim any whitespace or newlines
+        let trimmedURL = urlString.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // Check if the URL ends with any of the extensions (case insensitive)
+        for ext in imageExtensions {
+            if trimmedURL.lowercased().hasSuffix(ext) {
+                return trimmedURL
+            }
+        }
+        
+        // If no valid image extension is found, append ".jpg"
+        return "\(trimmedURL).jpg"
     }
 }

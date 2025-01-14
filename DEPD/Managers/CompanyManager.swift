@@ -12,12 +12,12 @@ struct CompanyById: Codable {
 }
 
 struct JobSeekerFilterCreds: Codable {
-    let disabilityStatusID: Int?
-    let districtText: Int?
-    let educationID: Int?
-    let genderID: Int?
+    var disabilityStatusID: Int?
+    var districtText: String?
+    var educationID: Int?
+    var genderID: Int?
     init(disabilityStatusID: Int? = nil,
-         districtText: Int? = nil,
+         districtText: String? = nil,
          educationID: Int? = nil,
          genderID: Int? = nil) {
         self.disabilityStatusID = disabilityStatusID
@@ -36,8 +36,11 @@ final class CompanyManager {
     private let companyUserID = CompanyById(UserID: USM.shared.getUser().id!)
     private let companyID = CompanyById(CompanyID: USM.shared.getUser().id!)
     
-    private enum companyMethods: String {
-        case totalJobApplications, hiredPerson, JobSeekerFilter, Vacancy
+    enum companyMethods: String {
+        case totalJobApplications, hiredPerson, JobSeekerFilter, Vacancy,
+             InsertAccebilityMaterial, InsertSchoolAndCompanyDisability, InsertSocialMedia,
+             DeleteAccebilityMaterial, DeleteWeCanEducate, DeleteSocialMedia,
+             updateCompany, uploadCompanyProfileImage, updateApplicationStatus
     }
     
     func getTotaljobApplications(completion: @escaping ([CompanyJobModel]?) -> Void) {
@@ -97,6 +100,109 @@ extension CompanyManager {
                 completion(nil)
                 return }
             completion(userResponse?.oData)
+        }
+    }
+}
+
+
+struct CompanyJobPostCreds: Codable {
+    var companyId: Int
+    var descriptionText: String
+    var distict: Int
+    var location: String
+    var noOfVaccancies: Int
+    var positionName: String
+    var requiredExperience: Int
+    var salary: Int
+    var thumbnailImageName: String?
+    var thumbnailImageNameByteString: String?
+    init(companyId: Int, descriptionText: String, distict: Int, location: String, noOfVaccancies: Int, positionName: String, requiredExperience: Int, salary: Int,
+         thumbnailImageName: String?,
+         thumbnailImageNameByteString: String?) {
+        self.companyId = companyId
+        self.descriptionText = descriptionText
+        self.distict = distict
+        self.location = location
+        self.noOfVaccancies = noOfVaccancies
+        self.positionName = positionName
+        self.requiredExperience = requiredExperience
+        self.salary = salary
+        self.thumbnailImageName = thumbnailImageName
+        self.thumbnailImageNameByteString = thumbnailImageNameByteString
+    }
+}
+extension CompanyManager {
+    func postJob(data: CompanyJobPostCreds, completion: @escaping (Bool) -> Void) {
+        let request = Endpoint.company(id: companyProfileID,
+                                       method: companyMethods.JobSeekerFilter.rawValue).request!
+        service.makeRequest(with: request, respModel: ApiResponse<String>.self) { userResponse, error in
+            if error != nil {
+                completion(false)
+                return }
+            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                completion(false)
+                return }
+            completion(true)
+        }
+    }
+}
+
+struct CompanyUpdateCreds: Codable {
+    var MaterialID: Int?
+    var MaterialName: String?
+    var SchoolId: Int?
+    
+    
+    var AccountTypeID: Int?
+    var relID: Int?
+    var SocialMediaLink: String?
+    
+    
+    var disabilityStatusId: Int?
+    var userId: Int?
+    
+    var UserId: Int?
+    var Id: Int?
+    
+    var AvailableQuotaForPWDs: String?
+    var cnic: String?
+    var companyId: Int?
+    var companyName: String?
+    var ContactNumber: String?
+    var Description: String?
+    var Designation: String?
+    var District: String?
+    var EmailAdress: String?
+    var FirstName: String?
+    var id: Int?
+    var LastName: String?
+    var Location: String?
+    var NTNNumber: String?
+    var RegistirationNumber: String?
+    var Website: String?
+    
+    var CompanyDetailId: Int?
+    var ProfileImageName: String?
+    var ProfilePictureBytesString: String?
+    
+    
+    var Reason: String?
+    var StatusId: Int?
+    
+    var DocumentBytesString: String?
+}
+extension CompanyManager {
+    func updateCompany(data: CompanyUpdateCreds, method: companyMethods, completion: @escaping (Bool) -> Void) {
+        let request = Endpoint.companyUpdate(id: data,
+                                       method: method.rawValue).request!
+        service.makeRequest(with: request, respModel: ApiResponse<String>.self) { userResponse, error in
+            if error != nil {
+                completion(false)
+                return }
+            if let error = userResponse?.isError, error { SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                completion(false)
+                return }
+            completion(true)
         }
     }
 }

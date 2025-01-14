@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "post_a_job.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

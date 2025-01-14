@@ -147,14 +147,19 @@ extension UIViewController {
     
     
     func setNavigationTransparent(_ title: String = "") {
-        self.setLogo()
-        self.setNavBarColor(.white)
+//        self.setLogo()
         
-        self.navigationController?.navigationBar.layer.masksToBounds = false
-        //        self.navigationController?.navigationBar.layer.shadowColor = .appDark
-        self.navigationController?.navigationBar.layer.shadowOpacity = 0.8
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2.0)
-        self.navigationController?.navigationBar.layer.shadowRadius = 1
+//        self.navigationController?.navigationBar.layer.masksToBounds = false
+//        self.navigationController?.navigationBar.layer.shadowColor = UIColor.clear.cgColor
+//        self.navigationController?.navigationBar.layer.shadowOpacity = 0.8
+//        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+//        self.navigationController?.navigationBar.layer.shadowRadius = 1
+//        
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        
+        
         
         //        if self.navigationController != nil {
         //

@@ -35,7 +35,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="AppBG"/>
                         <constraints>
                             <constraint firstItem="0lU-rx-jzs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="6oa-WS-2AZ"/>
                             <constraint firstItem="0lU-rx-jzs" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="Lrr-EN-ZoT"/>
@@ -1107,7 +1107,7 @@ v99.2</string>
                                             <constraint firstAttribute="height" constant="50" id="V6M-8c-aEa"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                     </textField>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AbR-xo-WST">
                                         <rect key="frame" x="0.0" y="90" width="273" height="42"/>
@@ -1134,6 +1134,12 @@ v99.2</string>
                                     </view>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter CNIC" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxD-Ci-CdK">
+                                <rect key="frame" x="154.33333333333334" y="292.33333333333331" width="84.333333333333343" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0Eg-Rj-oh4"/>
                         <color key="backgroundColor" name="AppBG"/>
@@ -1142,18 +1148,21 @@ v99.2</string>
                             <constraint firstItem="9Am-Py-WQZ" firstAttribute="width" secondItem="qsR-fU-hJQ" secondAttribute="width" multiplier="165/360" id="4zA-pb-Xfz"/>
                             <constraint firstItem="9Am-Py-WQZ" firstAttribute="centerX" secondItem="0Eg-Rj-oh4" secondAttribute="centerX" id="N8i-83-jjD"/>
                             <constraint firstItem="Ek7-Is-TAQ" firstAttribute="width" secondItem="qsR-fU-hJQ" secondAttribute="width" multiplier="250/360" id="UMc-ev-bpw"/>
+                            <constraint firstItem="CmT-QE-Kql" firstAttribute="top" secondItem="fxD-Ci-CdK" secondAttribute="bottom" constant="60" id="fxP-Hh-Kzn"/>
                             <constraint firstItem="Ek7-Is-TAQ" firstAttribute="centerY" secondItem="0Eg-Rj-oh4" secondAttribute="centerY" id="t4R-b5-QwM"/>
                             <constraint firstItem="9Am-Py-WQZ" firstAttribute="bottom" secondItem="0Eg-Rj-oh4" secondAttribute="centerY" multiplier="0.5" id="tL7-Cq-VzH"/>
+                            <constraint firstItem="fxD-Ci-CdK" firstAttribute="centerX" secondItem="CmT-QE-Kql" secondAttribute="centerX" id="tLj-z7-bb2"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="buttonSend" destination="IVR-Y3-fgU" id="FKF-h0-pxw"/>
+                        <outlet property="labelEnterCNIC" destination="fxD-Ci-CdK" id="Ird-bk-A4b"/>
                         <outlet property="tfRecoveryEmail" destination="CmT-QE-Kql" id="2lP-Oz-yKT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aX4-dw-kGX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1989" y="-785"/>
+            <point key="canvasLocation" x="-190" y="-27"/>
         </scene>
         <!--Email Sent View Controller-->
         <scene sceneID="0ey-Rp-6Kr">
@@ -1246,7 +1255,7 @@ v99.2</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3XJ-v8-MPW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2713.740458015267" y="-785.21126760563379"/>
+            <point key="canvasLocation" x="1935" y="-27"/>
         </scene>
         <!--App Force Update View Controller-->
         <scene sceneID="ejN-ES-acB">
@@ -7781,11 +7790,11 @@ Please update the app now.</string>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aZz-4a-4s4">
                                                 <rect key="frame" x="0.0" y="155.33333333333334" width="393" height="54"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="vTv-YN-lMP">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="vTv-YN-lMP">
                                                         <rect key="frame" x="20" y="0.0" width="353" height="42"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R7V-KW-Voe">
-                                                                <rect key="frame" x="0.0" y="0.0" width="183.66666666666666" height="42"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="173.66666666666666" height="42"/>
                                                                 <color key="backgroundColor" name="AppGreen"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="42" id="FyB-g5-39X"/>
@@ -7797,7 +7806,7 @@ Please update the app now.</string>
                                                                 </state>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q5W-Wy-iVF">
-                                                                <rect key="frame" x="189.66666666666663" y="0.0" width="163.33333333333337" height="42"/>
+                                                                <rect key="frame" x="179.66666666666663" y="0.0" width="173.33333333333337" height="42"/>
                                                                 <color key="backgroundColor" name="AppGreen"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="42" id="w05-2n-fbB"/>
@@ -7828,8 +7837,8 @@ Please update the app now.</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BbE-V7-km7">
                                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_material" translatesAutoresizingMaskIntoConstraints="NO" id="ows-zo-35C">
-                                                                        <rect key="frame" x="6" y="8" width="35" height="34"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="total_application" translatesAutoresizingMaskIntoConstraints="NO" id="ows-zo-35C">
+                                                                        <rect key="frame" x="6" y="-230.99999999999997" width="35" height="512"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="35" id="MXL-94-c52"/>
                                                                         </constraints>
@@ -7871,8 +7880,8 @@ Please update the app now.</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gLX-kL-aWk">
                                                                 <rect key="frame" x="0.0" y="56" width="353" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_material" translatesAutoresizingMaskIntoConstraints="NO" id="u1P-Ns-dOf">
-                                                                        <rect key="frame" x="6" y="8" width="35" height="34"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hired" translatesAutoresizingMaskIntoConstraints="NO" id="u1P-Ns-dOf">
+                                                                        <rect key="frame" x="6" y="-231" width="35" height="512"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="35" id="9aj-PA-OEL"/>
                                                                         </constraints>
@@ -7914,8 +7923,8 @@ Please update the app now.</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TvI-1Q-b0s">
                                                                 <rect key="frame" x="0.0" y="112" width="353" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_material" translatesAutoresizingMaskIntoConstraints="NO" id="Xeg-U5-Cvc">
-                                                                        <rect key="frame" x="6" y="8" width="35" height="34"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="find_employee" translatesAutoresizingMaskIntoConstraints="NO" id="Xeg-U5-Cvc">
+                                                                        <rect key="frame" x="6" y="-230.99999999999997" width="35" height="512"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="35" id="huA-OK-S2t"/>
                                                                         </constraints>
@@ -7957,8 +7966,8 @@ Please update the app now.</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZu-Yj-MSe">
                                                                 <rect key="frame" x="0.0" y="168" width="353" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_material" translatesAutoresizingMaskIntoConstraints="NO" id="hSE-eb-PaD">
-                                                                        <rect key="frame" x="6" y="8" width="35" height="34"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hiring" translatesAutoresizingMaskIntoConstraints="NO" id="hSE-eb-PaD">
+                                                                        <rect key="frame" x="6" y="-230.99999999999997" width="35" height="512"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="35" id="nQ3-YS-Fiq"/>
                                                                         </constraints>
@@ -8000,8 +8009,8 @@ Please update the app now.</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkc-WV-7AI">
                                                                 <rect key="frame" x="0.0" y="224.00000000000006" width="353" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_material" translatesAutoresizingMaskIntoConstraints="NO" id="dTk-eG-FaR">
-                                                                        <rect key="frame" x="6" y="8" width="35" height="34"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="vacancy" translatesAutoresizingMaskIntoConstraints="NO" id="dTk-eG-FaR">
+                                                                        <rect key="frame" x="6" y="-231.00000000000006" width="35" height="512"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="35" id="6FA-ON-IZN"/>
                                                                         </constraints>
@@ -8043,8 +8052,8 @@ Please update the app now.</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8XQ-pf-pi5">
                                                                 <rect key="frame" x="0.0" y="280.00000000000006" width="353" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_material" translatesAutoresizingMaskIntoConstraints="NO" id="BBj-bK-Un1">
-                                                                        <rect key="frame" x="6" y="8" width="35" height="34"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="post_a_job" translatesAutoresizingMaskIntoConstraints="NO" id="BBj-bK-Un1">
+                                                                        <rect key="frame" x="6" y="-231.00000000000006" width="35" height="512"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="35" id="mGI-Lz-cp6"/>
                                                                         </constraints>
@@ -8701,8 +8710,8 @@ Please update the app now.</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gdh-nt-Zaq">
                                                                 <rect key="frame" x="0.0" y="0.0" width="353" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_material" translatesAutoresizingMaskIntoConstraints="NO" id="UMC-NW-JdK">
-                                                                        <rect key="frame" x="6" y="8" width="35" height="34"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" translatesAutoresizingMaskIntoConstraints="NO" id="UMC-NW-JdK">
+                                                                        <rect key="frame" x="6" y="4" width="35" height="42"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="35" id="iBc-os-dpX"/>
                                                                         </constraints>
@@ -8717,7 +8726,7 @@ Please update the app now.</string>
                                                                         <rect key="frame" x="309" y="0.0" width="44" height="50"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="fYZ-hW-sOq">
-                                                                                <rect key="frame" x="12.333333333333316" y="15.666666666666666" width="19.666666666666671" height="19"/>
+                                                                                <rect key="frame" x="12.333333333333316" y="15.666666666666664" width="19.666666666666671" height="19"/>
                                                                                 <color key="tintColor" name="AppLight"/>
                                                                             </imageView>
                                                                         </subviews>
@@ -8745,7 +8754,7 @@ Please update the app now.</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERX-vb-Q4n">
                                                                 <rect key="frame" x="0.0" y="56" width="353" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_books" translatesAutoresizingMaskIntoConstraints="NO" id="qEK-mt-pv8">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="skills" translatesAutoresizingMaskIntoConstraints="NO" id="qEK-mt-pv8">
                                                                         <rect key="frame" x="6" y="7.6666666666666288" width="35" height="35"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="35" id="Bg5-eP-WGo"/>
@@ -8762,7 +8771,7 @@ Please update the app now.</string>
                                                                         <rect key="frame" x="309" y="0.0" width="44" height="50"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="n5j-wz-rO5">
-                                                                                <rect key="frame" x="12.333333333333316" y="15.666666666666666" width="19.666666666666671" height="19"/>
+                                                                                <rect key="frame" x="12.333333333333316" y="15.666666666666664" width="19.666666666666671" height="19"/>
                                                                                 <color key="tintColor" name="AppLight"/>
                                                                             </imageView>
                                                                         </subviews>
@@ -8789,8 +8798,9 @@ Please update the app now.</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hc6-Wm-bHd">
                                                                 <rect key="frame" x="0.0" y="111.99999999999994" width="353" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_books" translatesAutoresizingMaskIntoConstraints="NO" id="DYy-oc-WkO">
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_teachers" translatesAutoresizingMaskIntoConstraints="NO" id="DYy-oc-WkO">
                                                                         <rect key="frame" x="6" y="7.6666666666667425" width="35" height="35"/>
+                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="35" id="0eu-WU-gEg"/>
                                                                             <constraint firstAttribute="width" secondItem="DYy-oc-WkO" secondAttribute="height" multiplier="1:1" id="zKt-s7-yus"/>
@@ -8806,7 +8816,7 @@ Please update the app now.</string>
                                                                         <rect key="frame" x="309" y="0.0" width="44" height="50"/>
                                                                         <subviews>
                                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aTR-tb-JBF">
-                                                                                <rect key="frame" x="12.333333333333316" y="15.666666666666666" width="19.666666666666671" height="19"/>
+                                                                                <rect key="frame" x="12.333333333333316" y="15.666666666666664" width="19.666666666666671" height="19"/>
                                                                                 <color key="tintColor" name="AppLight"/>
                                                                             </imageView>
                                                                         </subviews>
@@ -8833,8 +8843,8 @@ Please update the app now.</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LHM-q4-Bl2">
                                                                 <rect key="frame" x="0.0" y="167.99999999999994" width="353" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_seats" translatesAutoresizingMaskIntoConstraints="NO" id="0Ah-51-eUn">
-                                                                        <rect key="frame" x="6" y="8" width="35" height="34"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="age" translatesAutoresizingMaskIntoConstraints="NO" id="0Ah-51-eUn">
+                                                                        <rect key="frame" x="6" y="-230.99999999999994" width="35" height="512"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="35" id="fXf-TD-F6F"/>
                                                                         </constraints>
@@ -8878,8 +8888,8 @@ Please update the app now.</string>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LzT-zD-Cc8">
                                                                 <rect key="frame" x="0.0" y="223.99999999999994" width="353" height="50"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_material" translatesAutoresizingMaskIntoConstraints="NO" id="HDB-wd-dAg">
-                                                                        <rect key="frame" x="6" y="8" width="35" height="34"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="disability_icon" translatesAutoresizingMaskIntoConstraints="NO" id="HDB-wd-dAg">
+                                                                        <rect key="frame" x="6" y="-230.99999999999994" width="35" height="512"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="35" id="VEd-3t-t9d"/>
                                                                         </constraints>
@@ -9025,6 +9035,7 @@ Please update the app now.</string>
                         <outlet property="labelWorkExperience" destination="6Kx-Y3-8sJ" id="w4g-eh-sZZ"/>
                         <outlet property="viewAge" destination="LHM-q4-Bl2" id="m9w-ye-rlO"/>
                         <outlet property="viewBottom" destination="piI-mX-mye" id="jnV-Ef-ydo"/>
+                        <outlet property="viewButtons" destination="NhC-LJ-lm7" id="Cs2-7i-f2I"/>
                         <outlet property="viewDisability" destination="LzT-zD-Cc8" id="htH-sF-Ani"/>
                         <outlet property="viewEducation" destination="Gdh-nt-Zaq" id="UcJ-hM-S2D"/>
                         <outlet property="viewSkills" destination="ERX-vb-Q4n" id="9tU-VL-5i6"/>
@@ -9035,18 +9046,208 @@ Please update the app now.</string>
             </objects>
             <point key="canvasLocation" x="4835.8778625954201" y="2492.9577464788736"/>
         </scene>
+        <!--ForgotPOTP View Controller-->
+        <scene sceneID="xSj-Nr-uJv">
+            <objects>
+                <viewController storyboardIdentifier="ForgotPOTPViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Xmf-Jm-Q0Y" customClass="ForgotPOTPViewController" customModule="DEPD" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J16-8z-r7t">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_logo" translatesAutoresizingMaskIntoConstraints="NO" id="oze-nE-T1T">
+                                <rect key="frame" x="106.33333333333333" y="118" width="180.33333333333337" height="101.33333333333331"/>
+                                <accessibility key="accessibilityConfiguration" hint="This is lable logo" label="Labellogo">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="oze-nE-T1T" secondAttribute="height" multiplier="16:9" id="aUm-oE-2HU"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="V5P-AX-leN">
+                                <rect key="frame" x="60" y="372.66666666666669" width="273" height="132"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recovery Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eQg-xs-uWH">
+                                        <rect key="frame" x="0.0" y="0.0" width="273" height="50"/>
+                                        <accessibility key="accessibilityConfiguration" hint="User Name here" identifier="User Name" label="User Name"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="3Mh-Ue-Ttr"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="one-time-code"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BTc-6K-kdm">
+                                        <rect key="frame" x="0.0" y="90" width="273" height="42"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hVv-ft-W3n">
+                                                <rect key="frame" x="0.0" y="0.0" width="273" height="42"/>
+                                                <color key="backgroundColor" name="ButtonBG"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="42" id="8ox-Ad-eR0"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Send">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="hVv-ft-W3n" secondAttribute="bottom" id="6hX-vR-5M7"/>
+                                            <constraint firstItem="hVv-ft-W3n" firstAttribute="leading" secondItem="BTc-6K-kdm" secondAttribute="leading" id="OJP-ZG-lOo"/>
+                                            <constraint firstAttribute="trailing" secondItem="hVv-ft-W3n" secondAttribute="trailing" id="uln-Hs-3eB"/>
+                                            <constraint firstItem="hVv-ft-W3n" firstAttribute="top" secondItem="BTc-6K-kdm" secondAttribute="top" id="umZ-4v-p4r"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter OTP" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZGl-hT-Kcn">
+                                <rect key="frame" x="157.66666666666666" y="292.33333333333331" width="77.666666666666657" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZaX-O4-PA2"/>
+                        <color key="backgroundColor" name="AppBG"/>
+                        <constraints>
+                            <constraint firstItem="oze-nE-T1T" firstAttribute="width" secondItem="J16-8z-r7t" secondAttribute="width" multiplier="165/360" id="2M8-hh-ZgO"/>
+                            <constraint firstItem="oze-nE-T1T" firstAttribute="bottom" secondItem="ZaX-O4-PA2" secondAttribute="centerY" multiplier="0.5" id="4FC-Q0-5DL"/>
+                            <constraint firstItem="V5P-AX-leN" firstAttribute="centerY" secondItem="ZaX-O4-PA2" secondAttribute="centerY" id="Ovu-u1-Eh5"/>
+                            <constraint firstItem="eQg-xs-uWH" firstAttribute="top" secondItem="ZGl-hT-Kcn" secondAttribute="bottom" constant="60" id="Yxg-La-FFB"/>
+                            <constraint firstItem="V5P-AX-leN" firstAttribute="width" secondItem="J16-8z-r7t" secondAttribute="width" multiplier="250/360" id="h1G-Di-1hT"/>
+                            <constraint firstItem="oze-nE-T1T" firstAttribute="centerX" secondItem="ZaX-O4-PA2" secondAttribute="centerX" id="kGi-GP-iRe"/>
+                            <constraint firstItem="ZGl-hT-Kcn" firstAttribute="centerX" secondItem="eQg-xs-uWH" secondAttribute="centerX" id="mMa-0T-8Mp"/>
+                            <constraint firstItem="V5P-AX-leN" firstAttribute="centerX" secondItem="ZaX-O4-PA2" secondAttribute="centerX" id="pZW-Z4-MCY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonSend" destination="hVv-ft-W3n" id="Fpt-lg-112"/>
+                        <outlet property="labelEnterOPT" destination="ZGl-hT-Kcn" id="8Z8-7n-Ud2"/>
+                        <outlet property="tfOTP" destination="eQg-xs-uWH" id="ZLq-dO-KWF"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3Iz-Be-tQy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="513.74045801526711" y="-27.464788732394368"/>
+        </scene>
+        <!--ForgotP EnterP View Controller-->
+        <scene sceneID="uGt-Rw-7Wu">
+            <objects>
+                <viewController storyboardIdentifier="ForgotPEnterPViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="wgo-Lc-eKB" customClass="ForgotPEnterPViewController" customModule="DEPD" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4fb-ys-hrn">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_logo" translatesAutoresizingMaskIntoConstraints="NO" id="cPj-IA-Jmj">
+                                <rect key="frame" x="106.33333333333333" y="118" width="180.33333333333337" height="101.33333333333331"/>
+                                <accessibility key="accessibilityConfiguration" hint="This is lable logo" label="Labellogo">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="cPj-IA-Jmj" secondAttribute="height" multiplier="16:9" id="LzJ-gh-wjb"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="xWd-Sn-Sjw">
+                                <rect key="frame" x="60" y="343.66666666666669" width="273" height="190.00000000000006"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recovery Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q3x-ar-qWy">
+                                        <rect key="frame" x="0.0" y="0.0" width="273" height="50"/>
+                                        <accessibility key="accessibilityConfiguration" hint="User Name here" identifier="User Name" label="User Name"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="F92-F1-giF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="new-password"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recovery Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yAb-nD-R5h">
+                                        <rect key="frame" x="0.0" y="62" width="273" height="50"/>
+                                        <accessibility key="accessibilityConfiguration" hint="User Name here" identifier="User Name" label="User Name"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="1v3-zb-NTe"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" textContentType="new-password"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YUd-T0-ijv">
+                                        <rect key="frame" x="0.0" y="124" width="273" height="12"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="12" id="a4X-dN-Q54"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="deF-xY-Hb3">
+                                        <rect key="frame" x="0.0" y="148" width="273" height="42"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pze-oX-f0q">
+                                                <rect key="frame" x="0.0" y="0.0" width="273" height="42"/>
+                                                <color key="backgroundColor" name="ButtonBG"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="42" id="fsV-70-pWW"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="Send">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="Pze-oX-f0q" firstAttribute="top" secondItem="deF-xY-Hb3" secondAttribute="top" id="S00-1v-dKF"/>
+                                            <constraint firstItem="Pze-oX-f0q" firstAttribute="leading" secondItem="deF-xY-Hb3" secondAttribute="leading" id="jPX-1I-nXo"/>
+                                            <constraint firstAttribute="trailing" secondItem="Pze-oX-f0q" secondAttribute="trailing" id="tX9-xz-Hro"/>
+                                            <constraint firstAttribute="bottom" secondItem="Pze-oX-f0q" secondAttribute="bottom" id="wwy-ps-7br"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Password" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WW3-FA-Uu9">
+                                <rect key="frame" x="137.66666666666666" y="263.33333333333331" width="118" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2zj-CZ-s7Z"/>
+                        <color key="backgroundColor" name="AppBG"/>
+                        <constraints>
+                            <constraint firstItem="cPj-IA-Jmj" firstAttribute="bottom" secondItem="2zj-CZ-s7Z" secondAttribute="centerY" multiplier="0.5" id="0MV-xY-28T"/>
+                            <constraint firstItem="cPj-IA-Jmj" firstAttribute="centerX" secondItem="2zj-CZ-s7Z" secondAttribute="centerX" id="3Fg-xl-4VF"/>
+                            <constraint firstItem="cPj-IA-Jmj" firstAttribute="width" secondItem="4fb-ys-hrn" secondAttribute="width" multiplier="165/360" id="8Au-ue-r3c"/>
+                            <constraint firstItem="Q3x-ar-qWy" firstAttribute="top" secondItem="WW3-FA-Uu9" secondAttribute="bottom" constant="60" id="PMy-of-elS"/>
+                            <constraint firstItem="WW3-FA-Uu9" firstAttribute="centerX" secondItem="Q3x-ar-qWy" secondAttribute="centerX" id="Q6B-lE-0Pq"/>
+                            <constraint firstItem="xWd-Sn-Sjw" firstAttribute="width" secondItem="4fb-ys-hrn" secondAttribute="width" multiplier="250/360" id="UsV-TJ-7Xw"/>
+                            <constraint firstItem="xWd-Sn-Sjw" firstAttribute="centerY" secondItem="2zj-CZ-s7Z" secondAttribute="centerY" id="h4m-1Q-iAS"/>
+                            <constraint firstItem="xWd-Sn-Sjw" firstAttribute="centerX" secondItem="2zj-CZ-s7Z" secondAttribute="centerX" id="iNh-5F-3GE"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buttonSend" destination="Pze-oX-f0q" id="L1T-3f-cSu"/>
+                        <outlet property="labelEnterPassword" destination="WW3-FA-Uu9" id="xSA-h6-ajc"/>
+                        <outlet property="tfNewPassword" destination="Q3x-ar-qWy" id="ci3-Hv-d3k"/>
+                        <outlet property="tfNewPasswordConfirm" destination="yAb-nD-R5h" id="Vdt-OL-ppl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nNh-Xh-P2z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1253" y="-27"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="age" width="512" height="512"/>
         <image name="arrow.forward" catalog="system" width="128" height="95"/>
         <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="chevron.down.circle" catalog="system" width="128" height="123"/>
         <image name="cv_icon" width="256" height="256"/>
         <image name="dis_cert_icon" width="512" height="512"/>
+        <image name="disability_icon" width="512" height="512"/>
         <image name="education" width="355" height="251"/>
         <image name="education_instittute" width="513" height="473"/>
         <image name="email_sent" width="82" height="82"/>
         <image name="eye" catalog="system" width="128" height="79"/>
+        <image name="find_employee" width="512" height="512"/>
         <image name="for_employercompanies" width="465.39999389648438" height="470.5"/>
+        <image name="hired" width="512" height="512"/>
+        <image name="hiring" width="512" height="512"/>
         <image name="icon_bigger_text" width="33" height="33"/>
         <image name="icon_books" width="40" height="40"/>
         <image name="icon_drop_down" width="6" height="5"/>
@@ -9061,13 +9262,18 @@ Please update the app now.</string>
         <image name="icon_wheel" width="19" height="23"/>
         <image name="latch.2.case" catalog="system" width="128" height="100"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
+        <image name="person" width="42" height="42"/>
         <image name="person.crop.circle.fill" catalog="system" width="128" height="123"/>
         <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="post_a_job" width="512" height="512"/>
+        <image name="skills" width="512" height="512"/>
         <image name="splash_logo" width="271" height="82"/>
         <image name="studentplacehoder" width="61" height="61"/>
         <image name="thankyou_english" width="122" height="122"/>
+        <image name="total_application" width="512" height="512"/>
         <image name="user_edit_profile" width="20" height="20"/>
+        <image name="vacancy" width="512" height="512"/>
         <namedColor name="AppBG">
             <color red="0.90196078431372551" green="0.93725490196078431" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

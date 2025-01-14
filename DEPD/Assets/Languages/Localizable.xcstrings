@@ -4,6 +4,12 @@
     "About Us" : {
       "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Us"
+          }
+        },
         "sd" : {
           "stringUnit" : {
             "state" : "translated",
@@ -294,6 +300,52 @@
         }
       }
     },
+    "advertise_vacancy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Advertise Vacancy"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خالي جاين جو اعلان ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آسامی کا اشتہار دیں۔"
+          }
+        }
+      }
+    },
+    "age" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Age"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عمر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عمر"
+          }
+        }
+      }
+    },
     "all_application" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -336,6 +388,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "درخواست گزار پروفائل"
+          }
+        }
+      }
+    },
+    "application_date" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Application Date"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "درخواست جي تاريخ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "درخواست کی تاریخ"
           }
         }
       }
@@ -612,6 +687,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "چیک کرائے پر"
+          }
+        }
+      }
+    },
+    "class" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Class"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪلاس"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کلاس"
           }
         }
       }
@@ -1300,6 +1398,29 @@
         }
       }
     },
+    "download_cv" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download CV"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڊائون لوڊ CV"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سی وی ڈاؤن لوڈ کریں۔"
+          }
+        }
+      }
+    },
     "download_disability_certificate" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1392,6 +1513,29 @@
         }
       }
     },
+    "enter_address" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Address"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ايڊريس داخل ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ایڈریس درج کریں۔"
+          }
+        }
+      }
+    },
     "enter_fee" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1411,6 +1555,75 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "فیس درج کریں۔"
+          }
+        }
+      }
+    },
+    "enter_job_description" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Job Description"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوڪري جي تفصيل داخل ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملازمت کی تفصیل درج کریں۔"
+          }
+        }
+      }
+    },
+    "enter_no_vacancies" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter No. of Vacancies"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خالي جاين جو تعداد داخل ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "آسامیوں کی تعداد درج کریں۔"
+          }
+        }
+      }
+    },
+    "enter_position" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Position"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پوزيشن داخل ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پوزیشن درج کریں۔"
           }
         }
       }
@@ -1438,6 +1651,52 @@
         }
       }
     },
+    "enter_required_experince" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Required Experience"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "گهربل تجربو داخل ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مطلوبہ تجربہ درج کریں۔"
+          }
+        }
+      }
+    },
+    "enter_salary" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enter Salary"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تنخواه داخل ڪريو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تنخواہ درج کریں۔"
+          }
+        }
+      }
+    },
     "establish_year" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1457,6 +1716,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "سال قائم کریں۔"
+          }
+        }
+      }
+    },
+    "experience" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Experience"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تجربو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تجربہ"
           }
         }
       }
@@ -1566,6 +1848,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ھڪڙو ملازم ڳولھيو"
+          }
+        }
+      }
+    },
+    "find_employee" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Find Employee"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملازم ڳولھيو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ملازم تلاش کریں۔"
           }
         }
       }
@@ -2026,6 +2331,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "مدد/شکایت"
+          }
+        }
+      }
+    },
+    "hired_person" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hired Person"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڪم ڪندڙ ماڻهو"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "کرایہ دار شخص"
           }
         }
       }
@@ -2789,6 +3117,29 @@
         }
       }
     },
+    "my_applicants" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "My Applicants"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منهنجا درخواست ڪندڙ"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "میرے درخواست دہندگان"
+          }
+        }
+      }
+    },
     "my_applications" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3249,6 +3600,29 @@
         }
       }
     },
+    "post_job" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Post Job"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پوسٽ نوڪري"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نوکری پوسٹ کریں۔"
+          }
+        }
+      }
+    },
     "present_address" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -3377,6 +3751,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "پروفائل مکمل ہو گیا۔"
+          }
+        }
+      }
+    },
+    "reason" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reason"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سبب"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وجہ"
           }
         }
       }
@@ -3847,7 +4244,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Registered Students"
+            "value" : "Registered Students "
           }
         },
         "sd" : {
@@ -4554,6 +4951,29 @@
         }
       }
     },
+    "skills" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skills"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مهارت"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ہنر"
+          }
+        }
+      }
+    },
     "socail_media_links" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -4619,6 +5039,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "سندھ کے افراد معذور پورٹل (SPDP)"
+          }
+        }
+      }
+    },
+    "status" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Status"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حيثيت"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حیثیت"
           }
         }
       }
@@ -5119,6 +5562,29 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "B/Cnic فارم اپ لوڈ کریں۔"
+          }
+        }
+      }
+    },
+    "upload_job_poster" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upload Job Poster"
+          }
+        },
+        "sd" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اپ لوڊ ڪريو نوڪري پوسٽر"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جاب پوسٹر اپ لوڈ کریں۔"
           }
         }
       }

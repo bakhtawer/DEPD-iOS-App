@@ -17,8 +17,8 @@ class FPEmailSentViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
-        labelEmailSent.text = "forgot_password_success_message".localized()
+        labelEmailSent.text = "Password Reset Successfully".localized()
         buttonOk.setTitle("forgot_password_success_ok".localized(), for: .normal)
-        buttonOk.addTapGestureRecognizer { Bootstrapper.createshowRegisterAsSelectionOne()}
+        buttonOk.addTapGestureRecognizer { Bootstrapper.decideScreenToOpen() }
     }
 }

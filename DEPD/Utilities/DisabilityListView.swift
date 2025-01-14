@@ -12,6 +12,7 @@ class DisabilityListView: UIView {
     enum ScreenType {
         case Disabilities
         case TechnicalSkill
+        case allListData
     }
     
     private let scrollView = UIScrollView()
@@ -25,6 +26,12 @@ class DisabilityListView: UIView {
     var jobSeekerTechnicalSkill: [JobSeekerTechnicalSkill] = [] {
         didSet {
             configureStackView(.TechnicalSkill)
+        }
+    }
+    
+    var allListData: [AllListData] = [] {
+        didSet {
+            configureStackView(.allListData)
         }
     }
     
@@ -79,8 +86,6 @@ class DisabilityListView: UIView {
         viewContianer.backgroundColor = .clear
         let imageView = createImageView()
         imageView.image = UIImage(systemName: "trash.fill")
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
-        tapGesture.view?.tag = index
         imageView.tintColor = .appLight
         imageView.tag = index
         imageView.translatesAutoresizingMaskIntoConstraints = true
@@ -97,7 +102,9 @@ class DisabilityListView: UIView {
         gapview.widthAnchor.constraint(equalToConstant: 8).isActive = true
         stackIvew.addArrangedSubview(gapview)
         stackIvew.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        stackIvew.addGestureRecognizer(tapGesture)
+        stackIvew.addTapGestureRecognizer {[weak self] in
+            self?.onToggle?(index)
+        }
         stackView.addArrangedSubview(stackIvew)
     }
     
@@ -113,17 +120,17 @@ class DisabilityListView: UIView {
             for (index, techSkill) in jobSeekerTechnicalSkill.enumerated() {
                 setView(index, techSkill.skillDescription ?? "")
             }
+        case .allListData:
+            for (index, data) in allListData.enumerated() {
+                setView(index, data.name ?? "")
+            }
         }
     
     }
     
     // Closure to notify about changes
     var onToggle: ((Int) -> Void)?
-    // Handle tap on image
-    @objc private func imageTapped(_ sender: UITapGestureRecognizer) {
-        guard let index = sender.view?.tag else { return }
-        onToggle?(index)
-    }
+
     
     // Create and configure an image view
     private func createImageView() -> UIImageView {

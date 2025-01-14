@@ -53,7 +53,11 @@ struct InsertDisabilityStatusCreds: Codable {
 }
 
 struct GetUserByID: Codable {
-    var Id: Int
+    var Id: Int?
+    
+    var Cnic: Int?
+    var Otp: String?
+    var Pasword: String?
 }
  
 enum Endpoint {
@@ -128,6 +132,8 @@ enum Endpoint {
     case deleteSocialMultiMediaLink(cred: DeleteById)
     case insertDisabilityStatus(cred: InsertDisabilityStatus)
     case deleteDisabilityStatus(cred: DeleteById)
+    case deleteAccebilityMaterial(cred: DeleteById)
+    case deleteWeCanEducate(cred: DeleteById)
     case studentAdmissionUpdate(cred: StudentAdmissionUpdateCred)
     
     
@@ -145,6 +151,15 @@ enum Endpoint {
     // Company
     case company(id: CompanyById, method: String)
     case companyJobSeeker(cred: JobSeekerFilterCreds, method: String)
+    case companyUpdate(id: CompanyUpdateCreds, method: String)
+    case companyPostJob(cred: CompanyJobPostCreds)
+    
+    
+    // Complaint
+    case complainForDenialOfAdmission(cred: DenialOfAdmissionCreds)
+    case complainForDenialOfJob(cred: DenialOfAdmissionCreds)
+    case generalComplain(cred: GeneralComplainCreds)
+    
     
     var request: URLRequest? {
         guard let url = self.url else { return nil }
@@ -177,13 +192,13 @@ enum Endpoint {
              .UpdateAdditionalInfo(let url, _),
              .InsertSocialMediaLink(let url, _),
              .InsertDisabilityStatus(let url, _): return url
-        case .getStudentAdmissions: return "/Api/General.ashx"
+        case .getStudentAdmissions, .generalComplain: return "/Api/General.ashx"
         case .getSchoolList, .applyForSchool, .allGeneralList: return "/Api/school.ashx"
         case .updateProfile: return "/Api/profile.ashx"
         case .uploadSchoolProfile, .updatePersonalInformation, .updateAboutYourSchool,.updateAdditionalInfo,
             .insertSocialMediaLink, .deleteSocialMediaLink, .insertSocialMultiMedia, .deleteSocialMultiMediaLink,
             .insertDisabilityStatus, .deleteDisabilityStatus,
-            .studentAdmissionUpdate:
+            .studentAdmissionUpdate, .deleteAccebilityMaterial, .deleteWeCanEducate:
             return "/Api/school.ashx"
         case .getJobList, .applyForJob, .updateOrInsertJobSeekerDetail, .getJobSeekerCertifications,
                 .getJobSeekerTechnicalSkills, .insertJobSeekerTechnicalSkills,
@@ -203,8 +218,9 @@ enum Endpoint {
                 .insertEmployerAccessibilityStatus,
                 .deleteEmployerAccessibilityStatus:
             return "/Api/Employer.ashx"
-        case .company, .companyJobSeeker:
+        case .company, .companyJobSeeker, .companyPostJob, .companyUpdate:
             return "/Api/company.ashx"
+        case .complainForDenialOfAdmission, .complainForDenialOfJob: return "/Api/complaint.ashx"
         }
     }
     
@@ -240,6 +256,8 @@ enum Endpoint {
         case .deleteSocialMultiMediaLink: return [URLQueryItem(name: "method", value: "DeleteSocialMultiMediaLink")]
         case .insertDisabilityStatus: return [URLQueryItem(name: "method", value: "InsertDisabilityStatus")]
         case .deleteDisabilityStatus: return [URLQueryItem(name: "method", value: "DeleteDisabilityStatus")]
+        case .deleteWeCanEducate: return [URLQueryItem(name: "method", value: "DeleteWeCanEducate")]
+        case .deleteAccebilityMaterial: return [URLQueryItem(name: "method", value: "DeleteAccebilityMaterial")]
         // Job
         case .getJobList: return [URLQueryItem(name: "method", value: "getJobList")]
         case .applyForJob: return [URLQueryItem(name: "method", value: "applyForJob")]
@@ -297,11 +315,16 @@ enum Endpoint {
             return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
         case .deleteEmployerAccessibilityStatus:
             return [URLQueryItem(name: "method", value: "insertJobSeekerAdditionalInfo")]
-        case .company(_ , let method), .companyJobSeeker(_ , let method):
+        case .company(_ , let method), .companyJobSeeker(_ , let method),
+                .companyUpdate(_ , let method):
             return [URLQueryItem(name: "method", value: method)]
-        case .getApplications: return [URLQueryItem(name: "method", value: "ApplicationsList")]
-        case .getAuth(_, let method):
-                return [URLQueryItem(name: "method", value: method)]
+        case .getApplications: return [URLQueryItem(name: "method", value: "ApplicationList")]
+        case .companyPostJob: return [URLQueryItem(name: "method", value: "JobPost")]
+        case .getAuth(_, let method): return [URLQueryItem(name: "method", value: method)]
+        case .complainForDenialOfAdmission: return [URLQueryItem(name: "method", value: "ComplainforDenailofAdmission")]
+        case .complainForDenialOfJob :
+            return [URLQueryItem(name: "method", value: "ComplainforDenailofJob")]
+        case .generalComplain: return [URLQueryItem(name: "method", value: "generalComplain")]
         }
     }
     
@@ -393,7 +416,7 @@ enum Endpoint {
         case .insertDisabilityStatus(let cred):
             let jsonPost = try? JSONEncoder().encode(cred)
             return jsonPost
-        case .deleteDisabilityStatus(let cred):
+        case .deleteDisabilityStatus(let cred), .deleteAccebilityMaterial(let cred), .deleteWeCanEducate(let cred):
             let jsonPost = try? JSONEncoder().encode(cred)
             return jsonPost
         case .applyForJob(let cred):
@@ -479,6 +502,18 @@ enum Endpoint {
             let jsonPost = try? JSONEncoder().encode(cred)
             return jsonPost
         case .getAuth( let cred, _):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .companyPostJob(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .companyUpdate(let cred, _):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .complainForDenialOfAdmission(let cred), .complainForDenialOfJob(let cred):
+            let jsonPost = try? JSONEncoder().encode(cred)
+            return jsonPost
+        case .generalComplain(let cred):
             let jsonPost = try? JSONEncoder().encode(cred)
             return jsonPost
         }

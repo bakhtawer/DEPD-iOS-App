@@ -126,7 +126,7 @@ class SchoolDetailsViewController: BaseViewController {
         
         
         
-        guard let image = URL(string: USM.shared.getUser().schoolDetailInfo?.profileImageURL?.convertToHttps() ?? "") else { return }
+        guard let image = URL(string: USM.shared.getUserImage()) else { return }
         imageSchool.contentMode = .scaleAspectFill
         imageSchool.kf.setImage(with: image,
                                 placeholder: UIImage(named: "studentplacehoder"))
@@ -201,7 +201,7 @@ class SchoolDetailsViewController: BaseViewController {
         labelEmptySocialMultiMedia.makeItTheme(.regular, 12, .textDark)
         
         
-        guard let selectedSchool = SchoolManager.shared.selectedSchool else {
+        guard let selectedSchool = USM.shared.getUser().schoolDetailInfo else {
             //Hide here views
             viewGapmultimedia.isHidden = true
             viewMasterSocialMultiMedia.isHidden = true
@@ -265,14 +265,14 @@ class SchoolDetailsViewController: BaseViewController {
         labelEmptyWeCanEducate.text = ""
         labelEmptyWeCanEducate.makeItTheme(.regular, 12, .textDark)
         
-        let listOfDisabilities = (selectedSchool.SchoolDisabilityList ?? []).map {$0.disabilityStatus?.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\r\n", with: "").replacingOccurrences(of: "\n", with: "") ?? ""}
+        let listOfDisabilities = (selectedSchool.schoolAndCompanyDisabilityStatusInfo ?? []).map {$0.disabilityStatus?.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\r\n", with: "").replacingOccurrences(of: "\n", with: "") ?? ""}
         viewWeCanEducate.disabilities = listOfDisabilities
         if listOfDisabilities.isEmpty {
             labelEmptyWeCanEducate.text = "nothing_to_show_in_the_gallery".localized()
         }
         viewWeCanEducate.onToggle = { index in
-            print("delete \(index) :\(selectedSchool.SchoolDisabilityList?[index])")
-            guard let disabilityId = selectedSchool.SchoolDisabilityList?[index].schoolDisabilityId,
+            print("delete \(index) :\(selectedSchool.schoolAndCompanyDisabilityStatusInfo?[index])")
+            guard let disabilityId = selectedSchool.schoolAndCompanyDisabilityStatusInfo?[index].disabilityStatusId,
                   disabilityId != -1,
                   let userID = USM.shared.getUser().id
             else {

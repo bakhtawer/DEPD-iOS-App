@@ -167,7 +167,7 @@ extension FormBuilderViewController {
             
             FormField(fieldType: .recordYourMessage, placeholder: "record_your_message".localized(), name: "record_your_message", value: nil, isRequired: false),
             
-            FormField(fieldType: .uploadFile, placeholder: "upload_file".localized(), name: "upload_related_documents_job", value: nil, isRequired: false),
+            FormField(fieldType: .uploadFile, placeholder: "upload_document".localized(), name: "upload_related_documents_job", value: nil, isRequired: false),
             
             FormField(fieldType: .checkbox, placeholder: "i_herby_that".localized(), name: "complainDetailsCheckBox", value: denialOfJob?.complainDetailsCheckBox?.makeItString, isRequired: false),
             

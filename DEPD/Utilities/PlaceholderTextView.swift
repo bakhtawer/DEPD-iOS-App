@@ -9,10 +9,9 @@ import UIKit
 class PlaceholderTextView: UITextView {
     let placeholderLabel: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.lightGray
-        label.font = UIFont.systemFont(ofSize: 12)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
+        label.makeItTheme(.regular, 16, .textLightGray)
         return label
     }()
 
@@ -27,7 +26,8 @@ class PlaceholderTextView: UITextView {
     }
 
     private func setupView() {
-        self.textColor = UIColor.lightGray
+        self.textContainerInset = UIEdgeInsets(top: 16, left: 14, bottom: 10, right: 16);
+        self.textColor = UIColor.textDark
         self.font = UIFont.systemFont(ofSize: 16)
         addSubview(placeholderLabel)
         placeholderLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -128,10 +128,10 @@ extension UserSessionManager {
 }
 
 extension UserSessionManager {
-    func getApplications(completion: @escaping ([MyApplicationsModel]) -> Void) {
+    func getApplications(completion: @escaping ([MyApplicationsModel]?) -> Void) {
         if let userID = Int(KeychainManager.retrieve(forKey: .userID) ?? "-1"), userID != -1 {
         let request = Endpoint.getApplications(cred: GetUserByID(Id: userID)).request!
-            service.makeRequest(with: request, respModel: ApiResponse<[MyApplicationsModel]>.self) {userResponse, error in
+            service.makeRequest(with: request, respModel: MyApplicationsContainer.self) {userResponse, error in
                 func fail() {
                     completion([])
                 }
@@ -172,5 +172,169 @@ extension UserSessionManager {
                     return}
                 completion(data)
             }
+    }
+}
+
+// Complaints
+extension UserSessionManager {
+    func complainForDenialOfAdmission(data: DenialOfAdmissionCreds, completion: @escaping (Bool?) -> Void) {
+        let request = Endpoint.complainForDenialOfAdmission(cred: data).request!
+        service.makeRequest(with: request, respModel: ApiResponse<String>.self) {userResponse, error in
+                func fail() {
+                    completion(nil)
+                }
+                if let error = error { print("DEBUG PRINT:", error);
+                    fail()
+                    return }
+                print("DEBUG PRINT:", userResponse ?? "")
+                if let error = userResponse?.isError, error {
+                    SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                    fail()
+                    return }
+                completion(true)
+            }
+    }
+    
+    func complainForDenialOfJob(data: DenialOfAdmissionCreds, completion: @escaping (Bool?) -> Void) {
+        let request = Endpoint.complainForDenialOfJob(cred: data).request!
+        service.makeRequest(with: request, respModel: ApiResponse<String>.self) {userResponse, error in
+                func fail() {
+                    completion(nil)
+                }
+                if let error = error { print("DEBUG PRINT:", error);
+                    fail()
+                    return }
+                print("DEBUG PRINT:", userResponse ?? "")
+                if let error = userResponse?.isError, error {
+                    SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                    fail()
+                    return }
+                completion(true)
+            }
+    }
+    
+    func generalComplain(data: GeneralComplainCreds, completion: @escaping (Bool?) -> Void) {
+        let request = Endpoint.generalComplain(cred: data).request!
+        service.makeRequest(with: request, respModel: ApiResponse<String>.self) {userResponse, error in
+                func fail() {
+                    completion(nil)
+                }
+                if let error = error { print("DEBUG PRINT:", error);
+                    fail()
+                    return }
+                print("DEBUG PRINT:", userResponse ?? "")
+                if let error = userResponse?.isError, error {
+                    SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                    fail()
+                    return }
+                completion(true)
+            }
+    }
+}
+
+class GeneralComplainCreds: Codable {
+    let AudioFileName: String?
+    let CNICNo: String?
+    let ContactNo: String?
+    let DisabilityTypeId: Int?
+    let District: String?
+    let FullName: String?
+    let Gender: String?
+    let Message: String?
+    init(AudioFileName: String?, CNICNo: String?, ContactNo: String?, DisabilityTypeId: Int?, District: String?, FullName: String?, Gender: String?, Message: String?) {
+        self.AudioFileName = AudioFileName
+        self.CNICNo = CNICNo
+        self.ContactNo = ContactNo
+        self.DisabilityTypeId = DisabilityTypeId
+        self.District = District
+        self.FullName = FullName
+        self.Gender = Gender
+        self.Message = Message
+    }
+}
+
+struct ForgotPasswordResponse: Codable {
+    var Cnic: Int?
+    var Status: Bool?
+}
+
+extension UserSessionManager {
+    func forgetPassword(Cnic: Int, completion: @escaping (Bool) -> Void) {
+        let request = Endpoint.getAuth(cred: GetUserByID(Cnic: Cnic), method: "forgetPassword").request!
+        service.makeRequest(with: request, respModel: ApiResponse<ForgotPasswordResponse>.self) {userResponse, error in
+            func fail() {
+                completion(false)
+            }
+            if let error = error { print("DEBUG PRINT:", error);
+                fail()
+                return }
+            print("DEBUG PRINT:", userResponse ?? "")
+            if let error = userResponse?.isError, error {
+                SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                fail()
+                return }
+            
+            if let message = userResponse?.errorMessage2, !message.isEmpty {
+                SMM.shared.showError(title: "", message: message);
+                fail()
+                return
+            }
+            
+            guard let data = userResponse?.oData, let status2 = data.Status, status2 else {
+                SMM.shared.showError(title: "", message: userResponse?.errorMessage2 ?? "Something went Wrong")
+                fail()
+                return
+            }
+            
+            completion(true)
+        }
+    }
+    
+    func resetPassword(Cnic: Int, Otp: String, Pasword: String, completion: @escaping (Bool) -> Void) {
+        let request = Endpoint.getAuth(cred: GetUserByID(Cnic: Cnic, Otp: Otp, Pasword: Pasword), method: "resetPassword").request!
+        service.makeRequest(with: request, respModel: ApiResponse<String>.self) {userResponse, error in
+            func fail() {
+                completion(false)
+            }
+            if let error = error { print("DEBUG PRINT:", error);
+                fail()
+                return }
+            print("DEBUG PRINT:", userResponse ?? "")
+            if let error = userResponse?.isError, error {
+                SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                fail()
+                
+                return }
+            if let message = userResponse?.errorMessage2, !message.isEmpty {
+                SMM.shared.showError(title: "", message: message);
+                fail()
+                return
+            }
+            completion(true)
+        }
+    }
+    
+    func verifyOtp(Cnic: Int, Otp: String, completion: @escaping (Bool) -> Void) {
+        let request = Endpoint.getAuth(cred: GetUserByID(Cnic: Cnic, Otp: Otp), method: "verifyOtp").request!
+        service.makeRequest(with: request, respModel: ApiResponse<String>.self) {userResponse, error in
+            func fail() {
+                completion(false)
+            }
+            if let error = error { print("DEBUG PRINT:", error);
+                fail()
+                return }
+            print("DEBUG PRINT:", userResponse ?? "")
+            if let error = userResponse?.isError, error {
+                SMM.shared.showError(title: "", message: userResponse?.errorMessage ?? "Something went Wrong");
+                fail()
+                return
+            }
+            if  let message = userResponse?.errorMessage2, !message.isEmpty {
+                SMM.shared.showError(title: "", message: message);
+                fail()
+                return
+            }
+            completion(true)
+        }
     }
 }

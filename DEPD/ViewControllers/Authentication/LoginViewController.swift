@@ -335,6 +335,7 @@ extension LoginViewController {
         setLogo()
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         UIApplication.shared.statusBarView?.backgroundColor = .appBG
+        navigationController?.navigationBar.backgroundColor = .appBG
         self.setBackButton(.appBlue).addTapGestureRecognizer { [weak self] in
             guard let self = self else {return}
             if self.isFromBootstrap {

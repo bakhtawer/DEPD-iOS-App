@@ -23,6 +23,7 @@ enum FieldType {
     case uploadedFile
     case dateFrom
     case dateTo
+    case dateJoning
     case gapTop
 }
 
@@ -57,18 +58,21 @@ class FormBuilderViewController: BaseViewController {
     var selectImageName = ""
     var selectedImageString = ""
     
+    var jobSeekerID: Int?
+    
     enum FormType {
         case schoolInfo
         case aboutYourSchool
         case additionalInfo
-//        case socialMediaLinks
-//        case socialMediaMedia
-//        case weCanEducate
+        //        case socialMediaLinks
+        //        case socialMediaMedia
+        //        case weCanEducate
         case denialOfAdmission
         case denialOfAdmissionComplainDetails
         case denialOfAdmissionParentDetails
         case denialOfJob
         case denialOfJobComplainDetails
+        case generalComplain
         case general
         case studentProfile
         case acceptStudentAdmission
@@ -152,6 +156,10 @@ class FormBuilderViewController: BaseViewController {
             self.setTitle("additional_info".localized())
             labelTitle.text = "additional_info".localized()
             fields = populateForAdditionalInfo()
+        case .generalComplain:
+            self.setTitle("help_complain".localized())
+            labelTitle.text = "help_complain".localized()
+            fields = populateForGeneralComplaint()
         case .general:
             self.setTitle("")
             fields = [
@@ -160,8 +168,8 @@ class FormBuilderViewController: BaseViewController {
                 FormField(fieldType: .text, placeholder: "Last Name", name: "lastName", value: nil, isRequired: false)
             ]
         case .denialOfAdmission:
-            self.setTitle("candidate_details".localized())
-            labelTitle.text = "" //"".localized()
+            self.setTitle("complain_for_denial_of_admission".localized())
+            labelTitle.text = "candidate_details" //"".localized()
             topTitleView.isHidden = true
             
             buttonTitle = "next".localized()
@@ -184,9 +192,8 @@ class FormBuilderViewController: BaseViewController {
             
             fields = populateParentsDetails()
         case .denialOfJob:
-            self.setTitle("candidate_details".localized())
-            labelTitle.text = "" //"".localized()
-            topTitleView.isHidden = true
+            self.setTitle("complain_for_denial_of_job".localized())
+            labelTitle.text = "candidate_details".localized()
             buttonTitle = "next".localized()
             fields = populateCandidateDetailsJob()
         case .studentProfile:
@@ -365,16 +372,16 @@ class FormBuilderViewController: BaseViewController {
     }
     
     let firstName =  FormField(fieldType: .text,
-                              placeholder: "first_name".localized(),
-                              name: "first_name",
-                              value: USM.shared.getUser().firstName,
-                              isRequired: true)
+                               placeholder: "first_name".localized(),
+                               name: "first_name",
+                               value: USM.shared.getUser().firstName,
+                               isRequired: true)
     
     let lastName =  FormField(fieldType: .text,
-                               placeholder: "last_name".localized(),
-                               name: "last_name",
+                              placeholder: "last_name".localized(),
+                              name: "last_name",
                               value: USM.shared.getUser().lastName,
-                               isRequired: true)
+                              isRequired: true)
     
     let fatherName = FormField(fieldType: .text,
                                placeholder: "father_name".localized(),
@@ -478,32 +485,32 @@ class FormBuilderViewController: BaseViewController {
             fields.append(FormField(fieldType: .uploadedFile, placeholder: "upload_profile_picture".localized(), name: "upload_profile_picture", value: profileUrl.convertToHttps(), isRequired: false))
             let imageView = UIImageView()
             imageView.kf.setImage(with: URL(string: profileUrl.convertToHttps())) {[weak self] result in
-               switch result {
-               case .success(let value):
-                   self?.studentPP = self?.imageToByteString(image: value.image, true) ?? ""
-                   print("profile_picture Image: \(value.image). Got from: \(value.cacheType)")
-               case .failure(let error):
-                   print("Error: \(error)")
-               }
-             }
+                switch result {
+                case .success(let value):
+                    self?.studentPP = self?.imageToByteString(image: value.image, true) ?? ""
+                    print("profile_picture Image: \(value.image). Got from: \(value.cacheType)")
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
+            }
         }else {
             fields.append(FormField(fieldType: .uploadFile, placeholder: "upload_profile_picture".localized(), name: "upload_profile_picture", value: nil, isRequired: false))
         }
         
-//        fields.append(FormField(fieldType: .uploadFile, placeholder: "upload_form_b_cnic".localized(), name: "upload_form_b_cnic", value: nil, isRequired: false))
+        //        fields.append(FormField(fieldType: .uploadFile, placeholder: "upload_form_b_cnic".localized(), name: "upload_form_b_cnic", value: nil, isRequired: false))
         
         if let disabilityCertificate = USM.shared.getUser().oStudentDetails?.disabilityCertificateURL, !disabilityCertificate.isEmpty {
             fields.append(FormField(fieldType: .uploadedFile, placeholder: "upload_disability_certificate".localized(), name: "upload_disability_certificate", value: disabilityCertificate.convertToHttps(), isRequired: false))
             let imageView = UIImageView()
             imageView.kf.setImage(with: URL(string: disabilityCertificate.convertToHttps())) {[weak self] result in
-               switch result {
-               case .success(let value):
-                   self?.disabilityCer = self?.imageToByteString(image: value.image, true) ?? ""
-                   print("disabilityCer Image: \(value.image). Got from: \(value.cacheType)")
-               case .failure(let error):
-                   print("Error: \(error)")
-               }
-             }
+                switch result {
+                case .success(let value):
+                    self?.disabilityCer = self?.imageToByteString(image: value.image, true) ?? ""
+                    print("disabilityCer Image: \(value.image). Got from: \(value.cacheType)")
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
+            }
         }else {
             fields.append(FormField(fieldType: .uploadFile, placeholder: "upload_disability_certificate".localized(), name: "upload_disability_certificate", value: nil, isRequired: false))
         }
@@ -567,17 +574,75 @@ class FormBuilderViewController: BaseViewController {
     }
     
     
+    private func populateForGeneralComplaint() -> [FormField] {
+        [
+            //            FullName
+            FormField(fieldType: .text,
+                      placeholder: "full_name".localized(),
+                      name: "fullname",
+                      value: nil,
+                      isRequired: true),
+            
+            //            CNIC
+            FormField(fieldType: .number,
+                      placeholder: "cnic".localized(),
+                      name: "CNIC",
+                      value: UserSessionManager.shared.getUser().cnic,
+                      isRequired: true),
+            
+            //            Disability
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDisabilitiesNames()),
+                      placeholder: "disability".localized(),
+                      name: "disability",
+                      value: nil,
+                      isRequired: false),
+            
+            
+            //            District
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
+                      placeholder: "district".localized(),
+                      name: "district",
+                      value: nil,
+                      isRequired: false),
+            //            Gender,
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getGendersName()),
+                      placeholder: "gender".localized(),
+                      name: "gender",
+                      value: nil,
+                      isRequired: false),
+            
+            //            ContactNo,
+            FormField(fieldType: .number,
+                      placeholder: "contact_number".localized(),
+                      name: "contact_number",
+                      value: nil,
+                      isRequired: true),
+            
+            
+            //Message
+            FormField(fieldType: .textLong,
+                      placeholder: "message".localized(),
+                      name: "message",
+                      value: nil,
+                      isRequired: true),
+            
+            //Record Message
+            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+            //            FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
+        ]
+    }
+    
     func populatePostJob() -> [FormField] {
         [
-            FormField(fieldType: .text, placeholder: "enter_position".localized(), name: "enter_position".localized(), value: nil, isRequired: false),
+            FormField(fieldType: .text, placeholder: "enter_position".localized(), name: "enter_position", value: nil, isRequired: false),
             
-            FormField(fieldType: .text, placeholder: "enter_required_experince".localized(), name: "enter_required_experince".localized(), value: nil, isRequired: false),
+            FormField(fieldType: .number, placeholder: "enter_required_experince".localized(), name: "enter_required_experince", value: nil, isRequired: false),
             
-            FormField(fieldType: .number, placeholder: "enter_salary".localized(), name: "enter_salary".localized(), value: nil, isRequired: false),
+            FormField(fieldType: .number, placeholder: "enter_salary".localized(), name: "enter_salary", value: nil, isRequired: false),
             
-            FormField(fieldType: .text, placeholder: "enter_address".localized(), name: "enter_address".localized(), value: nil, isRequired: false),
+            FormField(fieldType: .email, placeholder: "enter_address".localized(), name: "enter_address", value: nil, isRequired: false),
             
-            FormField(fieldType: .number, placeholder: "enter_no_vacancies".localized(), name: "enter_no_vacancies".localized(), value: nil, isRequired: false),
+            FormField(fieldType: .number, placeholder: "enter_no_vacancies".localized(), name: "enter_no_vacancies", value: nil, isRequired: false),
             
             FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
                       placeholder: "district".localized(),
@@ -585,9 +650,9 @@ class FormBuilderViewController: BaseViewController {
                       value: nil,
                       isRequired: false),
             
-            FormField(fieldType: .textLong, placeholder: "enter_job_description".localized(), name: "enter_job_description".localized(), value: nil, isRequired: false),
+            FormField(fieldType: .textLong, placeholder: "enter_job_description".localized(), name: "enter_job_description", value: nil, isRequired: false),
             
-            FormField(fieldType: .uploadFile, placeholder: "upload_job_poster".localized(), name: "upload_job_poster".localized(), value: nil, isRequired: false),
+            FormField(fieldType: .uploadFile, placeholder: "upload_job_poster".localized(), name: "upload_job_poster", value: nil, isRequired: false),
             
             FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
             FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
@@ -622,7 +687,7 @@ extension FormBuilderViewController: FormBuilderProtocol {
                   let schoolId = USM.shared.getUser().schoolDetailInfo?.id,
                   let schoolName = data["school_name"] as? String,
                   let ntn = data["ntn_number"] as? String
-            else { 
+            else {
                 SMM().showError(title: "Sorry", message: "Something Went Wrong")
                 return }
             var user = User()
@@ -674,16 +739,16 @@ extension FormBuilderViewController: FormBuilderProtocol {
             if accessibility_material == "Yes" {
                 accessibility_materialInt = 1
             }
-          
-             let info = UpdateAdditionalInfoCreds(SchoolId: schoolId,
-                                                  EstablishedYear: establish_year,
-                                                  Location: location,
-                                                  District: district,
-                                                  NumberOfTrainedTeachers: trained_teachersInt,
-                                                  HasTrainingMaterial: accessibility_materialInt,
-                                                  NumberOfTotalStudents: number_of_total_studentsInt,
-                                                  CanEducate: 1,
-                                                  FreeOrPaid: free_or_paid_educationInt)
+            
+            let info = UpdateAdditionalInfoCreds(SchoolId: schoolId,
+                                                 EstablishedYear: establish_year,
+                                                 Location: location,
+                                                 District: district,
+                                                 NumberOfTrainedTeachers: trained_teachersInt,
+                                                 HasTrainingMaterial: accessibility_materialInt,
+                                                 NumberOfTotalStudents: number_of_total_studentsInt,
+                                                 CanEducate: 1,
+                                                 FreeOrPaid: free_or_paid_educationInt)
             
             SchoolManager.shared.updateAdditionalInfo(data: info) {[weak self] status in
                 
@@ -736,17 +801,59 @@ extension FormBuilderViewController: FormBuilderProtocol {
             
             print(denialOfAdmission)
             guard let complainDetailsCheckBox = data["complainDetailsCheckBox"] as? String,
+                  let complainDetailsDistrictID = AMDH.shared.getDistrictsNames(byName: denialOfAdmission?.complainDetailsDistrict ?? "")?.districtId,
+                  let complainDisabilityId = AMDH.shared.getDisabilities(byName: denialOfAdmission?.cdDisability ?? "")?.disabilityId,
+                  let cDDistrictID = AMDH.shared.getDistrictsNames(byName: denialOfAdmission?.cdDistrict ?? "")?.districtId,
+                  let genderID = AMDH.shared.getGenders(byName: denialOfAdmission?.cdGender ?? "")?.genderId,
                   complainDetailsCheckBox.makeItBool else {
                 SMM().showError(title: "Sorry", message: "Please select the checkbox")
                 return
             }
+            let data = DenialOfAdmissionCreds(AudioFileName: "\(UUID().uuidString).mp3",
+                                              cdINstituteAddress: denialOfAdmission?.complainDetailsInstituteName,
+                                              cdINstituteContactNumber: denialOfAdmission?.complainDetailsInstituteContactNumber,
+                                              cdINstituteDistrictId: complainDetailsDistrictID,
+                                              cdINstituteEmailAddress: denialOfAdmission?.complainDetailsInstituteEmailAddress,
+                                              cdINstituteName: denialOfAdmission?.complainDetailsInstituteName,
+                                              cdIReason: denialOfAdmission?.complainDetailsReasonOfDenialOfAdmission,
+                                              cdtAddress: denialOfAdmission?.complainDetailsInstituteAddress,
+                                              cdtCNIC: denialOfAdmission?.cdCNIC,
+                                              cdtContactNo: denialOfAdmission?.cdContactNo,
+                                              cdtDateOfBirth: denialOfAdmission?.cdDob,
+                                              cdtDisablityId: complainDisabilityId,
+                                              cdtDistrictId: cDDistrictID,
+                                              cdtFatherName: denialOfAdmission?.cdFatherName,
+                                              cdtGender: genderID,
+                                              cdtName: denialOfAdmission?.cdName,
+                                              DocFileName: selectImageName,
+                                              prCNIC: denialOfAdmission?.pdCNIC,
+                                              prContactNo: denialOfAdmission?.pdContactNo,
+                                              prEmail: denialOfAdmission?.pdEmail,
+                                              prName: denialOfAdmission?.pdName,
+                                              prRelationwithCandidate: 1,
+                                              DocFileByteString: selectedImageString,
+                                              cdReason: nil,
+                                              cdCompanyAddress: nil,
+                                              cdCompanyContactNumber: nil,
+                                              cdCompanyDistrictId: nil,
+                                              cdCompanyEmailAddress: nil,
+                                              cdCompanyName: nil)
+            //            denialOfAdmission?.pdRelationWithCandidate
             
-            DispatchQueue.main.async {[weak self] in
-                let storyboard = getStoryBoard(.main)
-                let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
-                contentVC.messageThankYou = .denialOfAdmission
-                contentVC.moveThankYou = .splash
-                openModuleOverFullScreen(controller: contentVC)
+            print(data)
+            
+            self.showLoadingIndicator(withDimView: true)
+            USM.shared.complainForDenialOfAdmission(data: data) { [weak self] status in
+                self?.hideLoadingIndicator()
+                if status ?? false {
+                    DispatchQueue.main.async {
+                        let storyboard = getStoryBoard(.main)
+                        let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
+                        contentVC.messageThankYou = .denialOfAdmission
+                        contentVC.moveThankYou = .splash
+                        openModuleOverFullScreen(controller: contentVC)
+                    }
+                }
             }
         case .denialOfAdmissionParentDetails:
             //    Parent/Guardian Details
@@ -786,8 +893,8 @@ extension FormBuilderViewController: FormBuilderProtocol {
         case .studentProfile:
             let firstName = data["first_name"] as? String ?? ""
             let lastName = data["last_name"] as? String ?? ""
-//            studentDetails = data["first_name"] as? String
-//            studentDetails = data["last_name"] as? String
+            //            studentDetails = data["first_name"] as? String
+            //            studentDetails = data["last_name"] as? String
             studentDetails?.fatherName = data["father_name"] as? String
             studentDetails?.fatherCnic = data["father_cnic"] as? String
             studentDetails?.emailAddress = data["email"] as? String
@@ -861,12 +968,56 @@ extension FormBuilderViewController: FormBuilderProtocol {
             denialOfJob?.complainDetailsPresentAddress = data["complainDetailsPresentAddress"] as? String
             denialOfJob?.complainDetailsDistrict = data["complainDetailsDistrict"] as? String
             denialOfJob?.complainDetailsCheckBox = complainDetailsCheckBox.makeItBool
-            DispatchQueue.main.async {[weak self] in
-                let storyboard = getStoryBoard(.main)
-                let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
-                contentVC.messageThankYou = .denialOfJob
-                contentVC.moveThankYou = .splash
-                openModuleOverFullScreen(controller: contentVC)
+            
+            let distID = AMDH.shared.getDistrictsNames(byName: denialOfJob?.complainDetailsDistrict ?? "")?.districtId
+            let dist2ID = AMDH.shared.getDistrictsNames(byName: denialOfJob?.cdDistrict ?? "")?.districtId
+            let disabilityID = AMDH.shared.getDisabilities(byName: denialOfJob?.cdDisability ?? "")?.disabilityId
+            
+            //            ["record_your_message": "", "complainDetailsCompanyName": "complainDetailsCompanyName", "complainDetailsCompanyContactNumber": "complainDetailsCompanyContactNumber", "complainDetailsReasonOfDenialOfJob": "complainDetailsReasonOfDenialOfJob", "complainDetailsPresentAddress": "complainDetailsPresentAddress", "complainDetailsCheckBox": "1", "complainDetailsCompanyEmailAddress": "complainDetailsCompanyEmailAddress", "complainDetailsDistrict": "Larkana"]
+            
+            let data = DenialOfAdmissionCreds(AudioFileName: nil,
+                                              cdINstituteAddress: nil,
+                                              cdINstituteContactNumber: nil,
+                                              cdINstituteDistrictId: nil,
+                                              cdINstituteEmailAddress: nil,
+                                              cdINstituteName: nil,
+                                              cdIReason: nil,
+                                              cdtAddress: denialOfJob?.cdPresentAddress,
+                                              cdtCNIC: denialOfJob?.cdCNIC,
+                                              cdtContactNo: denialOfJob?.cdContactNo,
+                                              cdtDateOfBirth: denialOfJob?.cdDob,
+                                              cdtDisablityId: disabilityID,
+                                              cdtDistrictId: dist2ID,
+                                              cdtFatherName: denialOfJob?.cdFatherName,
+                                              cdtGender: AMDH.shared.getGenders(byName: denialOfJob?.cdGender ?? "")?.genderId,
+                                              cdtName: denialOfJob?.cdName,
+                                              DocFileName: selectImageName,
+                                              prCNIC: nil,
+                                              prContactNo: nil,
+                                              prEmail: nil,
+                                              prName: nil,
+                                              prRelationwithCandidate: nil,
+                                              DocFileByteString: selectedImageString,
+                                              cdReason: denialOfJob?.complainDetailsReasonOfDenialOfJob,
+                                              cdCompanyAddress: denialOfJob?.complainDetailsPresentAddress,
+                                              cdCompanyContactNumber: denialOfJob?.complainDetailsCompanyContactNumber,
+                                              cdCompanyDistrictId: distID,
+                                              cdCompanyEmailAddress: denialOfJob?.complainDetailsCompanyEmailAddress,
+                                              cdCompanyName: denialOfJob?.complainDetailsCompanyName)
+            
+            
+            self.showLoadingIndicator(withDimView: true)
+            USM.shared.complainForDenialOfJob(data: data) { [weak self] status in
+                self?.hideLoadingIndicator()
+                if status ?? false {
+                    DispatchQueue.main.async {
+                        let storyboard = getStoryBoard(.main)
+                        let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
+                        contentVC.messageThankYou = .denialOfJob
+                        contentVC.moveThankYou = .splash
+                        openModuleOverFullScreen(controller: contentVC)
+                    }
+                }
             }
         case .acceptStudentAdmission:
             guard let selectedClass = data["select_class"] as? String,
@@ -1097,19 +1248,212 @@ extension FormBuilderViewController: FormBuilderProtocol {
                 }
             }
         case .acceptJobApplication:
-            break
+            guard let dateOfJoining = data["date_of_joining"] as? String,
+                  let userID = jobSeekerID
+            else { return }
+            //            upload_document
+            
+            var imagename: String?
+            var imageString: String?
+            if !selectedImageString.isEmpty {
+                imageString = selectedImageString
+                imagename = "\(UUID().uuidString).jpg"
+            }
+            
+            let data = CompanyUpdateCreds(Id: userID,StatusId: 2, DocumentBytesString: imageString)
+            self.showLoadingIndicator()
+            CompanyManager.shared.updateCompany(data: data,
+                                                method: .updateApplicationStatus) {[weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    SMM.shared.showStatusSuccess(message: "Profile Updated")
+                    DispatchQueue.main.async {[weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
         case .rejectJobApplication:
-            break
+            guard let reason = data["reason"] as? String,
+                  let userID = jobSeekerID
+            else { return }
+            
+            let data = CompanyUpdateCreds(Id: userID, Reason: reason, StatusId: 3)
+            self.showLoadingIndicator()
+            CompanyManager.shared.updateCompany(data: data,
+                                                method: .updateApplicationStatus) {[weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    SMM.shared.showStatusSuccess(message: "Profile Updated")
+                    DispatchQueue.main.async {[weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
         case .personalInformationEmployer:
-            break
+            guard let userID = USM.shared.getUser().companyDetailInfo?.companyId,
+                  let id = USM.shared.getUser().companyDetailInfo?.id,
+                  let companyName = data["company_name"] as? String,
+                  let district = data["district"] as? String,
+                  let designation = data["designation"] as? String,
+                  let cnic = data["cnic"] as? String,
+                  let ntn_number = data["ntn_number"] as? String,
+                  let contact_number = data["contact_number"] as? String,
+                  let email = data["email"] as? String,
+                  let address = data["address"] as? String,
+                  let website = data["website"] as? String,
+                  let registration_number = data["registration_number"] as? String,
+                  let about_your_company = data["about_your_company"] as? String,
+                  let fullname = data["fullname"] as? String,
+                  let availbale_seats_for_pwds = data["availbale_seats_for_pwds"] as? String
+            else { return }
+            
+            let data = CompanyUpdateCreds(AvailableQuotaForPWDs: availbale_seats_for_pwds,
+                                          cnic: cnic,
+                                          companyId: userID,
+                                          companyName: companyName,
+                                          ContactNumber: contact_number,
+                                          Description: about_your_company,
+                                          Designation: designation,
+                                          District: district,
+                                          EmailAdress: email,
+                                          FirstName: fullname,
+                                          id: id,
+                                          LastName: "",
+                                          Location: address,
+                                          NTNNumber: ntn_number,
+                                          RegistirationNumber: registration_number,
+                                          Website: website)
+            
+            self.showLoadingIndicator()
+            CompanyManager.shared.updateCompany(data: data,
+                                                method: .updateCompany) {[weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    SMM.shared.showStatusSuccess(message: "Profile Updated")
+                    DispatchQueue.main.async {[weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
         case .socialMediaEmployer:
-            break
+            guard let userID = USM.shared.getUser().id,
+                  let accountType = data["account_type"] as? String,
+                  let link = data["link"] as? String,
+                  let materialID = AMDH.shared.getSocialMediaList(byName: accountType)?.mId
+            else { return }
+            
+            let data = CompanyUpdateCreds(AccountTypeID: materialID, relID: userID, SocialMediaLink: link)
+            self.showLoadingIndicator()
+            CompanyManager.shared.updateCompany(data: data,
+                                                method: .InsertSocialMedia) {[weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    SMM.shared.showStatusSuccess(message: "Profile Updated")
+                    DispatchQueue.main.async {[weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
         case .weProvideJobEmployer:
-            break
+            guard let schoolID = USM.shared.getUser().id,
+                  let disability = data["disability"] as? String,
+                  let materialID = AMDH.shared.getDisabilities(byName: disability)?.disabilityId
+            else { return }
+            
+            let data = CompanyUpdateCreds(disabilityStatusId: materialID, userId: schoolID)
+            self.showLoadingIndicator()
+            CompanyManager.shared.updateCompany(data: data,
+                                                method: .InsertSchoolAndCompanyDisability) {[weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    SMM.shared.showStatusSuccess(message: "Profile Updated")
+                    DispatchQueue.main.async {[weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
         case .accessibilityMaterialEmployer:
-            break
+            guard let schoolID = USM.shared.getUser().id,
+                  let accessibilityMaterial = data["accessibility_material"] as? String,
+                  let materialID = AMDH.shared.getAccessibilityListName(byName: accessibilityMaterial)?.mId
+            else { return }
+            
+            let data = CompanyUpdateCreds(MaterialID: materialID, MaterialName: accessibilityMaterial, SchoolId: schoolID)
+            self.showLoadingIndicator()
+            CompanyManager.shared.updateCompany(data: data,
+                                                method: .InsertAccebilityMaterial) {[weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    SMM.shared.showStatusSuccess(message: "Profile Updated")
+                    DispatchQueue.main.async {[weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
         case .postJob:
-            break
+            guard let companyId = USM.shared.getUser().id,
+                  let descriptionText = data["enter_job_description"] as? String,
+                  let distict = data["district"] as? String,
+                  let location = data["enter_address"] as? String,
+                  let noOfVaccancies = data["enter_no_vacancies"] as? String,
+                  let positionName = data["enter_position"] as? String,
+                  let requiredExperience = data["enter_required_experince"] as? String,
+                  let salary = data["enter_salary"] as? String
+            else { return }
+            
+            var imagename: String?
+            var imageString: String?
+            if !selectedImageString.isEmpty {
+                imageString = selectedImageString
+                imagename = "\(UUID().uuidString).jpg"
+            }
+            
+            let data = CompanyJobPostCreds(companyId: companyId,
+                                           descriptionText: descriptionText,
+                                           distict: AMDH.shared.getDisabilities(byName: distict)?.disabilityId ?? 0,
+                                           location: location,
+                                           noOfVaccancies: Int(noOfVaccancies) ?? 0,
+                                           positionName: positionName,
+                                           requiredExperience: Int(requiredExperience) ?? 0,
+                                           salary: Int(salary) ?? 0,
+                                           thumbnailImageName: imagename,
+                                           thumbnailImageNameByteString: imageString)
+            self.showLoadingIndicator()
+            CompanyManager.shared.postJob(data: data) {[weak self] status in
+                self?.hideLoadingIndicator()
+                if status {
+                    SMM.shared.showStatusSuccess(message: "Job Posted")
+                    DispatchQueue.main.async {[weak self] in
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                }
+            }
+        case .generalComplain:
+            let contactNumber = data["contact_number"] as? String
+            let gender = data["gender"] as? String
+            let disability = data["disability"] as? String
+            let CNIC = data["CNIC"] as? String
+            let fullname = data["fullname"] as? String
+            let district = data["district"] as? String
+            let message = data["message"] as? String
+            
+            let disId = AMDH.shared.getDistrictsNames(byName: district ?? "")?.districtId
+            
+            let data = GeneralComplainCreds(AudioFileName: nil, CNICNo: CNIC, ContactNo: contactNumber, DisabilityTypeId: disId, District: district, FullName: fullname, Gender: gender, Message: message)
+            self.showLoadingIndicator(withDimView: true)
+            USM.shared.generalComplain(data: data) { [weak self] status in
+                self?.hideLoadingIndicator()
+                if status ?? false {
+                    DispatchQueue.main.async {
+                        let storyboard = getStoryBoard(.main)
+                        let contentVC = storyboard.instantiateViewController(ofType: ThankYouViewController.self)
+                        contentVC.messageThankYou = .none
+                        contentVC.moveThankYou = .splash
+                        openModuleOverFullScreen(controller: contentVC)
+                    }
+                }
+            }
+            
         }
     }
     
@@ -1137,9 +1481,13 @@ extension FormBuilderViewController : UIImagePickerControllerDelegate, UINavigat
             self.openImagePicker()
         })
         
-//        actionSheet.addAction(UIAlertAction(title: "Select Document", style: .default) { _ in
-//            self.openDocumentPicker()
-//        })
+        if type == .acceptJobApplication ||
+            type == .denialOfAdmissionComplainDetails ||
+            type == .acceptStudentAdmission {
+            actionSheet.addAction(UIAlertAction(title: "Select Document", style: .default) { _ in
+                self.openDocumentPicker()
+            })
+        }
         
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
@@ -1163,8 +1511,6 @@ extension FormBuilderViewController : UIImagePickerControllerDelegate, UINavigat
     // UIImagePickerControllerDelegate method
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let image = info[.originalImage] as? UIImage {
-            //                imageView.image = image
-//            print(image)
             switch type {
             case .studentProfile:
                 if selectImageName == "upload_profile_picture" {
@@ -1177,8 +1523,13 @@ extension FormBuilderViewController : UIImagePickerControllerDelegate, UINavigat
                     studentDetails?.disabilityCertName = "\(UUID().uuidString).jpg"
                     studentDetails?.hasDisCertUploaded = true
                 }
-            case .schoolSocialMultiMedia, .acceptJobApplication:
+            case .schoolSocialMultiMedia, .acceptJobApplication, .denialOfAdmissionComplainDetails:
                 selectedImageString = self.imageToByteString(image: image) ?? ""
+                selectImageName = "\(UUID().uuidString).jpg"
+            case .postJob:
+                if selectImageName == "upload_job_poster" {
+                    selectedImageString = imageToByteString(image: image) ?? ""
+                }
             default: break
             }
             
@@ -1190,6 +1541,17 @@ extension FormBuilderViewController : UIImagePickerControllerDelegate, UINavigat
     func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         if let documentURL = urls.first {
             print("Selected document URL: \(documentURL)")
+            
+            do {
+                let pdfData = try Data(contentsOf: documentURL)
+                let byteString = pdfData.base64EncodedString() // Convert to Base64 if needed
+                
+                print("PDF Byte String: \(byteString)") // Use this string for upload
+                selectedImageString = byteString
+                selectImageName = "\(UUID().uuidString).pdf"
+            } catch {
+                SMM.shared.showError(title: "", message: "Error reading PDF data: \(error.localizedDescription)")
+            }
         }
     }
     

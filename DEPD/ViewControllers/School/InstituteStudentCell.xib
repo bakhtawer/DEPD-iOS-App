@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="InstituteStudentCell" id="otW-CM-xO6" customClass="InstituteStudentCell" customModule="DEPD" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InstituteStudentCell" id="otW-CM-xO6" customClass="InstituteStudentCell" customModule="DEPD" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="365" height="184"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gv8-wO-hC2">
-                        <rect key="frame" x="0.0" y="0.0" width="365" height="118"/>
+                        <rect key="frame" x="0.0" y="0.0" width="365" height="184"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cv1-Mh-TCT">
                                 <rect key="frame" x="16" y="12" width="333" height="180"/>
@@ -67,7 +67,10 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EVq-zs-NEc">
-                                        <rect key="frame" x="290.66666666666669" y="6.0000000000000009" width="36.333333333333314" height="14.333333333333336"/>
+                                        <rect key="frame" x="290.66666666666669" y="6" width="36.333333333333314" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="NxI-DP-cgo"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" name="AppBlue"/>
                                         <nil key="highlightedColor"/>

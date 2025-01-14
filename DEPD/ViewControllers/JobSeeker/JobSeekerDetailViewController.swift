@@ -19,7 +19,7 @@ class JobSeekerDetailViewController: BaseViewController  {
     @IBOutlet weak var labelDescription: UILabel!
     @IBOutlet weak var buttonApply: DEPDButton!
     
-    
+    var isFromAdvertise: Bool = false
     var dataJob: CompanyModel?
     
     override func viewWillLayoutSubviews() {
@@ -41,6 +41,9 @@ class JobSeekerDetailViewController: BaseViewController  {
     }
     
     private func setView() {
+        
+        buttonApply.isHidden = isFromAdvertise
+        
         labelCompanyPosting.text = dataJob?.PositionName
         labelPostingDate.text = dataJob?.PostedOnDateString
         lableCompanayName.text = dataJob?.CompanyName

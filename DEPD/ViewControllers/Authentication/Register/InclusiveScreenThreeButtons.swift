@@ -39,6 +39,16 @@ class InclusiveScreenThreeButtons: BaseViewController {
                 let view = storyboard.instantiateViewController(ofType: LoginViewController.self)
                 view.screenType = .student
                 openModuleOnNavigation(from: self, controller: view)
+            }else if self?.screenType == .companyHiring {
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.denialOfJob = DenialOfJob()
+#if DEBUG
+                view.denialOfJob?.makeTestValues()
+#endif
+                view.type = .denialOfJob
+                openModuleOnNavigation(from: self, controller: view)
+                
             } else {
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: LoginViewController.self)
@@ -74,16 +84,17 @@ class InclusiveScreenThreeButtons: BaseViewController {
         }
         
         viewButtonThree.addTapGestureRecognizer {[weak self] in
-            let storyboard = getStoryBoard(.main)
-            let view = storyboard.instantiateViewController(ofType: GenericFormBuilderViewController.self)
-            view.screenType = .complain
-            openModuleOnNavigation(from: self, controller: view)
+            DispatchQueue.main.async {[weak self] in
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
+                view.type = .generalComplain
+                openModuleOnNavigation(from: self, controller: view)
+            }
         }
     }
     
     private func setView() {
         if screenType == .student {
-            
             viewButtonOne.applyShadow()
             iconButtonOne.image = UIImage(named: "admission_one")
             labelButtonOne.text = "admissions".localized()
@@ -94,7 +105,18 @@ class InclusiveScreenThreeButtons: BaseViewController {
             iconButtonThree.image = UIImage(named: "complaint")
             labelButtonThree.text = "register_complain".localized()
             
-        }else  {
+        }else if screenType == .companyHiring {
+            viewButtonOne.applyShadow()
+            iconButtonOne.image = UIImage(named: "find_job")
+            labelButtonOne.text = "complain_for_denial_of_job".localized()
+            viewButtonTwo.applyShadow()
+            iconButtonTwo.image = UIImage(named: "admission")
+            labelButtonTwo.text = "complain_for_denial_of_admission".localized()
+            viewButtonThree.applyShadow()
+            iconButtonThree.image = UIImage(named: "complaint")
+            labelButtonThree.text = "register_complain".localized()
+            
+        } else {
             viewButtonOne.applyShadow()
             iconButtonOne.image = UIImage(named: "find_job")
             labelButtonOne.text = "find_a_job".localized()
@@ -127,8 +149,14 @@ extension InclusiveScreenThreeButtons {
     func setupNavigation() {
         self.setLogo()
         UIApplication.shared.statusBarView?.backgroundColor = .appBGDark
+        navigationController?.navigationBar.backgroundColor = .appBGDark
+        setNavigationTransparent()
         self.setBackButton(.appBackButton).addTapGestureRecognizer {[weak self] in
-            self?.navigationController?.popViewController(animated: true)
+            if self?.screenType == .companyHiring {
+                self?.navigationController?.dismiss(animated: true)
+            } else {
+                self?.navigationController?.popViewController(animated: true)
+            }
         }
     }
 }

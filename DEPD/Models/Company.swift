@@ -91,6 +91,19 @@ struct CompanyModel: Codable, Hashable {
     func hash(into hasher: inout Hasher) {
         hasher.combine(idMain)
     }
+    
+    init(_ data: CompanyVacancyModel) {
+        self.idMain = UUID()
+        self.idid = data.CompanyId
+        self.CompanyName = data.CompanyName
+        self.CompanyId = data.CompanyId
+        self.CompanyName = data.CompanyName
+        self.DescriptionText = data.Description
+        self.ThumbnailImageURL = data.ThumbnailImageURL
+        self.NoOfVaccancies = Int(data.NumOfVaccancies ?? "0")
+        self.PositionName = data.Position
+        self.PostedOnDate = data.PostedOnDate
+    }
 }
 
 struct CompanyJobModel: Codable, Hashable {

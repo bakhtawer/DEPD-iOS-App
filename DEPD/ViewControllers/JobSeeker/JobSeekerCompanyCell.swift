@@ -44,4 +44,19 @@ class JobSeekerCompanyCell: UICollectionViewCell {
         imageCompany.kf.setImage(with: image)
     }
     
+    func configure(with model: EmployerHomeViewModelData) {
+        viewBg.applyShadow()
+        
+        companayPosting.makeItTheme(.bold, 16, .textDark)
+        companayname.makeItTheme(.regular, 14, .textLightGray)
+        companayJobsCoun.makeItTheme(.regular, 14, .textLightGray)
+        
+        companayPosting.text = model.advertise?.Position
+        companayname.text = model.advertise?.CompanyName
+        companayJobsCoun.text = "\(model.advertise?.NumOfVaccancies ?? "0") \("jobs".localized())"
+        
+        guard let image = URL(string: model.advertise?.ThumbnailImageURL?.convertToHttps() ?? "") else { return }
+        imageCompany.contentMode = .scaleAspectFill
+        imageCompany.kf.setImage(with: image)
+    }
 }

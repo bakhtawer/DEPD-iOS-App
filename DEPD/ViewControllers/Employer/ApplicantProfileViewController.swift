@@ -11,6 +11,8 @@ class ApplicantProfileViewController: BaseViewController {
     @IBOutlet weak var viewBottom: BottomView!
     private let service = APIService()
     var selectedJobEmployee: CompanyJobModel?
+    var selectedEmployee: CompanyEmployeeModel?
+    var hideButtons: Bool = false
     
     @IBOutlet weak var imageStudent: UIImageView!
     @IBOutlet weak var labelName: UILabel!
@@ -44,6 +46,7 @@ class ApplicantProfileViewController: BaseViewController {
     @IBOutlet weak var labelDisability: UILabel!
     @IBOutlet weak var labelDisabilityDetails: UILabel!
     
+    @IBOutlet weak var viewButtons: UIView!
     @IBOutlet weak var buttonAccept: DEPDButton!
     @IBOutlet weak var buttonReject: DEPDButton!
     
@@ -51,10 +54,19 @@ class ApplicantProfileViewController: BaseViewController {
         super.viewDidLoad()
         setupNavigation()
         setView()
-        guard let selectedStudent = selectedJobEmployee else { return }
+//        guard let selectedStudent = selectedJobEmployee else { return }
         
         self.showLoadingIndicator(withDimView: true)
-        USM.shared.getJobSeeker(userID: selectedStudent.Id!) {[weak self] user in
+        
+        var UserID = 0
+        if let uID = selectedJobEmployee?.Id {
+            UserID = uID
+        }
+        if let uID = selectedEmployee?.UserID {
+            UserID = uID
+        }
+        
+        USM.shared.getJobSeeker(userID: UserID) {[weak self] user in
             DispatchQueue.main.async {[weak self] in
                 self?.hideLoadingIndicator()
                 self?.selectedUser = user
@@ -90,6 +102,7 @@ class ApplicantProfileViewController: BaseViewController {
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
                 view.type = .acceptJobApplication
+                view.jobSeekerID = UserID
                 openModuleOnNavigation(from: self, controller: view)
             }
         }
@@ -99,11 +112,20 @@ class ApplicantProfileViewController: BaseViewController {
                 let storyboard = getStoryBoard(.main)
                 let view = storyboard.instantiateViewController(ofType: FormBuilderViewController.self)
                 view.type = .rejectJobApplication
+                view.jobSeekerID = UserID
                 openModuleOnNavigation(from: self, controller: view)
             }
         }
         
-        guard let image = URL(string: selectedStudent.profilePicture?.convertToHttps() ?? "") else { return }
+        var link = ""
+        if let uID = selectedJobEmployee?.profilePicture {
+            link = uID.convertToHttps()
+        }
+        if let uID = selectedEmployee?.ProfilePicture {
+            link = uID.convertToHttps()
+        }
+        guard let image = URL(string: link) else {
+            return }
         imageStudent.contentMode = .scaleAspectFill
         imageStudent.kf.setImage(with: image,
                                 placeholder: UIImage(named: "studentplacehoder"))
@@ -171,6 +193,9 @@ class ApplicantProfileViewController: BaseViewController {
         labelDisability.makeItTheme(.bold, 12)
         labelDisabilityDetails.makeItTheme(.regular, 12, .appLight)
         
+        if selectedJobEmployee?.StatusId == 2 || hideButtons {
+            viewButtons.isHidden = true
+        }
     }
 }
 

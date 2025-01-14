@@ -50,7 +50,7 @@ struct User: Codable {
         case oStudentApplicationDetail
         case schoolSocialMediaInfo = "SchoolSocialMediaInfo"
         case schoolDetailInfo = "SchoolDetailInfo"
-        case schoolMultiMedia = "SchoolMultiMedia"
+        case schoolMultiMedia = "SchoolMultiMediaList"
         case jobSeekerDetailInfo = "JobSeekerDetailInfo"
         case aboutInfo = "aboutinfo"
         case jobSeekerEducation = "JobSeekerEducation"
@@ -303,6 +303,15 @@ struct SchoolDetailInfo: Codable {
     let canEducate: Bool?
     let district: String?
     
+    
+    var SchoolMultiMediaList: [SchoolMultiMedia]?
+    var DisabilityStatusList: [Disability]?
+    var SchoolDisabilityList: [SchoolDisability]?
+    var schoolSocialMediaInfo: [SchoolSocialMediaInfo]?
+    var AccebilityMaterialListInfo: [AccebilityMaterial]?
+    var TrainingMaterialList: [TrainingMaterial]?
+    var schoolAndCompanyDisabilityStatusInfo: [DisabilityStatusCompany]?
+    
     enum CodingKeys: String, CodingKey {
         case id = "Id"
         case schoolId = "SchoolId"
@@ -326,6 +335,13 @@ struct SchoolDetailInfo: Codable {
         case freeOrPaid = "FreeOrPaid"
         case canEducate = "CanEducate"
         case district = "District"
+        case SchoolMultiMediaList = "SchoolMultiMedia"
+        case DisabilityStatusList = "oDisabilityStatusList"
+        case SchoolDisabilityList = "oSchoolDisabilityList"
+        case schoolSocialMediaInfo = "SchoolSocialMediaInfo"
+        case AccebilityMaterialListInfo = "AccebilityMaterialListInfo"
+        case TrainingMaterialList = "TrainingMaterialList"
+        case schoolAndCompanyDisabilityStatusInfo = "SchoolAndCompanyDisabilityStatusInfo"
     }
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -352,6 +368,13 @@ struct SchoolDetailInfo: Codable {
         freeOrPaid = try container.decodeIfPresent(Int.self, forKey: .freeOrPaid) ?? 0
         canEducate = try container.decodeIfPresent(Bool.self, forKey: .canEducate) ?? false
         district = try container.decodeIfPresent(String.self, forKey: .district) ?? ""
+        SchoolMultiMediaList = try container.decodeIfPresent([SchoolMultiMedia].self, forKey: .SchoolMultiMediaList) ?? []
+        DisabilityStatusList = try container.decodeIfPresent([Disability].self, forKey: .DisabilityStatusList) ?? []
+        SchoolDisabilityList = try container.decodeIfPresent([SchoolDisability].self, forKey: .SchoolDisabilityList) ?? []
+        schoolSocialMediaInfo = try container.decodeIfPresent([SchoolSocialMediaInfo].self, forKey: .schoolSocialMediaInfo) ?? []
+        AccebilityMaterialListInfo = try container.decodeIfPresent([AccebilityMaterial].self, forKey: .AccebilityMaterialListInfo) ?? []
+        TrainingMaterialList = try container.decodeIfPresent([TrainingMaterial].self, forKey: .TrainingMaterialList) ?? []
+        schoolAndCompanyDisabilityStatusInfo = try container.decodeIfPresent([DisabilityStatusCompany].self, forKey: .schoolAndCompanyDisabilityStatusInfo) ?? []
     }
 }
 
@@ -448,7 +471,7 @@ struct DisabilityStatusCompany: Codable {
     var disabilityStatusId: Int?
     var disabilityStatus : String?
     enum CodingKeys: String, CodingKey {
-        case id = "ID"
+        case id = "Id"
         case userId = "userId"
         case disabilityStatusId = "disabilityStatusId"
         case disabilityStatus = "disabilityStatus"

@@ -65,15 +65,15 @@ class InstituteStudentCell: UICollectionViewCell {
         viewBg.applyShadow()
         iconStudent.roundCorner(withRadis: iconStudent.viewWidth.half)
         
-        buttonAccept.makeItTheme(text: "accept".localized(), .bold, 14, .appLight, .appGreen)
+        buttonAccept.makeItTheme(text: "accept".localized(), .bold, 12, .appLight, .appGreen)
         buttonAccept.makeButtonIcon(named: "checkmark.circle")
         buttonAccept.makeHight(height: 40, false, true)
         
-        ButtonReject.makeItTheme(text: "reject".localized(), .bold, 14, .appLight, .orange)
+        ButtonReject.makeItTheme(text: "reject".localized(), .bold, 12, .appLight, .orange)
         ButtonReject.makeButtonIcon(named: "xmark.circle")
         ButtonReject.makeHight(height: 40, false, true)
         
-        buttonViewProfile.makeItTheme(text: "view_profile".localized(), .bold, 14, .appLight, .appBlue)
+        buttonViewProfile.makeItTheme(text: "view_profile".localized(), .bold, 12, .appLight, .appBlue)
         buttonViewProfile.makeHight(height: 40, false, true)
         
         buttonAccept.addTapGestureRecognizer {[weak self] in
@@ -175,7 +175,12 @@ class InstituteStudentCell: UICollectionViewCell {
             self?.delegateEmployer?.rejectAdmission(id: model.jobApplications?.Id ?? -1)
         }
         buttonViewProfile.addTapGestureRecognizer {[weak self] in
-            self?.delegateEmployer?.viewProfile(id: model.jobApplications?.Id ?? -1)
+            if let jobSeeker = model.jobApplications {
+                self?.delegateEmployer?.viewProfile(id: jobSeeker.Id ?? -1)
+            }
+            if let employee = model.employees {
+                self?.delegateEmployer?.viewProfile(id: employee.ID ?? -1)
+            }
         }
     }
 }

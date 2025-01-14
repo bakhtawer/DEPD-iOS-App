@@ -14,6 +14,7 @@ class ForgotPasswordViewController: BaseViewController {
     
     var previousEmail: String = ""
     
+    @IBOutlet weak var labelEnterCNIC: UILabel!
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
@@ -25,9 +26,11 @@ class ForgotPasswordViewController: BaseViewController {
         super.viewDidLoad()
         setupNavigation()
         
-        tfRecoveryEmail.placeholder = "forgot_password_recovery_email".localized()
+        tfRecoveryEmail.placeholder = "cnic".localized()
         buttonSend.setTitle("forgot_password_send".localized(), for: .normal)
-        
+        tfRecoveryEmail.keyboardType = .numberPad
+        labelEnterCNIC.text = "Enter CNIC".localized()
+        labelEnterCNIC.makeItTheme(.bold, 20, .appBlue, .center)
         
         self.navigationController?.navigationBar.isHidden = false
         
@@ -39,16 +42,27 @@ class ForgotPasswordViewController: BaseViewController {
         checkButton()
         
         buttonSend.addTapGestureRecognizer {[weak self] in
+            guard let cnic = Int(self?.tfRecoveryEmail.text ?? "")  else {return}
+            self?.showLoadingIndicator()
+            USM.shared.forgetPassword(Cnic: cnic) {[weak self] status in
+                if status { self?.goToNext() }
+                self?.hideLoadingIndicator()
+            }
+        }
+    }
+    
+    private func goToNext() {
+        DispatchQueue.main.async {[weak self] in
             let storyboard = getStoryBoard(.main)
-            let view = storyboard.instantiateViewController(ofType: FPEmailSentViewController.self)
+            let view = storyboard.instantiateViewController(ofType: ForgotPOTPViewController.self)
+            view.previousEmail = self?.tfRecoveryEmail.text ?? ""
             self?.navigationController?.pushViewController(view, animated: true)
         }
     }
     
-    
     private func checkButton() {
         let email = tfRecoveryEmail.text ?? ""
-        if !email.isEmpty && email.isValidEmail  {
+        if !email.isEmpty {
             buttonSend.alpha = 1
             buttonSend.isEnabled = true
         }else {

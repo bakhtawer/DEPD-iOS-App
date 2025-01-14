@@ -32,6 +32,9 @@ final class APPMetaDataHandler {
     func getDistrictsNames() -> [String] {
         (dataAllGeneralList?.DistrictList ?? []).map {$0.name ?? ""}
     }
+    func getDistrictsNames(byName: String) -> District? {
+        (dataAllGeneralList?.DistrictList ?? []).filter {$0.name == byName}.last ?? nil
+    }
     
     // MARK: Disability
     func getDisabilities() -> [Disability] {
@@ -78,6 +81,9 @@ final class APPMetaDataHandler {
     func getPreviousEducationName() -> [String] {
         (dataAllGeneralList?.DegreeProgram ?? []).map {$0.name ?? ""}
     }
+    func getPreviousEducationName(byName: String) -> Degree? {
+        (dataAllGeneralList?.DegreeProgram ?? []).filter {$0.name == byName}.last ?? nil
+    }
     
     // MARK: Classes
     func getPreviousClasses() -> [Classes] {
@@ -104,16 +110,30 @@ final class APPMetaDataHandler {
     
     // MARK: SocialMediaList
     func getSocialMediaListName() -> [String] {
-        (dataAllGeneralList?.socialMediaList ?? []).map {$0.accountType ?? ""}
+        (dataAllGeneralList?.socialMediaList ?? []).map {$0.link ?? ""}
     }
     func getSocialMediaList(byName: String) -> SocialMediaList? {
-        let filteredList = (dataAllGeneralList?.socialMediaList ?? []).filter {
-            // Normalize and trim both the name and search string
-            let trimmedName = $0.accountType?.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\r\n", with: " ").replacingOccurrences(of: "\n", with: " ") ?? ""
-            let trimmedSearchTerm = byName.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\r\n", with: " ").replacingOccurrences(of: "\n", with: " ")
-            return trimmedName.contains(trimmedSearchTerm)
-        }
-        return filteredList.first
+        (dataAllGeneralList?.socialMediaList ?? []).filter {$0.link == byName}.last ?? nil
+    }
+    
+//    // MARK: District
+//    func getDistricts() -> [District] {
+//        dataAllGeneralList?.DistrictList ?? []
+//    }
+//    func getDistrictsNames() -> [String] {
+//        (dataAllGeneralList?.DistrictList ?? []).map {$0.name ?? ""}
+//    }
+//    func getDistrictsNames(byName: String) -> District? {
+//        (dataAllGeneralList?.DistrictList ?? []).filter {$0.name == byName}.last ?? nil
+//    }
+    
+    
+    // MARK: accessibilityList
+    func getAccessibilityListName() -> [String] {
+        (dataAllGeneralList?.accessibilityList ?? []).map {$0.name ?? ""}
+    }
+    func getAccessibilityListName(byName: String) -> AllListData? {
+        (dataAllGeneralList?.accessibilityList ?? []).filter {$0.name == byName}.last ?? nil
     }
     
     // MARK: All General List

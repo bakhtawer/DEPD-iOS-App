@@ -41,7 +41,7 @@ class MyApplicationsViewController: BaseViewController  {
         
         self.showLoadingIndicator(withDimView: true)
         USM.shared.getApplications {[weak self]  data in
-            self?.data = data
+            self?.data = data ?? []
             DispatchQueue.main.async {[weak self] in
                 self?.hideLoader()
                 self?.reloadData()
@@ -67,7 +67,7 @@ class MyApplicationsViewController: BaseViewController  {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .appBG
         
-        collectionView.register(UINib(nibName: "JobSeekerCompanyCell", bundle: nil), forCellWithReuseIdentifier: JobSeekerCompanyCell.reuseIdentifier)
+        collectionView.register(UINib(nibName: "MyApplicationsCell", bundle: nil), forCellWithReuseIdentifier: MyApplicationsCell.reuseIdentifier)
         
         // Update the semantic content attribute based on the selected language
         if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
@@ -130,14 +130,14 @@ extension MyApplicationsViewController { // Make Search Section
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
               widthDimension: .fractionalWidth(1),
-              heightDimension: .absolute(210)
+              heightDimension: .absolute(127)
             )
           )
           item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         
         // group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                                       heightDimension: .absolute(210))
+                                                       heightDimension: .absolute(127))
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, repeatingSubitem: item, count: 1)
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
@@ -155,11 +155,11 @@ extension MyApplicationsViewController {
         
         dataSource = UICollectionViewDiffableDataSource<PoitsSection,
                                                         MyApplicationsModel>(collectionView: self.collectionView) { _, indexPath, app in
-                                                            guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: JobSeekerCompanyCell.reuseIdentifier, for: indexPath) as? JobSeekerCompanyCell
+                                                            guard let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: MyApplicationsCell.reuseIdentifier, for: indexPath) as? MyApplicationsCell
                                                             else {
                                                                 return UICollectionViewCell()
                                                             }
-//                cell.configure(with: app)
+                cell.configure(with: app)
             return cell
         }
     }

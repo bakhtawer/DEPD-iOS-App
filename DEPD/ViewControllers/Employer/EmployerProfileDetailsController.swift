@@ -105,6 +105,12 @@ class EmployerProfileDetailsController: BaseViewController {
         super.viewWillAppear(animated)
         setView()
         setupNavigation()
+        
+        USM.shared.getUserProfile {_ in
+            DispatchQueue.main.async {[weak self] in
+                self?.setView()
+            }
+        }
     }
     
     private func setView() {
@@ -183,12 +189,10 @@ class EmployerProfileDetailsController: BaseViewController {
         viewSocailMediaLinks.onDeleteToggle = {[weak self] index in
             print("delete \(index) :\(String(describing: employer.companyDetailInfo?.socialMedia?[index]))")
             let socialMedia = employer.companyDetailInfo?.socialMedia?[index]
-            guard let id = socialMedia?.id,
-                  let relId = USM.shared.getUser().companyDetailInfo?.companyId
+            guard let id = socialMedia?.id
             else { return }
-            self?.presentActionSheetDelete(data: DeleteJobSeekerCreds(Id: id, RelId: relId), type: .socialMediaLink)
+            self?.presentActionSheetDelete(data: CompanyUpdateCreds(Id: id), type: .socialMediaLink)
         }
-        
         
         let listOfDisabilities = (employer.companyDetailInfo?.schoolAndCompanyDisabilityStatusInfo ?? []).map {$0.disabilityStatus?.trimmingCharacters(in: .whitespacesAndNewlines).replacingOccurrences(of: "\r\n", with: "").replacingOccurrences(of: "\n", with: "") ?? ""}
         viewWeProvide.disabilities = listOfDisabilities
@@ -201,17 +205,29 @@ class EmployerProfileDetailsController: BaseViewController {
             guard let id = disability?.id,
                   let relId = USM.shared.getUser().companyDetailInfo?.companyId
             else { return }
-            self?.presentActionSheetDelete(data: DeleteJobSeekerCreds(Id: id, RelId: relId), type: .disability)
+            self?.presentActionSheetDelete(data: CompanyUpdateCreds(UserId: relId, Id: id), type: .disability)
         }
         
         
-        labelEmptyAccessibilityMaterial.text = "update_this_record".localized()
+        let listOfAccessibilityMaterial = employer.companyDetailInfo?.accessibilityMaterialListInfo ?? []
+        viewAccessibilityMaterial.allListData = listOfAccessibilityMaterial
+        if listOfAccessibilityMaterial.isEmpty {
+            labelEmptyAccessibilityMaterial.text = "update_this_record".localized()
+        }
+        viewAccessibilityMaterial.onToggle = { [weak self] index in
+            print("delete \(index) :\(String(describing: employer.companyDetailInfo?.accessibilityMaterialListInfo?[index]))")
+            let disability = employer.companyDetailInfo?.accessibilityMaterialListInfo?[index]
+            guard let id = disability?.mId,
+                  let relId = USM.shared.getUser().id
+            else { return }
+            self?.presentActionSheetDelete(data: CompanyUpdateCreds(UserId: relId, Id: id), type: .accesibilty)
+        }
     }
     
     private enum DeleteType {
         case socialMediaLink, disability, accesibilty
     }
-    private func presentActionSheetDelete(data: DeleteJobSeekerCreds, type: DeleteType) {
+    private func presentActionSheetDelete(data: CompanyUpdateCreds, type: DeleteType) {
         let actionSheet = UIAlertController(title: "are_you_sure_you_want_to_delete".localized(), message: nil, preferredStyle: .alert)
         actionSheet.addAction(UIAlertAction(title: "yes".localized(), style: .default) { _ in
             self.showLoadingIndicator(withDimView: true)
@@ -225,15 +241,15 @@ class EmployerProfileDetailsController: BaseViewController {
             }
             switch type {
             case .socialMediaLink:
-                JobManager.shared.deleteJobSeekerEducationSkills(data: data) {status in
+                CompanyManager.shared.updateCompany(data: data, method: .DeleteSocialMedia) {status in
                     success(status: status)
                 }
             case .disability:
-                JobManager.shared.deleteJobSeekerEducationSkills(data: data) {status in
+                SchoolManager.shared.deleteWeCanEducate(data: DeleteById(Id: data.Id ?? 0, UserId: data.userId ?? 0)) {status in
                     success(status: status)
                 }
             case .accesibilty:
-                JobManager.shared.deleteJobSeekerEducationSkills(data: data) {status in
+                SchoolManager.shared.deleteAccebilityMaterial(data: DeleteById(Id: data.Id ?? 0, UserId: data.userId ?? 0)) {status in
                     success(status: status)
                 }
             }
@@ -348,8 +364,11 @@ extension EmployerProfileDetailsController : UIImagePickerControllerDelegate, UI
     
     private func uploadProfilePicture(imageString: String) {
         self.showLoadingIndicator(withDimView: true)
-        let data = UploadJobSeekerProfileImageCreds(profileImageName: imageString, ProfileImageByteString:"\(UUID().uuidString).jpg", UserID: USM.shared.getUser().jobSeekerDetailInfo?.userID ?? 0)
-        JobManager.shared.uploadJobSeekerProfileImage(data: data) {[weak self] status in
+        
+        let data = CompanyUpdateCreds(CompanyDetailId: USM.shared.getUser().companyDetailInfo?.companyId ?? -1, ProfileImageName: "\(UUID().uuidString).jpg", ProfilePictureBytesString: imageString)
+        
+        self.showLoadingIndicator(withDimView: true)
+        CompanyManager.shared.updateCompany(data: data, method: .uploadCompanyProfileImage) {[weak self] status in
             self?.hideLoadingIndicator()
             USM.shared.getUserProfile {[weak self] status in
                 DispatchQueue.main.async {[weak self] in self?.setView() }

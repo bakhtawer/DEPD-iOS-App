@@ -182,7 +182,7 @@ extension FormBuilderViewController {
     
     func populateJobAcceptApplication() -> [FormField] {
         [
-            FormField(fieldType: .date, placeholder: "date_of_joining".localized(), name: "date_of_joining", value: nil, isRequired: true),
+            FormField(fieldType: .dateJoning, placeholder: "date_of_joining".localized(), name: "date_of_joining", value: nil, isRequired: true),
             FormField(fieldType: .uploadFile, placeholder: "upload_document".localized(), name: "upload_document", value: nil, isRequired: false),
             FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
             FormField(fieldType: .gap, placeholder: "", name: "", value: nil, isRequired: false),
@@ -244,7 +244,7 @@ extension FormBuilderViewController {
             FormField(fieldType: .text,
                       placeholder: "address".localized(),
                       name: "address",
-                      value: nil,
+                      value: USM.shared.getUser().companyDetailInfo?.location,
                       isRequired: true),
             
             FormField(fieldType: .number,
@@ -256,13 +256,13 @@ extension FormBuilderViewController {
             FormField(fieldType: .text,
                       placeholder: "registration_number".localized(),
                       name: "registration_number",
-                      value: USM.shared.getUser().companyDetailInfo?.nTNNumber,
+                      value: USM.shared.getUser().companyDetailInfo?.registirationNumber,
                       isRequired: true),
             
             FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getDistrictsNames()),
                       placeholder: "district".localized(),
                       name: "district",
-                      value: USM.shared.getUser().jobSeekerDetailInfo?.district,
+                      value: USM.shared.getUser().companyDetailInfo?.district,
                       isRequired: false),
             
             FormField(fieldType: .number,
@@ -280,7 +280,7 @@ extension FormBuilderViewController {
             FormField(fieldType: .textLong,
                       placeholder: "about_your_company".localized(),
                       name: "about_your_company",
-                      value: USM.shared.getUser().companyDetailInfo?.website,
+                      value: USM.shared.getUser().companyDetailInfo?.aboutDescription,
                       isRequired: true)
             
         ]
@@ -316,7 +316,7 @@ extension FormBuilderViewController {
     func populateAccessibilityMaterialEmplor() -> [FormField] {
         [
             FormField(fieldType: .gapTop, placeholder: "", name: "", value: nil, isRequired: false),
-            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getLanguagesName()),
+            FormField(fieldType: .dropdown(options: APPMetaDataHandler.shared.getAccessibilityListName()),
                       placeholder: "accessibility_material".localized(),
                       name: "accessibility_material",
                       value: nil,

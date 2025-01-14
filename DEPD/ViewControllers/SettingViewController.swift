@@ -20,7 +20,7 @@ class SettingViewController: BaseViewController {
         (title: "About Us".localized(), subtitle: nil, style: .default, url: "https://depdportal.com"),
         (title: "Contact Us".localized(), subtitle: nil, style: .default, url: "https://depdportal.com"),
         (title: "Terms & Conditions".localized(), subtitle: nil, style: .default, url: "https://depdportal.com"),
-        (title: "Privacy Policy".localized(), subtitle: nil, style: .default, url: "https://depdportal.com"),
+        (title: "Privacy Policy".localized(), subtitle: nil, style: .default, url: "https://depdportal.com/privacy-policy-2/"),
         (title: "FAQ's".localized(), subtitle: nil, style: .default, url: "https://depdportal.com/faqs/"),
         (title: "Help/Complain".localized(), subtitle: nil, style: .default, url: "https://depdportal.com/complain-main/"),
     ]

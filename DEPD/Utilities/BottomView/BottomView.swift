@@ -61,7 +61,8 @@ class BottomView: UIView {
         
         viewhelp.addTapGestureRecognizer {
             let storyboard = getStoryBoard(.main)
-            let view = storyboard.instantiateViewController(ofType: HelpViewController.self)
+            let view = storyboard.instantiateViewController(ofType: InclusiveScreenThreeButtons.self)
+            view.screenType = .companyHiring
             openModuleOnFullScreen(controller: view)
         }
         

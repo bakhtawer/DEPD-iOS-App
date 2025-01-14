@@ -84,7 +84,7 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
         }
         self.schoolLocation.text = "" //USM.shared.getUser().schoolDetailInfo?.district
         self.schoolProfilePercentage.text = "\(USM.shared.getUser().percentage ?? 0)% \("profile_completed".localized())"
-        guard let image = URL(string: USM.shared.getUser().schoolDetailInfo?.profileImageURL?.convertToHttps() ?? "") else { return }
+        guard let image = URL(string: USM.shared.getUserImage()) else { return }
         self.mainIconImage.contentMode = .scaleAspectFill
         self.mainIconImage.kf.setImage(with: image,
                                        placeholder: UIImage(named: "studentplacehoder"))
@@ -113,10 +113,10 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
         buttonPendingStudents.makeItTheme(.bold, 9, .appLight, .center)
         buttonRejectedStudents.makeItTheme(.bold, 9, .appLight, .center)
         
-        buttonTotalApplications.text = "\("total_applications".localized()) \(viewModel.getCount())"
-        buttonRegisteredusers.text = "\("registered_students".localized())"
-        buttonPendingStudents.text = "\("pending_students".localized())"
-        buttonRejectedStudents.text = "\("rejected_students".localized())"
+        buttonTotalApplications.text = " \("total_applications".localized()) (\(viewModel.getCount())) "
+        buttonRegisteredusers.text = " \("registered_students".localized()) "
+        buttonPendingStudents.text = " \("pending_students".localized()) "
+        buttonRejectedStudents.text = " \("rejected_students".localized()) "
         
         schoolName.text = USM.shared.getUserFullName()
         
@@ -134,7 +134,7 @@ class SchoolHomeViewController: MVVMViewController<SchoolHomeViewModel>  {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.backgroundColor = .appBG
         
-        collectionView.register(UINib(nibName: "InstituteStudentCell", bundle: nil), forCellWithReuseIdentifier: InstituteStudentCell.reuseIdentifier)
+        collectionView.register( UINib(nibName: "InstituteStudentCell", bundle: nil), forCellWithReuseIdentifier: InstituteStudentCell.reuseIdentifier)
         
         // Update the semantic content attribute based on the selected language
         if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
@@ -176,7 +176,7 @@ extension SchoolHomeViewController: SchoolHomeVM {
     
     func fetchedInstitutes() {
         DispatchQueue.main.async {[weak self] in
-            self?.buttonTotalApplications.text = "\("total_applications".localized()) \(self?.viewModel.getCount() ?? 0)"
+            self?.buttonTotalApplications.text = "\("total_applications".localized()) (\(self?.viewModel.getCount() ?? 0))"
             self?.reloadData()
         }
     }
@@ -184,7 +184,7 @@ extension SchoolHomeViewController: SchoolHomeVM {
         DispatchQueue.main.async {[weak self] in
             self?.schoolLocation.text = ""//self?.viewModel.selectedSchool?.Location
             self?.schoolProfilePercentage.text = "\(USM.shared.getUser().percentage ?? 0)% \("profile_completed".localized())"
-            guard let image = URL(string: self?.viewModel.selectedSchool?.ImageURL?.convertToHttps() ?? "") else { return }
+            guard let image = URL(string:USM.shared.getUserImage()) else { return }
             self?.mainIconImage.contentMode = .scaleAspectFill
             self?.mainIconImage.kf.setImage(with: image,
                                     placeholder: UIImage(named: "studentplacehoder"))

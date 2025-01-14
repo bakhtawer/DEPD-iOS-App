@@ -164,8 +164,6 @@ class EmployerHomeViewController: MVVMViewController<EmployerHomeViewModel> {
         
         collectionView.register(UINib(nibName: "InstituteStudentCell", bundle: nil), forCellWithReuseIdentifier: InstituteStudentCell.reuseIdentifier)
         
-        collectionView.register(UINib(nibName: "CompanyAdvertiseJobCell", bundle: nil), forCellWithReuseIdentifier: CompanyAdvertiseJobCell.reuseIdentifier)
-        
         // Update the semantic content attribute based on the selected language
         if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
             collectionView.semanticContentAttribute = .forceRightToLeft
@@ -277,9 +275,9 @@ extension EmployerHomeViewController {
                                                                 
                                                             case .advertise:
                                                                 guard let cell = self.collectionView.dequeueReusableCell(
-                                                                    withReuseIdentifier: CompanyAdvertiseJobCell.reuseIdentifier,
+                                                                    withReuseIdentifier: CompanyJobCell.reuseIdentifier,
                                                                     for: indexPath
-                                                                ) as? CompanyAdvertiseJobCell else {
+                                                                ) as? CompanyJobCell else {
                                                                     return UICollectionViewCell()
                                                                 }
                                                                 cell.configure(with: app)

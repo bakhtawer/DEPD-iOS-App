@@ -65,7 +65,14 @@ class EmployerHomeViewModel {
         }
     }
     func getAdvertise() -> [EmployerHomeViewModelData] {
-        dataVacancies
+        var jobs = dataVacancies
+        guard var searchText = searchText, !searchText.isEmpty else { return jobs }
+        searchText = searchText.lowercased()
+        jobs = jobs.filter { job in
+            return (job.advertise?.CompanyName?.lowercased().contains(searchText) ?? false) ||
+            (job.advertise?.Position?.lowercased().contains(searchText) ?? false)
+        }
+        return jobs
     }
     
     func resetAll() {
@@ -88,7 +95,6 @@ class EmployerHomeViewModel {
             self?.delegate?.fetchedDetails()
         }
     }
-    
     func getHiredPerson() {
         delegate?.showLoader()
         CompanyManager.shared.getHiredPerson {[weak self] data in
@@ -100,12 +106,12 @@ class EmployerHomeViewModel {
             self?.delegate?.fetchedDetails()
         }
     }
+
     
     func selectedStatus(status: Int) {
         self.selectedStatusID = status
         self.delegate?.fetchedDetails()
     }
-    
     func getJobApplications() -> [EmployerHomeViewModelData] {
         var data = dataJobApplications
         if let status = selectedStatusID {
@@ -129,9 +135,28 @@ class EmployerHomeViewModel {
     var appliedFilters: [String : Any] = [:]
     func setAppliedFilters(filters: [String : Any]) {
         appliedFilters = filters
-        getJobSeekerFilter(data: JobSeekerFilterCreds())
+        var jobFilter = JobSeekerFilterCreds()
+        
+        if let gender = appliedFilters["gender"] as? String,
+           let genID = AMDH.shared.getGenders(byName: gender)?.genderId {
+            jobFilter.genderID = genID
+        }
+        
+        if let district = appliedFilters["district"] as? String {
+            jobFilter.districtText = district
+        }
+        
+        if let disability = appliedFilters["disability"] as? String,
+           let disID = AMDH.shared.getDisabilities(byName: disability)?.disabilityId {
+            jobFilter.disabilityStatusID = disID
+        }
+        if let education = appliedFilters["education"] as? String,
+           let disID = AMDH.shared.getPreviousEducationName(byName: education)?.mId {
+            jobFilter.educationID = disID
+        }
+        
+        getJobSeekerFilter(data: jobFilter)
     }
-    
     func getFindEmployee() -> [EmployerHomeViewModelData] {
         var data = dataFindEmployees
         guard var searchText = searchText, !searchText.isEmpty else { return data }
@@ -145,7 +170,6 @@ class EmployerHomeViewModel {
         }
         return data
     }
-    
     func getJobSeekerFilter(data: JobSeekerFilterCreds) {
         delegate?.showLoader()
         CompanyManager.shared.getJobSeekerFilter(data: data) {[weak self] data in
@@ -158,4 +182,3 @@ class EmployerHomeViewModel {
         }
     }
 }
-font

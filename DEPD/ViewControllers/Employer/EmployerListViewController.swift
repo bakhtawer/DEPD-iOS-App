@@ -54,11 +54,10 @@ class EmployerListViewController: MVVMViewController<EmployerHomeViewModel> {
     
     private var selectedFilterItems: [String : Any] = [:]
     private var filterItems: [FilterItem] = [
-        FilterItem(type: .checkbox, title: "job_title".localized(), name: "job_title"),
-        FilterItem(type: .checkbox, title: "private".localized(), name: "private"),
-        FilterItem(type: .checkbox, title: "ngo_welfare".localized(), name: "ngo_welfare"),
         FilterItem(type: .dropdown, title: "district".localized(), name: "district", options: APPMetaDataHandler.shared.getDistrictsNames()),
-        FilterItem(type: .multiSelect, title: "disability".localized(), name: "disability", options:APPMetaDataHandler.shared.getDisabilitiesNames())
+        FilterItem(type: .dropdown, title: "disability".localized(), name: "disability", options:APPMetaDataHandler.shared.getDisabilitiesNames()),
+        FilterItem(type: .dropdown, title: "gender".localized(), name: "gender", options:APPMetaDataHandler.shared.getGendersName()),
+        FilterItem(type: .dropdown, title: "education".localized(), name: "education", options:APPMetaDataHandler.shared.getPreviousEducationName())
     ]
     
     @IBOutlet weak var buttonFIlter: DEPDButton!
@@ -104,8 +103,14 @@ class EmployerListViewController: MVVMViewController<EmployerHomeViewModel> {
             buttonFIlter.isHidden = false
             viewModel.getJobSeekerFilter(data: JobSeekerFilterCreds())
         case .confirmHiring:
-            break
+            screenSelected = .jobApplications
+            viewSearch.isHidden = false
+            viewTotlaCounts.isHidden = false
+            peopleApplications = "applications_available".localized()
+            viewModel.selectedStatus(status: 1)
+            viewModel.getTotaljobApplications()
         case .advertiseVacancy:
+            viewSearch.isHidden = false
             screenSelected = .advertise
             viewModel.getVacancy()
         }
@@ -175,7 +180,7 @@ class EmployerListViewController: MVVMViewController<EmployerHomeViewModel> {
         
         collectionView.register(UINib(nibName: "InstituteStudentCell", bundle: nil), forCellWithReuseIdentifier: InstituteStudentCell.reuseIdentifier)
         
-        collectionView.register(UINib(nibName: "CompanyAdvertiseJobCell", bundle: nil), forCellWithReuseIdentifier: CompanyAdvertiseJobCell.reuseIdentifier)
+        collectionView.register(UINib(nibName: "JobSeekerCompanyCell", bundle: nil), forCellWithReuseIdentifier: JobSeekerCompanyCell.reuseIdentifier)
         
         // Update the semantic content attribute based on the selected language
         if UserDefaults.selectedLanguage ==  "ur" || UserDefaults.selectedLanguage ==  "sd" {
@@ -239,9 +244,9 @@ extension EmployerListViewController { // Create Compositional Layout
                 return self.createInstituteSection(itemHight: 204)
             case .employees:
                 // Standard section with item height of 147
-                return self.createInstituteSection(itemHight: 147)
+                return self.createInstituteSection(itemHight: 204)
             case .advertise:
-                return self.createInstituteSection(itemHight: 244)
+                return self.createInstituteSection(itemHight: 210)
             }
         }
         
@@ -301,9 +306,9 @@ extension EmployerListViewController {
                                                                 
                                                             case .advertise:
                                                                 guard let cell = self.collectionView.dequeueReusableCell(
-                                                                    withReuseIdentifier: CompanyAdvertiseJobCell.reuseIdentifier,
+                                                                    withReuseIdentifier: JobSeekerCompanyCell.reuseIdentifier,
                                                                     for: indexPath
-                                                                ) as? CompanyAdvertiseJobCell else {
+                                                                ) as? JobSeekerCompanyCell else {
                                                                     return UICollectionViewCell()
                                                                 }
                                                                 cell.configure(with: app)
@@ -315,7 +320,8 @@ extension EmployerListViewController {
                                                                 ) as? InstituteStudentCell else {
                                                                     return UICollectionViewCell()
                                                                 }
-                                                                cell.configure(with: app, hideButtons: true)
+                                                                cell.configure(with: app)
+                                                                cell.delegateEmployer = self
                                                                 return cell
                                                             }
                                                         }
@@ -350,7 +356,21 @@ extension EmployerListViewController {
 }
 
 extension EmployerListViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {}
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch screenSelected {
+        case .jobApplications:break
+        case .advertise:
+            DispatchQueue.main.async {[weak self] in
+                guard let data = self?.viewModel.getAdvertise()[indexPath.row].advertise else { return }
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: JobSeekerDetailViewController.self)
+                view.dataJob = CompanyModel(data)
+                view.isFromAdvertise = true
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        case .employees:break
+        }
+    }
 }
 
 extension EmployerListViewController: UITextFieldDelegate {
@@ -368,13 +388,27 @@ extension EmployerListViewController: UITextFieldDelegate {
 }
 extension EmployerListViewController: EmployerPortalCellProtocol {
     func viewProfile(id: Int) {
-        DispatchQueue.main.async {[weak self] in
-            guard let index = self?.viewModel.getJobApplications().firstIndex(where:  {$0.jobApplications?.Id == id})
-            else { return }
-            let storyboard = getStoryBoard(.main)
-            let view = storyboard.instantiateViewController(ofType: ApplicantProfileViewController.self)
-            view.selectedJobEmployee = self?.viewModel.getJobApplications()[index].jobApplications
-            openModuleOnNavigation(from: self, controller: view)
+        switch screenSelected {
+        case .jobApplications:
+            DispatchQueue.main.async {[weak self] in
+                guard let index = self?.viewModel.getJobApplications().firstIndex(where:  {$0.jobApplications?.Id == id})
+                else { return }
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: ApplicantProfileViewController.self)
+                view.selectedJobEmployee = self?.viewModel.getJobApplications()[index].jobApplications
+                openModuleOnNavigation(from: self, controller: view)
+            }
+        case .advertise:break
+        case .employees:
+            DispatchQueue.main.async {[weak self] in
+                guard let index = self?.viewModel.getFindEmployee().firstIndex(where:  {$0.employees?.ID == id})
+                else { return }
+                let storyboard = getStoryBoard(.main)
+                let view = storyboard.instantiateViewController(ofType: ApplicantProfileViewController.self)
+                view.selectedEmployee = self?.viewModel.getFindEmployee()[index].employees
+                view.hideButtons = true
+                openModuleOnNavigation(from: self, controller: view)
+            }
         }
     }
     

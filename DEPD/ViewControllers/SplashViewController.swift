@@ -11,11 +11,12 @@ class SplashViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        UIApplication.shared.statusBarView?.backgroundColor = .appBG
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        dump(UIFont.familyNames)
+        dump(UIFont.familyNames)
 //        dump(UIFont.fontNames(forFamilyName: "Roboto"))
 //        dump(UIFont.fontNames(forFamilyName: "Jameel-Noori-Sindhi"))
 //        dump(UIFont.fontNames(forFamilyName: "Lateefi-Regular-Urdu"))
